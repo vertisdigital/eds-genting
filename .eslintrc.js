@@ -21,6 +21,6 @@ module.exports = {
     'xwalk/max-cells': ['error', {
       '*': 4,
       herobanner: 5,
-    }]
+    }],
   },
 };
