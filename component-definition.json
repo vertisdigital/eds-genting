@@ -218,6 +218,21 @@
               }
             }
           }
+        },
+        {
+          "title": "Link Field",
+          "id": "linkfield",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Link Field",
+                  "model": "linkfield"
+                }
+              }
+            }
+          }
         }
       ]
     }

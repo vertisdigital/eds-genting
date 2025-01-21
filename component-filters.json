@@ -17,7 +17,8 @@
       "cards",
       "columns",
       "fragment",
-      "aboutus"
+      "aboutus",
+      "linkfield"
     ]
   },
   {
@@ -44,7 +45,14 @@
   {
     "id": "aboutus",
     "components": [
-      "aboutusdescription"
+      "aboutusdescription",
+      "linkfield"
+    ]
+  },
+  {
+    "id": "aboutusdescription",
+    "components": [
+      "linkfield"
     ]
   }
 ]
