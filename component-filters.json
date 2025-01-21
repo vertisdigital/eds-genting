@@ -17,7 +17,7 @@
       "cards",
       "columns",
       "fragment",
-      "about-us-heading"
+      "aboutus"
     ]
   },
   {
@@ -42,9 +42,9 @@
     ]
   },
   {
-    "id": "about-us-heading",
+    "id": "aboutus",
     "components": [
-      "about-us-description"
+      "aboutusdescription"
     ]
   }
 ]
