@@ -307,7 +307,11 @@
         "value": "",
         "label": "Redirect Path",
         "valueType": "string",
-        "rootPath": "/content/genting-singapore"
+        "metadata": {
+          "rootPath": "/content/genting-singapore",
+          "allowExternal": true,
+          "description": "Select an internal page or enter an external URL."
+        }
       },
       {
         "component": "link-field",
