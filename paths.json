@@ -1,10 +1,18 @@
 {
   "mappings": [
-    "/content/gens-dev/:/",
-    "/content/gens-dev/configuration:/.helix/config.json",
-    "/content/gens-dev/metadata:/metadata.json"
+    "/content/genting-singapore/:/",
+    "/content/genting-singapore/configuration:/.helix/config.json",
+    "/content/genting-singapore/metadata:/metadata.json",
+    "/content/genting/:/",
+    "/content/genting/configuration:/.helix/config.json",
+    "/content/genting/metadata:/metadata.json",
+    "/content/gentingdev/:/",
+    "/content/gentingdev/configuration:/.helix/config.json",
+    "/content/gentingdev/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/gens-dev/"
+    "/content/genting-singapore/",
+    "/content/genting/",
+    "/content/gentingdev/"
   ]
 }
