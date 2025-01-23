@@ -369,5 +369,17 @@
         "label": "Title"
       }
     ]
+  },
+  {
+    "id": "linkFieldBlock",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "linkImage",
+        "label": "Link Image",
+        "multi": false
+      }
+    ]
   }
 ]
