@@ -359,5 +359,15 @@
         ]
       }
     ]
+  },
+  {
+    "id": "links",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      }
+    ]
   }
 ]
