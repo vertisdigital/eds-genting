@@ -76,7 +76,8 @@
   {
     "id": "linkFieldBlock",
     "components": [
-      "linkField"
+      "linkField",
+      "image"
     ]
   }
 ]
