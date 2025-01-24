@@ -1,17 +1,13 @@
 import Heading from '../../shared-components/Heading.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import { stringToHTML } from '../../shared-components/utility.js';
 /**
  * Loads and decorates the Hero Banner
  * @param {Element} block The herobanner block element
  */
 export default function decorate(block) {
-  // convert string to HTML Element
-  function stringToHTML(str) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(str, 'text/html');
-    return doc.body.firstChild;
-  }
+ 
   const container = document.createElement('div');
   container.className = 'container';
   // const row= document.createElement('div')
