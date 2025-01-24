@@ -15,7 +15,12 @@
       "hero",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "feature",
+      "linkField",
+      "socialLinks",
+      "links",
+      "imageLink"
     ]
   },
   {
@@ -36,7 +41,41 @@
       "text",
       "image",
       "button",
-      "title"
+      "title",
+      "imageLink",
+      "socialLinks",
+      "links"
+    ]
+  },
+  {
+    "id": "feature",
+    "components": [
+      "featureItem",
+      "linkField"
+    ]
+  },
+  {
+    "id": "featureItem",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "socialLinks",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "links",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "imageLink",
+    "components": [
+      "linkField"
     ]
   }
 ]
