@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #FFF;
+  color: var(--background-color);
   overflow: hidden;
 }
 
@@ -23,7 +23,7 @@
   font-weight: 400;
   margin-bottom: 24px;
   max-width: 656px;
-  color: #FFF;
+  color: var(--background-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
   padding-left: 157px;  
 }
@@ -34,7 +34,7 @@
   line-height: 1.6;
   max-width: 511px;
   text-align: left;
-  color: #EEE;
+  color: var(--light-grey);
   margin: 0;
   text-shadow: 0 1px 2px rgb(0 0 0 / 30%);
   padding-left: 157px;   
@@ -84,12 +84,12 @@
 .icon-wrapper svg {
   width: 24px;
   height: 100%;
-  color: #B29152;
+  color: var(--primary-gold);
 }
 
 /* Ensure proper icon color inheritance */
 .cta-button .icon-wrapper {
-  color: #FFF;
+  color: var(--background-color);
 }
 
 .hero-banner-carousal {
@@ -100,8 +100,8 @@
   align-items: center;
   justify-content: end;
   overflow: hidden;
-  background: white;
-  color: black;
+  background: var(--background-color);
+  color: var(--text-color)
 }
 
 .carousel-wrapper {
@@ -137,18 +137,18 @@
 }
 
 .news-title {
-  color: #666;
+  color: var(--body-text-color);
   font-size: 18px;
   line-height: 0.7;
 }
 
 .news-description {
-  color: #000;
+  color: var(--text-color);
   font-weight: 700;
 }
 
 .news-link {
-  color: #957842;
+  color: var(--primary-gold);
   font-size: 16px;
   text-decoration: underline;
 }
@@ -163,7 +163,7 @@
   display: flex;
   gap: 20px;
   margin-right: 20px;
-  color: #957842;
+  color: var(--primary-gold);
 }
 
 .carousel-arrow {
@@ -187,7 +187,7 @@
 .carousel-arrow svg {
   width: 24px;
   height: 24px;
-  fill: #fff;
+  fill: var(--background-color);
 }
 
 .news-thumbnail {
