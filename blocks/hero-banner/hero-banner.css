@@ -1,7 +1,7 @@
 .hero-banner-container {
   position: relative;
   width: 100%;
-  min-height: 600px;
+  height: 802px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,6 +69,7 @@
 .icon-wrapper svg {
   width: 24px;
   height: 100%;
+  color: #B29152;;
 }
 
 /* Ensure proper icon color inheritance */
@@ -76,11 +77,155 @@
   color: inherit;
 }
 
-.hero-arrow-icon {
-  cursor: pointer;
-  transition: transform 0.3s ease;
+.hero-banner-carousal {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  overflow: hidden;
+  background: white;
+  color: black;
 }
 
-.hero-arrow-icon:hover {
-  transform: translateY(4px);
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.3s ease;
+  padding: 0px 0px 10px 20px;
+  width: 680px;
 }
+
+/* Carousel item container */
+.carousel-item {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: flex-start; /* Align content to the left */
+  align-items: center; /* Vertically center the content and image */
+  height: 140px;
+}
+
+/* Left side: Text content (Title, Description, Read More) */
+.carousel-content {
+  flex: 0 0 70%; /* Take up the remaining space */
+  text-align: left;
+}
+
+/* Right side: Image container */
+.carousel-image {
+  width: 151px; /* Fixed width for the image */
+  height: 118px; /* Fixed height for the image */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the text (news-title, news-description, etc.) */
+.news-title {
+  color: #666;
+  font-size: 18px;
+  line-height: 0.7;
+}
+
+.news-description {
+  color: #000;
+  font-weight: 700;
+}
+
+.news-link {
+  color: #957842;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.news-link-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+
+.carousel-arrow-left {
+  left: 10px;
+}
+
+.carousel-arrow-right {
+  right: 10px;
+}
+
+.carousel-arrow svg {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+}
+
+.news-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  color: #957842;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.news-thumbnail{
+  width: 151px;
+  height: 118px;
+}
+
+.news-link-container img {
+  align-content: flex-end;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .carousel-wrapper {
+    flex-wrap: nowrap;
+    padding: 0px 0px 10px 0px;
+  }
+
+  .carousel-content {
+    padding-left: 20px;
+  }
+}
+
+/* Ensure responsive layout */
+@media (max-width: 767px) {
+
+  .carousel-item {
+    text-align: center;
+  }
+
+  .carousel-content {
+    padding-right: 0;
+  }
+
+  .carousel-image {
+    width: 100%; 
+    margin-bottom: 10px; 
+  }
+
+  .carousel-wrapper {
+    width: 100% !important;
+  }
+
+  .carousel-content{
+    flex: 0 0 60%;
+  }
+
+  .carousel-image img {
+    height: 92px;
+    flex: 1 0 0;
+  }
+}
+  
