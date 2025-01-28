@@ -381,5 +381,55 @@
         "multi": false
       }
     ]
+  },
+  {
+    "id": "projectcards",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "projectcard",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Image Alt Text",
+        "description": "Descriptive text for screen readers"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "name": "location",
+        "label": "Location"
+      }
+    ]
   }
 ]
