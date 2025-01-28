@@ -36,6 +36,12 @@
     color: #000 !important;
 }
 
+[data-aue-type="component"] {
+    height: 453px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
 /* Typography */
 [data-aue-prop="heading"] {
   font-size: 1.5rem;
