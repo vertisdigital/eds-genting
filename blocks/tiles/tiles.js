@@ -9,7 +9,7 @@ export default function decorate(block) {
   // Set background images for image tiles (skip first tile)
   const imageTiles = Array.from(block.children).slice(1);
   imageTiles.forEach((tile) => {
-    const imageLink = tile.querySelector('a[href*="/content/dam/"]');
+    const imageLink = tile.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
     if (imageLink) {
       // Create optimized picture element
       const picture = createOptimizedPicture(imageLink.href, '', false);
@@ -30,11 +30,6 @@ export default function decorate(block) {
         ctaLink.href = link.href;
         ctaLink.className = 'button';
         ctaLink.textContent = ctaCaption.textContent;
-
-        // Add arrow icon
-        const arrowIcon = new SvgIcon('arrow-right');
-        ctaLink.appendChild(arrowIcon);
-
         // Replace CTA caption with link
         ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
       }
