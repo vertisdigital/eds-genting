@@ -7,6 +7,7 @@ import stringToHTML from '../../shared-components/Utility.js';
  * @param {Element} block The herobanner block element
  */
 export default function decorate(block) {
+
   const container = document.createElement('div');
   container.className = 'container';
   // const row= document.createElement('div')
@@ -22,7 +23,11 @@ export default function decorate(block) {
     const titleText = titleElement.textContent;
     const header = document.createElement('header');
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
-    header.append(stringToHTML(titleHtml));
+    const parsedHtml =  stringToHTML(titleHtml)
+    for (const attr of titleElement.attributes) {
+      parsedHtml.setAttribute(attr.name, attr.value);
+    }
+    header.append(parsedHtml);
     aboutUsLeftContent.append(header);
     titleElement.remove();
   }
@@ -32,7 +37,11 @@ export default function decorate(block) {
   if (headingElement) {
     const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
-    aboutUsLeftContent.insertAdjacentHTML('beforeend', headingHtml);
+    const parsedHtml =  stringToHTML(headingHtml)
+    for (const attr of titleElement.attributes) {
+      parsedHtml.setAttribute(attr.name, attr.value);
+    }
+    aboutUsLeftContent.append(parsedHtml);
     headingElement.remove();
   }
 
@@ -43,7 +52,9 @@ export default function decorate(block) {
     const subHeadingElement = document.createElement('p');
     subHeadingElement.className = 'about-us-left-sub-heading';
     subHeadingElement.textContent = subHeadingText;
-
+    for (const attr of subHeading.attributes) {
+      subHeadingElement.setAttribute(attr.name, attr.value);
+    }
     aboutUsLeftContent.appendChild(subHeadingElement);
     subHeading.remove();
   }
@@ -55,6 +66,9 @@ export default function decorate(block) {
     const arrowLinkElement = document.createElement('a');
     if (arrowLink) {
       arrowLinkElement.href = arrowLink;
+    }
+    for (const attr of linkField.attributes) {
+      arrowLinkElement.setAttribute(attr.name, attr.value);
     }
     const arrowSVG = SvgIcon({ name: 'arrow', className: 'about-us-left-link', size: '18px' });
     arrowLinkElement.append(stringToHTML(arrowSVG));
@@ -80,10 +94,6 @@ export default function decorate(block) {
       const descriptionHtml = description.querySelector('[data-aue-prop="feature-heading"]')
       const descriptionContent = descriptionHtml?.textContent;
       
-      if(descriptionContent){
-      var descriptionContentPropAttr = descriptionHtml.getAttribute('data-aue-prop');
-      var descriptionContentLabelAttr = descriptionHtml.getAttribute('data-aue-label');
-      }
 
       // create a new paragraph and append the 'descriptionContent' text to it
       const descriptionDiv = document.createElement('p');
@@ -96,8 +106,6 @@ export default function decorate(block) {
 
         const imageLink = imageElement?.getAttribute('src');
         if(imageElement){
-        var imagePropAttr = imageElement?.getAttribute('data-aue-prop');
-        var imageLabelAttr = imageElement?.getAttribute('data-aue-label');
         var imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
         }
 
@@ -126,10 +134,18 @@ export default function decorate(block) {
           const tempContainer = document.createElement('div');
           tempContainer.innerHTML = imageHtml;
           const parsedImageNode = tempContainer.firstElementChild;
-          parsedImageNode.querySelector('img').setAttribute('data-aue-prop', `${imagePropAttr}`);
-          parsedImageNode.querySelector('img').setAttribute('data-aue-label', `${imageLabelAttr}`);
-          descriptionDiv.setAttribute('data-aue-prop', `${descriptionContentPropAttr}`);
-          descriptionDiv.setAttribute('data-aue-label', `${descriptionContentLabelAttr}`);
+
+          for (const attr of imageElement.attributes) {
+            parsedImageNode.querySelector('img').setAttribute(attr.name, attr.value);
+          }
+          // parsedImageNode.querySelector('img').setAttribute('data-aue-prop', `${imagePropAttr}`);
+          // parsedImageNode.querySelector('img').setAttribute('data-aue-label', `${imageLabelAttr}`);
+          // descriptionDiv.setAttribute('data-aue-prop', `${descriptionContentPropAttr}`);
+          // descriptionDiv.setAttribute('data-aue-label', `${descriptionContentLabelAttr}`);
+
+          for (const attr of descriptionHtml.attributes) {
+            descriptionDiv.setAttribute(attr.name, attr.value);
+          }
 
           if (parsedImageNode) {
             imageAndDescription.appendChild(parsedImageNode); // Append the actual image node
@@ -151,10 +167,7 @@ export default function decorate(block) {
         const newText = document.createElement('div');
         newText.className = 'statistic';
         const allTextElements = textElement.querySelectorAll('p');
-        if(textElement){
-        var allTextElementsPropAttr = textElement.getAttribute('data-aue-prop');
-        var allTextElementsLabelAttr = textElement.getAttribute('data-aue-label');
-        }
+
         const textElementFirstChild = allTextElements[0]?.textContent || '';
         const newTextFirstChild = document.createElement('span');
         newTextFirstChild.textContent = textElementFirstChild;
@@ -167,15 +180,15 @@ export default function decorate(block) {
           newText.append(newTextSecondChild);
         }
 
-        newText.setAttribute('data-aue-prop', `${allTextElementsPropAttr}`);
-        newText.setAttribute('data-aue-label', `${allTextElementsLabelAttr}`);
-
+        for (const attr of textElement.attributes) {
+          newText.setAttribute(attr.name, attr.value);
+        }
 
 
         descriptionDiv.textContent = description.querySelector('[data-aue-prop="feature-heading"]')?.textContent || '';
-        descriptionDiv.setAttribute('data-aue-prop', `${descriptionContentPropAttr}`);
-          descriptionDiv.setAttribute('data-aue-label', `${descriptionContentLabelAttr}`);
-        
+        for (const attr of descriptionHtml.attributes) {
+          descriptionDiv.setAttribute(attr.name, attr.value);
+        }
 
         const textAndDescription = document.createElement('div');
         textAndDescription.className = 'about-us-right-content';
