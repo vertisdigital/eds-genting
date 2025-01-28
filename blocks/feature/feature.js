@@ -77,9 +77,13 @@ export default function decorate(block) {
       // search for text component
       const textElement = description.querySelector('[data-aue-prop="feature-title"]') || '';
       // search for paragraph text
-      const descriptionContent = description.querySelector('[data-aue-prop="feature-heading"]')?.textContent;
-      const descriptionContentPropAttr = descriptionContent.getAttribute('data-aue-prop');
-      const descriptionContentLabelAttr = descriptionContent.getAttribute('data-aue-label');
+      const descriptionHtml = description.querySelector('[data-aue-prop="feature-heading"]')
+      const descriptionContent = descriptionHtml?.textContent;
+      
+      if(descriptionContent){
+      var descriptionContentPropAttr = descriptionHtml.getAttribute('data-aue-prop');
+      var descriptionContentLabelAttr = descriptionHtml.getAttribute('data-aue-label');
+      }
 
       // create a new paragraph and append the 'descriptionContent' text to it
       const descriptionDiv = document.createElement('p');
@@ -91,9 +95,11 @@ export default function decorate(block) {
         imageAndDescription.classList.add('image-container');
 
         const imageLink = imageElement?.getAttribute('src');
-        const imagePropAttr = imageElement?.getAttribute('data-aue-prop');
-        const imageLabelAttr = imageElement?.getAttribute('data-aue-label');
-        const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
+        if(imageElement){
+        var imagePropAttr = imageElement?.getAttribute('data-aue-prop');
+        var imageLabelAttr = imageElement?.getAttribute('data-aue-label');
+        var imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
+        }
 
         if (imageLink) {
           const imageHtml = ImageComponent({
@@ -116,14 +122,12 @@ export default function decorate(block) {
             },
             lazy: true,
           });
-
-          imageHtml.querySelector('img').setAttribute('data-aue-prop', `${imagePropAttr}`);
-          imageHtml.querySelector('img').setAttribute('data-aue-label', `${imageLabelAttr}`);
-
-
+ 
           const tempContainer = document.createElement('div');
           tempContainer.innerHTML = imageHtml;
           const parsedImageNode = tempContainer.firstElementChild;
+          parsedImageNode.querySelector('img').setAttribute('data-aue-prop', `${imagePropAttr}`);
+          parsedImageNode.querySelector('img').setAttribute('data-aue-label', `${imageLabelAttr}`);
           descriptionDiv.setAttribute('data-aue-prop', `${descriptionContentPropAttr}`);
           descriptionDiv.setAttribute('data-aue-label', `${descriptionContentLabelAttr}`);
 
@@ -147,9 +151,10 @@ export default function decorate(block) {
         const newText = document.createElement('div');
         newText.className = 'statistic';
         const allTextElements = textElement.querySelectorAll('p');
-        const allTextElementsPropAttr = allTextElements[0].getAttribute('data-aue-prop');
-        const allTextElementsLabelAttr =allTextElements[0].getAttribute('data-aue-label');
-
+        if(textElement){
+        var allTextElementsPropAttr = textElement.getAttribute('data-aue-prop');
+        var allTextElementsLabelAttr = textElement.getAttribute('data-aue-label');
+        }
         const textElementFirstChild = allTextElements[0]?.textContent || '';
         const newTextFirstChild = document.createElement('span');
         newTextFirstChild.textContent = textElementFirstChild;

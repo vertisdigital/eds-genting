@@ -70,7 +70,7 @@
   border-top: 1px solid var(--text-color);
   align-items: flex-start;
   padding-top: 10px;
-
+  padding-bottom: 40px;
 
 }
 
@@ -93,7 +93,6 @@
 
 .about-us-stats .about-us-right-content .statistic span:nth-child(2){
   font-size: 16px;
-  padding-left: 14px;
 }
 
 .about-us-stats .about-us-right-content p{
