@@ -1,16 +1,15 @@
 # Authoring Requirements:
 Create this block with following:
     A container block with the following fields
-        1. A text field title (e.g., "Investor's Initiatives")
-        2. A text field heading (e.g., "Explore Our Insights and Financial Highlights")
-        3. A text field CTA Caption (e.g., "Explore more")
-
+        1.A text field title
+        2.A text field heading
     A block item with following fields
-        1. A background image (left-aligned)
-        2. A text field title (e.g., "2023 Sustainability Report")
-        3. A date-time field date with display format as DD MMM YYYY
-        4. An arrow icon (right-aligned)
-        5. A CTA link for the entire item
+        1. A background image
+        2. A text field title
+        3. A richtext field description
+        4. A CTA button CTA
+        5. An arrow icon
+    The container block should be able to have only one Link Field block item.
 
 # Rendering Requirements:
 1. Layout Structure:
