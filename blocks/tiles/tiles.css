@@ -9,20 +9,10 @@
   overflow: hidden;
 }
 
-/* Header Tile (First Tile) */
-.tiles.block > div:first-child {
-  background-color: #fff;
-  color: #000;
-}
-
 /* Image Tiles */
 .tiles.block > div:not(:first-child) {
   color: #fff;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  height: 100%;
-  object-fit: cover;
+  object-fit: cover
 }
 
 /* Background Overlay */
@@ -38,6 +28,13 @@
 .tiles.block > div > * {
   position: relative;
   z-index: 2;
+  height: 472px;
+}
+
+/* Header Tile (First Tile) */
+.tiles.block > div:first-child {
+    background-color: #fff;
+    color: #000 !important;
 }
 
 /* Typography */

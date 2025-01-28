@@ -28,6 +28,9 @@ export default function decorate(block) {
         const picture = createOptimizedPicture(imageLink.href, '', false);
         // Set as background
         tile.style.backgroundImage = `url(${picture.querySelector('img').src})`;
+        tile.style.backgroundPosition = 'center';
+        tile.style.backgroundSize = 'cover';
+        tile.style.backgroundRepeat = 'no-repeat';
         // Remove original link
         imageLink.remove();
       }
