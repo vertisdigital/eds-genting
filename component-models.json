@@ -381,5 +381,36 @@
         "multi": false
       }
     ]
+  },
+  {
+    "id": "tile",
+    "fields": []
+  },
+  {
+    "id": "tile",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading"
+      },
+      {
+        "component": "textarea",
+        "name": "description",
+        "label": "Description"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "cta",
+        "label": "CTA"
+      }
+    ]
   }
 ]
