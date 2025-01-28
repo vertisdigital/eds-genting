@@ -42,8 +42,8 @@ export default function decorate(block) {
     contentWrapper.classList.add('col-xl-8', 'col-md-6', 'col-sm-4');
 
     // Get all content elements
-    const title = item.querySelector('[data-aue-type="text"][data-aue-prop="title"]');
-    const description = item.querySelector('[data-aue-type="text"][data-aue-prop="description"]');
+    const title = item.querySelector('[data-aue-type="text"]');
+    const description = item.querySelector('[data-aue-prop="description"]');
     const arrowIcon = item.querySelector('[data-aue-prop="arrowIcon"]');
     const ctaButton = item.querySelector('[data-aue-prop="CTA"]');
 
