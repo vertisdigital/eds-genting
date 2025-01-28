@@ -67,6 +67,14 @@ export default function decorate(block) {
         ctaLink.className = 'button';
         ctaLink.textContent = ctaCaption.textContent;
 
+        // Add download icon
+        // const downloadIcon = new SvgIcon('download');
+        // ctaLink.insertBefore(downloadIcon, ctaLink.firstChild);
+
+        // Add arrow icon
+        // const arrowIcon = new SvgIcon('arrow-right');
+        // ctaLink.appendChild(arrowIcon);
+
         // Replace CTA caption with link
         ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
       }
