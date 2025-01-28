@@ -6,7 +6,7 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
  */
 export default function decorate(block) {
   // Add container wrappers for each breakpoint
-  block.classList.add('container-xl', 'container-md', 'container-sm');
+  block.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
 
   // Create row wrapper
   const row = document.createElement('div');

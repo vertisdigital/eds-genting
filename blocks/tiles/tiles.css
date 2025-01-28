@@ -1,3 +1,14 @@
+/* Tile Base Styles */
+.tiles.block > div {
+  position: relative;
+  min-height: 300px;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
 /* Header Tile (First Tile) */
 .tiles.block > div:first-child {
   background-color: #fff;
@@ -8,7 +19,10 @@
 .tiles.block > div:not(:first-child) {
   color: #fff;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Background Overlay */
