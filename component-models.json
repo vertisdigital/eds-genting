@@ -381,5 +381,83 @@
         "multi": false
       }
     ]
+  },
+  {
+    "id": "listing",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "ctaCaption",
+        "label": "CTA Caption"
+      },
+      {
+        "component": "aem-content",
+        "name": "cta",
+        "label": "CTA"
+      }
+    ]
+  },
+  {
+    "id": "listitem",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Background Image",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Image Alt Text",
+        "description": "Descriptive text for screen readers"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "cta",
+        "label": "CTA"
+      },
+      {
+        "component": "reference",
+        "name": "arrowIcon",
+        "label": "Arrow Icon",
+        "multi": false
+      }
+    ]
   }
 ]
