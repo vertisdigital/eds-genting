@@ -1,14 +1,12 @@
 # Authoring Requirements:
 Create this block with following:
-    ## A container block with following fields
-    1. A text Heading - A Destination of Oppurtunity
-    2. A text area Description
-    3. A CTA to an aem asset 
-    4. 3 block item with following fields
+    A container block with no fields
+    A block item with following fields
         1. A background Image
         2. A text heading
-        3. A text area desctipyion
-        4. A link to other AEM pages to learn more
+        3. A richtext description
+        4. A CTA button 
+        5. A CTA button caption
 
 # Rendering Requirements:
     Use UL LI Syntax for list of properties
