@@ -131,10 +131,54 @@ drive sustainable growth and transformative impact through world-class integrate
     <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="currentColor"></path>
   </svg>
     </span>
-  </div></div>
-
- 
-      `,
+  </div></div>`,
+  listing: `<div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/listing/jcr:content/root/section/block" data-aue-type="container" data-block-name="listing" data-aue-behavior="component" data-aue-model="listing" data-aue-label="Listing" data-aue-filter="listing" class="listing">
+  <div>
+     <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">Investor’s Initatives</div>
+  </div>
+  <div>
+     <div data-aue-prop="heading" data-aue-label="Heading" data-aue-type="text">Explore Our Insights and Financial Highlights</div>
+  </div>
+  <div>
+     <div></div>
+  </div>
+  <div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/listing/jcr:content/root/section/block/item" data-aue-type="component" data-aue-type="component" data-aue-model="listitem" data-aue-label="List Item">
+     <div><a href="https://author-p144202-e1488374.adobeaemcloud.com/adobe/assets/urn:aaid:aem:49fb89f4-641d-46bb-b253-53c5b5798768/renditions/original/as/item1.jfif">https://author-p144202-e1488374.adobeaemcloud.com/adobe/assets/urn<span class="icon icon-aaid"></span>aem:49fb89f4-641d-46bb-b253-53c5b5798768/renditions/original/as/item1.jfif</a></div>
+     <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">2023 Sustainability Report</div>
+     <div></div>
+     <div></div>
+     <div><a href="/content/genting-singapore/index/contact.html">/content/genting-singapore/index/contact</a></div>
+     <div>
+        <picture><img src="https://picsum.photos/24/24" data-aue-prop="arrowIcon" data-aue-label="Arrow Icon" data-aue-type="media"></picture>
+     </div>
+  </div>
+  <div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/listing/jcr:content/root/section/block/item_1588069854" data-aue-type="component" data-aue-model="listitem" data-aue-label="List Item">
+     <div><a href="https://author-p144202-e1488374.adobeaemcloud.com/adobe/assets/urn:aaid:aem:e4d486f6-d15b-4a51-b8b1-c6d04dc75005/renditions/original/as/item2.jfif">https://author-p144202-e1488374.adobeaemcloud.com/adobe/assets/urn<span class="icon icon-aaid"></span>aem:e4d486f6-d15b-4a51-b8b1-c6d04dc75005/renditions/original/as/item2.jfif</a></div>
+     <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">2023 Sustainability Report</div>
+     <div></div>
+     <div></div>
+     <div><a href="/content/genting-singapore/index/herobannertest.html">/content/genting-singapore/index/herobannertest</a></div>
+     <div>
+        <picture><img src="https://picsum.photos/24/24" data-aue-prop="arrowIcon" data-aue-label="Arrow Icon" data-aue-type="media"></picture>
+     </div>
+  </div>
+  <div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/listing/jcr:content/root/section/block/item_300159412" data-aue-type="component" data-aue-model="listitem" data-aue-label="List Item">
+     <div><a href="https://author-p144202-e1488374.adobeaemcloud.com/adobe/assets/urn:aaid:aem:96f5bba8-f91b-41bb-abe0-c6bdec83c7d0/renditions/original/as/item3.jfif">https://author-p144202-e1488374.adobeaemcloud.com/adobe/assets/urn<span class="icon icon-aaid"></span>aem:96f5bba8-f91b-41bb-abe0-c6bdec83c7d0/renditions/original/as/item3.jfif</a></div>
+     <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">39th AGM Presentation Slides</div>
+     <div></div>
+     <div></div>
+     <div><a href="/content/genting-singapore/index/demo-page.html">/content/genting-singapore/index/demo-page</a></div>
+     <div>
+        <picture><img src="https://picsum.photos/24/24" data-aue-prop="arrowIcon" data-aue-label="Arrow Icon" data-aue-type="media"></picture>
+     </div>
+  </div>
+  <div>
+     <div data-aue-prop="ctaCaption" data-aue-label="CTA Caption" data-aue-type="text">Explore more</div>
+  </div>
+  <div>
+     <div><a href="/content/genting-singapore/index/investor-relations.html">/content/genting-singapore/index/investor-relations</a></div>
+  </div>
+</div>`,
   // Add other block mock content
 };
 
