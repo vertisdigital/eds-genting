@@ -410,15 +410,15 @@
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
-        "label": "Image",
+        "label": "ProjectImage",
         "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "text",
         "name": "imageAlt",
-        "label": "Image Alt Text",
-        "description": "Descriptive text for screen readers"
+        "label": "ImageAltText",
+        "description": "DescriptiveTextForScreenReaders"
       },
       {
         "component": "text",
