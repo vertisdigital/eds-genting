@@ -1,0 +1,98 @@
+.tiles.block {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Mobile Layout (1 column) */
+@media (width <= 767px) {
+  .tiles.block {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet/Desktop Layout (2x2) */
+@media (width >= 768px) {
+  .tiles.block {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tile Base Styles */
+.tiles.block > div {
+  position: relative;
+  min-height: 300px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Header Tile (First Tile) */
+.tiles.block > div:first-child {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Image Tiles */
+.tiles.block > div:not(:first-child) {
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Background Overlay */
+.tiles.block > div:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgb(0 0 0 / 50%);
+  z-index: 1;
+}
+
+/* Content Positioning */
+.tiles.block > div > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Typography */
+[data-aue-prop="heading"] {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+[data-aue-prop="description"] {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* CTA Styles */
+[data-aue-prop="ctaCaption"] {
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.button::after {
+  content: '→';
+  margin-left: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.button:hover::after {
+  transform: translateX(0.25rem);
+} 
