@@ -36,8 +36,8 @@ export const MOCK_CONTENT = {
         </div></div>`,
   // Add other block mock content
 
-  'hero-banner': `
-  <div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block" data-aue-type="container" data-aue-behavior="component" data-aue-model="hero-banner" data-aue-label="hero-banner" data-aue-filter="hero-banner" class="hero-banner block" data-block-name="hero-banner" data-block-status="loaded">
+  'herobanner': `
+  <div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block" data-aue-type="container" data-aue-behavior="component" data-aue-model="herobanner" data-aue-label="herobanner" data-aue-filter="herobanner" class="herobanner block" data-block-name="herobanner" data-block-status="loaded">
     <div>
         
             <div><p></p></div>

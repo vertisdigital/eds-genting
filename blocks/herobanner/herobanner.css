@@ -108,7 +108,8 @@
   display: flex;
   transition: transform 0.3s ease;
   padding: 0 0 10px 20px;
-  width: 680px;
+  height: 190px;
+  width: 608px;
 }
 
 /* Carousel item container */
@@ -117,7 +118,7 @@
   flex: 0 0 100%;
   justify-content: flex-start;
   align-items: center;
-  height: 140px;
+  align-self: stretch;
 }
 
 /* Left side: Text content (Title, Description, Read More) */
