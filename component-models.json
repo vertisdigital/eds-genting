@@ -405,7 +405,8 @@
         "name": "image",
         "label": "BackgroundImage",
         "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
-        "multi": false
+        "multi": false,
+        "title": "Image"
       },
       {
         "component": "text",
