@@ -1,4 +1,7 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
+import stringToHtml from '../../shared-components/Utility.js';
+import SvgIcon from "../../shared-components/SvgIcon.js"
+
 
 export default function decorate(block) {
   // Add container classes from styles.css
@@ -39,12 +42,14 @@ export default function decorate(block) {
 
     // Create single wrapper for content
     const contentWrapper = document.createElement('div');
-    contentWrapper.classList.add('col-xl-8', 'col-md-6', 'col-sm-4');
+    contentWrapper.classList.add('col-xl-8', 'col-md-4', 'col-sm-4');
 
     // Get all content elements
     const title = item.querySelector('[data-aue-type="text"]');
-    const description = item.querySelector('[data-aue-prop="description"]');
-    const arrowIcon = item.querySelector('[data-aue-prop="arrowIcon"]');
+    const description = item.querySelector('[data-richtext-prop="description"]');
+    const arrowIcon = item.querySelector('div:last-child a');
+
+
     const ctaButton = item.querySelector('[data-aue-prop="CTA"]');
 
     // Add content elements to wrapper
@@ -55,22 +60,15 @@ export default function decorate(block) {
       contentWrapper.appendChild(description);
     }
     if (arrowIcon) {
-      const picture = document.createElement('picture');
-      const img = document.createElement('img');
-      img.src = arrowIcon.src;
-      img.alt = '';
-      img.setAttribute('data-aue-prop', 'arrowIcon');
-      img.setAttribute('data-aue-label', 'Arrow Icon');
+      // const picture = document.createElement('picture');
+      const newArrowLink = document.createElement('a');
+      const arrowLink = arrowIcon.src;
+      newArrowLink.href = arrowLink;
 
-      ImageComponent({
-        element: img,
-        src: arrowIcon.src,
-        alt: '',
-        lazy: false,
-      });
-
-      picture.appendChild(img);
-      contentWrapper.appendChild(picture);
+      const arrowSVG = SvgIcon({ name: 'arrow', className: 'arrow-link', size: '24px' });
+      const parsedArrowSVG = stringToHtml(arrowSVG);
+      newArrowLink.appendChild(parsedArrowSVG)
+      contentWrapper.appendChild(newArrowLink);
     }
 
     // Add content wrapper to row
@@ -80,21 +78,6 @@ export default function decorate(block) {
     item.innerHTML = '';
     item.appendChild(row);
 
-    // Make item clickable if CTA exists
-    if (ctaButton) {
-      const link = ctaButton.querySelector('a');
-      if (link) {
-        const href = link.getAttribute('href');
-        item.addEventListener('click', () => {
-          window.location.href = href;
-        });
-        item.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            window.location.href = href;
-          }
-        });
-      }
-    }
 
     // Add accessibility attributes
     item.setAttribute('role', 'listitem');
@@ -102,14 +85,7 @@ export default function decorate(block) {
   });
 
   // Process CTA section
-  const ctaContainer = block.querySelector('[data-aue-prop="ctaCaption"]');
-  const ctaLink = block.querySelector('div:last-child a');
-  if (ctaContainer && ctaLink) {
-    const href = ctaLink.getAttribute('href');
-    ctaContainer.addEventListener('click', () => {
-      window.location.href = href;
-    });
-    ctaContainer.setAttribute('role', 'link');
-    ctaContainer.setAttribute('tabindex', '0');
-  }
+  const ctaContainer = block.querySelector('[data-aue-model="linkField"]');
+  const ctaText = ctaContainer.querySelector('[data-aue-prop="linkTarget"]');
+  ctaText.innerHTML = '';
 }
