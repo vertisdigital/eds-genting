@@ -409,8 +409,8 @@
       },
       {
         "component": "text",
-        "name": "title2",
-        "label": "Title2"
+        "name": "alttxt",
+        "label": "Image Alt Text"
       },
       {
         "component": "text",
