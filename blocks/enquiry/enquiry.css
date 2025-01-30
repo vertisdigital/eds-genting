@@ -1,0 +1,125 @@
+.enquiry-wrapper {
+  /* Base container styles */
+  width: 100%;
+  padding: 4rem 1rem;
+  background-color: rgb(249 249 249);
+}
+
+/* Remove custom grid styles and rely on container classes */
+.enquiry {
+  margin: 0 auto;
+}
+
+/* Typography */
+.enquiry-heading {
+  margin: 0;
+  color: rgb(31 41 55);
+}
+
+.enquiry-description {
+  color: rgb(75 85 99);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* Contact Items List */
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Icon Styling */
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  color: rgb(31 41 55);
+}
+
+/* Contact Text Styling */
+.contact-text {
+  margin: 0;
+  color: rgb(31 41 55);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Interactive Elements */
+.contact-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+  position: relative;
+  display: inline-block;
+}
+
+/* Hover and Focus States */
+.contact-link:hover,
+.contact-link:focus {
+  color: rgb(59 130 246);
+}
+
+/* Accessibility - Focus Visible */
+.contact-link:focus-visible {
+  outline: 2px solid rgb(59 130 246);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Responsive Layout */
+@media (width >= 1024px) {
+  .enquiry-wrapper {
+    padding: 5rem 2rem;
+  }
+
+  .contact-items {
+    margin-top: 0;
+  }
+}
+
+/* Tablet Layout */
+@media (width >= 768px) and (width < 1024px) {
+  .enquiry-wrapper {
+    padding: 4rem 1.5rem;
+  }
+}
+
+/* Mobile Layout */
+@media (width < 768px) {
+  .enquiry-wrapper {
+    padding: 3rem 1rem;
+  }
+
+  .enquiry-heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-items {
+    gap: 1.5rem;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .contact-link {
+    transition: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (forced-colors: active) {
+  .contact-link:focus-visible {
+    outline: 2px solid CanvasText;
+  }
+} 
