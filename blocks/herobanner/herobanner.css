@@ -101,7 +101,8 @@
   justify-content: end;
   overflow: hidden;
   background: var(--background-color);
-  color: var(--text-color)
+  color: var(--text-color);
+
 }
 
 .carousel-wrapper {
@@ -110,6 +111,14 @@
   padding: 0 0 10px 20px;
   height: 190px;
   width: 608px;
+  position: relative;
+
+}
+
+.navigation-arrows{
+  position: absolute;
+  bottom: 20px;
+  right: 50%;
 }
 
 /* Carousel item container */

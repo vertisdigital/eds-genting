@@ -1,6 +1,8 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import Heading from '../../shared-components/Heading.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import stringToHTML from '../../shared-components/Utility.js';
+
 
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
@@ -91,6 +93,18 @@ export default function decorate(block) {
   carouselWrapper.className = 'carousel-wrapper';
   carouselWrapper.setAttribute('data-aue-type', 'container');
 
+
+   // arrow navigations
+   const navigations = document.createElement('div');
+   navigations.classList.add('navigation-arrows');
+   const leftArrow = SvgIcon({ name: 'leftarrow', className: 'arrow-link', size: '24px' });
+   const rightArrow = SvgIcon({ name: 'rightarrow', className: 'arrow-link', size: '24px' });
+
+   navigations.appendChild(stringToHTML(leftArrow));
+   navigations.appendChild(stringToHTML(rightArrow));
+
+   console.log(navigations)
+
   // Loop through all carousel items
   carouselItems.forEach((item) => {
     const carouselItem = document.createElement('div');
@@ -99,6 +113,11 @@ export default function decorate(block) {
     carouselItem.setAttribute('data-aue-resource', item.getAttribute('data-aue-resource'));
     carouselItem.setAttribute('data-aue-label', 'Banner Carousel');
     carouselItem.setAttribute('data-aue-type', 'component');
+
+   
+
+
+
 
     const carouselItemContent = document.createElement('div');
     carouselItemContent.classList.add('carousel-content');
@@ -237,8 +256,14 @@ export default function decorate(block) {
       }
     }
 
+
     carouselWrapper.appendChild(carouselItem);
   });
+  
+  
+  carouselWrapper.appendChild(navigations);
+
+
 
   carouselContainer.appendChild(carouselWrapper);
   heroContainer.appendChild(carouselContainer);
