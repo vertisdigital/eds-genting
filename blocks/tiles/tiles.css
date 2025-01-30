@@ -71,13 +71,13 @@
 .tiles-container>div:first-child [data-aue-prop="heading"] {
     font-size: 2.5rem;
     font-weight: 500;
-    line-height: 50px;
+    line-height: 45px;
     max-width: 400px;
     margin-top: 0 !important;
 }
 
 .tiles-container > div:first-child [data-aue-prop="description"] {
-  font-size: 1rem;
+  font-size: 18px;
   font-weight: 400;
   line-height: 24px;
   color: #666
@@ -85,18 +85,18 @@
 
 .tiles-container > div:not(:first-child) [data-aue-prop="heading"] {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 24px;
   color: #FFF;
   margin-bottom: 12px
 }
 
 .tiles-container > div:not(:first-child) [data-aue-prop="description"] {
-  font-size: 14px;
-  font-weight: 200;
+  font-size: 18px;
+  font-weight: 100;
   line-height: 24px;
   color: #EEE;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .tiles-container > div:not(:first-child) [data-aue-prop="description"] p {
