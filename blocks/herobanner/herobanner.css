@@ -81,12 +81,6 @@
   padding-top: 20px;
 }
 
-.icon-wrapper svg {
-  width: 24px;
-  height: 100%;
-  color: var(--primary-gold);
-}
-
 /* Ensure proper icon color inheritance */
 .cta-button .icon-wrapper {
   color: var(--background-color);
@@ -116,9 +110,9 @@
 }
 
 .navigation-arrows{
-  position: absolute;
-  bottom: 20px;
-  right: 50%;
+  padding-right: 45px;
+  display: flex;
+  gap: 15px;
 }
 
 /* Carousel item container */
@@ -160,12 +154,12 @@
 .news-link {
   color: var(--primary-gold);
   font-size: 16px;
+  font-weight: 600;
   text-decoration: underline;
 }
 
 .news-link-container {
   display: flex;
-  align-items: baseline;
   justify-content: space-between;
 }
 

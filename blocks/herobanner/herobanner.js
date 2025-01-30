@@ -95,29 +95,21 @@ export default function decorate(block) {
 
 
    // arrow navigations
-   const navigations = document.createElement('div');
-   navigations.classList.add('navigation-arrows');
-   const leftArrow = SvgIcon({ name: 'leftarrow', className: 'arrow-link', size: '24px' });
-   const rightArrow = SvgIcon({ name: 'rightarrow', className: 'arrow-link', size: '24px' });
-
-   navigations.appendChild(stringToHTML(leftArrow));
-   navigations.appendChild(stringToHTML(rightArrow));
-
-   console.log(navigations)
-
-  // Loop through all carousel items
-  carouselItems.forEach((item) => {
+   const leftArrow = SvgIcon({ name: 'leftarrow', className: 'arrow-link', size: '12' });
+   const rightArrow = SvgIcon({ name: 'rightarrow', className: 'arrow-link', size: '12' });
+   const leftArrowDisabled = SvgIcon({ name: 'leftarrowdisabled', className: 'arrow-link', size: '12' });
+   const rightArrowDisabled = SvgIcon({ name: 'rightarrowdisabled', className: 'arrow-link', size: '12' });
+   
+   // Loop through all carousel items
+   carouselItems.forEach((item, index) => {
+    const navigations = document.createElement('div');
+    navigations.classList.add('navigation-arrows');
     const carouselItem = document.createElement('div');
     carouselItem.classList.add('carousel-item');
     carouselItem.setAttribute('data-aue-model', 'bannercarousel');
     carouselItem.setAttribute('data-aue-resource', item.getAttribute('data-aue-resource'));
     carouselItem.setAttribute('data-aue-label', 'Banner Carousel');
     carouselItem.setAttribute('data-aue-type', 'component');
-
-   
-
-
-
 
     const carouselItemContent = document.createElement('div');
     carouselItemContent.classList.add('carousel-content');
@@ -128,6 +120,17 @@ export default function decorate(block) {
     newsLinkDiv.classList.add('news-link-container');
     const newsLinkArrowDiv = document.createElement('div');
     newsLinkArrowDiv.classList.add('news-link-arrow-container');
+
+    if(index === 0){
+      navigations.appendChild(stringToHTML(leftArrowDisabled));
+      navigations.appendChild(stringToHTML(rightArrow));
+    } else if(index === carouselItems.length - 1){
+      navigations.appendChild(stringToHTML(leftArrow));
+      navigations.appendChild(stringToHTML(rightArrowDisabled));
+    }else {
+      navigations.appendChild(stringToHTML(leftArrow));
+      navigations.appendChild(stringToHTML(rightArrow));
+    }
 
     carouselItem.appendChild(carouselItemContent);
     carouselItem.appendChild(newsLatterImage);
@@ -175,6 +178,7 @@ export default function decorate(block) {
       readMoreLabelElement.remove();
     }
 
+    newsLinkDiv.appendChild(navigations);
     // Extract the two SVG icons and append them using ImageComponent
     const firstIconLink = block.querySelector('a[href="material-symbols_chevron-left%20(1).svg"]');
     const secondIconLink = block.querySelector('a[href="material-symbols_chevron-left.svg"]');
@@ -255,16 +259,9 @@ export default function decorate(block) {
         }
       }
     }
-
-
     carouselWrapper.appendChild(carouselItem);
   });
   
-  
-  carouselWrapper.appendChild(navigations);
-
-
-
   carouselContainer.appendChild(carouselWrapper);
   heroContainer.appendChild(carouselContainer);
 
