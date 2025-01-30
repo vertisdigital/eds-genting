@@ -95,10 +95,10 @@ export default function decorate(block) {
   carouselItems.forEach((item, index) => {
     const carouselItem = document.createElement('div');
     carouselItem.classList.add('carousel-item');
-    carouselItem.setAttribute('data-aue-model', 'carouselitem');
+    carouselItem.setAttribute('data-aue-model', 'bannercarousel');
     carouselItem.setAttribute('data-aue-resource', item.getAttribute('data-aue-resource'));
-    carouselItem.setAttribute('data-aue-label', `Carousel Item ${index + 1}`);
-    carouselItem.setAttribute('data-aue-type', 'container');
+    carouselItem.setAttribute('data-aue-label', 'Banner Carousel');
+    carouselItem.setAttribute('data-aue-type', 'component');
 
     const carouselItemContent = document.createElement('div');
     carouselItemContent.classList.add('carousel-content');
