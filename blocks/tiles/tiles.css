@@ -1,11 +1,21 @@
 /* Tile Base Styles */
 .tiles-container > div {
   position: relative;
-  min-height: 300px;
   display: flex;
   justify-content: space-between;
   border-radius: 0.5rem;
   overflow: hidden;
+  min-height: 430px !important;
+  padding: 22px !important;
+  aspect-ratio: 1;
+}
+
+.tiles-container > div:not(:first-child) > div {
+  background-color: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 /* Image Tiles */
@@ -41,9 +51,8 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
-  margin-top: auto;
   align-self: flex-end;
-  margin: 20px 0;
+  margin: 20px 0 auto;
 }
 
 .factsheet-button::after {
@@ -66,11 +75,6 @@
     max-width: 400px;
     margin-top: 0 !important;
 }
-.tiles-container > div {
-  min-height: 430px !important;
-  padding: 22px !important;
-  aspect-ratio: 1;
-}
 
 .tiles-container > div:first-child [data-aue-prop="description"] {
   font-size: 1rem;
@@ -79,13 +83,6 @@
   color: #666
 }
 
-.tiles-container > div:not(:first-child) > div {
-  background-color: black;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-}
 .tiles-container > div:not(:first-child) [data-aue-prop="heading"] {
   font-size: 20px;
   font-weight: 500;
@@ -93,6 +90,7 @@
   color: #FFF;
   margin-bottom: 12px
 }
+
 .tiles-container > div:not(:first-child) [data-aue-prop="description"] {
   font-size: 18px;
   font-weight: 200;
@@ -100,9 +98,11 @@
   color: #EEE;
   margin-bottom: 1.5rem;
 }
+
 .tiles-container > div:not(:first-child) [data-aue-prop="description"] p {
   margin: 0 !important;
 }
+
 .learn-button {
   position: absolute;
   bottom: 2.5rem;
@@ -112,15 +112,17 @@
   color: #FFF !important;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (width <= 1024px) {
   .tiles-container {
     padding: 0 !important;
   }
+
   .tiles-container > div:first-child [data-aue-prop="heading"] {
     font-size: 32px;
     line-height: 42px;
     font-weight: 500;
   }
+
   .tiles-container > div:not(:first-child) [data-aue-prop="heading"] {
     font-size: 18px;
     line-height: 24px;
@@ -128,7 +130,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width <= 768px) {
   .tiles-container > div:first-child {
     min-height: unset !important;
     aspect-ratio: unset;
