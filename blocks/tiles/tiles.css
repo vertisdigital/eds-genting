@@ -127,12 +127,6 @@
     padding: 0 !important;
   }
 
-  .tiles-container > div {
-    width: 340px;
-    height: 300px;
-    min-height: 200px !important;
-  }
-
   .tiles-container > div:first-child [data-aue-prop="heading"] {
     font-size: 30px;
     max-width: 200px;
