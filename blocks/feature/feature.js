@@ -28,9 +28,6 @@ export default function decorate(block) {
     header.setAttribute('data-aue-label', 'Title');
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
-    parsedHtml.setAttribute('data-aue-prop', 'title');
-    parsedHtml.setAttribute('data-aue-label', 'Feature Title');
-    parsedHtml.setAttribute('data-aue-resource', 'feature-title');
     header.append(parsedHtml);
     aboutUsLeftContent.append(header);
     titleElement.remove();
