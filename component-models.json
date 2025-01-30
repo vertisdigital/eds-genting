@@ -167,7 +167,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -186,6 +186,20 @@
         "name": "ctabutton",
         "label": "CTA Link",
         "multi": false
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "previousarrow",
+        "label": "Previous Arrow Icon",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "valueType": "string"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "nextarrow",
+        "label": "Next Arrow Icon",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "valueType": "string"
       },
       {
         "component": "select",
@@ -226,7 +240,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "valueType": "string"
       },
       {
