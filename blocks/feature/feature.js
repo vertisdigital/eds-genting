@@ -65,48 +65,49 @@ export default function decorate(block) {
   // Find the LinkField and replace it with arrow icon
   const linkField = block.querySelector('[data-aue-model="linkField"]');
   if (linkField) {
+    // Preserve the original link field container
     const linkContainer = document.createElement('div');
     Array.from(linkField.attributes).forEach((attr) => {
       linkContainer.setAttribute(attr.name, attr.value);
     });
 
-    // Create link text div
+    // Create link text container with button
     const linkTextDiv = document.createElement('div');
-    const linkTextP = document.createElement('p');
-    linkTextP.className = 'button-container';
-    const linkElement = document.createElement('a');
+    const buttonP = document.createElement('p');
+    buttonP.className = 'button-container';
+    
+    // Create link element with original attributes
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
     if (originalLink) {
-      linkElement.href = originalLink.getAttribute('href');
-      linkElement.title = originalLink.getAttribute('title');
-      linkElement.className = 'button';
-      linkElement.textContent = originalLink.textContent;
+      const linkElement = document.createElement('a');
       Array.from(originalLink.attributes).forEach((attr) => {
         linkElement.setAttribute(attr.name, attr.value);
       });
+      linkElement.textContent = originalLink.textContent;
+      linkElement.className = 'button';
+
+      // Add arrow icon
+      const arrowSVG = SvgIcon({ name: 'arrow', className: 'about-us-left-link', size: '18px' });
+      linkElement.append(stringToHTML(arrowSVG));
+      buttonP.appendChild(linkElement);
     }
+    linkTextDiv.appendChild(buttonP);
 
-    // Add arrow icon
-    const arrowSVG = SvgIcon({ name: 'arrow', className: 'about-us-left-link', size: '18px' });
-    linkElement.append(stringToHTML(arrowSVG));
-    linkTextP.appendChild(linkElement);
-    linkTextDiv.appendChild(linkTextP);
-
-    // Create link target div
-    const linkTargetDiv = document.createElement('div');
-    const linkTargetP = document.createElement('p');
+    // Create target container
+    const targetDiv = document.createElement('div');
+    const targetP = document.createElement('p');
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
     if (originalTarget) {
-      linkTargetP.textContent = originalTarget.textContent;
       Array.from(originalTarget.attributes).forEach((attr) => {
-        linkTargetP.setAttribute(attr.name, attr.value);
+        targetP.setAttribute(attr.name, attr.value);
       });
+      targetP.textContent = originalTarget.textContent;
     }
-    linkTargetDiv.appendChild(linkTargetP);
+    targetDiv.appendChild(targetP);
 
-    // Assemble link structure
+    // Assemble the structure
     linkContainer.appendChild(linkTextDiv);
-    linkContainer.appendChild(linkTargetDiv);
+    linkContainer.appendChild(targetDiv);
     aboutUsLeftContent.appendChild(linkContainer);
   }
 
