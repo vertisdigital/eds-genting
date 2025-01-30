@@ -415,10 +415,13 @@
       },
       {
         "component": "richtext",
-        "name": "listitem-description",
-        "label": "List Item Description",
-        "value": "",
-        "valueType": "string"
+        "name": "rte",
+        "label": "Rich Text",
+        "valueType": "string",
+        "validation": {
+            "maxSize": 1000,
+            "customErrorMsg": "That's about as funny as a screen door on a battleship."
+          }
       },
       {
         "component": "aem-content",
