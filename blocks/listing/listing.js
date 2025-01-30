@@ -46,7 +46,7 @@ export default function decorate(block) {
     // Get all content elements
     const title = item.querySelector('[data-aue-type="text"]');
     const description = item.querySelector('[data-richtext-prop="itemdescription"]');
-    console.log(description+" updated");
+    console.log(item);
     const arrowIcon = item.querySelector('div:last-child a');
 
     // Add content elements to wrapper
