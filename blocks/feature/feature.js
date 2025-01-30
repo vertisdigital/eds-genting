@@ -131,6 +131,7 @@ export default function decorate(block) {
     const featureContainer = document.createElement('div');
     Array.from(description.attributes).forEach((attr) => {
       featureContainer.setAttribute(attr.name, attr.value);
+      featureContainer.classList.add("about-us-right-content")
     });
 
     // Handle image feature
