@@ -8,6 +8,7 @@ export default function decorate(block) {
 
   // Process list items
   const listItems = block.querySelectorAll('[data-aue-model="listitem"]');
+  console.log(block);
   listItems.forEach((item) => {
     // Create row from styles.css
     const row = document.createElement('div');
