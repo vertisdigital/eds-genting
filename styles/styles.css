@@ -228,10 +228,6 @@ pre {
   white-space: pre;
 }
  
-main > div {
-  margin: 40px 16px;
-}
- 
 input,
 textarea,
 select,
@@ -314,27 +310,6 @@ main img {
   width: 100%;
 }
  
-/* sections */
-main > .section {
-  margin: 40px 0;
-}
- 
-main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
-}
- 
-main > .section:first-of-type {
-  margin-top: 0;
-}
- 
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
-  }
-}
- 
 /* section metadata */
 main .section.light,
 main .section.highlight {
@@ -396,11 +371,11 @@ main .section.highlight {
   }
 
   .row > *:first-child {
-    padding-right: 0;
+    padding-left: 0;
   }
 
   .row > *:last-child {
-    padding-left: 0;
+    padding-right: 0;
   }
 
   /* For sm breakpoint */
@@ -469,12 +444,12 @@ main .section.highlight {
   .row-cols-md-6 > * { width: 16.6666666667%; }
 
   .row > * {
-    padding-right: calc(var(--bs-gutter-x) * 0.5);
-    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    padding-right: calc(var(--bs-gutter-x) * 0.25);
+    padding-left: calc(var(--bs-gutter-x) * 0.25);
   }
 
-  .row > *:first-child { padding-right: 0; }
-  .row > *:last-child { padding-left: 0; }
+  .row > *:first-child { padding-left: 0; }
+  .row > *:last-child { padding-right: 0; }
 
   /* For md breakpoint */
   .col-md { 
@@ -552,12 +527,12 @@ main .section.highlight {
   .row-cols-lg-6 > * { width: 16.6666666667%; }
 
   .row > * {
-    padding-right: calc(var(--bs-gutter-x) * 0.5);
-    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    padding-right: calc(var(--bs-gutter-x) * 0.25);
+    padding-left: calc(var(--bs-gutter-x) * 0.25);
   }
 
-  .row > *:first-child { padding-right: 0; }
-  .row > *:last-child { padding-left: 0; }
+  .row > *:first-child { padding-left: 0; }
+  .row > *:last-child { padding-right: 0; }
 
   /* For lg breakpoint */
   .col-lg { 
@@ -672,12 +647,12 @@ main .section.highlight {
   .row-cols-xl-6 > * { width: 16.6666666667%; }
 
   .row > * {
-    padding-right: 36px;
-    padding-left: 36px;
+    padding-right: 18px;
+    padding-left: 18px;
   }
 
-  .row > *:first-child { padding-right: 0; }
-  .row > *:last-child { padding-left: 0; }
+  .row > *:first-child { padding-left: 0; }
+  .row > *:last-child { padding-right: 0; }
 
   /* For xl breakpoint */
   .col-xl { 
