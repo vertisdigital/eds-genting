@@ -8,6 +8,7 @@ import stringToHTML from '../../shared-components/Utility.js';
 * @param {Element} block The herobanner block element
 */
 export default function decorate(block) {
+  console.log('feature block', block);
   const container = document.createElement('div');
   container.className = 'container';
 
