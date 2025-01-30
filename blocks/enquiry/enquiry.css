@@ -1,8 +1,8 @@
 .enquiry-wrapper {
   /* Base container styles */
   width: 100%;
-  padding: 4rem 1rem;
-  background-color: rgb(249 249 249);
+  padding: 80px 0;
+  background-color:  var(--whisper-grey);
 }
 
 /* Remove custom grid styles and rely on container classes */
@@ -11,115 +11,221 @@
 }
 
 /* Typography */
-.enquiry-heading {
+.enquiry-wrapper .row>div{
+  padding: 0;
+}
+.enquiry-wrapper .row>div:first-child{
+  padding-right: 18px;
+
+}
+.enquiry-wrapper .row>div:last-child{
+  padding-left: 18px;
+  
+}
+.enquiry-wrapper .enquiry-heading {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 50px; 
+  letter-spacing: -0.5px;
   margin: 0;
-  color: rgb(31 41 55);
+  color: var(--text-color); 
 }
 
-.enquiry-description {
-  color: rgb(75 85 99);
-  margin-bottom: 2rem;
-  line-height: 1.5;
+.enquiry-wrapper .enquiry-description{
+  margin-bottom: 36px;
+}
+
+.enquiry-wrapper .enquiry-description p{
+  font-family: var(--heading-font-family);
+  font-size:16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-color); 
+  margin: 0;
 }
 
 /* Contact Items List */
-.contact-items {
+.enquiry-wrapper .contact-items {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 16px;
 }
 
-.contact-item {
+.enquiry-wrapper .contact-items .contact-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 20px;
 }
 
 /* Icon Styling */
-.contact-icon {
+.enquiry-wrapper .contact-items .contact-icon{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
-  color: rgb(31 41 55);
+  color: var(--primary-gold);
+  padding: 12px;
 }
 
 /* Contact Text Styling */
-.contact-text {
-  margin: 0;
-  color: rgb(31 41 55);
-  font-size: 1rem;
-  line-height: 1.5;
+.enquiry-wrapper .contact-items .contact-text { 
+  font-family: var(--heading-font-family);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--text-color);
+    margin: 0;
+    color: var(--text-color);
+    text-decoration: none;
 }
+.enquiry-wrapper .contact-items .contact-text a{
+    color: var(--text-color);
+    text-decoration: none;
+   
+}
+
 
 /* Interactive Elements */
-.contact-link {
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.2s ease;
-  position: relative;
-  display: inline-block;
+.enquiry-wrapper .contact-items .contact-link {
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--text-color);
+
 }
 
-/* Hover and Focus States */
-.contact-link:hover,
-.contact-link:focus {
-  color: rgb(59 130 246);
-}
 
-/* Accessibility - Focus Visible */
-.contact-link:focus-visible {
-  outline: 2px solid rgb(59 130 246);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
 
-/* Responsive Layout */
-@media (width >= 1024px) {
-  .enquiry-wrapper {
-    padding: 5rem 2rem;
+/* Tablet Layout  */
+ @media (width >= 768px) and (width < 1024px) {
+ 
+ 
+  .enquiry-wrapper .enquiry-heading {
+    font-size: 32px;
+    line-height: 42px; 
+    margin: 0;
+  }
+  
+  .enquiry-wrapper .enquiry-description{
+    margin-bottom: 24px;
+  }
+  
+  .enquiry-wrapper .enquiry-description p{
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  /* Contact Items List */
+  .enquiry-wrapper .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .enquiry-wrapper .contact-items .contact-item {
+    gap: 16px;
+  }
+  
+
+  /* Contact Text Styling */
+  .enquiry-wrapper .contact-items .contact-text { 
+    font-family: var(--heading-font-family);
+      font-size: 16px;
+      line-height: 24px;
   }
 
-  .contact-items {
-    margin-top: 0;
+  
+  
+  /* Interactive Elements */
+  .enquiry-wrapper .contact-items .contact-link {
+    font-size: 16px;
+    line-height: 24px;
+  
   }
 }
 
-/* Tablet Layout */
-@media (width >= 768px) and (width < 1024px) {
-  .enquiry-wrapper {
-    padding: 4rem 1.5rem;
-  }
-}
-
-/* Mobile Layout */
+/* Mobile Layout  */
 @media (width < 768px) {
-  .enquiry-wrapper {
-    padding: 3rem 1rem;
-  }
+  
 
-  .enquiry-heading {
-    margin-bottom: 1.5rem;
+  
+  /* Typography */
+  .enquiry-wrapper .row>div{
+    padding: 0;
   }
-
-  .contact-items {
-    gap: 1.5rem;
+  .enquiry-wrapper .row>div:first-child{
+    padding-right: 0;
+  
   }
+  .enquiry-wrapper .row>div:last-child{
+    padding-left: 0;
+    
+  }
+  .enquiry-wrapper .enquiry-heading {
+    font-size: 28px;
+    line-height: 34px; 
+    margin: 0;
+    margin-bottom: 18px;
+  }
+  
+  .enquiry-wrapper .enquiry-description{
+    margin-bottom: 18px;
+  }
+  
+  .enquiry-wrapper .enquiry-description p{
+    font-size:14px;
+    line-height: 20px;
+  }
+  
+  /* Contact Items List */
+  .enquiry-wrapper .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .enquiry-wrapper .contact-items .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Icon Styling */
+  .enquiry-wrapper .contact-items .contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    color: var(--primary-gold);
+  }
+  
+  /* Contact Text Styling */
+  .enquiry-wrapper .contact-items .contact-text { 
+    font-family: var(--heading-font-family);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      color: var(--text-color);
+      margin: 0;
+      text-decoration: none;
+  }
+  .enquiry-wrapper .contact-items .contact-text a{
+      color: var(--text-color);
+      text-decoration: none;
+     
+  }
+  
+  
+  /* Interactive Elements */
+  .enquiry-wrapper .contact-items .contact-link {
+    font-size: 14px;
+    line-height: 20px;
+  
+  }
+  
 }
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .contact-link {
-    transition: none;
-  }
-}
-
-/* High Contrast Mode */
-@media (forced-colors: active) {
-  .contact-link:focus-visible {
-    outline: 2px solid CanvasText;
-  }
-} 
