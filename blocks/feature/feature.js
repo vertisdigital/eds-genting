@@ -48,6 +48,9 @@ export default function decorate(block) {
   }
 
   // Find the sub-heading and replace it with a sub-heading
+  const arrowEmptyContainer = document.createElement('div');
+  aboutUsLeftContent.appendChild(arrowEmptyContainer);
+  
   const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
   if (subHeading) {
     const subHeadingText = subHeading.querySelector('p').textContent;
@@ -107,7 +110,7 @@ export default function decorate(block) {
     // Assemble link structure
     linkContainer.appendChild(linkTextDiv);
     linkContainer.appendChild(linkTargetDiv);
-    // aboutUsLeftContent.appendChild(linkContainer);
+    arrowEmptyContainer.appendChild(linkContainer);
   }
 
   // About-Us right container
