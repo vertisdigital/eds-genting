@@ -104,7 +104,6 @@ export default function decorate(block) {
     }
 
     // Handle link target (commented out as per current requirements)
-    /*
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
     if (originalTarget) {
       const targetDiv = document.createElement('div');
@@ -118,7 +117,6 @@ export default function decorate(block) {
       targetDiv.appendChild(targetP);
       linkContainer.appendChild(targetDiv);
     }
-    */
 
     // Add to container
     arrowEmptyContainer.appendChild(linkContainer);
