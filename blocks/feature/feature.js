@@ -8,206 +8,204 @@ import stringToHTML from '../../shared-components/Utility.js';
 * @param {Element} block The herobanner block element
 */
 export default function decorate(block) {
-  console.log('feature block', block);
-  console.log('feature block query', block.querySelector('[data-aue-model="linkField"]'));
-  // const container = document.createElement('div');
-  // container.className = 'container';block.querySelector('[data-aue-model="linkField"]');
+  const container = document.createElement('div');
+  container.className = 'container';block.querySelector('[data-aue-model="linkField"]');
 
-  // const aboutUsStats = document.createElement('div');
-  // aboutUsStats.className = 'row about-us-stats';
+  const aboutUsStats = document.createElement('div');
+  aboutUsStats.className = 'row about-us-stats';
 
-  // // About-Us left container
-  // const aboutUsLeftContent = document.createElement('div');
-  // aboutUsLeftContent.className = 'col-lg-6 col-md-6 col-sm-12 about-us-left';
+  // About-Us left container
+  const aboutUsLeftContent = document.createElement('div');
+  aboutUsLeftContent.className = 'col-lg-6 col-md-6 col-sm-12 about-us-left';
 
-  // // Find the title and replace it with a heading
-  // const titleElement = block.querySelector('[data-aue-prop="title"]');
-  // if (titleElement) {
-  //   const titleText = titleElement.textContent;
-  //   const header = document.createElement('header');
-  //   header.setAttribute('data-aue-prop', 'title');
-  //   header.setAttribute('data-aue-type', 'text');
-  //   header.setAttribute('data-aue-label', 'Title');
-  //   const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
-  //   const parsedHtml = stringToHTML(titleHtml);
-  //   header.append(parsedHtml);
-  //   aboutUsLeftContent.append(header);
-  //   titleElement.remove();
-  // }
+  // Find the title and replace it with a heading
+  const titleElement = block.querySelector('[data-aue-prop="title"]');
+  if (titleElement) {
+    const titleText = titleElement.textContent;
+    const header = document.createElement('header');
+    header.setAttribute('data-aue-prop', 'title');
+    header.setAttribute('data-aue-type', 'text');
+    header.setAttribute('data-aue-label', 'Title');
+    const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
+    const parsedHtml = stringToHTML(titleHtml);
+    header.append(parsedHtml);
+    aboutUsLeftContent.append(header);
+    titleElement.remove();
+  }
 
-  // // Find the heading and replace it with a heading
-  // const headingElement = block.querySelector('[data-aue-prop="heading"]');
-  // if (headingElement) {
-  //   const headingText = headingElement.textContent;
-  //   const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
-  //   const parsedHtml = stringToHTML(headingHtml);
+  // Find the heading and replace it with a heading
+  const headingElement = block.querySelector('[data-aue-prop="heading"]');
+  if (headingElement) {
+    const headingText = headingElement.textContent;
+    const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
+    const parsedHtml = stringToHTML(headingHtml);
 
-  //   parsedHtml.setAttribute('data-aue-prop', 'heading');
-  //   parsedHtml.setAttribute('data-aue-label', 'Heading');
-  //   parsedHtml.setAttribute('data-aue-type', 'text');
-  //   aboutUsLeftContent.append(parsedHtml);
-  //   headingElement.remove();
-  // }
+    parsedHtml.setAttribute('data-aue-prop', 'heading');
+    parsedHtml.setAttribute('data-aue-label', 'Heading');
+    parsedHtml.setAttribute('data-aue-type', 'text');
+    aboutUsLeftContent.append(parsedHtml);
+    headingElement.remove();
+  }
 
-  // // Find the sub-heading and replace it with a sub-heading
+  // Find the sub-heading and replace it with a sub-heading
   
-  // const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
-  // if (subHeading) {
-  //   const subHeadingText = subHeading.querySelector('p').textContent;
-  //   const subHeadingElement = document.createElement('p');
-  //   subHeadingElement.className = 'about-us-left-sub-heading';
-  //   subHeadingElement.textContent = subHeadingText;
-  //   Array.from(subHeading.attributes).forEach((attr) => {
-  //     subHeadingElement.setAttribute(attr.name, attr.value);
-  //   });
+  const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
+  if (subHeading) {
+    const subHeadingText = subHeading.querySelector('p').textContent;
+    const subHeadingElement = document.createElement('p');
+    subHeadingElement.className = 'about-us-left-sub-heading';
+    subHeadingElement.textContent = subHeadingText;
+    Array.from(subHeading.attributes).forEach((attr) => {
+      subHeadingElement.setAttribute(attr.name, attr.value);
+    });
 
-  //   aboutUsLeftContent.appendChild(subHeadingElement);
-  //   subHeading.remove();
-  // }
+    aboutUsLeftContent.appendChild(subHeadingElement);
+    subHeading.remove();
+  }
 
-  // // Find the LinkField and replace it with arrow icon
-  // const linkField = block.querySelector('[data-aue-model="linkField"]');
-  // if (linkField) {
-  //   // Preserve original container
-  //   const linkContainer = document.createElement('div');
-  //   Array.from(linkField.attributes).forEach((attr) => {
-  //     linkContainer.setAttribute(attr.name, attr.value);
-  //   });
+  // Find the LinkField and replace it with arrow icon
+  const linkField = block.querySelector('[data-aue-model="linkField"]');
+  if (linkField) {
+    // Preserve original container
+    const linkContainer = document.createElement('div');
+    Array.from(linkField.attributes).forEach((attr) => {
+      linkContainer.setAttribute(attr.name, attr.value);
+    });
 
-  //   // Create link text div
-  //   const linkTextDiv = document.createElement('div');
-  //   const linkTextP = document.createElement('p');
-  //   linkTextP.className = 'button-container';
+    // Create link text div
+    const linkTextDiv = document.createElement('div');
+    const linkTextP = document.createElement('p');
+    linkTextP.className = 'button-container';
     
-  //   // Handle link text
-  //   const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
-  //   if (originalLink) {
-  //     const linkElement = document.createElement('a');
+    // Handle link text
+    const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
+    if (originalLink) {
+      const linkElement = document.createElement('a');
       
-  //     // Copy all attributes from original link
-  //     Array.from(originalLink.attributes).forEach((attr) => {
-  //       linkElement.setAttribute(attr.name, attr.value);
-  //     });
+      // Copy all attributes from original link
+      Array.from(originalLink.attributes).forEach((attr) => {
+        linkElement.setAttribute(attr.name, attr.value);
+      });
       
-  //     // Set additional attributes
-  //     linkElement.className = 'button';
-  //     linkElement.textContent = originalLink.textContent;
+      // Set additional attributes
+      linkElement.className = 'button';
+      linkElement.textContent = originalLink.textContent;
 
-  //     // Add arrow icon
-  //     const arrowSVG = SvgIcon({ name: 'arrow', className: 'about-us-left-link', size: '18px' });
-  //     linkElement.append(stringToHTML(arrowSVG));
+      // Add arrow icon
+      const arrowSVG = SvgIcon({ name: 'arrow', className: 'about-us-left-link', size: '18px' });
+      linkElement.append(stringToHTML(arrowSVG));
       
-  //     // Assemble link structure
-  //     linkTextP.appendChild(linkElement);
-  //     linkTextDiv.appendChild(linkTextP);
-  //     linkContainer.appendChild(linkTextDiv);
-  //   }
+      // Assemble link structure
+      linkTextP.appendChild(linkElement);
+      linkTextDiv.appendChild(linkTextP);
+      linkContainer.appendChild(linkTextDiv);
+    }
 
-  //   // Handle link target (commented out as per current requirements)
-  //   const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
-  //   if (originalTarget) {
-  //     const targetDiv = document.createElement('div');
-  //     const targetP = document.createElement('p');
+    // Handle link target (commented out as per current requirements)
+    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
+    if (originalTarget) {
+      const targetDiv = document.createElement('div');
+      const targetP = document.createElement('p');
       
-  //     Array.from(originalTarget.attributes).forEach((attr) => {
-  //       targetP.setAttribute(attr.name, attr.value);
-  //     });
-  //     targetP.textContent = originalTarget.textContent;
+      Array.from(originalTarget.attributes).forEach((attr) => {
+        targetP.setAttribute(attr.name, attr.value);
+      });
+      targetP.textContent = originalTarget.textContent;
       
-  //     targetDiv.appendChild(targetP);
-  //     linkContainer.appendChild(targetDiv);
-  //   }
+      targetDiv.appendChild(targetP);
+      linkContainer.appendChild(targetDiv);
+    }
 
-  //   // Add to container
-  //   aboutUsLeftContent.appendChild(linkContainer);
-  // }
+    // Add to container
+    aboutUsLeftContent.appendChild(linkContainer);
+  }
 
-  // // About-Us right container
-  // const aboutUsRightContent = document.createElement('div');
-  // aboutUsRightContent.className = 'col-lg-6 col-md-6 col-sm-12 about-us-right';
+  // About-Us right container
+  const aboutUsRightContent = document.createElement('div');
+  aboutUsRightContent.className = 'col-lg-6 col-md-6 col-sm-12 about-us-right';
 
-  // // Collect all imageAndDescription elements first
-  // const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
-  // aboutUsDescription.forEach((description) => {
-  //   // Create feature item container
-  //   const featureContainer = document.createElement('div');
-  //   Array.from(description.attributes).forEach((attr) => {
-  //     featureContainer.setAttribute(attr.name, attr.value);
-  //     featureContainer.classList.add("about-us-right-content")
-  //   });
+  // Collect all imageAndDescription elements first
+  const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
+  aboutUsDescription.forEach((description) => {
+    // Create feature item container
+    const featureContainer = document.createElement('div');
+    Array.from(description.attributes).forEach((attr) => {
+      featureContainer.setAttribute(attr.name, attr.value);
+      featureContainer.classList.add("about-us-right-content")
+    });
 
-  //   // Handle image feature
-  //   const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
-  //   if (imageElement) {
-  //     const imageContainer = document.createElement('div');
-  //     const imageLink = imageElement.getAttribute('src');
-  //     const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
+    // Handle image feature
+    const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
+    if (imageElement) {
+      const imageContainer = document.createElement('div');
+      const imageLink = imageElement.getAttribute('src');
+      const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
 
-  //     if (imageLink) {
-  //       const imageHtml = ImageComponent({
-  //         src: imageLink,
-  //         alt: imgAltText,
-  //         className: 'about-us-right-description-icon',
-  //         breakpoints: {
-  //           mobile: { width: 768, src: imageLink },
-  //           tablet: { width: 1024, src: imageLink },
-  //           desktop: { width: 1920, src: imageLink },
-  //         },
-  //         lazy: true,
-  //       });
+      if (imageLink) {
+        const imageHtml = ImageComponent({
+          src: imageLink,
+          alt: imgAltText,
+          className: 'about-us-right-description-icon',
+          breakpoints: {
+            mobile: { width: 768, src: imageLink },
+            tablet: { width: 1024, src: imageLink },
+            desktop: { width: 1920, src: imageLink },
+          },
+          lazy: true,
+        });
 
-  //       const parsedImage = stringToHTML(imageHtml);
-  //       Array.from(imageElement.attributes).forEach((attr) => {
-  //         parsedImage.querySelector('img').setAttribute(attr.name, attr.value);
-  //       });
-  //       imageContainer.appendChild(parsedImage);
-  //       featureContainer.appendChild(imageContainer);
-  //       featureContainer.classList.add('image-container');
-  //     }
-  //   }
+        const parsedImage = stringToHTML(imageHtml);
+        Array.from(imageElement.attributes).forEach((attr) => {
+          parsedImage.querySelector('img').setAttribute(attr.name, attr.value);
+        });
+        imageContainer.appendChild(parsedImage);
+        featureContainer.appendChild(imageContainer);
+        featureContainer.classList.add('image-container');
+      }
+    }
 
-  //   // Handle text feature
-  //   const textElement = description.querySelector('[data-aue-prop="feature-title"]');
-  //   if (textElement) {
-  //     const textContainer = document.createElement('div');
-  //     const statisticDiv = document.createElement('div');
-  //     statisticDiv.className = 'statistic';
+    // Handle text feature
+    const textElement = description.querySelector('[data-aue-prop="feature-title"]');
+    if (textElement) {
+      const textContainer = document.createElement('div');
+      const statisticDiv = document.createElement('div');
+      statisticDiv.className = 'statistic';
 
-  //     const textContent = textElement.querySelectorAll('p');
-  //     textContent.forEach((text) => {
-  //       const span = document.createElement('span');
-  //       span.textContent = text.textContent;
-  //       Array.from(text.attributes).forEach((attr) => {
-  //         span.setAttribute(attr.name, attr.value);
-  //       });
-  //       statisticDiv.appendChild(span);
-  //     });
+      const textContent = textElement.querySelectorAll('p');
+      textContent.forEach((text) => {
+        const span = document.createElement('span');
+        span.textContent = text.textContent;
+        Array.from(text.attributes).forEach((attr) => {
+          span.setAttribute(attr.name, attr.value);
+        });
+        statisticDiv.appendChild(span);
+      });
 
-  //     textContainer.appendChild(statisticDiv);
-  //     featureContainer.appendChild(textContainer);
-  //     featureContainer.classList.add('text-container');
-  //   }
+      textContainer.appendChild(statisticDiv);
+      featureContainer.appendChild(textContainer);
+      featureContainer.classList.add('text-container');
+    }
 
-  //   // Handle feature heading
-  //   const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
-  //   if (featureHeadingElement) {
-  //     const headingContainer = document.createElement('div');
-  //     const featureHeadingP = document.createElement('p');
-  //     featureHeadingP.textContent = featureHeadingElement.textContent;
-  //     Array.from(featureHeadingElement.attributes).forEach((attr) => {
-  //       featureHeadingP.setAttribute(attr.name, attr.value);
-  //     });
-  //     headingContainer.appendChild(featureHeadingP);
-  //     featureContainer.appendChild(headingContainer);
-  //   }
+    // Handle feature heading
+    const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
+    if (featureHeadingElement) {
+      const headingContainer = document.createElement('div');
+      const featureHeadingP = document.createElement('p');
+      featureHeadingP.textContent = featureHeadingElement.textContent;
+      Array.from(featureHeadingElement.attributes).forEach((attr) => {
+        featureHeadingP.setAttribute(attr.name, attr.value);
+      });
+      headingContainer.appendChild(featureHeadingP);
+      featureContainer.appendChild(headingContainer);
+    }
 
-  //   aboutUsRightContent.appendChild(featureContainer);
-  // });
+    aboutUsRightContent.appendChild(featureContainer);
+  });
 
-  // block.innerHTML = '';
+  block.innerHTML = '';
 
-  // aboutUsStats.appendChild(aboutUsLeftContent);
-  // aboutUsStats.appendChild(aboutUsRightContent);
-  // container.append(aboutUsStats);
-  // block.appendChild(container);
+  aboutUsStats.appendChild(aboutUsLeftContent);
+  aboutUsStats.appendChild(aboutUsRightContent);
+  container.append(aboutUsStats);
+  block.appendChild(container);
 }
