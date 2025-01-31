@@ -2,9 +2,6 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
 }
 
 .exploremore [data-aue-prop="title"] {
@@ -13,44 +10,46 @@
   font-weight: 500;
   color: #000;
   margin-bottom: 3rem;
-  grid-column: 1 / -1;
 }
 
 /* CTA Links */
+.exploremore .cta-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
 .exploremore .cta-wrapper {
-  position: relative;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  padding-top: 1.5rem;
 }
 
 .exploremore [data-aue-prop^="firstCtaCaption"],
 .exploremore [data-aue-prop^="secondCtaCaption"] {
   font-size: 1.5rem;
   color: #000;
-  margin-bottom: 0.5rem;
-}
-
-.exploremore a {
-  text-decoration: none;
-  color: #000;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.exploremore a::after {
+.exploremore [data-aue-prop^="firstCtaCaption"]::after,
+.exploremore [data-aue-prop^="secondCtaCaption"]::after {
   content: "→";
   font-size: 1.25rem;
   margin-left: 0.5rem;
   transition: transform 0.3s ease;
 }
 
-.exploremore a:hover::after {
+.exploremore [data-aue-prop^="firstCtaCaption"]:hover::after,
+.exploremore [data-aue-prop^="secondCtaCaption"]:hover::after {
   transform: translateX(5px);
 }
 
 @media (max-width: 768px) {
-  .exploremore {
+  .exploremore .cta-group {
     grid-template-columns: 1fr;
   }
   
