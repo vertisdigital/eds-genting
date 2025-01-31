@@ -1,0 +1,64 @@
+.exploremore {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.exploremore [data-aue-prop="title"] {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 3rem;
+}
+
+/* CTA Container */
+.exploremore {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* CTA Links */
+.exploremore .cta-wrapper {
+  position: relative;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.exploremore [data-aue-prop^="firstCtaCaption"],
+.exploremore [data-aue-prop^="secondCtaCaption"] {
+  font-size: 1.5rem;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.exploremore a {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exploremore a::after {
+  content: "→";
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.exploremore a:hover::after {
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .exploremore {
+    grid-template-columns: 1fr;
+  }
+  
+  .exploremore [data-aue-prop="title"] {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+} 
