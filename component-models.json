@@ -195,6 +195,17 @@
         "name": "ctabutton",
         "label": "CTA Link",
         "multi": false
+      },
+      {
+        "component": "number",
+        "name": "scrollInterval",
+        "label": "Scroll Interval",
+        "required": true,
+        "value": 5,
+        "description": "Interval in seconds",
+        "validation": {
+          "customErrorMsg": "Please enter a valid number"
+        }
       }
     ]
   },
@@ -235,17 +246,6 @@
         "validation": {
           "maxLength": 20,
           "customErrorMsg": "Description cannot exceed 20 characters"
-        }
-      },
-      {
-        "component": "number",
-        "name": "scrollInterval",
-        "label": "Scroll Interval",
-        "required": true,
-        "value": 5,
-        "description": "Interval in seconds",
-        "validation": {
-          "customErrorMsg": "Please enter a valid number"
         }
       },
       {
