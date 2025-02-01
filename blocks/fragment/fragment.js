@@ -39,7 +39,7 @@ let newPath = window.location.href;
       resetAttributeBase('source', 'srcset');
 
       //decorateMain(main);
-      //await loadSections(main);
+      await loadSections(main);
       return main;
     }
   }
