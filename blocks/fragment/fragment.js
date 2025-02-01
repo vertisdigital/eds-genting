@@ -22,7 +22,7 @@ let newPath = window.location.href;
   if (path && path.startsWith('/')) {
     // eslint-disable-next-line no-param-reassign
     path = path.replace(/(\.plain)?\.html/, '');
-    newPath = newPath.replace(".html", ".plain.html");
+    //newPath = newPath.replace(".html", ".plain.html");
     //const resp = await fetch(`${path}.plain.html`);
     const resp = await fetch(`${newPath}`);
     if (resp.ok) {
