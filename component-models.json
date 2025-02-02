@@ -415,7 +415,10 @@
         "label": "BackgroundImage",
         "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false,
-        "title": "Image"
+        "title": "Image",
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
       },
       {
         "component": "text",
@@ -448,7 +451,10 @@
       {
         "component": "aem-content",
         "name": "cta",
-        "label": "CTA"
+        "label": "CTA",
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       }
     ]
   }
