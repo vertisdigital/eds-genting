@@ -1,7 +1,7 @@
 # Authoring Requirements:
 create a new block with the following specifications
         1. a text field heading (mandatory, max 100 characters)
-        2. a richtext field description (optional, max 250 characters)
+        2. a richtext field description (optional, max 250 characters, for richtext max character validation always use maxSize property)
         3. an image field for phone icon
         4. a text field for phone number (Phone number must be numeric, only special characters + is allowed, max limit of 30 characters and min of 10 characters)
         5. an image field for email icon
