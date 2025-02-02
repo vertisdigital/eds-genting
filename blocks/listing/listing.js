@@ -3,13 +3,11 @@ import stringToHtml from '../../shared-components/Utility.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
-  console.log(block);
   // Add container classes from styles.css
   block.classList.add('container-xl', 'container-md', 'container-sm');
 
   // Process list items
   const listItems = block.querySelectorAll('[data-aue-model="listitem"]');
-  console.log(block);
   listItems.forEach((item) => {
     // Create row from styles.css
     const row = document.createElement('div');
@@ -48,7 +46,6 @@ export default function decorate(block) {
     // Get all content elements
     const title = item.querySelector('[data-aue-type="text"]');
     const description = item.querySelector('[data-aue-prop="description"]');
-    console.log(item);
     const arrowIcon = item.querySelector('div:last-child a');
 
     // Add content elements to wrapper
