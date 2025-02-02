@@ -413,7 +413,7 @@
         "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
-          "rootPath": "/content/dam/genting-singapore/"
+          "rootPath": "/content/dam/genting-singapore"
         }
       },
       {
