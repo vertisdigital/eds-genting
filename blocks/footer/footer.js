@@ -389,94 +389,99 @@ export default async function decorate(block) {
     // Get bottom section content
     const bottomContent = findColumnWrapper(fragment.firstElementChild, 1);
 
-    // Get data attributes from columns element
     if (bottomContent) {
-      // Copy data attributes to bottom section
-      const dataAttrs = bottomContent.attributes;
-      Array.from(dataAttrs).forEach((attr) => {
-        if (attr.name.startsWith('data-')) {
-          bottomSection.setAttribute(attr.name, attr.value);
-        }
-      });
+      // Create bottom container with proper attributes
+      const bottomContainer = document.createElement('div');
+      bottomContainer.setAttribute('data-aue-type', 'container');
+      bottomContainer.setAttribute('data-aue-behavior', 'component');
+      bottomContainer.setAttribute('data-aue-model', 'section');
+      bottomContainer.setAttribute('data-aue-label', 'Section');
+      bottomContainer.setAttribute('data-aue-filter', 'section');
+      bottomContainer.setAttribute('data-aue-resource', bottomContent.getAttribute('data-aue-resource'));
 
-      // Create columns container with data attributes - renamed to bottomColumnsContainer
-      const bottomColumnsContainer = document.createElement('div');
-      bottomColumnsContainer.className = 'footer-bottom-links';
-      bottomColumnsContainer.setAttribute('data-aue-label', 'Column');
-      bottomColumnsContainer.setAttribute('data-aue-filter', 'column');
-      bottomColumnsContainer.setAttribute('data-aue-type', 'container');
-      bottomColumnsContainer.setAttribute(
-        'data-aue-resource',
-        bottomContent.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource'),
-      );
+      // Create row container
+      const rowContainer = document.createElement('div');
+      rowContainer.className = 'row';
 
-      // Create inner div structure
-      const innerDiv = document.createElement('div');
-      const columnDiv = document.createElement('div');
-      columnDiv.classList.add('row');
+      // Create text column
+      const textColumn = document.createElement('div');
+      textColumn.className = 'col-xl-6 col-md-3 col-sm-4';
+      textColumn.setAttribute('data-aue-type', 'container');
+      textColumn.setAttribute('data-aue-behavior', 'component');
+      textColumn.setAttribute('data-aue-model', 'richtext');
+      textColumn.setAttribute('data-aue-label', 'Rich Text');
+      textColumn.setAttribute('data-aue-filter', 'richtext');
 
-      // Create text div
-      const textDiv = document.createElement('div');
-      textDiv.setAttribute('data-aue-prop', 'text');
-      textDiv.setAttribute('data-aue-label', 'Text');
-      textDiv.setAttribute('data-aue-filter', 'text');
-      textDiv.setAttribute('data-aue-type', 'richtext');
-      textDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-richtext-prop="text"]').getAttribute('data-richtext-resource'));
-      textDiv.classList.add('col-xm-6', 'col-md-3', 'col-sm-4');
-
-      // Create links container
-      const linksDiv = document.createElement('div');
-      linksDiv.className = 'links row col-xl-6 col-md-6 col-sm-4';
-      linksDiv.setAttribute('data-aue-type', 'container');
-      linksDiv.setAttribute('data-aue-model', 'links');
-      linksDiv.setAttribute('data-aue-label', 'Links');
-      linksDiv.setAttribute('data-aue-filter', 'links');
-      linksDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="links"]').getAttribute('data-aue-resource'));
-
-      // Preserve content from original structure
-      const content = bottomContent.querySelector('.columns > div > div');
-      if (content) {
-        // Clone text content
-        const textContent = bottomContent.querySelector('[data-richtext-prop="text"]');
-        if (textContent) {
-          textDiv.innerHTML = textContent.innerHTML;
-        }
-
-        // Clone links
-        const links = content.querySelectorAll('a');
-        links.forEach((link) => {
-          const linkFieldDiv = document.createElement('div');
-          linkFieldDiv.setAttribute('data-aue-type', 'component');
-          linkFieldDiv.setAttribute('data-aue-model', 'linkField');
-          linkFieldDiv.setAttribute('data-aue-filter', 'linkField');
-          linkFieldDiv.setAttribute('data-aue-label', 'Link Field');
-          linkFieldDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="linkField"]').getAttribute('data-aue-resource'));
-          linkFieldDiv.classList.add('col-xl-3', 'col-md-2', 'col-sm-4');
-
-          const buttonContainer = document.createElement('div');
-          buttonContainer.className = 'button-container';
-
-          const newLink = link.cloneNode(true);
-          newLink.setAttribute('data-aue-prop', 'linkText');
-          newLink.setAttribute('data-aue-label', 'Text');
-          newLink.setAttribute('data-aue-type', 'text');
-
-          buttonContainer.appendChild(newLink);
-          linkFieldDiv.appendChild(buttonContainer);
-          linksDiv.appendChild(linkFieldDiv);
-        });
+      // Create text content div
+      const textContent = bottomContent.querySelector('[data-richtext-prop="text"]');
+      if (textContent) {
+        const textDiv = document.createElement('div');
+        textDiv.setAttribute('data-richtext-prop', 'text');
+        textDiv.innerHTML = textContent.innerHTML;
+        textColumn.appendChild(textDiv);
       }
 
+      // Create links column
+      const linksColumn = document.createElement('div');
+      linksColumn.className = 'col-xl-6 col-md-6 col-sm-4';
+      linksColumn.setAttribute('data-aue-type', 'container');
+      linksColumn.setAttribute('data-aue-behavior', 'component');
+      linksColumn.setAttribute('data-aue-model', 'links');
+      linksColumn.setAttribute('data-aue-label', 'Links');
+      linksColumn.setAttribute('data-aue-filter', 'links');
+      linksColumn.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="links"]').getAttribute('data-aue-resource'));
+
+      // Process links
+      const links = bottomContent.querySelectorAll('[data-aue-model="linkField"]');
+      links.forEach((originalLink) => {
+        const linkFieldDiv = document.createElement('div');
+        linkFieldDiv.className = 'col-xl-3 col-md-2 col-sm-4';
+        linkFieldDiv.setAttribute('data-aue-type', 'component');
+        linkFieldDiv.setAttribute('data-aue-model', 'linkField');
+        linkFieldDiv.setAttribute('data-aue-filter', 'linkField');
+        linkFieldDiv.setAttribute('data-aue-label', 'Link Field');
+        linkFieldDiv.setAttribute('data-aue-resource', originalLink.getAttribute('data-aue-resource'));
+
+        // Create button container
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'button-container';
+        buttonContainer.setAttribute('data-aue-prop', 'linkText');
+
+        // Create link
+        const linkElement = document.createElement('a');
+        const originalAnchor = originalLink.querySelector('a');
+        if (originalAnchor) {
+          linkElement.href = originalAnchor.href;
+          linkElement.className = 'button';
+          linkElement.textContent = originalAnchor.textContent;
+        }
+
+        // Handle link target
+        const linkTarget = originalLink.querySelector('[data-aue-prop="linkTarget"]');
+        if (linkTarget) {
+          const targetDiv = document.createElement('div');
+          targetDiv.setAttribute('data-aue-prop', 'linkTarget');
+          targetDiv.setAttribute('data-aue-label', 'Link Target');
+          targetDiv.setAttribute('data-aue-type', 'text');
+          targetDiv.textContent = linkTarget.textContent;
+          targetDiv.style.display = 'none';
+          linkFieldDiv.appendChild(targetDiv);
+        }
+
+        buttonContainer.appendChild(linkElement);
+        linkFieldDiv.appendChild(buttonContainer);
+        linksColumn.appendChild(linkFieldDiv);
+      });
+
       // Assemble the structure
-      columnDiv.appendChild(textDiv);
-      columnDiv.appendChild(linksDiv);
-      innerDiv.appendChild(columnDiv);
-      bottomColumnsContainer.appendChild(innerDiv);
-      bottomSection.appendChild(bottomColumnsContainer);
+      rowContainer.appendChild(textColumn);
+      rowContainer.appendChild(linksColumn);
+      bottomContainer.appendChild(rowContainer);
+      bottomSection.appendChild(bottomContainer);
     }
 
-    // Assemble the footer
-    mainContainer.append(bottomSection);
+    // Append bottom section to main container
+    mainContainer.appendChild(bottomSection);
     footer.appendChild(mainContainer);
 
     // Add keyboard navigation
