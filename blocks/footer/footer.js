@@ -80,7 +80,7 @@ export default async function decorate(block) {
 
     // Create logo and description column
     const logoColumn = document.createElement('div');
-    logoColumn.className = 'col-xl-3 col-md-3 col-sm-4';
+    logoColumn.className = 'col-xl-12 col-md-3 col-sm-4';
 
     // Add logo
     const logoWrapper = document.createElement('div');
@@ -155,7 +155,7 @@ export default async function decorate(block) {
     // Create columns dynamically based on navigation sections
     const navColumns = navigationLinks.map(() => {
       const col = document.createElement('div');
-      col.className = 'col-xl-3 col-md-3 col-sm-4';
+      col.className = 'col-xl-4 col-md-3 col-sm-4';
       return col;
     });
 
@@ -260,16 +260,23 @@ export default async function decorate(block) {
         // Create right and left sections for desktop
         const rightSection = document.createElement('div');
         rightSection.className = 'right-section';
+        const rightRow = document.createElement('div');
+        rightRow.className = 'row';
+        
         const leftSection = document.createElement('div');
         leftSection.className = 'left-section';
+        const leftRow = document.createElement('div');
+        leftRow.className = 'row';
         
-        // Move logo column to right section
-        rightSection.appendChild(logoColumn);
+        // Move logo column to right section's row
+        rightRow.appendChild(logoColumn);
+        rightSection.appendChild(rightRow);
         
-        // Move nav columns to left section
+        // Move nav columns to left section's row
         navColumns.forEach(col => {
-          leftSection.appendChild(col);
+          leftRow.appendChild(col);
         });
+        leftSection.appendChild(leftRow);
         
         // Add sections to main container
         mainContainer.insertBefore(leftSection, mainContainer.firstChild);
