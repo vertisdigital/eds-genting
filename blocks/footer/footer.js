@@ -327,43 +327,37 @@ export default async function decorate(block) {
       // Create columns container with data attributes
       const columnsContainer = document.createElement('div');
       columnsContainer.className = 'columns block columns-1-cols';
-      columnsContainer.setAttribute('data-aue-type', 'container');
       columnsContainer.setAttribute('data-aue-model', 'columns');
       columnsContainer.setAttribute('data-aue-label', 'Columns');
       columnsContainer.setAttribute('data-aue-filter', 'columns');
-      columnsContainer.setAttribute('data-aue-behavior', 'component');
-      columnsContainer.setAttribute('data-block-name', 'columns');
-      columnsContainer.setAttribute('data-block-status', 'loaded');
-
+      columnsContainer.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource'));
+      
       // Create inner div structure
       const innerDiv = document.createElement('div');
-      const columnDiv = document.createElement('div');
-      columnDiv.setAttribute('data-aue-type', 'container');
-      columnDiv.setAttribute('data-aue-label', 'Column');
-      columnDiv.setAttribute('data-aue-filter', 'column');
+      const columnDiv = document.createElement('div');;
 
       // Create text div
       const textDiv = document.createElement('div');
-      textDiv.setAttribute('data-aue-behavior', 'component');
       textDiv.setAttribute('data-aue-prop', 'text');
       textDiv.setAttribute('data-aue-label', 'Text');
       textDiv.setAttribute('data-aue-filter', 'text');
       textDiv.setAttribute('data-aue-type', 'richtext');
+      textDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-type="richtext"]').getAttribute('data-aue-resource'));
 
       // Create links container
       const linksDiv = document.createElement('div');
       linksDiv.className = 'links';
       linksDiv.setAttribute('data-aue-type', 'container');
-      linksDiv.setAttribute('data-aue-behavior', 'component');
       linksDiv.setAttribute('data-aue-model', 'links');
       linksDiv.setAttribute('data-aue-label', 'Links');
       linksDiv.setAttribute('data-aue-filter', 'links');
+      linksDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="links"]').getAttribute('data-aue-resource'));
 
       // Preserve content from original structure
-      const content = bottomContent.querySelector('.columns > div > div');
+      const content = bottomContent.querySelector('data-aue-type="richtext"');
       if (content) {
         // Clone text content
-        const textContent = content.querySelector('[data-aue-type="richtext"]');
+        const textContent = content;
         if (textContent) {
           textDiv.innerHTML = textContent.innerHTML;
         }
@@ -376,6 +370,8 @@ export default async function decorate(block) {
           linkFieldDiv.setAttribute('data-aue-model', 'linkField');
           linkFieldDiv.setAttribute('data-aue-filter', 'linkField');
           linkFieldDiv.setAttribute('data-aue-label', 'Link Field');
+          linkFieldDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="linkField"]').getAttribute('data-aue-resource'));
+
 
           const buttonContainer = document.createElement('div');
           buttonContainer.className = 'button-container';
