@@ -92,6 +92,7 @@ export default async function decorate(block) {
       logo.setAttribute('data-aue-resource', container.querySelector('.image-link').getAttribute('data-aue-resource'));
       logo.setAttribute('data-aue-label', 'Link Image'); 
       logo.setAttribute('data-aue-type', 'media');
+      logo.setAttribute('data-aue-prop', 'linkImage');
       logo.alt = logoImg.alt || 'Genting Singapore';
     }
     logoWrapper.appendChild(logo);
@@ -101,8 +102,8 @@ export default async function decorate(block) {
     description.className = 'footer-description';
     description.textContent = container.querySelector('[data-aue-prop="linkText"]')?.textContent;
     description.setAttribute('data-aue-resource', container.querySelector('[data-aue-model="linkField"]').getAttribute('data-aue-resource'));
-    description.setAttribute('data-aue-prop', 'description');
-    description.setAttribute('data-aue-label', 'Description');
+    description.setAttribute('data-aue-prop', 'linkText');
+    description.setAttribute('data-aue-label', 'Text');
     description.setAttribute('data-aue-type', 'text');
 
     // Add social icons
