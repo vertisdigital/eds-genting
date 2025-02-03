@@ -127,6 +127,14 @@ export default async function decorate(block) {
     });
 
     // Assemble logo column
+    // Get data-aue-resource from the first column in the fragment
+    const firstCol = container.querySelector('[data-aue-label="Column"]');
+    if (firstCol) {
+      logoColumn.setAttribute('data-aue-resource', firstCol.getAttribute('data-aue-resource'));
+      logoColumn.setAttribute('data-aue-type', 'container');
+      logoColumn.setAttribute('data-aue-label', 'Column');
+      logoColumn.setAttribute('data-aue-filter', 'column');
+    }
     logoColumn.append(logoWrapper, description, socialWrapper);
     navSection.appendChild(logoColumn);
     
