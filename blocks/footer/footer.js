@@ -221,6 +221,11 @@ export default async function decorate(block) {
           const heading = document.createElement('h2');
           heading.textContent = title.textContent;
           heading.className = 'footer-nav-title';
+          
+          heading.setAttribute('data-aue-prop', 'linkText');
+          heading.setAttribute('data-aue-label', 'Text'); 
+          heading.setAttribute('data-aue-type', 'text');
+
           nav.appendChild(heading);
           nav.setAttribute('aria-label', title.textContent);
 
