@@ -67,7 +67,7 @@ export default async function decorate(block) {
 
     // Create main container with responsive classes
     const mainContainer = document.createElement('div');
-    mainContainer.className = 'footer container-xl container-md container-sm';
+    mainContainer.className = 'footer-child-element container-xl container-md container-sm';
 
     // Create container for all columns
     const columnsContainer = document.createElement('div');
