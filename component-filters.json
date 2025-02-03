@@ -22,19 +22,7 @@
       "linkField",
       "socialLinks",
       "links",
-      "imageLink",
-      "tabs"
-    ]
-  },
-  {
-    "id": "tabs",
-    "components": [
-      "text",
-      "image",
-      "cards",
-      "feature",
-      "linkField",
-      "links"
+      "imageLink"
     ]
   },
   {
