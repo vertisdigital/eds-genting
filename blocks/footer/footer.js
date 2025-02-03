@@ -149,6 +149,7 @@ export default async function decorate(block) {
     
     // Get all navigation sections from the fragment
     const navigationLinksWrapper = document.createElement('div');
+    navigationLinksWrapper.className = 'left-navigation-links-wrapper';
     Object.entries(commonAttributes).forEach(([key, value]) => {
       navigationLinksWrapper.setAttribute(key, value);
     });
@@ -251,12 +252,7 @@ export default async function decorate(block) {
     
     // Add columns to nav section
     navColumns.forEach((col, index) => {
-      if(index === 0){
-        navSection.appendChild(col);
-      }
-      if (index >= 1) {
-        navigationLinksWrapper.appendChild(col);
-      }
+      navigationLinksWrapper.appendChild(col);
     });
 
     navSection.appendChild(navigationLinksWrapper);
