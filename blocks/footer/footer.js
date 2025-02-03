@@ -312,10 +312,9 @@ export default async function decorate(block) {
     const bottomContent = findColumnWrapper(fragment.firstElementChild, 1);
     
     // Get data attributes from columns element
-    const columnsElement = bottomContent.querySelector('[data-aue-model="columns"]');
-    if (columnsElement) {
+    if (bottomContent) {
       // Copy data attributes to bottom section
-      const dataAttrs = columnsElement.attributes;
+      const dataAttrs = bottomContent.attributes;
       Array.from(dataAttrs).forEach(attr => {
         if (attr.name.startsWith('data-')) {
           bottomSection.setAttribute(attr.name, attr.value);
