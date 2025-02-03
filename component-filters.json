@@ -22,7 +22,8 @@
       "socialLinks",
       "links",
       "imageLink",
-      "tabs"
+      "tabs",
+      "tabItem"
     ]
   },
   {
