@@ -387,9 +387,18 @@
     "fields": [
       {
         "component": "text",
-        "name": "tabtitle",
-        "label": "Tab Title"
-
+        "name": "tabtitle1",
+        "label": "Tab Title1"
+      },
+      {
+        "component": "text",
+        "name": "tabtitle2",
+        "label": "Tab Title2"
+      },
+      {
+        "component": "text",
+        "name": "tabtitle3",
+        "label": "Tab Title3"
       }
     ]
   }
