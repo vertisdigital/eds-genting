@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "tab"
     ]
   },
   {
@@ -22,7 +23,7 @@
       "socialLinks",
       "links",
       "imageLink",
-      "tabs"
+      "tab"
     ]
   },
   {
