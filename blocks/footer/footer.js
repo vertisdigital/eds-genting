@@ -74,20 +74,13 @@ export default async function decorate(block) {
     const mainContainer = document.createElement('div');
     mainContainer.className = 'footer container-xl container-md container-sm';
     
-    // Create right and left sections
-    const rightSection = document.createElement('div');
-    rightSection.className = 'right-section';
-    const rightRow = document.createElement('div');
-    rightRow.className = 'row';
-
-    const leftSection = document.createElement('div');
-    leftSection.className = 'left-section';
-    const leftRow = document.createElement('div');
-    leftRow.className = 'row';
+    // Create container for all columns
+    const columnsContainer = document.createElement('div');
+    columnsContainer.className = 'row';
 
     // Create logo and description column
     const logoColumn = document.createElement('div');
-    logoColumn.className = 'col-xl-12 col-md-6 col-sm-4';
+    logoColumn.className = 'col-xl-3 col-md-3 col-sm-4';
 
     // Add logo
     const logoWrapper = document.createElement('div');
@@ -153,9 +146,8 @@ export default async function decorate(block) {
     }
     logoColumn.append(logoWrapper, description, socialWrapper);
 
-    // Add logo column to right section
-    rightRow.appendChild(logoColumn);
-    rightSection.appendChild(rightRow);
+    // Add logo column to columns container
+    columnsContainer.appendChild(logoColumn);
 
     // Get all navigation sections from the fragment
     const navigationLinks = Array.from(container.querySelectorAll('.links'));
@@ -163,7 +155,7 @@ export default async function decorate(block) {
     // Create columns dynamically based on navigation sections
     const navColumns = navigationLinks.map(() => {
       const col = document.createElement('div');
-      col.className = 'col-xl-4 col-md-3 col-sm-4';
+      col.className = 'col-xl-3 col-md-3 col-sm-4';
       return col;
     });
 
@@ -255,11 +247,61 @@ export default async function decorate(block) {
       }
     });
 
-    // Add navigation columns to left section
+    // Add navigation columns to columns container
     navColumns.forEach(col => {
-      leftRow.appendChild(col);
+      columnsContainer.appendChild(col);
     });
-    leftSection.appendChild(leftRow);
+
+    // Function to handle layout based on screen size
+    const handleLayout = () => {
+      const isDesktop = window.innerWidth >= 992;
+      
+      if (isDesktop && !mainContainer.querySelector('.right-section')) {
+        // Create right and left sections for desktop
+        const rightSection = document.createElement('div');
+        rightSection.className = 'right-section';
+        const leftSection = document.createElement('div');
+        leftSection.className = 'left-section';
+        
+        // Move logo column to right section
+        rightSection.appendChild(logoColumn);
+        
+        // Move nav columns to left section
+        navColumns.forEach(col => {
+          leftSection.appendChild(col);
+        });
+        
+        // Add sections to main container
+        mainContainer.insertBefore(leftSection, mainContainer.firstChild);
+        mainContainer.insertBefore(rightSection, mainContainer.firstChild);
+        
+      } else if (!isDesktop && mainContainer.querySelector('.right-section')) {
+        // Remove sections and restore original layout for tablet/mobile
+        const rightSection = mainContainer.querySelector('.right-section');
+        const leftSection = mainContainer.querySelector('.left-section');
+        
+        if (rightSection && leftSection) {
+          // Move columns back to columns container
+          columnsContainer.appendChild(logoColumn);
+          navColumns.forEach(col => {
+            columnsContainer.appendChild(col);
+          });
+          
+          // Remove sections
+          rightSection.remove();
+          leftSection.remove();
+          
+          // Add columns container back to main container
+          mainContainer.insertBefore(columnsContainer, mainContainer.firstChild);
+        }
+      }
+    };
+
+    // Initial layout setup
+    handleLayout();
+
+    // Update layout on resize
+    window.addEventListener('resize', handleLayout);
 
     // Create bottom section for copyright and links
     const bottomSection = document.createElement('div');
@@ -297,7 +339,7 @@ export default async function decorate(block) {
     }
     
     // Assemble the footer
-    mainContainer.append(rightSection, leftSection, bottomSection);
+    mainContainer.append(bottomSection);
     footer.appendChild(mainContainer);
     
     // Add keyboard navigation
