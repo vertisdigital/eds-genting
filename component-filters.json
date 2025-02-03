@@ -22,7 +22,7 @@
       "socialLinks",
       "links",
       "imageLink",
-      "tabs"
+      "tab"
     ]
   },
   {
@@ -84,12 +84,6 @@
     "id": "herobanner",
     "components": [
       "bannercarousel"
-    ]
-  },
-  {
-    "id": "tabs",
-    "components": [
-      "tabitem"
     ]
   }
 ]
