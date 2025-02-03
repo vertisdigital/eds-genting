@@ -175,7 +175,7 @@
       },
       {
         "component": "text",
-        "name": "banneraboutustitle",
+        "name": "bannertitle",
         "label": "Banner Title",
         "required": true,
         "validation": {
@@ -185,7 +185,7 @@
       },
       {
         "component": "text",
-        "name": "bannertitle",
+        "name": "bannerheading",
         "label": "Banner Heading",
         "required": true,
         "validation": {
