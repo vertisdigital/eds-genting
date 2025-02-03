@@ -411,7 +411,7 @@
         "label": "Description",
         "valueType": "string",
         "validation": {
-          "maxSize": 1000,
+          "maxSize": 250,
           "customErrorMsg": "Description cannot exceed 250 characters"
         }
       }
