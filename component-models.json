@@ -425,6 +425,13 @@
         "name": "linkImage",
         "label": "Link Image",
         "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
       }
     ]
   }
