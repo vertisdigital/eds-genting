@@ -143,17 +143,28 @@ export default async function decorate(block) {
       // Get icon name from DOM
       const iconName = field.querySelector('[data-aue-prop="linkSvgIcon"]').textContent;
       
-      // Create SVG icon using SVGIcon component
-      const icon = SVGIcon({
-        name: iconName,
-        size: 24, // You can adjust size as needed
-        className: 'social-icon'
-      });
-
-      // Create anchor wrapper
+      // Create anchor wrapper first
       const anchor = document.createElement('a');
       anchor.href = link.href;
       anchor.title = link.title;
+      
+      // Create icon container
+      const iconContainer = document.createElement('span');
+      iconContainer.className = 'social-icon-wrapper';
+      
+      // Create SVG icon and append to container
+      const svgElement = SVGIcon({
+        name: iconName,
+        size: 24,
+        className: 'social-icon'
+      });
+      
+      // Convert SVG string to DOM element if needed
+      if (typeof svgElement === 'string') {
+        iconContainer.innerHTML = svgElement;
+      } else if (svgElement instanceof Node) {
+        iconContainer.appendChild(svgElement);
+      }
       
       // Set target from DOM if it exists
       const targetElement = field.querySelector('[data-aue-prop="linkTarget"]');
@@ -167,8 +178,8 @@ export default async function decorate(block) {
         }
       }
 
-      // Append icon to anchor
-      anchor.appendChild(icon);
+      // Append icon container to anchor
+      anchor.appendChild(iconContainer);
       link.appendChild(anchor);
 
       linkFieldDiv.appendChild(link);
