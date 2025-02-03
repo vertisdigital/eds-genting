@@ -123,7 +123,7 @@ export default async function decorate(block) {
     socialLinksContainer.setAttribute('data-aue-resource', container.querySelector('.social-links').getAttribute('data-aue-resource'));
 
     // Get all social link fields from DOM
-    const socialLinkFields = container.querySelectorAll('[data-aue-model="linkField"]');
+    const socialLinkFields = container.querySelector('.social-links').querySelectorAll('[data-aue-model="linkField"]');
     
     socialLinkFields.forEach(field => {
       // Create link field container
