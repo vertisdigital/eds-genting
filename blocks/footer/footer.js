@@ -76,17 +76,18 @@ export default async function decorate(block) {
     // Create logo and description column
     const logoColumn = document.createElement('div');
     logoColumn.className = 'col-xl-12 col-md-3 col-sm-4';
-    logoColumn.setAttribute('data-aue-type', 'container');
-    logoColumn.setAttribute('data-aue-behavior', 'component');
-    logoColumn.setAttribute('data-aue-model', 'imageLink');
-    logoColumn.setAttribute('data-aue-label', 'Image Link');
-    logoColumn.setAttribute('data-aue-filter', 'imageLink');
-    logoColumn.setAttribute('data-aue-resource', container.querySelector('.image-link').getAttribute('data-aue-resource'));
-    
+   
 
     // Add logo
     const logoWrapper = document.createElement('div');
     logoWrapper.className = 'footer-logo';
+    logoWrapper.setAttribute('data-aue-type', 'container');
+    logoWrapper.setAttribute('data-aue-behavior', 'component');
+    logoWrapper.setAttribute('data-aue-model', 'imageLink');
+    logoWrapper.setAttribute('data-aue-label', 'Image Link');
+    logoWrapper.setAttribute('data-aue-filter', 'imageLink');
+    logoWrapper.setAttribute('data-aue-resource', container.querySelector('.image-link').getAttribute('data-aue-resource'));
+   
     const logo = document.createElement('img');
     const logoImg = container.querySelector('.image-link img');
     if (logoImg) {
