@@ -147,7 +147,7 @@ header {
  
 header .header,
 footer .footer {
-  visibility: visible;
+  visibility: hidden;
 }
  
 header .header[data-block-status="loaded"],
