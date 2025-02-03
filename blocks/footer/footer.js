@@ -354,7 +354,7 @@ export default async function decorate(block) {
       linksDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="links"]').getAttribute('data-aue-resource'));
 
       // Preserve content from original structure
-      const content = bottomContent.querySelector('data-aue-type="richtext"');
+      const content = bottomContent.querySelector('[data-richtext-prop="richtext"]');
       if (content) {
         // Clone text content
         const textContent = content;
