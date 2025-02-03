@@ -26,6 +26,15 @@
     ]
   },
   {
+    "id": "tabs",
+    "components": [
+      "text",
+      "image",
+      "cards",
+      "linkField"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"

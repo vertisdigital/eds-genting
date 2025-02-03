@@ -112,7 +112,7 @@
     ]
   },
   {
-    "id": "tab",
+    "id": "tabs",
     "fields": [
       {
         "component": "multiselect",
