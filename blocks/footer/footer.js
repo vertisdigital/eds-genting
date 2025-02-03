@@ -326,10 +326,9 @@ export default async function decorate(block) {
 
       // Create columns container with data attributes
       const columnsContainer = document.createElement('div');
-      columnsContainer.className = 'columns block columns-1-cols';
-      columnsContainer.setAttribute('data-aue-model', 'columns');
-      columnsContainer.setAttribute('data-aue-label', 'Columns');
-      columnsContainer.setAttribute('data-aue-filter', 'columns');
+      columnsContainer.className = 'footer-bottom-links';
+      columnsContainer.setAttribute('data-aue-label', 'Column');
+      columnsContainer.setAttribute('data-aue-filter', 'column');
       columnsContainer.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource'));
       
       // Create inner div structure
@@ -343,6 +342,7 @@ export default async function decorate(block) {
       textDiv.setAttribute('data-aue-filter', 'text');
       textDiv.setAttribute('data-aue-type', 'richtext');
       textDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-richtext-prop="text"]').getAttribute('data-richtext-resource'));
+      textDiv.classList.add('col-xm-6', 'col-md-3', 'col-sm-4');
 
       // Create links container
       const linksDiv = document.createElement('div');
@@ -357,7 +357,7 @@ export default async function decorate(block) {
       const content = bottomContent.querySelector('.columns > div > div')
       if (content) {
         // Clone text content
-        const textContent = bottomContent.querySelector('[data-richtext-prop="richtext"]');
+        const textContent = bottomContent.querySelector('[data-richtext-prop="text"]');
         if (textContent) {
           textDiv.innerHTML = textContent.innerHTML;
         }
@@ -371,6 +371,7 @@ export default async function decorate(block) {
           linkFieldDiv.setAttribute('data-aue-filter', 'linkField');
           linkFieldDiv.setAttribute('data-aue-label', 'Link Field');
           linkFieldDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="linkField"]').getAttribute('data-aue-resource'));
+          linkFieldDiv.classList.add('col-xl-2', 'col-md-2', 'col-sm-4');
 
 
           const buttonContainer = document.createElement('div');
