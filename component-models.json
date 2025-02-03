@@ -252,8 +252,8 @@
         "label": "Date",
         "valueType": "date",
         "placeholder":  "YYYY-MM-DD",
-        "displayFormat": null,
-        "valueFormat": null,
+        "displayFormat": "YYYY-MM-DD",
+        "valueFormat": "YYYY-MM-DD",
         "validation": {
           "customErrorMsg": "Please enter a valid date"
         }
