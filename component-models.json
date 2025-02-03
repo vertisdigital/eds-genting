@@ -391,41 +391,5 @@
         "multi": false
       }
     ]
-  },
-  {
-    "id": "tabItem",
-    "fields": [
-      {
-        "component": "text",
-        "name": "tabtitle",
-        "label": "Tab Title1"
-      }
-    ]
-  },
-  {
-    "id": "tabs",
-    "fields": []
-  },
-  {
-    "id": "tabitem",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Tab Title",
-        "required": true,
-        "validation": {
-          "maxLength": 150,
-          "customErrorMsg": "Tab title cannot exceed 150 characters",
-          "requiredErrorMsg": "Tab title is mandatory"
-        }
-      },
-      {
-        "component": "section",
-        "name": "tabcontent",
-        "label": "Tab Content",
-        "required": true
-      }
-    ]
   }
 ]
