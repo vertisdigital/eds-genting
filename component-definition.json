@@ -213,8 +213,7 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Feature Item",
-                  "model": "featureItem",
-                  "maxItems": 3
+                  "model": "featureItem"
                 }
               }
             }
