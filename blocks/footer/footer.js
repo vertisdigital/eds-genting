@@ -390,56 +390,65 @@ export default async function decorate(block) {
     const bottomContent = findColumnWrapper(fragment.firstElementChild, 1);
 
     if (bottomContent) {
-      // Create bottom container with proper structure for authoring
-      const bottomContainer = document.createElement('div');
-      bottomContainer.setAttribute('data-aue-type', 'container');
-      bottomContainer.setAttribute('data-aue-model', 'links');
-      bottomContainer.setAttribute('data-aue-label', 'Links');
-      bottomContainer.setAttribute('data-aue-filter', 'links');
-      bottomContainer.setAttribute('data-aue-resource', bottomContent.getAttribute('data-aue-resource'));
+      // Create columns container
+      const columnsContainer = document.createElement('div');
+      columnsContainer.setAttribute('data-aue-type', 'container');
+      columnsContainer.setAttribute('data-aue-model', 'columns');
+      columnsContainer.setAttribute('data-aue-label', 'Columns');
+      columnsContainer.setAttribute('data-aue-filter', 'columns');
+      columnsContainer.setAttribute('data-aue-resource', bottomContent.getAttribute('data-aue-resource'));
+      columnsContainer.className = 'footer-bottom-links';
+
+      // Create column container
+      const columnContainer = document.createElement('div');
+      columnContainer.setAttribute('data-aue-type', 'container');
+      columnContainer.setAttribute('data-aue-model', 'column');
+      columnContainer.setAttribute('data-aue-label', 'Column');
+      columnContainer.setAttribute('data-aue-filter', 'column');
+      columnContainer.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="column"]')?.getAttribute('data-aue-resource'));
 
       // Create row for layout
       const row = document.createElement('div');
       row.className = 'row';
 
       // Create text section
-      const textSection = document.createElement('div');
-      textSection.className = 'col-xl-6 col-md-3 col-sm-4';
-      textSection.setAttribute('data-aue-type', 'container');
-      textSection.setAttribute('data-aue-model', 'richtext');
-      textSection.setAttribute('data-aue-label', 'Rich Text');
-      textSection.setAttribute('data-aue-filter', 'richtext');
-      textSection.setAttribute('data-aue-resource', bottomContent.querySelector('[data-richtext-prop="text"]')?.getAttribute('data-richtext-resource'));
+      const textContainer = document.createElement('div');
+      textContainer.className = 'col-xl-6 col-md-3 col-sm-4';
+      textContainer.setAttribute('data-aue-type', 'container');
+      textContainer.setAttribute('data-aue-model', 'richtext');
+      textContainer.setAttribute('data-aue-label', 'Rich Text');
+      textContainer.setAttribute('data-aue-filter', 'richtext');
+      textContainer.setAttribute('data-aue-resource', bottomContent.querySelector('[data-richtext-prop="text"]')?.getAttribute('data-richtext-resource'));
 
       // Add text content
       const textContent = bottomContent.querySelector('[data-richtext-prop="text"]');
       if (textContent) {
-        const richTextDiv = document.createElement('div');
-        richTextDiv.setAttribute('data-richtext-prop', 'text');
-        richTextDiv.innerHTML = textContent.innerHTML;
-        textSection.appendChild(richTextDiv);
+        const textDiv = document.createElement('div');
+        textDiv.setAttribute('data-richtext-prop', 'text');
+        textDiv.innerHTML = textContent.innerHTML;
+        textContainer.appendChild(textDiv);
       }
 
-      // Create links section
-      const linksSection = document.createElement('div');
-      linksSection.className = 'col-xl-6 col-md-6 col-sm-4';
-      linksSection.setAttribute('data-aue-type', 'container');
-      linksSection.setAttribute('data-aue-model', 'linkList');
-      linksSection.setAttribute('data-aue-label', 'Link List');
-      linksSection.setAttribute('data-aue-filter', 'linkList');
-      linksSection.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="links"]')?.getAttribute('data-aue-resource'));
+      // Create links container
+      const linksContainer = document.createElement('div');
+      linksContainer.className = 'col-xl-6 col-md-6 col-sm-4';
+      linksContainer.setAttribute('data-aue-type', 'container');
+      linksContainer.setAttribute('data-aue-model', 'links');
+      linksContainer.setAttribute('data-aue-label', 'Links');
+      linksContainer.setAttribute('data-aue-filter', 'links');
+      linksContainer.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="links"]')?.getAttribute('data-aue-resource'));
 
-      // Process each link field
+      // Process link fields
       const linkFields = bottomContent.querySelectorAll('[data-aue-model="linkField"]');
       linkFields.forEach((originalLinkField) => {
         // Create link field container
-        const linkField = document.createElement('div');
-        linkField.setAttribute('data-aue-type', 'component');
-        linkField.setAttribute('data-aue-model', 'linkField');
-        linkField.setAttribute('data-aue-label', 'Link Field');
-        linkField.setAttribute('data-aue-filter', 'linkField');
-        linkField.setAttribute('data-aue-resource', originalLinkField.getAttribute('data-aue-resource'));
-        linkField.className = 'col-xl-3 col-md-2 col-sm-4';
+        const linkFieldContainer = document.createElement('div');
+        linkFieldContainer.setAttribute('data-aue-type', 'component');
+        linkFieldContainer.setAttribute('data-aue-model', 'linkField');
+        linkFieldContainer.setAttribute('data-aue-label', 'Link Field');
+        linkFieldContainer.setAttribute('data-aue-filter', 'linkField');
+        linkFieldContainer.setAttribute('data-aue-resource', originalLinkField.getAttribute('data-aue-resource'));
+        linkFieldContainer.className = 'col-xl-3 col-md-2 col-sm-4';
 
         // Create link text container
         const linkTextContainer = document.createElement('div');
@@ -448,7 +457,7 @@ export default async function decorate(block) {
         linkTextContainer.setAttribute('data-aue-label', 'Link Text');
         linkTextContainer.className = 'button-container';
 
-        // Create the actual link
+        // Create link
         const originalLink = originalLinkField.querySelector('a');
         if (originalLink) {
           const link = document.createElement('a');
@@ -458,7 +467,7 @@ export default async function decorate(block) {
           linkTextContainer.appendChild(link);
         }
 
-        // Add link target if exists
+        // Add link target
         const originalTarget = originalLinkField.querySelector('[data-aue-prop="linkTarget"]');
         if (originalTarget) {
           const targetDiv = document.createElement('div');
@@ -467,18 +476,19 @@ export default async function decorate(block) {
           targetDiv.setAttribute('data-aue-label', 'Link Target');
           targetDiv.textContent = originalTarget.textContent;
           targetDiv.style.display = 'none';
-          linkField.appendChild(targetDiv);
+          linkFieldContainer.appendChild(targetDiv);
         }
 
-        linkField.appendChild(linkTextContainer);
-        linksSection.appendChild(linkField);
+        linkFieldContainer.appendChild(linkTextContainer);
+        linksContainer.appendChild(linkFieldContainer);
       });
 
       // Assemble the structure
-      row.appendChild(textSection);
-      row.appendChild(linksSection);
-      bottomContainer.appendChild(row);
-      bottomSection.appendChild(bottomContainer);
+      row.appendChild(textContainer);
+      row.appendChild(linksContainer);
+      columnContainer.appendChild(row);
+      columnsContainer.appendChild(columnContainer);
+      bottomSection.appendChild(columnsContainer);
     }
 
     // Assemble the footer
