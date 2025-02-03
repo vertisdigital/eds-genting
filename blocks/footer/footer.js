@@ -159,7 +159,6 @@ export default async function decorate(block) {
       col.className = 'col-xl-3 col-md-3 col-sm-4';
       return col;
     });
-    navigationLinksWrapper.append(navColumns);
     // Move navigation content to columns
     navigationLinks.forEach((linkSection, index) => {
       if (navColumns[index]) {
@@ -248,8 +247,8 @@ export default async function decorate(block) {
       }
     });
     
-    // Add columns to nav section
-    navColumns.forEach(col => navSection.appendChild(col));
+    // Add columns to nav section, skipping first column
+    navColumns.slice(1).forEach(col => navigationWrapper.appendChild(col));
     
     // Create bottom section for copyright and links
     const bottomSection = document.createElement('div');
