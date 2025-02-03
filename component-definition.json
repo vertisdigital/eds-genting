@@ -282,22 +282,6 @@
               }
             }
           }
-        },
-        {
-          "title": "tabs",
-          "id": "tabs",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/section/v1/section",
-                "template": {
-                  "name": "tabs",
-                  "model": "tabs",
-                  "filter": "section"
-                }
-              }
-            }
-          }
         }
       ]
     }

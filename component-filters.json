@@ -2,8 +2,7 @@
   {
     "id": "main",
     "components": [
-      "section",
-      "tabs"
+      "section"
     ]
   },
   {
@@ -22,8 +21,7 @@
       "linkField",
       "socialLinks",
       "links",
-      "imageLink",
-      "tabs"      
+      "imageLink"
     ]
   },
   {
