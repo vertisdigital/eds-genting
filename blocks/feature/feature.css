@@ -11,6 +11,9 @@
   padding: 0;
   margin-bottom: 18px;
 }
+.about-us-stats .about-us-right{
+  padding: 0;
+}
 
 .about-us-left header{
   height: auto;
@@ -66,6 +69,8 @@
   display: flex;
   align-items: center;
   column-gap: 12px;
+  margin-bottom: 18px;
+
 }
 
 .about-us-stats .about-us-right-content:last-child{
@@ -95,9 +100,7 @@
   /* padding-bottom: 40px; */
 
 }
-.about-us-stats .about-us-right-content.image-container{
-  margin-bottom: 24px;
-}
+
 
 .about-us-stats .about-us-right-content .statistic{
   color: var(--primary-gold);
@@ -138,11 +141,16 @@ color: var(--body-text-color);
   .feature-wrapper .about-us-stats{
     margin-bottom: 0;
   }
-
   .about-us-stats .about-us-left{
-    padding-right: 25px;
+    padding-right: 12px;
     margin-bottom: 0;
+
   }
+
+  .about-us-stats .about-us-right{
+    padding-left: 12px;
+  }
+
 
   .about-us-left .about-us-left-title{
     margin-bottom: 16px;
@@ -166,32 +174,45 @@ color: var(--body-text-color);
     padding: 12px;
   }
 
+  .about-us-stats .about-us-right-content.text-container{
+    margin-bottom: 36px;
+  }
+
+  .about-us-stats .about-us-right-content{
+    column-gap: 15px;
+    margin-bottom: 24px;
+  }
   .about-us-stats .about-us-right-content .statistic{
     font-size: 64px;
     line-height: 64px;
   }
   .about-us-stats .about-us-right-content>div:nth-child(2) p{
     font-size: 16px;
+    font-weight: 400;
   }
+  .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p{
+    font-weight: 700;
+  }
+  
   .about-us-stats .about-us-right-content.text-container{
     padding-top: 16px;
   }
 }
 
-@media  (width >= 992px) {
+@media  (width >= 1024px) {
   .about-us-stats .about-us-left{
-    padding-right: 25px;
+    padding-right: 18px;
   }
 
   .about-us-stats .about-us-right{
-    padding-left: 25px;
+    padding-left: 18px;
   }
 
   .about-us-left .about-us-left-title{
     font-size: 20px;
     font-weight: 600;
     line-height: 24px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
 
   .about-us-left h2.about-us-left-heading{
@@ -208,6 +229,7 @@ color: var(--body-text-color);
   }
   .about-us-stats .about-us-right-content{
     column-gap: 20px;
+    margin-bottom: 36px;
   }
 
   .about-us-stats .about-us-right-content.image-container>div:first-child{
@@ -216,15 +238,21 @@ color: var(--body-text-color);
   }
 
 
-  .about-us-stats .about-us-right-content .statistic{
+  .about-us-stats .about-us-right-content .statistic span:first-child{
     font-size: 80px;
     line-height: 80px;
   }
-
   .about-us-stats .about-us-right-content .statistic span:nth-child(2){
     padding-left: 14px;
     font-weight: 400;
   }
+  .about-us-stats .about-us-right-content>div:nth-child(2) p{
+    font-weight: 400;
+  }
+  .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p{
+    font-weight: 700;
+  }
+  
   .about-us-stats .about-us-right-content.text-container{
     padding-top: 20px;
   }
