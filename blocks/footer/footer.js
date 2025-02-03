@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragmentCustom } from '../fragment/fragment.js';
+import { SVGIcon } from '../../shared/SVGIcon/SVGIcon.js';
 
 /**
  * loads and decorates the footer
@@ -117,18 +118,70 @@ export default async function decorate(block) {
       { icon: 'youtube', href: '#', label: 'YouTube' }
     ];
 
-    socialIcons.forEach(social => {
+    // Create social links container with data attributes
+    const socialLinksContainer = document.createElement('div');
+    socialLinksContainer.className = 'social-links';
+    socialLinksContainer.setAttribute('data-aue-type', 'container');
+    socialLinksContainer.setAttribute('data-aue-behavior', 'component');
+    socialLinksContainer.setAttribute('data-aue-model', 'socialLinks');
+    socialLinksContainer.setAttribute('data-aue-label', 'Social Links');
+    socialLinksContainer.setAttribute('data-aue-filter', 'socialLinks');
+    socialLinksContainer.setAttribute('data-aue-resource', container.querySelector('.social-links').getAttribute('data-aue-resource'));
+
+    // Get all social link fields from DOM
+    const socialLinkFields = container.querySelectorAll('[data-aue-model="linkField"]');
+    
+    socialLinkFields.forEach(field => {
+      // Create link field container
+      const linkFieldDiv = document.createElement('div');
+      linkFieldDiv.setAttribute('data-aue-type', 'component');
+      linkFieldDiv.setAttribute('data-aue-model', 'linkField'); 
+      linkFieldDiv.setAttribute('data-aue-filter', 'linkField');
+      linkFieldDiv.setAttribute('data-aue-label', 'Link Field');
+      linkFieldDiv.setAttribute('data-aue-resource', field.getAttribute('data-aue-resource'));
+
+      // Create link element
       const link = document.createElement('a');
-      link.href = social.href;
-      link.className = `icon-${social.icon}`;
-      link.setAttribute('aria-label', social.label);
+      const linkData = field.querySelector('a');
+      link.href = linkData.href;
+      link.title = linkData.title;
       
-      const icon = document.createElement('span');
-      icon.className = `icon icon-${social.icon}`;
-      link.appendChild(icon);
+      // Get icon name from DOM
+      const iconName = field.querySelector('[data-aue-prop="linkSvgIcon"]').textContent;
       
-      socialWrapper.appendChild(link);
+      // Create SVG icon using SVGIcon component
+      const icon = SVGIcon({
+        name: iconName,
+        size: 24, // You can adjust size as needed
+        className: 'social-icon'
+      });
+
+      // Create anchor wrapper
+      const anchor = document.createElement('a');
+      anchor.href = link.href;
+      anchor.title = link.title;
+      
+      // Set target from DOM if it exists
+      const targetElement = field.querySelector('[data-aue-prop="linkTarget"]');
+      if (targetElement) {
+        const target = targetElement.textContent;
+        anchor.target = target;
+        
+        // If target is _blank, add rel for security
+        if (target === '_blank') {
+          anchor.rel = 'noopener noreferrer';
+        }
+      }
+
+      // Append icon to anchor
+      anchor.appendChild(icon);
+      link.appendChild(anchor);
+
+      linkFieldDiv.appendChild(link);
+      socialLinksContainer.appendChild(linkFieldDiv);
     });
+
+    socialWrapper.appendChild(socialLinksContainer);
 
     // Apply attributes to logo column
     logoColumn.append(logoWrapper, description, socialWrapper);
