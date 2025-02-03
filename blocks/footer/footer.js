@@ -309,7 +309,7 @@ export default async function decorate(block) {
 
     // Create bottom section for copyright and links
     const bottomSection = document.createElement('div');
-    bottomSection.className = 'row mt-4';
+    bottomSection.className = 'mt-4';
     
     // Get bottom section content
     const bottomContent = findColumnWrapper(fragment.firstElementChild, 1);
@@ -333,7 +333,8 @@ export default async function decorate(block) {
       
       // Create inner div structure
       const innerDiv = document.createElement('div');
-      const columnDiv = document.createElement('div');;
+      const columnDiv = document.createElement('div');
+      columnDiv.classList.add('row');
 
       // Create text div
       const textDiv = document.createElement('div');
@@ -346,7 +347,7 @@ export default async function decorate(block) {
 
       // Create links container
       const linksDiv = document.createElement('div');
-      linksDiv.className = 'links';
+      linksDiv.className = 'links row col-xl-6 col-md-6 col-sm-4';
       linksDiv.setAttribute('data-aue-type', 'container');
       linksDiv.setAttribute('data-aue-model', 'links');
       linksDiv.setAttribute('data-aue-label', 'Links');
@@ -371,7 +372,7 @@ export default async function decorate(block) {
           linkFieldDiv.setAttribute('data-aue-filter', 'linkField');
           linkFieldDiv.setAttribute('data-aue-label', 'Link Field');
           linkFieldDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="linkField"]').getAttribute('data-aue-resource'));
-          linkFieldDiv.classList.add('col-xl-2', 'col-md-2', 'col-sm-4');
+          linkFieldDiv.classList.add('col-xl-3', 'col-md-2', 'col-sm-4');
 
 
           const buttonContainer = document.createElement('div');
