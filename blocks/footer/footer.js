@@ -354,10 +354,10 @@ export default async function decorate(block) {
       linksDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-model="links"]').getAttribute('data-aue-resource'));
 
       // Preserve content from original structure
-      const content = bottomContent.querySelector('[data-richtext-prop="richtext"]');
+      const content = bottomContent.querySelector('.columns > div > div')
       if (content) {
         // Clone text content
-        const textContent = content;
+        const textContent = bottomContent.querySelector('[data-richtext-prop="richtext"]');
         if (textContent) {
           textDiv.innerHTML = textContent.innerHTML;
         }
