@@ -47,7 +47,10 @@ export default async function decorate(block) {
     // Append section and footer to main
     main.appendChild(section);
 
-    //document.getElementsByTagName('main')[0].remove();
+    // Get existing main element
+    const existingMain = document.getElementsByTagName('main')[0];
+    
+    // Create and build all the footer content
     const footer = document.createElement('div');
     // const container = fragment.firstElementChild;
     const findColumnWrapper = (blockElement, index) => {
@@ -516,6 +519,20 @@ export default async function decorate(block) {
       });
     });
     section.appendChild(footer);
-    block.append(main);
+
+    // After all content is ready, update the DOM
+    if (existingMain) {
+      // Clear existing content without removing the element
+      existingMain.innerHTML = '';
+      // Copy over any important attributes
+      Array.from(main.attributes).forEach(attr => {
+        existingMain.setAttribute(attr.name, attr.value);
+      });
+      // Add new content
+      existingMain.appendChild(section);
+    } else {
+      // If no existing main, append the new one
+      block.appendChild(main);
+    }
   }
 }
