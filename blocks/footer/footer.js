@@ -214,7 +214,7 @@ export default async function decorate(block) {
         const nav = document.createElement('nav');
 
         // Get section title
-        const title = linkSection.querySelector('[data-aue-prop="linkText"]');
+        const title = linkSection.querySelector('[data-aue-prop="title"]');
 
         if (title) {
           // Create heading element for title
@@ -222,8 +222,9 @@ export default async function decorate(block) {
           heading.textContent = title.textContent;
           heading.className = 'footer-nav-title';
 
-          heading.setAttribute('data-aue-prop', 'linkText');
-          heading.setAttribute('data-aue-label', 'Text'); 
+          // Set proper data attributes for authoring
+          heading.setAttribute('data-aue-prop', 'title');
+          heading.setAttribute('data-aue-label', 'Title');
           heading.setAttribute('data-aue-type', 'text');
 
           nav.appendChild(heading);
@@ -232,7 +233,7 @@ export default async function decorate(block) {
           // Copy data attributes from title
           Array.from(title.attributes).forEach((attr) => {
             if (attr.name.startsWith('data-')) {
-              title.setAttribute(attr.name, attr.value);
+              heading.setAttribute(attr.name, attr.value);
             }
           });
         }
@@ -258,14 +259,14 @@ export default async function decorate(block) {
           });
 
           // Get the button container and link
-          const buttonContainer = link.querySelector('[data-aue-prop="linkText"]');
+          const buttonContainer = link.querySelector('a');
           const anchor = buttonContainer;
 
           if (anchor) {
             // Create new link with title as text
             const newLink = document.createElement('a');
             newLink.href = anchor.href;
-            newLink.className = 'anchor.className';
+            newLink.className = 'button';
             newLink.textContent = anchor.textContent;
 
             // Copy data attributes from original anchor
@@ -278,6 +279,7 @@ export default async function decorate(block) {
             // Create new button container
             const newButtonContainer = document.createElement('div');
             newButtonContainer.className = 'button-container';
+            newButtonContainer.setAttribute('data-aue-prop', 'linkText');
             newButtonContainer.appendChild(newLink);
 
             // Add target if exists
