@@ -160,7 +160,7 @@
     ]
   },
   {
-    "id": "tab",
+    "id": "tabs",
     "fields": [
       {
         "component": "text",

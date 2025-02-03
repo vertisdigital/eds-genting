@@ -27,7 +27,7 @@
     ]
   },
   {
-    "id": "tab",
+    "id": "tabs",
     "components": [
       "text",
       "image",
