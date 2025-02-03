@@ -87,7 +87,7 @@ export default async function decorate(block) {
 
     // Create logo and description column
     const logoColumn = document.createElement('div');
-    logoColumn.className = 'col-xl-3 col-md-3 col-sm-4';
+    logoColumn.className = 'col-xl-12 col-md-6 col-sm-4';
 
     // Add logo
     const logoWrapper = document.createElement('div');
@@ -163,7 +163,7 @@ export default async function decorate(block) {
     // Create columns dynamically based on navigation sections
     const navColumns = navigationLinks.map(() => {
       const col = document.createElement('div');
-      col.className = 'col-xl-3 col-md-3 col-sm-4';
+      col.className = 'col-xl-4 col-md-3 col-sm-4';
       return col;
     });
 
