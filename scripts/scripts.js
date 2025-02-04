@@ -78,7 +78,8 @@ function buildAutoBlocks(main) {
     tabsContent.classList.add("tabs-content");
 
     sections.forEach((section, index) => {
-        const metadata = section.querySelector(".section-metadata");
+      const metadata = section.querySelector(".section-metadata");
+      if (metadata) {
         const tabTitleElement = metadata.querySelector("div:nth-child(2)");
         const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `Tab ${index + 1}`;
         console.log("tabTitle", tabTitle);
@@ -94,7 +95,7 @@ function buildAutoBlocks(main) {
 
         // Move content into the panel
         while (section.firstChild) {
-            tabPanel.appendChild(section.firstChild);
+          tabPanel.appendChild(section.firstChild);
         }
 
         // Remove the original section after moving content
@@ -102,6 +103,7 @@ function buildAutoBlocks(main) {
 
         tabsNav.appendChild(tabButton);
         tabsContent.appendChild(tabPanel);
+      }
     });
 
     tabsWrapper.appendChild(tabsNav);
@@ -110,14 +112,14 @@ function buildAutoBlocks(main) {
 
     // Handle tab switching
     tabsNav.addEventListener("click", (event) => {
-        if (event.target.classList.contains("tab-button")) {
-            const index = event.target.dataset.index;
-            document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
-            document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
+      if (event.target.classList.contains("tab-button")) {
+        const index = event.target.dataset.index;
+        document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
 
-            event.target.classList.add("active");
-            tabsContent.children[index].classList.add("active");
-        }
+        event.target.classList.add("active");
+        tabsContent.children[index].classList.add("active");
+      }
     });
 
     // Activate the first tab by default
