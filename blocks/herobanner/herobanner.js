@@ -3,7 +3,6 @@ import Heading from '../../shared-components/Heading.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
 
-
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
 
@@ -75,13 +74,16 @@ export default function decorate(block) {
     descElement.remove();
   }
 
-  const arrowIconHtml = SvgIcon({
-    name: 'arrow',
-    className: 'hero-arrow-icon',
-    size: '32',
-    color: 'white',
-  });
-  heroContainer.insertAdjacentHTML('beforeend', arrowIconHtml);
+  const arrowIconLink = block.querySelector('a[href="/content/genting-singapore/index/sustainability.html"]');
+  if(arrowIconLink){
+    const arrowIconHtml = SvgIcon({
+      name: 'arrow',
+      className: 'hero-arrow-icon',
+      size: '32',
+      color: 'white',
+    });
+    heroContainer.insertAdjacentHTML('beforeend', arrowIconHtml);
+  }
 
   const carouselItems = block.querySelectorAll('[data-aue-model="bannercarousel"]');
   const carouselContainer = document.createElement('div');
@@ -93,15 +95,39 @@ export default function decorate(block) {
   carouselWrapper.className = 'carousel-wrapper';
   carouselWrapper.setAttribute('data-aue-type', 'container');
 
+  let currentIndex = 0;
 
-   // arrow navigations
-   const leftArrow = SvgIcon({ name: 'leftarrow', className: 'arrow-link', size: '12' });
-   const rightArrow = SvgIcon({ name: 'rightarrow', className: 'arrow-link', size: '12' });
-   const leftArrowDisabled = SvgIcon({ name: 'leftarrowdisabled', className: 'arrow-link', size: '12' });
-   const rightArrowDisabled = SvgIcon({ name: 'rightarrowdisabled', className: 'arrow-link', size: '12' });
-   
-   // Loop through all carousel items
-   carouselItems.forEach((item, index) => {
+  // arrow navigations
+  const leftArrow = SvgIcon({ name: 'leftarrow', className: 'arrow-link', size: '12' });
+  const rightArrow = SvgIcon({ name: 'rightarrow', className: 'arrow-link', size: '12' });
+  const leftArrowDisabled = SvgIcon({ name: 'leftarrowdisabled', className: 'arrow-link', size: '12' });
+  const rightArrowDisabled = SvgIcon({ name: 'rightarrowdisabled', className: 'arrow-link', size: '12' });
+
+  function moveCarousel(moveForward) {
+    const carouselItemsEl = heroContainer.querySelector('.carousel-item');
+    const itemWidth = carouselItemsEl?.offsetWidth;
+    if (moveForward) currentIndex += 1;
+    else currentIndex -= 1;
+
+    if (currentIndex >= carouselItems.length) {
+      currentIndex = 0;
+    }
+
+    const newTransform = -currentIndex * itemWidth;
+
+    carouselWrapper.style.transition = 'transform 0.3s ease';
+    carouselWrapper.style.transform = `translateX(${newTransform}px)`;
+
+    if (currentIndex === carouselItemsEl.length - 1) {
+      setTimeout(() => {
+        carouselWrapper.style.transition = 'none';
+        carouselWrapper.style.transform = 'translateX(0)';
+      }, 3000);
+    }
+  }
+
+  // Loop through all carousel items
+  carouselItems.forEach((item, index) => {
     const navigations = document.createElement('div');
     navigations.classList.add('navigation-arrows');
     const carouselItem = document.createElement('div');
@@ -127,23 +153,28 @@ export default function decorate(block) {
     rightIcon.classList.add('right-carousel-arrow');
     navigations.appendChild(leftIcon);
     navigations.appendChild(rightIcon);
-    if(index === 0){
+    if (index === 0) {
       leftIcon.setAttribute('disabled', 'true');
       leftIcon.appendChild(stringToHTML(leftArrowDisabled));
-      rightIcon.appendChild(stringToHTML(rightArrow));
-    } else if(index === carouselItems.length - 1){
+      if (carouselItems.length === 1) {
+        rightIcon.setAttribute('disabled', 'true');
+        rightIcon.appendChild(stringToHTML(rightArrowDisabled));
+      } else {
+        rightIcon.appendChild(stringToHTML(rightArrow));
+      }
+    } else if (index === carouselItems.length - 1) {
       rightIcon.setAttribute('disabled', 'true');
       leftIcon.appendChild(stringToHTML(leftArrow));
       rightIcon.appendChild(stringToHTML(rightArrowDisabled));
-    }else {
+    } else {
       leftIcon.appendChild(stringToHTML(leftArrow));
       rightIcon.appendChild(stringToHTML(rightArrow));
     }
-    leftIcon.addEventListener('click',()=>{
-      moveCarousel(false)
+    leftIcon.addEventListener('click', () => {
+      moveCarousel(false);
     });
-    rightIcon.addEventListener('click',()=>{
-      moveCarousel(true)
+    rightIcon.addEventListener('click', () => {
+      moveCarousel(true);
     });
 
     carouselItem.appendChild(carouselItemContent);
@@ -275,40 +306,24 @@ export default function decorate(block) {
     }
     carouselWrapper.appendChild(carouselItem);
   });
-  
+
   carouselContainer.appendChild(carouselWrapper);
-  heroContainer.appendChild(carouselContainer);
+  if (carouselItems.length) {
+    heroContainer.appendChild(carouselContainer);
+  }
 
-  let currentIndex = 0;
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
+  const scrollIntervalDiv = block.querySelector('[data-aue-prop="scrollInterval"]');
 
-  function moveCarousel(moveForward) {
-    const carouselItemsEl = heroContainer.querySelector('.carousel-item');
-    const itemWidth = carouselItemsEl?.offsetWidth;
-    if(moveForward) currentIndex += 1
-    else currentIndex -= 1;
-
-    if (currentIndex >= carouselItemsAll.length) {
-      currentIndex = 0;
-    }
-
-    const newTransform = -currentIndex * itemWidth;
-
-    carouselWrapper.style.transition = 'transform 0.3s ease';
-    carouselWrapper.style.transform = `translateX(${newTransform}px)`;
-
-    if (currentIndex === carouselItemsEl.length - 1) {
-      setTimeout(() => {
-        carouselWrapper.style.transition = 'none';
-        carouselWrapper.style.transform = 'translateX(0)';
-      }, 3000);
-    }
+  let scrollInterval = 3000;
+  if(scrollIntervalDiv){
+    scrollInterval = parseInt(scrollIntervalDiv.textContent) * 1000;
   }
 
   if (carouselItemsAll.length > 0) {
-    setInterval(()=>{
-      moveCarousel(true)
-    }, 3000);
+    setInterval(() => {
+      moveCarousel(true);
+    }, scrollInterval);
   }
 
   carouselItems.forEach((item) => {
