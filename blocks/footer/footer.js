@@ -48,8 +48,7 @@ export default async function decorate(block) {
     main.appendChild(section);
 
     // Get existing main element
-    const existingMain = document.getElementsByTagName('main')[0];
-
+    const existin
     // Create and build all the footer content
     const footer = document.createElement('div');
     // const container = fragment.firstElementChild;
@@ -283,6 +282,13 @@ export default async function decorate(block) {
             const newButtonContainer = document.createElement('div');
             newButtonContainer.className = 'button-container';
             // newButtonContainer.setAttribute('data-aue-prop', 'linkText');
+       }
+            });
+
+            // Create new button container
+            const newButtonContainer = document.createElement('div');
+            newButtonContainer.className = 'button-container';
+            //newButtonContainer.setAttribute('data-aue-prop', 'linkText');
             newButtonContainer.appendChild(newLink);
 
             // Add target if exists
@@ -357,12 +363,12 @@ export default async function decorate(block) {
         topContainer.appendChild(rightSection);
         topContainer.appendChild(leftSection);
         mainContainer.appendChild(topContainer);
-      } else if (!isDesktop) {
+      } else if (!isDesktop && mainContainer.querySelector('.right-section')) {
         // Remove sections and restore original layout for tablet/mobile
-        // const rightSection = mainContainer.querySelector('.right-section');
-        // const leftSection = mainContainer.querySelector('.left-section');
+        const rightSection = mainContainer.querySelector('.right-section');
+        const leftSection = mainContainer.querySelector('.left-section');
 
-        // if (rightSection && leftSection) {
+        if (rightSection && leftSection) {
           // Move columns back to columns container
           columnsContainer.appendChild(logoColumn);
           navColumns.forEach((col) => {
