@@ -759,51 +759,87 @@ main .section.highlight {
   .offset-xl-11 { margin-left: 91.66666667%; }
 }
 
+/* Tab Container */
 .tabs-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
 }
 
+/* Tab Navigation (Tabs at the top) */
 .tabs-nav {
   display: flex;
-  background-color: #f4f4f4;
-  padding: 10px;
-  gap: 10px;
+  margin-bottom: 20px;
+  padding: 0;
+  list-style: none;
   border-bottom: 2px solid #ddd;
 }
 
+/* Tab Button (Individual Tab) */
 .tab-button {
-  background: none;
-  border: none;
-  padding: 10px 20px;
+  background-color: #fff;
+  padding: 12px 24px;
   font-size: 16px;
+  font-weight: 500;
+  border: 2px solid #ddd;
+  margin-right: 5px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px 5px 0 0;
+  text-align: center;
   color: #333;
-  transition: all 0.3s ease;
-  border-bottom: 3px solid transparent;
+  display: inline-block;
 }
 
 .tab-button:hover {
-  color: #007aff;
+  background-color: #f7f7f7;
+  border-color: #888;
 }
 
+/* Active Tab (Highlight the selected tab) */
 .tab-button.active {
-  color: #007aff;
-  font-weight: bold;
-  border-bottom: 3px solid #007aff;
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
 }
 
+.tab-button:focus {
+  outline: none;
+}
+
+/* Tab Panels (Content area of each tab) */
 .tabs-content {
-  padding: 20px;
+  position: relative;
 }
 
+/* Tab Panel (Hidden until activated) */
 .tab-panel {
   display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Show Active Tab */
 .tab-panel.active {
   display: block;
+  opacity: 1;
+}
+
+/* Optional: Add a nice box shadow for the tab container */
+.tabs-container {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Add some padding to the tab content for better readability */
+.tab-panel p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
 }
