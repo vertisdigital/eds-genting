@@ -758,3 +758,52 @@ main .section.highlight {
   .offset-xl-10 { margin-left: 83.33333333%; }
   .offset-xl-11 { margin-left: 91.66666667%; }
 }
+
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabs-nav {
+  display: flex;
+  background-color: #f4f4f4;
+  padding: 10px;
+  gap: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-button:hover {
+  color: #007aff;
+}
+
+.tab-button.active {
+  color: #007aff;
+  font-weight: bold;
+  border-bottom: 3px solid #007aff;
+}
+
+.tabs-content {
+  padding: 20px;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
