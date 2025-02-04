@@ -77,25 +77,26 @@ function buildAutoBlocks(main) {
     const tabsContent = document.createElement("div");
     tabsContent.classList.add("tabs-content");
 
+    const tabTitles = new Set(); // To avoid duplicate tabs
+
     sections.forEach((section, index) => {
-        const metadata = section.querySelector(".section-metadata");
         let tabTitle = `Tab ${index + 1}`; // Default tab title
 
+        const metadata = section.querySelector(".section-metadata");
         if (metadata) {
             const titleDivs = metadata.querySelectorAll("div");
-
-            // Ensure there are at least two divs and ignore the first one ("tabtitle")
+            
+            // Extract only the second div's text (actual tab title), ignore "tabtitle"
             if (titleDivs.length > 1) {
-                tabTitle = titleDivs[1].textContent.trim(); // Extract the actual tab name
+                tabTitle = titleDivs[1].textContent.trim();
             }
 
             metadata.remove(); // Completely remove metadata from the DOM
         }
 
-        // Avoid duplicates
-        if ([...tabsNav.children].some(btn => btn.textContent === tabTitle)) {
-            return;
-        }
+        // Skip duplicate tab titles
+        if (tabTitles.has(tabTitle)) return;
+        tabTitles.add(tabTitle);
 
         const tabButton = document.createElement("button");
         tabButton.classList.add("tab-button");
