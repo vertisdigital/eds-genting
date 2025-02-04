@@ -1,5 +1,5 @@
 import Heading from '../../shared-components/Heading.js';
-import {createOptimizedPicture} from '../../scripts/aem.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
   // Add block level attributes for authoring
@@ -39,13 +39,13 @@ export default function decorate(block) {
     level: 2,
     className: 'enquiry-heading',
   });
-  
+
   // Add authoring attributes to heading
   const heading = headingElement.firstElementChild;
   heading.setAttribute('data-aue-prop', 'heading');
   heading.setAttribute('data-aue-label', 'Heading');
   heading.setAttribute('data-aue-type', 'text');
-  
+
   headingContainer.appendChild(heading);
   leftCol.appendChild(headingContainer);
 
@@ -94,7 +94,6 @@ export default function decorate(block) {
     }
 
     // Create text container with authoring attributes
-    const textContainer = document.createElement('div');
     const textElement = document.createElement('p');
     textElement.className = 'contact-text';
     textElement.setAttribute('data-aue-prop', prop);
@@ -142,6 +141,6 @@ export default function decorate(block) {
   container.appendChild(row);
 
   // Replace original content
-  //wrapper.innerHTML = '';
+  wrapper.innerHTML = '';
   wrapper.appendChild(container);
 }
