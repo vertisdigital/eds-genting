@@ -478,7 +478,7 @@ export default async function decorate(block) {
           targetDiv.setAttribute('data-aue-type', 'text');
           targetDiv.setAttribute('data-aue-label', 'Link Target');
           targetDiv.textContent = originalTarget.textContent;
-          targetDiv.style.display = 'none';
+          // /targetDiv.style.display = 'none';
           linkFieldContainer.appendChild(targetDiv);
         }
 
