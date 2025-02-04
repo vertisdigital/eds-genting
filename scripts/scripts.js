@@ -82,8 +82,9 @@ function buildAutoBlocks(main) {
       //if (metadata) {
       const tabTitleElement = metadata ? metadata.querySelector("div:nth-child(2)") : null;
       const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `CustTitle ${index + 1}`;
-      console.log("tabTitle", tabTitle);
+      
       if (!tabTitle.startsWith("CustTitle")) {
+        console.log("tabTitle : ", tabTitle);
         const tabButton = document.createElement("button");
         tabButton.classList.add("tab-button");
         tabButton.textContent = tabTitle;
