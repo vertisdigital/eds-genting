@@ -65,6 +65,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   console.log("buildAutoBlocks", main);
   try {
+    // TODO: add auto block, if needed
     const sections = [...main.querySelectorAll('[data-aue-model="tabs"]')];
     if (sections.length === 0) return;
 
@@ -77,39 +78,20 @@ function buildAutoBlocks(main) {
     const tabsContent = document.createElement("div");
     tabsContent.classList.add("tabs-content");
 
-    const tabTitles = new Set(); // To avoid duplicate tabs
-
     sections.forEach((section, index) => {
-        let tabTitle = `Tab ${index + 1}`; // Default tab title
-
-        // Check if the section has the proper metadata for the tab title
-        const metadata = section.querySelector(".section-metadata");
-        if (metadata) {
-            const titleDivs = metadata.querySelectorAll("div");
-
-            // Extract only the second div's text (actual tab title), ignoring "tabtitle"
-            if (titleDivs.length > 1) {
-                tabTitle = titleDivs[1].textContent.trim();
-            }
-
-            // Remove the metadata section after processing to clean up the DOM
-            metadata.remove();
-        }
-
-        // Skip duplicate tab titles
-        if (tabTitles.has(tabTitle)) return;
-        tabTitles.add(tabTitle);
+        const metadata = section.querySelector(".section-metadata div:last-child");
+        const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
 
         const tabButton = document.createElement("button");
         tabButton.classList.add("tab-button");
         tabButton.textContent = tabTitle;
-        tabButton.dataset.index = tabsNav.children.length;
+        tabButton.dataset.index = index;
 
         const tabPanel = document.createElement("div");
         tabPanel.classList.add("tab-panel");
-        if (tabsNav.children.length === 0) tabPanel.classList.add("active");
+        if (index === 0) tabPanel.classList.add("active");
 
-        // Move all content from the section into the tabPanel
+        // Move content into the panel
         while (section.firstChild) {
             tabPanel.appendChild(section.firstChild);
         }
@@ -140,6 +122,7 @@ function buildAutoBlocks(main) {
     // Activate the first tab by default
     tabsNav.children[0]?.classList.add("active");
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
