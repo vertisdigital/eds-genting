@@ -68,18 +68,21 @@ function buildAutoBlocks(main) {
     const sections = [...main.querySelectorAll('[data-aue-model="tabs"]')];
     if (sections.length === 0) return;
 
+    // Create the tabs wrapper
     const tabsWrapper = document.createElement("div");
     tabsWrapper.classList.add("tabs-container");
 
+    // Create the tabs navigation
     const tabsNav = document.createElement("div");
     tabsNav.classList.add("tabs-nav");
 
+    // Create the tabs content container
     const tabsContent = document.createElement("div");
     tabsContent.classList.add("tabs-content");
 
     const tabTitles = new Set(); // To avoid duplicate tabs
 
-    sections.forEach((section) => {
+    sections.forEach((section, index) => {
       // Extract tab title from section-metadata
       const metadata = section.querySelector(".section-metadata");
       if (metadata) {
@@ -97,18 +100,18 @@ function buildAutoBlocks(main) {
           const tabButton = document.createElement("button");
           tabButton.classList.add("tab-button");
           tabButton.textContent = tabTitle;
-          tabButton.dataset.index = tabsNav.children.length;
+          tabButton.dataset.index = index;
 
           // Create tab panel
           const tabPanel = document.createElement("div");
           tabPanel.classList.add("tab-panel");
-          if (tabsNav.children.length === 0) tabPanel.classList.add("active");
+          if (index === 0) tabPanel.classList.add("active"); // Activate the first tab
 
-          // Move content inside the panel (content inside data-aue-filter="tabs")
+          // Move relevant content inside the panel (content inside data-aue-filter="tabs")
           const tabContent = section.querySelector('[data-aue-filter="tabs"]');
           if (tabContent) {
             // Move the content inside the tab panel
-            tabPanel.appendChild(tabContent);
+            tabPanel.appendChild(tabContent.cloneNode(true)); // Clone to avoid removing original
           }
 
           // Remove the original section after moving content
@@ -130,16 +133,21 @@ function buildAutoBlocks(main) {
     tabsNav.addEventListener("click", (event) => {
       if (event.target.classList.contains("tab-button")) {
         const index = event.target.dataset.index;
-        document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
-        document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
 
+        // Remove active class from all buttons and panels
+        document.querySelectorAll(".tab-button").forEach((btn) => btn.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach((panel) => panel.classList.remove("active"));
+
+        // Add active class to the clicked button and corresponding panel
         event.target.classList.add("active");
         tabsContent.children[index].classList.add("active");
       }
     });
 
     // Activate the first tab by default
-    tabsNav.children[0]?.classList.add("active");
+    if (tabsNav.children.length > 0) {
+      tabsNav.children[0].classList.add("active");
+    }
 
   } catch (error) {
     // Handle errors
