@@ -65,7 +65,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   console.log("buildAutoBlocks", main);
   try {
-    // TODO: add auto block, if needed
+    // Get sections with data-aue-model="tabs"
     const sections = [...main.querySelectorAll('[data-aue-model="tabs"]')];
     if (sections.length === 0) return;
 
@@ -78,52 +78,71 @@ function buildAutoBlocks(main) {
     const tabsContent = document.createElement("div");
     tabsContent.classList.add("tabs-content");
 
+    const tabTitles = new Set(); // To avoid duplicate tabs
+
     sections.forEach((section, index) => {
-        const metadata = section.querySelector(".section-metadata div:last-child");
-        console.log("metadata", metadata);
-        const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
-        console.log("tabTitle", tabTitle);
-        const tabButton = document.createElement("button");
-        tabButton.classList.add("tab-button");
-        tabButton.textContent = tabTitle;
-        tabButton.dataset.index = index;
+      // Extract tab title from section-metadata
+      const metadata = section.querySelector(".section-metadata");
+      if (metadata) {
+        const titleDivs = metadata.querySelectorAll("div");
 
-        const tabPanel = document.createElement("div");
-        tabPanel.classList.add("tab-panel");
-        if (index === 0) tabPanel.classList.add("active");
+        // Extract the actual tab title from the second div (skip tabtitle label)
+        if (titleDivs.length > 1) {
+          const tabTitle = titleDivs[1].textContent.trim();
 
-        // Move content into the panel
-        while (section.firstChild) {
-            tabPanel.appendChild(section.firstChild);
+          // Skip duplicate titles
+          if (tabTitles.has(tabTitle)) return;
+          tabTitles.add(tabTitle);
+
+          // Create tab button
+          const tabButton = document.createElement("button");
+          tabButton.classList.add("tab-button");
+          tabButton.textContent = tabTitle;
+          tabButton.dataset.index = tabsNav.children.length;
+
+          // Create tab panel
+          const tabPanel = document.createElement("div");
+          tabPanel.classList.add("tab-panel");
+          if (tabsNav.children.length === 0) tabPanel.classList.add("active");
+
+          // Move content into tab panel (content inside data-aue-filter="tabs")
+          const tabContent = section.querySelector('[data-aue-filter="tabs"]');
+          if (tabContent) {
+            // Move the content inside the panel
+            tabPanel.appendChild(tabContent);
+          }
+
+          // Remove the original section after moving content
+          section.remove();
+
+          // Append tab button and panel to the respective containers
+          tabsNav.appendChild(tabButton);
+          tabsContent.appendChild(tabPanel);
         }
-
-        // Remove the original section after moving content
-        section.remove();
-
-        tabsNav.appendChild(tabButton);
-        tabsContent.appendChild(tabPanel);
+      }
     });
 
+    // Append the tabs wrapper to the main container
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
     main.appendChild(tabsWrapper);
 
-    // Handle tab switching
+    // Handle tab switching on click
     tabsNav.addEventListener("click", (event) => {
-        if (event.target.classList.contains("tab-button")) {
-            const index = event.target.dataset.index;
-            document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
-            document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
+      if (event.target.classList.contains("tab-button")) {
+        const index = event.target.dataset.index;
+        document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
 
-            event.target.classList.add("active");
-            tabsContent.children[index].classList.add("active");
-        }
+        event.target.classList.add("active");
+        tabsContent.children[index].classList.add("active");
+      }
     });
 
     // Activate the first tab by default
     tabsNav.children[0]?.classList.add("active");
+
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
