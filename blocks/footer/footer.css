@@ -163,6 +163,6 @@
     }
 }
 
-.footer [data-aue-prop="linkTarget"]:not(.EditableOverlays) {
-    display: none !important;
+.footer [data-aue-prop="linkTarget"] {
+    display: none;
 }

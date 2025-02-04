@@ -49,7 +49,7 @@ export default async function decorate(block) {
 
     // Get existing main element
     const existingMain = document.getElementsByTagName('main')[0];
-    
+
     // Create and build all the footer content
     const footer = document.createElement('div');
     // const container = fragment.firstElementChild;
@@ -282,7 +282,7 @@ export default async function decorate(block) {
             // Create new button container
             const newButtonContainer = document.createElement('div');
             newButtonContainer.className = 'button-container';
-            //newButtonContainer.setAttribute('data-aue-prop', 'linkText');
+            // newButtonContainer.setAttribute('data-aue-prop', 'linkText');
             newButtonContainer.appendChild(newLink);
 
             // Add target if exists
