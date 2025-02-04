@@ -83,6 +83,7 @@ function buildAutoBlocks(main) {
         const tabTitleElement = metadata.querySelector("div:nth-child(2)");
         const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `Tab ${index + 1}`;
         console.log("tabTitle", tabTitle);
+      }
 
         const tabButton = document.createElement("button");
         tabButton.classList.add("tab-button");
@@ -103,7 +104,6 @@ function buildAutoBlocks(main) {
 
         tabsNav.appendChild(tabButton);
         tabsContent.appendChild(tabPanel);
-      }
     });
 
     tabsWrapper.appendChild(tabsNav);
