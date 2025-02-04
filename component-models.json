@@ -331,7 +331,8 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link"
+        "label": "Link",
+        "rootPath": "/content/genting-singapore/index"
       },
       {
         "component": "text",
@@ -367,6 +368,16 @@
         "component": "text",
         "name": "title",
         "label": "Title"
+      },
+      {
+        "component": "text",
+        "name": "detailedcaption",
+        "label": "Detailed Caption"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
       }
     ]
   },
