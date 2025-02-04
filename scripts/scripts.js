@@ -80,21 +80,14 @@ function buildAutoBlocks(main) {
     const tabsContent = document.createElement("div");
     tabsContent.classList.add("tabs-content");
 
-    const tabTitles = new Set(); // To avoid duplicate tabs
-
     sections.forEach((section, index) => {
       // Extract tab title from section-metadata
       const metadata = section.querySelector(".section-metadata");
       if (metadata) {
+        // Get the tab title (second div inside .section-metadata)
         const titleDivs = metadata.querySelectorAll("div");
-
-        // Ensure we are extracting the second div as the tab title (Tab1, Tab2, etc.)
         if (titleDivs.length > 1) {
           const tabTitle = titleDivs[1].textContent.trim(); // Get the correct title
-
-          // Skip duplicate titles (if already added)
-          if (tabTitles.has(tabTitle)) return;
-          tabTitles.add(tabTitle);
 
           // Create tab button
           const tabButton = document.createElement("button");
@@ -110,8 +103,9 @@ function buildAutoBlocks(main) {
           // Move relevant content inside the panel (content inside data-aue-filter="tabs")
           const tabContent = section.querySelector('[data-aue-filter="tabs"]');
           if (tabContent) {
-            // Move the content inside the tab panel
-            tabPanel.appendChild(tabContent.cloneNode(true)); // Clone to avoid removing original
+            // Clone the content to avoid removing the original
+            const clonedContent = tabContent.cloneNode(true);
+            tabPanel.appendChild(clonedContent);
           }
 
           // Remove the original section after moving content
@@ -156,7 +150,6 @@ function buildAutoBlocks(main) {
     }
   }
 }
-
 
 /**
  * Decorates the main element.
