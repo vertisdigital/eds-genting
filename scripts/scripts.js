@@ -97,6 +97,7 @@ function buildAutoBlocks(main) {
         if (index === 0) tabPanel.classList.add("active");
 
         // Move content into the panel
+        console.log("section.firstChild : ", section.firstChild);
         while (section.firstChild) {
           tabPanel.appendChild(section.firstChild);
         }
