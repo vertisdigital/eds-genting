@@ -65,7 +65,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     // TODO: add auto block, if needed
-    const sections = [...main.querySelectorAll('[data-aue-model="tabs"]')];
+    const sections = [...main.querySelectorAll('[data-aue-filter="tabs"]')];
     if (sections.length === 0) return;
 
     const tabsWrapper = document.createElement("div");
@@ -78,12 +78,10 @@ function buildAutoBlocks(main) {
     tabsContent.classList.add("tabs-content");
 
     sections.forEach((section, index) => {
-      const metadata = section.querySelector(".section-metadata");
-      if (metadata) {
-        const tabTitleElement = metadata.querySelector("div:nth-child(2)");
-        const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `Tab ${index + 1}`;
+        const metadata = section.querySelector(".section-metadata div:last-child");
+        console.log("metadata", metadata);
+        const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
         console.log("tabTitle", tabTitle);
-      }
 
         const tabButton = document.createElement("button");
         tabButton.classList.add("tab-button");
@@ -96,7 +94,7 @@ function buildAutoBlocks(main) {
 
         // Move content into the panel
         while (section.firstChild) {
-          tabPanel.appendChild(section.firstChild);
+            tabPanel.appendChild(section.firstChild);
         }
 
         // Remove the original section after moving content
@@ -112,14 +110,14 @@ function buildAutoBlocks(main) {
 
     // Handle tab switching
     tabsNav.addEventListener("click", (event) => {
-      if (event.target.classList.contains("tab-button")) {
-        const index = event.target.dataset.index;
-        document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
-        document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
+        if (event.target.classList.contains("tab-button")) {
+            const index = event.target.dataset.index;
+            document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
+            document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
 
-        event.target.classList.add("active");
-        tabsContent.children[index].classList.add("active");
-      }
+            event.target.classList.add("active");
+            tabsContent.children[index].classList.add("active");
+        }
     });
 
     // Activate the first tab by default
