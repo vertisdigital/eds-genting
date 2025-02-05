@@ -88,7 +88,7 @@ export default function decorate(block) {
     descElement.remove();
   }
 
-  const arrowIconLink = block.querySelector('a[href="/content/genting-singapore/index/sustainability.html"]');
+  const arrowIconLink = block.querySelector('.button-container');
   if(arrowIconLink){
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
@@ -125,25 +125,27 @@ export default function decorate(block) {
   }
 
   function moveCarousel(moveForward) {
-    const carouselItemsEl = heroContainer.querySelector('.carousel-item');
-    const itemWidth = carouselItemsEl?.offsetWidth;
-    if (moveForward) currentIndex += 1;
-    else currentIndex -= 1;
+    if (carouselItems.length > 1){
+      const carouselItemsEl = heroContainer.querySelector('.carousel-item');
+      const itemWidth = carouselItemsEl?.offsetWidth;
+      if (moveForward) currentIndex += 1;
+      else currentIndex -= 1;
 
-    if (currentIndex >= carouselItems.length) {
-      currentIndex = 0;
-    }
+      if (currentIndex >= carouselItems.length) {
+        currentIndex = 0;
+      }
 
-    const newTransform = -currentIndex * itemWidth;
+      const newTransform = -currentIndex * itemWidth;
 
-    carouselWrapper.style.transition = 'transform 0.3s ease';
-    carouselWrapper.style.transform = `translateX(${newTransform}px)`;
+      carouselWrapper.style.transition = 'transform 0.3s ease';
+      carouselWrapper.style.transform = `translateX(${newTransform}px)`;
 
-    if (currentIndex === carouselItemsEl.length - 1) {
-      setTimeout(() => {
-        carouselWrapper.style.transition = 'none';
-        carouselWrapper.style.transform = 'translateX(0)';
-      }, scrollInterval);
+      if (currentIndex === carouselItemsEl.length - 1) {
+        setTimeout(() => {
+          carouselWrapper.style.transition = 'none';
+          carouselWrapper.style.transform = 'translateX(0)';
+        }, scrollInterval);
+      }
     }
   }
 
