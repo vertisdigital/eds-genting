@@ -212,6 +212,31 @@
         }
       },
       {
+        "component": "text",
+        "name": "linkText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "linkTitle",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "linkType1",
+        "label": "Type",
+        "options": [
+          {
+            "name": "self",
+            "value": "_self"
+          },
+          {
+            "name": "blank",
+            "value": "_blank"
+          }
+        ]
+      },
+      {
         "component": "number",
         "name": "scrollInterval",
         "label": "Scroll Interval",
