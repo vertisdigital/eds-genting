@@ -126,7 +126,7 @@ function createHeaderStructure(block) {
     model: 'section',
     label: 'Section',
     filter: 'section',
-  }, 'section_0');
+  }, 'urn:aemconnection:/content/genting-singapore/nav/jcr:content/root/section_0');
   section.setAttribute('data-section-status', 'loaded');
 
   // Create columns wrapper
@@ -142,7 +142,7 @@ function createHeaderStructure(block) {
     label: 'Columns',
     filter: 'columns',
     behavior: 'component',
-  }, 'section_0/columns');
+  }, 'urn:aemconnection:/content/genting-singapore/nav/jcr:content/root/section_0/columns');
   columns.setAttribute('data-block-name', 'columns');
   columns.setAttribute('data-block-status', 'loaded');
 
@@ -152,7 +152,7 @@ function createHeaderStructure(block) {
     type: 'container',
     label: 'Column',
     filter: 'column',
-  }, 'section_0/columns/row1/col1');
+  }, 'urn:aemconnection:/content/genting-singapore/nav/jcr:content/root/section_0/columns/row1/col1');
 
   // Create navigation list
   const nav = document.createElement('nav');
