@@ -86,14 +86,13 @@
     "components": [
       "projectcard",
       "linkField"
-    ],
-    "maxItems": {
-      "projectcard": 3,
-      "linkField": 1
-    }
+    ]
+  },
+  {
     "id": "herobanner",
     "components": [
       "bannercarousel"
     ]
+
   }
 ]
