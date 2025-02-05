@@ -1,35 +1,4 @@
 export const MOCK_CONTENT = {
-<<<<<<< HEAD
-  columns: `
-          <div class="columns-wrapper"><div class="columns block columns-2-cols" data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns" data-aue-type="container" data-aue-model="columns" data-aue-label="Columns" data-aue-filter="columns" data-aue-behavior="component" data-block-name="columns" data-block-status="loaded">
-      <div>
-          <div data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row1/col1" data-aue-type="container" data-aue-label="Column" data-aue-filter="column">
-          <h2 data-aue-behavior="component" data-aue-model="title" data-aue-label="Title" id="what-is-lorem-ipsum" data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row1/col1/title" data-aue-prop="title" data-aue-type="text">What is Lorem Ipsum?</h2>
-      <div data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row1/col1/text" data-aue-behavior="component" data-aue-prop="text" data-aue-label="Text" data-aue-filter="text" data-aue-type="richtext"><p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p></div>
-  </div>
-  <div data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row1/col2" data-aue-type="container" data-aue-label="Column" data-aue-filter="column">
-  <h2 data-aue-behavior="component" data-aue-model="title" data-aue-label="Title" id="why-do-we-use-it" data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row1/col2/title" data-aue-prop="title" data-aue-type="text">Why do we use it?</h2>
-      <div data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row1/col2/text" data-aue-behavior="component" data-aue-prop="text" data-aue-label="Text" data-aue-filter="text" data-aue-type="richtext"><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p></div>
-  </div>
-      </div>
-  <div>
-          <div data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row2/col1" data-aue-type="container" data-aue-label="Column" data-aue-filter="column">
-  <h2 data-aue-behavior="component" data-aue-model="title" data-aue-label="Title" id="where-does-it-come-from" data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row2/col1/title" data-aue-prop="title" data-aue-type="text">Where does it come from?</h2>
-      <div data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row2/col1/text" data-aue-behavior="component" data-aue-prop="text" data-aue-label="Text" data-aue-filter="text" data-aue-type="richtext"><p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p></div>
-      <div data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row2/col1/text_0" data-aue-behavior="component" data-aue-prop="text" data-aue-label="Text" data-aue-filter="text" data-aue-type="richtext"><p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p></div>
-  </div>
-  <div data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row2/col2" data-aue-type="container" data-aue-label="Column" data-aue-filter="column">
-  <h2 data-aue-behavior="component" data-aue-model="title" data-aue-label="Title" id="where-can-i-get-some" data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row2/col2/title" data-aue-prop="title" data-aue-type="text">Where can I get some?</h2>
-  
-      <div data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row2/col2/text" data-aue-behavior="component" data-aue-prop="text" data-aue-label="Text" data-aue-filter="text" data-aue-type="richtext"><p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p></div>
-  </div>
-  
-      </div>
-  
-  </div></div>
-        `,
-=======
->>>>>>> 272fc0e6c81cccd9aaaa1ac15a49d60b1995a27d
   'about-us': `<div class="about-us-wrapper"><div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/TestPage1/jcr:content/root/section_2/block_1717109353" data-aue-type="container" data-aue-behavior="component" data-aue-model="aboutus" data-aue-label="About Us" data-aue-filter="aboutus" class="about-us block" style="" data-block-name="about-us" data-block-status="loaded">
         <div>
         <div><p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">About Us</p></div>
@@ -376,14 +345,14 @@ drive sustainable growth and transformative impact through world-class integrate
    </div>
 </div>
 </div>`,
-header: `<main data-aue-type="container" data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root" data-aue-label="Main" data-aue-filter="main">
-   <div data-aue-type="container" data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0" data-aue-behavior="component" data-aue-model="section" data-aue-label="Section" data-aue-filter="section">
-      <div class="columns" data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns" data-aue-type="container" data-aue-model="columns" data-aue-label="Columns" data-aue-filter="columns" data-aue-behavior="component">
+  header: `<div data-aue-type="container" data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0" data-aue-behavior="component" data-aue-model="section" data-aue-label="Section" data-aue-filter="section" class="section columns-container" data-section-status="loaded" style="">
+   <div class="columns-wrapper">
+      <div class="columns block columns-1-cols" data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns" data-aue-type="container" data-aue-model="columns" data-aue-label="Columns" data-aue-filter="columns" data-aue-behavior="component" data-block-name="columns" data-block-status="loaded">
          <div>
             <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1" data-aue-type="container" data-aue-label="Column" data-aue-filter="column">
                <p data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/image" data-aue-type="component" data-aue-model="image" data-aue-label="Image" data-aue-behavior="component">
                   <picture>
-                     <img src="/content/dam/genting-singapore/logo-red-new.png" width="156" height="111">
+                     <img src="/content/dam/genting-singapore/logo-red-new.png" width="156" height="111" loading="eager">
                   </picture>
                </p>
                <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/block_706921530" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links" class="links">
@@ -397,23 +366,23 @@ header: `<main data-aue-type="container" data-aue-resource="urn:aemconnection:/c
                      <div></div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/block_706921530/item" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/sustainability.html" title="Awards &amp; Recognitions" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Awards &amp; Recognitions</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/sustainability.html" title="Awards &amp; Recognitions" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Awards &amp; Recognitions</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/block_706921530/item_1245023808" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index.html" title="History &amp; Milestones" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">History &amp; Milestones</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index.html" title="History &amp; Milestones" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">History &amp; Milestones</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/block_706921530/item_260323589" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index.html" title="Leadership Team" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Leadership Team</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index.html" title="Leadership Team" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Leadership Team</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/block_706921530/item_2022392692" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Contact</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Contact</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/block_706921530/item_1389449983" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index.html" title="Careers" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Careers</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index.html" title="Careers" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Careers</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                </div>
@@ -428,11 +397,11 @@ header: `<main data-aue-type="container" data-aue-resource="urn:aemconnection:/c
                      <div></div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/2_1738665543317/item" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/footerBkUp1.html" title="RWS" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">RWS</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/footerBkUp1.html" title="RWS" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">RWS</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/2_1738665543317/item_25555091" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/footerbkup.html" title="RWS Expansion 2.0" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">RWS Expansion 2.0</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/footerbkup.html" title="RWS Expansion 2.0" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">RWS Expansion 2.0</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                </div>
@@ -447,35 +416,35 @@ header: `<main data-aue-type="container" data-aue-resource="urn:aemconnection:/c
                      <div></div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/3_1738665936165/item" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/about-us.html" title="Stock Information" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Stock Information</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/about-us.html" title="Stock Information" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Stock Information</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/3_1738665936165/item_877382084" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/contact.html" title="News &amp; Announcements" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">News &amp; Announcements</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/contact.html" title="News &amp; Announcements" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">News &amp; Announcements</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/3_1738665936165/item_1214266706" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/footerBkUp1.html" title="ESG" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">ESG</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/footerBkUp1.html" title="ESG" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">ESG</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/3_1738665936165/item_2070380683" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/footerbkup.html" title="Publication &amp; Reports" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Publication &amp; Reports</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/footerbkup.html" title="Publication &amp; Reports" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Publication &amp; Reports</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/3_1738665936165/item_1674706458" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/investor-relations.html" title="AGM/EGM" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">AGM/EGM</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/investor-relations.html" title="AGM/EGM" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">AGM/EGM</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/3_1738665936165/item_519728113" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/media.html" title="Analyst Coverage" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Analyst Coverage</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/media.html" title="Analyst Coverage" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Analyst Coverage</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/3_1738665936165/item_623178167" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/our-projects.html" title="Investor Calendar" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Investor Calendar</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/our-projects.html" title="Investor Calendar" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Investor Calendar</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/3_1738665936165/item_291823417" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index.html" title="Contact Us" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Contact Us</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index.html" title="Contact Us" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Contact Us</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                </div>
@@ -490,27 +459,27 @@ header: `<main data-aue-type="container" data-aue-resource="urn:aemconnection:/c
                      <div></div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/4_1738666031860/item" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/about-us.html" title="Accreditations &amp; Recognitions" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Accreditations &amp; Recognitions</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/about-us.html" title="Accreditations &amp; Recognitions" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Accreditations &amp; Recognitions</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/4_1738666031860/item_1073542453" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/contact.html" title="Sustainability Governance" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Sustainability Governance</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/contact.html" title="Sustainability Governance" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Sustainability Governance</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/4_1738666031860/item_722124816" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/footerBkUp1.html" title="Reporting Disclosures" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Reporting Disclosures</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/footerBkUp1.html" title="Reporting Disclosures" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Reporting Disclosures</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/4_1738666031860/item_1804735060" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/investor-relations.html" title="Journey towards Sustainable Tourism" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Journey towards Sustainable Tourism</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/investor-relations.html" title="Journey towards Sustainable Tourism" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Journey towards Sustainable Tourism</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/4_1738666031860/item_935099479" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/our-projects.html" title="Sustainability Framework" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Sustainability Framework</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/our-projects.html" title="Sustainability Framework" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Sustainability Framework</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/4_1738666031860/item_40109889" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index/footerbkup.html" title="Corporate Policies" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Corporate Policies</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/footerbkup.html" title="Corporate Policies" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Corporate Policies</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                </div>
@@ -525,15 +494,15 @@ header: `<main data-aue-type="container" data-aue-resource="urn:aemconnection:/c
                      <div></div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/block_1202099275/item" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index.html" title="News Listing" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">News Listing</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index.html" title="News Listing" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">News Listing</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/block_1202099275/item_1938014858" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index.html" title="Media Gallery" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Media Gallery</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index.html" title="Media Gallery" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Media Gallery</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/block_1202099275/item_505677230" data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
-                     <div><a href="/content/genting-singapore/index.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text">Contact</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Contact</a></div>
                      <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
                   </div>
                </div>
@@ -545,15 +514,17 @@ header: `<main data-aue-type="container" data-aue-resource="urn:aemconnection:/c
                      <div></div>
                   </div>
                   <div>
-                     <div><a href="/content/genting-singapore/index/contact.html">/content/genting-singapore/index/contact</a></div>
+                     <div class="button-container"><a href="/content/genting-singapore/index/contact.html" title="/content/genting-singapore/index/contact" class="button">/content/genting-singapore/index/contact</a></div>
                   </div>
                </div>
-               <p data-richtext-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/text" data-richtext-prop="text" data-richtext-label="Text" data-richtext-filter="text"><span class="icon icon-search"></span></p>
+               <div data-aue-resource="urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root/section_0/columns/row1/col1/text" data-aue-behavior="component" data-aue-prop="text" data-aue-label="Text" data-aue-filter="text" data-aue-type="richtext">
+                  <p><span class="icon icon-search"><img data-icon-name="search" src="/content/genting-singapore.headerbackend.resource/icons/search.svg" alt="" loading="lazy"></span></p>
+               </div>
             </div>
          </div>
       </div>
    </div>
-</main>`
+</div>`,
 };
 
 export function loadMockContent(blockName) {
