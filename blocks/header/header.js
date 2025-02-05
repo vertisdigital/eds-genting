@@ -74,7 +74,7 @@ function createNavItem(itemData, resourcePath) {
         model: 'linkField',
         filter: 'linkField',
         label: 'Link Field',
-      }, `${resourcePath}/item${index > 0 ? `_${index}` : ''}`);
+      }, `${resourcePath}/item`);
 
       const linkContainer = document.createElement('div');
       linkContainer.className = 'button-container';
