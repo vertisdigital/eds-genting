@@ -25,7 +25,7 @@
   text-align: left;
 }
 
-.textsection [data-richtext-prop="description"] p {
+.textsection [data-aue-prop="description"] p {
   margin-top: 0px;
 }
 
