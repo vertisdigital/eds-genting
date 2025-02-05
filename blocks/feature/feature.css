@@ -11,6 +11,7 @@
   padding: 0;
   margin-bottom: 18px;
 }
+
 .about-us-stats .about-us-right{
   padding: 0;
 }
@@ -52,18 +53,16 @@
   background: none;
   margin: 0;
 }
+
 .about-us-left .button-container a span{
   width: 16px;
   height: 16px;
 }
+
 .about-us-left .about-us-left-link svg{
   color:var(--primary-gold);
 }
 
-/* About-us left container end */
-.about-us-stats .about-us-right{
-  padding: 0;
-}
 
 .about-us-stats .about-us-right-content{
   display: flex;
@@ -81,15 +80,18 @@
   width: 56px;
   height: 56px;
 }
+
 .about-us-stats .about-us-right-content.image-container>div:first-child picture{
   width: 100%;
   height: 100%;
 
 }
+
 .about-us-stats .about-us-right-content.image-container>div:first-child picture img{
   width: 100%;
   height: 100%;
 }
+
 .about-us-stats .about-us-right-content.text-container{
 
   border-top: 1px solid var(--text-color);
@@ -141,6 +143,7 @@ color: var(--body-text-color);
   .feature-wrapper .about-us-stats{
     margin-bottom: 0;
   }
+
   .about-us-stats .about-us-left{
     padding-right: 12px;
     margin-bottom: 0;
@@ -170,33 +173,36 @@ color: var(--body-text-color);
     line-height: 24px;
     margin-bottom: 10px;
   }
+
   .about-us-left a.button{
     padding: 12px;
   }
 
   .about-us-stats .about-us-right-content.text-container{
     margin-bottom: 36px;
+    padding-top: 16px;
   }
 
   .about-us-stats .about-us-right-content{
     column-gap: 15px;
     margin-bottom: 24px;
   }
+
   .about-us-stats .about-us-right-content .statistic{
     font-size: 64px;
     line-height: 64px;
   }
+
   .about-us-stats .about-us-right-content>div:nth-child(2) p{
     font-size: 16px;
     font-weight: 400;
   }
+
   .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p{
     font-weight: 700;
   }
   
-  .about-us-stats .about-us-right-content.text-container{
-    padding-top: 16px;
-  }
+ 
 }
 
 @media  (width >= 1024px) {
@@ -227,6 +233,7 @@ color: var(--body-text-color);
   .about-us-left a.button{
     padding: 16px;
   }
+
   .about-us-stats .about-us-right-content{
     column-gap: 20px;
     margin-bottom: 36px;
@@ -242,13 +249,16 @@ color: var(--body-text-color);
     font-size: 80px;
     line-height: 80px;
   }
+
   .about-us-stats .about-us-right-content .statistic span:nth-child(2){
     padding-left: 14px;
     font-weight: 400;
   }
+
   .about-us-stats .about-us-right-content>div:nth-child(2) p{
     font-weight: 400;
   }
+
   .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p{
     font-weight: 700;
   }
