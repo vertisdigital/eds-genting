@@ -65,6 +65,12 @@ function createNavItem(itemData, resourcePath) {
   if (itemData.links?.length) {
     const linksUl = document.createElement('ul');
     linksUl.className = 'nav-links row';
+    setAEMAttributes(linksUl, {
+      type: 'container',
+      model: 'linkFields',
+      filter: 'linkFields',
+      label: 'Link Fields',
+    }, resourcePath);
 
     itemData.links.forEach((link, index) => {
       const li = document.createElement('li');
@@ -76,11 +82,28 @@ function createNavItem(itemData, resourcePath) {
         label: 'Link Field',
       }, `${resourcePath}/item${index > 0 ? `_${index}` : ''}`);
 
+      // Create link container
       const linkContainer = document.createElement('div');
       linkContainer.className = 'button-container';
+      setAEMAttributes(linkContainer, {
+        type: 'container',
+        model: 'linkContainer',
+        filter: 'linkContainer',
+        label: 'Link Container',
+      });
 
+      // Create link text wrapper
+      const linkTextWrapper = document.createElement('div');
+      setAEMAttributes(linkTextWrapper, {
+        type: 'container',
+        model: 'linkText',
+        filter: 'linkText',
+        label: 'Link Text',
+      });
+
+      // Create actual link
       const a = document.createElement('a');
-      a.href = link.href;
+      a.href = link.href || '#';
       a.className = 'button';
       a.title = link.text;
       setAEMAttributes(a, {
@@ -89,8 +112,18 @@ function createNavItem(itemData, resourcePath) {
         type: 'text',
       });
       a.textContent = link.text;
+      linkTextWrapper.appendChild(a);
 
+      // Create target wrapper
       if (link.target) {
+        const targetWrapper = document.createElement('div');
+        setAEMAttributes(targetWrapper, {
+          type: 'container',
+          model: 'linkTarget',
+          filter: 'linkTarget',
+          label: 'Link Target',
+        });
+
         const targetDiv = document.createElement('div');
         setAEMAttributes(targetDiv, {
           prop: 'linkTarget',
@@ -98,13 +131,31 @@ function createNavItem(itemData, resourcePath) {
           type: 'text',
         });
         targetDiv.textContent = link.target;
-        li.appendChild(targetDiv);
+        targetWrapper.appendChild(targetDiv);
+        li.appendChild(targetWrapper);
       }
 
-      linkContainer.appendChild(a);
+      linkContainer.appendChild(linkTextWrapper);
       li.appendChild(linkContainer);
       linksUl.appendChild(li);
     });
+
+    // Add button to create new link field
+    const addLinkLi = document.createElement('li');
+    addLinkLi.className = 'col-xl-4 col-lg-4';
+    setAEMAttributes(addLinkLi, {
+      type: 'container',
+      model: 'addLinkField',
+      filter: 'addLinkField',
+      label: 'Add Link Field',
+      behavior: 'component',
+    }, `${resourcePath}/item_new`);
+
+    const addButton = document.createElement('button');
+    addButton.className = 'add-link-btn';
+    addButton.textContent = '+ Add Link';
+    addLinkLi.appendChild(addButton);
+    linksUl.appendChild(addLinkLi);
 
     navItem.appendChild(linksUl);
   }
