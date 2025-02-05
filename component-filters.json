@@ -21,7 +21,8 @@
       "linkField",
       "socialLinks",
       "links",
-      "imageLink"
+      "imageLink",
+      "listing"
     ]
   },
   {
@@ -45,7 +46,8 @@
       "title",
       "imageLink",
       "socialLinks",
-      "links"
+      "links",
+      "listing"
     ]
   },
   {
@@ -78,6 +80,13 @@
     "components": [
       "linkField"
     ]
+  },
+  {
+    "id": "listing",
+    "components": [
+      "listitem",
+      "linkField"
+      ]
   },
   {
     "id": "herobanner",
