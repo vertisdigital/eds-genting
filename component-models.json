@@ -491,5 +491,81 @@
         }
       }
     ]
+  },
+  {
+    "id": "projectcards",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Heading cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxSize": 250,
+          "customErrorMsg": "Description cannot exceed 250 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "projectcard",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "ProjectImage",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore/index"
+        }
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "ImageAltText",
+        "description": "DescriptiveTextForScreenReaders"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "required": true,
+        "validation": {
+          "maxLength": 10,
+          "customErrorMsg": "Title cannot exceed 10 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "location",
+        "label": "Location",
+        "required": true,
+        "validation": {
+          "maxLength": 10,
+          "customErrorMsg": "Location cannot exceed 10 characters"
+        }
+      }
+    ]
   }
 ]
