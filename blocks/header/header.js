@@ -8,10 +8,9 @@ import { loadFragmentCustom } from '../fragment/fragment.js';
  * @param {string} resourcePath Resource path
  */
 function setAEMAttributes(element, config, resourcePath = '') {
-  const basePath = 'urn:aemconnection:/content/genting-singapore/nav-backup/nav/jcr:content/root';
 
   if (resourcePath) {
-    element.setAttribute('data-aue-resource', `${basePath}/${resourcePath}`);
+    element.setAttribute('data-aue-resource', `${resourcePath}`);
   }
 
   Object.entries(config).forEach(([key, value]) => {
@@ -174,7 +173,7 @@ function createHeaderStructure(block) {
 
   // Extract and create navigation items
   const navItems = Array.from(block.querySelectorAll('[data-aue-model="links"]')).map((navSection, index) => {
-    const resourcePath = navSection.getAttribute('data-aue-resource')?.split('/').pop();
+    const resourcePath = navSection.getAttribute('data-aue-resource');
     return createNavItem({
       title: navSection.querySelector('[data-aue-prop="title"]')?.textContent,
       caption: navSection.querySelector('[data-aue-prop="detailedcaption"]')?.textContent,
@@ -414,7 +413,7 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragmentCustom(navPath);
 
-  if (fragment && true) {
+  if (fragment && false) {
     const header = createHeaderStructure(fragment);
     block.textContent = '';
     block.appendChild(header);
