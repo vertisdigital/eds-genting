@@ -213,17 +213,17 @@
       },
       {
         "component": "text",
-        "name": "linkText",
+        "name": "ctabuttonText",
         "label": "Text"
       },
       {
         "component": "text",
-        "name": "linkTitle",
+        "name": "ctabuttonTitle",
         "label": "Title"
       },
       {
         "component": "select",
-        "name": "linkType1",
+        "name": "ctabuttonType",
         "label": "Type",
         "options": [
           {
