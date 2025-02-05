@@ -63,7 +63,7 @@ export default function decorate(block) {
                       </a>
                   </div>
               </div>
-              <div class="exploremore-item col-lg-5 col-md-3 col-sm-4">
+              <div class="exploremore-item col-lg-5 col-md-2 col-sm-4">
                   <div class="exploremore-caption" ${secondCtaAttributes}>${secondCtaCaption}</div>
                   <div class="exploremore-link-container">
                       <a href="${secondCtaHref}" class="exploremore-link exploremore-second" ${secondCtaHrefAttributes}>

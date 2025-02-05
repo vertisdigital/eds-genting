@@ -15,8 +15,13 @@
   margin-bottom: 80px;
 }
 
+.exploremore-wrapper-container .explore-more-links{
+  display: flex;
+  justify-content: space-between;
+}
+
 .exploremore-wrapper-container .exploremore-item{
-   padding: 18px;
+   padding: 0;
    padding-top: 20px;
    border-top: 1px solid var(--text-color);
    display: flex;
