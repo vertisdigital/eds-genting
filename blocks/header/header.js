@@ -429,7 +429,7 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragmentCustom(navPath);
 
-  if (fragment && false) {
+  if (fragment && true) {
     const header = createHeaderStructure(fragment);
     document.getElementsByTagName('main')[0].remove();
     block.innerHTML = '';
