@@ -49,6 +49,7 @@
   [data-aue-model="listitem"] .row [class*="col-"] {
     padding: 36px 0;
   }
+
   [data-aue-model="listitem"] .row > div:first-child p{
     padding: 0;
     margin: 0;
@@ -96,13 +97,13 @@
     color: var(--primary-gold);
 
   }
+
   [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) a span svg{
     color: var(--primary-gold);
   }
 
   /* Tablet Design */
   @media (width < 992px){
-    
   /* Header styles */
   [data-aue-prop="title"][data-aue-label="Title"] {
     font-size: 16px;
@@ -162,14 +163,14 @@
 
     [data-aue-model="listitem"] .row > div:not(:first-child) {
       padding-left: 0;
+      padding-top: 0;
+
     }
 
-    [data-aue-model="listitem"] .row > div:not(:first-child) {
-      padding-top: 0;
-    }
     [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) {
       min-height: 207px;
     }
+
     [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) [data-aue-label="Title"] {
       margin-top: 0;
       margin-bottom: 8px;
