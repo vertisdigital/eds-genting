@@ -52,22 +52,22 @@ export default function decorate(block) {
 
   // Create new structure with href inside a separate div
   exploreMoreContainer.innerHTML = `
-      <div class="exploremore-wrapper container-xl container-lg container-md container-sm">
+      <div class="exploremore-wrapper-container container-xl container-lg container-md container-sm">
           <h2 class="exploremore-title" ${titleAttributes}>${title}</h2>
           <div class="exploremore-links row">
-              <div class="exploremore-item col-lg-6 col-md-3 col-sm-4">
+              <div class="exploremore-item col-lg-5.5 col-md-2.5 col-sm-4">
                   <div class="exploremore-caption" ${firstCtaAttributes}>${firstCtaCaption}</div>
                   <div class="exploremore-link-container">
                       <a href="${firstCtaHref}" class="exploremore-link exploremore-first" ${firstCtaHrefAttributes}>
-                        ${parsedForwardArrow}
+                        ${forwardArrow}
                       </a>
                   </div>
               </div>
-              <div class="exploremore-item col-lg-6 col-md-3 col-sm-4">
+              <div class="exploremore-item col-lg-5.5 col-md-2.5 col-sm-4">
                   <div class="exploremore-caption" ${secondCtaAttributes}>${secondCtaCaption}</div>
                   <div class="exploremore-link-container">
                       <a href="${secondCtaHref}" class="exploremore-link exploremore-second" ${secondCtaHrefAttributes}>
-                        ${parsedForwardArrow}
+                        ${forwardArrow}
                       </a>
                   </div>
               </div>
