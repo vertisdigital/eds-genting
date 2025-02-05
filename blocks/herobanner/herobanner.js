@@ -47,6 +47,20 @@ export default function decorate(block) {
     imageLink.remove();
   }
 
+  const headingElement = block.querySelector('[data-aue-prop="bannerheading"]');
+  if (headingElement) {
+    const headingText = headingElement.textContent;
+    const headingContainer = document.createElement('div');
+    headingContainer.setAttribute('data-aue-model', 'bannerheading');
+    headingContainer.setAttribute('data-aue-label', 'Banner Heading');
+    headingContainer.setAttribute('data-aue-prop', headingElement.getAttribute('data-aue-prop'));
+    headingContainer.setAttribute('data-aue-type', 'text');
+    const headingHtml = Heading({ level: 5, text: headingText, className: 'hero-heading' });
+    headingContainer.insertAdjacentHTML('beforeend', headingHtml);
+    heroContainer.appendChild(headingContainer);
+    headingElement.remove();
+  }
+
   const titleElement = block.querySelector('[data-aue-prop="bannertitle"]');
   if (titleElement) {
     const titleText = titleElement.textContent;
@@ -55,7 +69,7 @@ export default function decorate(block) {
     titleContainer.setAttribute('data-aue-label', 'Banner Title');
     titleContainer.setAttribute('data-aue-prop', titleElement.getAttribute('data-aue-prop'));
     titleContainer.setAttribute('data-aue-type', 'text');
-    const headingHtml = Heading({ level: 1, text: titleText, className: 'hero-title' });
+    const headingHtml = Heading({ level: 2, text: titleText, className: 'hero-title' });
     titleContainer.insertAdjacentHTML('beforeend', headingHtml);
     heroContainer.appendChild(titleContainer);
     titleElement.remove();
