@@ -22,6 +22,7 @@
       "socialLinks",
       "links",
       "imageLink",
+      "listing",
       "projectcards"
     ]
   },
@@ -47,6 +48,7 @@
       "imageLink",
       "socialLinks",
       "links",
+      "listing",
       "projectcards"
     ]
   },
@@ -80,6 +82,13 @@
     "components": [
       "linkField"
     ]
+  },
+  {
+    "id": "listing",
+    "components": [
+      "listitem",
+      "linkField"
+      ]
   },
   {
     "id": "projectcards",
