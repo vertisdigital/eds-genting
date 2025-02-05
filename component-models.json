@@ -242,20 +242,8 @@
         "name": "title",
         "label": "Title",
         "validation": {
-          "maxLength": 10,
-          "customErrorMsg": "Title cannot exceed 10 characters"
-        }
-      },
-      {
-        "component": "date-time",
-        "name": "date",
-        "label": "Date",
-        "valueType": "date",
-        "placeholder":  "YYYY-MM-DD",
-        "displayFormat": "YYYY-MM-DD",
-        "valueFormat": "YYYY-MM-DD",
-        "validation": {
-          "customErrorMsg": "Please enter a valid date"
+          "maxLength": 25,
+          "customErrorMsg": "Title cannot exceed 25 characters"
         }
       },
       {
@@ -263,8 +251,8 @@
         "name": "description",
         "label": "Description",
         "validation": {
-          "maxLength": 20,
-          "customErrorMsg": "Description cannot exceed 20 characters"
+          "maxLength": 60,
+          "customErrorMsg": "Description cannot exceed 60 characters"        
         }
       },
       {
