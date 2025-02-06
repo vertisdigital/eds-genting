@@ -23,6 +23,7 @@
 }
 
 .exploremore-wrapper-container .exploremore-item{
+   width: 49%;
    padding: 0;
    padding-top: 20px;
    border-top: 1px solid var(--text-color);
@@ -70,6 +71,7 @@
   }
 
   .exploremore-wrapper-container .exploremore-item{
+     width: 48%;
      padding: 12px;
   }
 
@@ -96,6 +98,7 @@
   }
 
   .exploremore-wrapper-container .exploremore-item{
+     width: 100%;
      padding: 0;
      margin-bottom: 18px;
   }
