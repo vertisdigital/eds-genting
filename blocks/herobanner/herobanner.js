@@ -289,7 +289,11 @@ export default function decorate(block) {
     );
     if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
-      const readMoreLabelHtml = `<p class="news-link">${readMoreLabelText}</p>`;
+      const buttonContainer = readMoreLabelElement.parentElement.nextElementSibling.querySelector('.button-container a');
+      const href = buttonContainer ? buttonContainer.getAttribute('href') : '';
+      const currentUrl = window.location.href;
+      const newUrl = currentUrl.replace(window.location.pathname, href);
+      const readMoreLabelHtml = `<a class="news-link" href="${newUrl}" target="_blank">${readMoreLabelText}</a>`;
       const readMoreContainer = document.createElement('div');
       readMoreContainer.setAttribute('data-aue-model', 'readmorelabel');
       readMoreContainer.setAttribute('data-aue-label', 'Read More Label');
