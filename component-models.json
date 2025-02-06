@@ -527,7 +527,6 @@
         "component": "text",
         "name": "heading",
         "label": "Heading",
-        "required": true,
         "validation": {
           "minLength": 1,
           "maxLength": 100,
