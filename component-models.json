@@ -510,9 +510,11 @@
         "label": "Heading",
         "required": true,
         "validation": {
+          "minLength": 1,
           "maxLength": 100,
           "customErrorMsg": "Heading cannot exceed 100 characters"
         }
+
       },
       {
         "component": "richtext",
