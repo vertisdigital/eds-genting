@@ -13,16 +13,9 @@
       "button",
       "title",
       "hero",
-      "herobanner",
       "cards",
       "columns",
-      "fragment",
-      "feature",
-      "linkField",
-      "socialLinks",
-      "links",
-      "imageLink",
-      "tiles"
+      "fragment"
     ]
   },
   {
@@ -43,11 +36,7 @@
       "text",
       "image",
       "button",
-      "title",
-      "imageLink",
-      "socialLinks",
-      "links",
-      "tiles"
+      "title"
     ]
   },
   {
@@ -61,30 +50,6 @@
     "id": "featureItem",
     "components": [
       "linkField"
-    ]
-  },
-  {
-    "id": "socialLinks",
-    "components": [
-      "linkField"
-    ]
-  },
-  {
-    "id": "links",
-    "components": [
-      "linkField"
-    ]
-  },
-  {
-    "id": "imageLink",
-    "components": [
-      "linkField"
-    ]
-  },
-  {
-    "id": "tiles",
-    "components": [
-      "tile"
     ]
   }
 ]

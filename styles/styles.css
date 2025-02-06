@@ -50,6 +50,7 @@ Usage Example:
   --midnight-blue: #0D2C48;
   --primary-gold: #B29152;
   --light-grey: #EEE;
+  --whisper-gray: #F7F7F7;
 
  
   /* fonts */
@@ -342,6 +343,8 @@ main .section.highlight {
     flex-wrap: wrap;
 
     --bs-gutter-x: 36px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   /* Row-cols selectors first */
@@ -371,11 +374,11 @@ main .section.highlight {
   }
 
   .row > *:first-child {
-    padding-left: 0;
+    padding-right: 0;
   }
 
   .row > *:last-child {
-    padding-right: 0;
+    padding-left: 0;
   }
 
   /* For sm breakpoint */
@@ -444,12 +447,12 @@ main .section.highlight {
   .row-cols-md-6 > * { width: 16.6666666667%; }
 
   .row > * {
-    padding-right: calc(var(--bs-gutter-x) * 0.25);
-    padding-left: calc(var(--bs-gutter-x) * 0.25);
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
   }
 
-  .row > *:first-child { padding-left: 0; }
-  .row > *:last-child { padding-right: 0; }
+  .row > *:first-child { padding-right: 0; }
+  .row > *:last-child { padding-left: 0; }
 
   /* For md breakpoint */
   .col-md { 
@@ -527,12 +530,12 @@ main .section.highlight {
   .row-cols-lg-6 > * { width: 16.6666666667%; }
 
   .row > * {
-    padding-right: calc(var(--bs-gutter-x) * 0.25);
-    padding-left: calc(var(--bs-gutter-x) * 0.25);
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
   }
 
-  .row > *:first-child { padding-left: 0; }
-  .row > *:last-child { padding-right: 0; }
+  .row > *:first-child { padding-right: 0; }
+  .row > *:last-child { padding-left: 0; }
 
   /* For lg breakpoint */
   .col-lg { 
@@ -647,12 +650,12 @@ main .section.highlight {
   .row-cols-xl-6 > * { width: 16.6666666667%; }
 
   .row > * {
-    padding-right: 18px;
-    padding-left: 18px;
+    padding-right: 36px;
+    padding-left: 36px;
   }
 
-  .row > *:first-child { padding-left: 0; }
-  .row > *:last-child { padding-right: 0; }
+  .row > *:first-child { padding-right: 0; }
+  .row > *:last-child { padding-left: 0; }
 
   /* For xl breakpoint */
   .col-xl { 
