@@ -24,7 +24,8 @@
       "imageLink",
       "listing",
       "projectcards",
-      "enquiry"
+      "enquiry",
+      "projectslist"
     ]
   },
   {
@@ -51,7 +52,8 @@
       "links",
       "listing",
       "projectcards",
-      "enquiry"
+      "enquiry",
+      "projectslist"
     ]
   },
   {
@@ -105,5 +107,11 @@
       "bannercarousel"
     ]
 
+  },
+  {
+    "id": "projectslist",
+    "components": [
+      "projectslistitem"
+    ]
   }
 ]
