@@ -567,5 +567,99 @@
         }
       }
     ]
+  },
+  {
+    "id": "enquiry",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Heading cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxSize": 250,
+          "customErrorMsg": "Description cannot exceed 250 characters"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "phoneIcon",
+        "label": "PhoneIcon",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "phoneIconAlt",
+        "label": "PhoneIconAltText",
+        "description": "DescriptiveTextForScreenReaders"
+      },
+      {
+        "component": "text",
+        "name": "phoneNumber",
+        "label": "PhoneNumber",
+        "required": true,
+        "validation": {
+          "pattern": "^[+]?[0-9]{10,30}$",
+          "minLength": 10,
+          "maxLength": 30,
+          "customErrorMsg": "Phone number must be between 10-30 digits and can only contain numbers and '+' symbol"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "emailIcon",
+        "label": "EmailIcon",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "emailIconAlt",
+        "label": "EmailIconAltText",
+        "description": "DescriptiveTextForScreenReaders"
+      },
+      {
+        "component": "text",
+        "name": "emailAddress",
+        "label": "EmailAddress",
+        "required": true,
+        "validation": {
+          "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "minLength": 10,
+          "maxLength": 30,
+          "customErrorMsg": "Please enter a valid email address between 10-30 characters"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "addressIcon",
+        "label": "AddressIcon",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "addressIconAlt",
+        "label": "AddressIconAltText",
+        "description": "DescriptiveTextForScreenReaders"
+      },
+      {
+        "component": "text",
+        "name": "address",
+        "label": "Address"
+      }
+    ]
   }
 ]
