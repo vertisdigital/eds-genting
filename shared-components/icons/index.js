@@ -14,7 +14,10 @@ export const icons = {
 </svg>`,
  rightarrowdisabled:`<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
   <path d="M4.64263 1.24001L10.4805 7.00001L4.64263 12.76L3.28047 11.416L7.75614 7.00001L3.28047 2.58401L4.64263 1.24001Z" fill="#9E9E9E"/>
-</svg>`
+</svg>`,
+  ellipse: `<svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" viewBox="0 0 6 6" fill="none">
+<circle id="Ellipse 8" cx="3" cy="3" r="3" fill="currentColor"/>
+</svg>`,
   // Add other icons here as needed
 };
 

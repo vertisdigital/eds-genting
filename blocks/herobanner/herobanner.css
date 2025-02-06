@@ -88,13 +88,31 @@
   padding: 0 0 10px 20px;
   height: 190px;
   width: 608px;
-  position: relative;
 }
 
 .navigation-arrows{
   padding-right: 45px;
   display: flex;
-  gap: 15px;
+  gap: 3px;
+  position: absolute;
+  right: 155px;
+  bottom: 20px;
+}
+
+.ellipse {
+  padding-top: 10px;
+}
+
+.ellipse-enabled {
+  color: #B29152 !important;
+
+}
+.ellipse-disabled {
+  color: #DBDBDB !important;
+}
+
+.left-carousel-arrow {
+  margin-top: 3px;
 }
 
 /* Carousel item container */
@@ -176,6 +194,10 @@
   fill: var(--background-color);
 }
 
+.arrow-link svg {
+  margin: 0px 5px;  
+}
+
 .news-thumbnail {
   width: 151px;
   height: 118px;
@@ -190,6 +212,10 @@
   .carousel-wrapper {
     flex-wrap: nowrap;
     padding: 0 0 10px;
+  }
+
+  .arrow-link svg {
+    margin: 0px 3px;  
   }
 }
 
@@ -269,5 +295,32 @@
   .carousel-image img {
     height: 92px;
     flex: 1 0 0;
+  }
+
+  .navigation-arrows {
+    gap:3px;
+    padding-right: 5px;
+    bottom: 40px;
+  }
+
+  .left-carousel-arrow {
+    margin-top: 0;
+    padding-top: 1px;
+  }
+
+  .navigation-arrows svg {
+    height: 12px;
+    width: 12px;
+    margin: 0px 1px;
+  }
+
+  .ellipse svg {
+    height: 6px;
+    width: 6px;
+    /* margin: 0px 1px; */
+  }
+
+  .icon-wrapper {
+    padding-top: 0px;
   }
 }

@@ -36,199 +36,83 @@ export const MOCK_CONTENT = {
         </div></div>`,
   // Add other block mock content
 
-  herobanner: `
-  <div
-  data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block"
-  data-aue-type="container"
-  data-aue-behavior="component"
-  data-aue-model="herobanner"
-  data-aue-label="herobanner"
-  data-aue-filter="herobanner"
-  class="herobanner block"
-  data-block-name="herobanner"
-  data-block-status="loaded"
->
-  <div>
+  herobanner: `<div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block" data-aue-type="container" data-aue-behavior="component" data-aue-model="herobanner" data-aue-label="herobanner" data-aue-filter="herobanner" class="herobanner block" data-block-name="herobanner" data-block-status="loaded">
     <div>
-      <p>
-        <a
-          href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/herobanner/heroimage1.png"
-          title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/herobanner/heroimage1.png"
-          >https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/herobanner/heroimage1.png</a
-        >
-      </p>
+        
+            <div><p><a href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/herobanner/heroimage1.png" title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/herobanner/heroimage1.png">https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/herobanner/heroimage1.png</a></p></div>
+        
     </div>
-  </div>
-  <div>
-    <div>
-      <p
-        data-aue-prop="bannertitle"
-        data-aue-label="Title"
-        data-aue-type="text"
-      >
-        Transforming Destinations through Sustainable Growth-Edited
-      </p>
+<div>
+        
+            <div><p data-aue-prop="bannertitle" data-aue-label="Banner Title" data-aue-type="text">Transforming Destinations through Sustainable Growth</p></div>
+        
     </div>
-  </div>
-  <div>
-    <div>
-      <p
-        data-aue-prop="bannerdescription"
-        data-aue-label="Description"
-        data-aue-type="text"
-      >
-        As a steadfast partner to the nation, Genting Singapore continues
-        to�drive sustainable growth and transformative impact through
-        world-class integrated resorts. We’re in it for the long haul, and are
-        committed to investing in a future that empowers communities and
-        benefits everyone.
-      </p>
+<div>
+        
+            <div></div>
+        
     </div>
-  </div>
-  <div>
-    <div>
-      <p class="button-container">
-        <a
-          href="/content/genting-singapore/index/sustainability.html"
-          title="/content/genting-singapore/index/sustainability"
-          class="button"
-          >/content/genting-singapore/index/sustainability</a
-        >
-      </p>
+<div>
+        
+            <div><p data-aue-prop="bannerdescription" data-aue-label="Banner Description" data-aue-type="text">As a steadfast partner to the nation, Genting Singapore continues to drive sustainable growth and transformative impact through world-class integrated resorts. We’re in it for the long haul, and are committed to investing in a future that empowers communities and benefits everyone.</p></div>
+        
     </div>
-  </div>
-  <div>
-    <div></div>
-  </div>
-  <div
-    data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block/item"
-    data-aue-type="component"
-    data-aue-model="bannercarousel"
-    data-aue-label="Banner Carousel"
-  >
-    <div>
-      <p>
-        <a
-          href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png"
-          title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png"
-          >https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png</a
-        >
-      </p>
+<div>
+        
+            <div><p class="button-container"><a href="/content/genting-singapore/index/contact.html" title="/content/genting-singapore/index/contact" class="button">/content/genting-singapore/index/contact</a></p></div>
+        
     </div>
- 
-    <div>
-      <p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">
-        LATEST INSIGHTS | NOV 20, 2024
-      </p>
+<div>
+        
+            <div><p data-aue-prop="scrollInterval" data-aue-label="Scroll Interval" data-aue-type="text">3</p></div>
+        
     </div>
- 
-    <div>
-      <p
-        data-aue-prop="description"
-        data-aue-label="Description"
-        data-aue-type="text"
-      >
-        RWS breaks ground on new waterfront lifestyle development
-      </p>
+<div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block/item" data-aue-type="component" data-aue-model="bannercarousel" data-aue-label="Banner Carousel">
+        
+            <div><p><a href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png" title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png">https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png</a></p></div>
+        
+            <div><p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">LATEST INSIGHTS | NOV 28,</p></div>
+        
+            <div><p data-aue-prop="date" data-aue-label="Date" data-aue-type="text">2025-02-18T00:00:00.000Z</p></div>
+        
+            <div><p data-aue-prop="description" data-aue-label="Description" data-aue-type="text">RWS breaks ground on new waterfront lifestyle development</p></div>
+        
+            <div><p data-aue-prop="readmorelabel" data-aue-label="Read More Label" data-aue-type="text">Read More</p></div>
+        
+            <div><p class="button-container"><a href="/content/genting-singapore/index/about-us.html" title="/content/genting-singapore/index/about-us" class="button">/content/genting-singapore/index/about-us</a></p></div>
+        
     </div>
- 
-    <div>
-      <p class="button-container">
-        <a
-          href="/content/genting-singapore/index/about-us.html"
-          title="/content/genting-singapore/index/about-us"
-          class="button"
-          >/content/genting-singapore/index/about-us</a
-        >
-      </p>
+<div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block/4_1738761402136" data-aue-type="component" data-aue-model="bannercarousel" data-aue-label="Banner Carousel">
+        
+            <div><p><a href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png" title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png">https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png</a></p></div>
+        
+            <div><p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">LATEST INSIGHTS | NOV 28,</p></div>
+        
+            <div><p data-aue-prop="date" data-aue-label="Date" data-aue-type="text">2025-02-18T00:00:00.000Z</p></div>
+        
+            <div><p data-aue-prop="description" data-aue-label="Description" data-aue-type="text">RWS breaks ground on new waterfront lifestyle development</p></div>
+        
+            <div><p data-aue-prop="readmorelabel" data-aue-label="Read More Label" data-aue-type="text">Read More</p></div>
+        
+            <div><p class="button-container"><a href="/content/genting-singapore/index/about-us.html" title="/content/genting-singapore/index/about-us" class="button">/content/genting-singapore/index/about-us</a></p></div>
+        
     </div>
-  </div>
-  <div
-    data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block/item_2010360748"
-    data-aue-type="component"
-    data-aue-model="bannercarousel"
-    data-aue-label="Banner Carousel"
-  >
-    <div>
-      <p>
-        <a
-          href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png"
-          title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png"
-          >https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png</a
-        >
-      </p>
+<div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block/3_1738761399529" data-aue-type="component" data-aue-model="bannercarousel" data-aue-label="Banner Carousel">
+        
+            <div><p><a href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png" title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png">https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero-banner-bg.png</a></p></div>
+        
+            <div><p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">LATEST INSIGHTS | NOV 28,</p></div>
+        
+            <div><p data-aue-prop="date" data-aue-label="Date" data-aue-type="text">2025-02-18T00:00:00.000Z</p></div>
+        
+            <div><p data-aue-prop="description" data-aue-label="Description" data-aue-type="text">RWS breaks ground on new waterfront lifestyle development</p></div>
+        
+            <div><p data-aue-prop="readmorelabel" data-aue-label="Read More Label" data-aue-type="text">Read More</p></div>
+        
+            <div><p class="button-container"><a href="/content/genting-singapore/index/about-us.html" title="/content/genting-singapore/index/about-us" class="button">/content/genting-singapore/index/about-us</a></p></div>
+        
     </div>
- 
-    <div>
-      <p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">
-        Carousel2
-      </p>
-    </div>
- 
-    <div>
-      <p
-        data-aue-prop="description"
-        data-aue-label="Description"
-        data-aue-type="text"
-      >
-        Carousel Description 2
-      </p>
-    </div>
- 
-    <div>
-      <p class="button-container">
-        <a
-          href="/content/genting-singapore/index/media.html"
-          title="/content/genting-singapore/index/media"
-          class="button"
-          >/content/genting-singapore/index/media</a
-        >
-      </p>
-    </div>
-  </div>
-  <div
-    data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block/item_506281134"
-    data-aue-type="component"
-    data-aue-model="bannercarousel"
-    data-aue-label="Banner Carousel"
-  >
-    <div>
-      <p>
-        <a
-          href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png"
-          title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png"
-          >https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png</a
-        >
-      </p>
-    </div>
- 
-    <div>
-      <p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">
-        herocarousel123434
-      </p>
-    </div>
- 
-    <div>
-      <p
-        data-aue-prop="description"
-        data-aue-label="Description"
-        data-aue-type="text"
-      >
-        ddd
-      </p>
-    </div>
- 
-    <div>
-      <p class="button-container">
-        <a
-          href="/content/genting-singapore/footer2.html"
-          title="/content/genting-singapore/footer2"
-          class="button"
-          >/content/genting-singapore/footer2</a
-        >
-      </p>
-    </div>
-  </div>
+
 </div>`,
   // Add other block mock content
 };
