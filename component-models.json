@@ -382,7 +382,9 @@
         "component": "aem-content",
         "name": "link",
         "label": "Link",
-        "rootPath": "/content/genting-singapore/index"
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       },
       {
         "component": "select",
@@ -441,14 +443,18 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link",
-        "required":true
+        "label": "Link", 
+        "validation": {
+          "rootPath": "/content/genting-singapore/index",
+          "required":true
+        }
       },
       {
         "component": "text",
         "name": "linkText",
         "label": "Text"
       },
+
       {
         "component": "text",
         "name": "linkTitle",
