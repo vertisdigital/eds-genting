@@ -92,21 +92,6 @@
             "value": "secondary"
           }
         ]
-      },
-      {
-        "component": "select",
-        "name": "linkType1",
-        "label": "Type",
-        "options": [
-          {
-            "name": "self",
-            "value": "_self"
-          },
-          {
-            "name": "blank",
-            "value": "_blank"
-          }
-        ]
       }
     ]
   },
@@ -165,131 +150,6 @@
     ]
   },
   {
-    "id": "fragment",
-    "fields": [
-      {
-        "component": "aem-content",
-        "name": "reference",
-        "label": "Reference"
-      }
-    ]
-  },
-  {
-    "id": "herobanner",
-    "fields": [
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "valueType": "string",
-        "name": "bannerimage",
-        "label": "Banner Image",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "bannertitle",
-        "label": "Title"
-      },
-      {
-        "component": "text",
-        "name": "bannerdescription",
-        "label": "Description"
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "ctabutton",
-        "label": "CTA Link",
-        "multi": false
-      },
-      {
-        "component": "select",
-        "name": "herovariation",
-        "value": "",
-        "label": "Variations",
-        "description": "Variations for hero component",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Concept 1 - Tone 1",
-            "value": "cls_c1t1"
-          },
-          {
-            "name": "Concept 1 - Tone 2",
-            "value": "cls_c1t2"
-          },
-          {
-            "name": "Concept 1 - Tone 3",
-            "value": "cls_c1t3"
-          },
-          {
-            "name": "Concept 2",
-            "value": "cls_c2"
-          },
-          {
-            "name": "Concept 3",
-            "value": "cls_c3"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "bannercarousel",
-    "fields": [
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "image",
-        "label": "Carousel Image",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title"
-      },
-      {
-        "component": "text",
-        "name": "description",
-        "label": "Description"
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "readmorelink",
-        "label": "Read More Link",
-        "multi": false
-      }
-    ]
-  },
-  {
-    "id": "hero",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Alt",
-        "value": ""
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "feature",
     "fields": [
       {
@@ -341,78 +201,38 @@
     ]
   },
   {
-    "id": "linkField",
+    "id": "fragment",
     "fields": [
       {
         "component": "aem-content",
-        "name": "link",
-        "label": "Link"
-      },
-      {
-        "component": "select",
-        "name": "linkSvgIcon",
-        "label": "Link SVG Icon",
-        "options": [
-          {
-            "name": "Right Arrow",
-            "value": "right-arrow"
-          },
-          {
-            "name": "Download Arrow",
-            "value": "download-arrow"
-          },
-          {
-            "name": "Top Right Arrow",
-            "value": "top-right-arrow"
-          }
-        ]
-      },
-      {
-        "component": "text",
-        "name": "linkText",
-        "label": "Text"
-      },
-      {
-        "component": "text",
-        "name": "linkTitle",
-        "label": "Title"
-      },
-      {
-        "component": "select",
-        "name": "linkTarget",
-        "label": "Link Target",
-        "options": [
-          {
-            "name": "Same Window",
-            "value": "_self"
-          },
-          {
-            "name": "New Window",
-            "value": "_blank"
-          }
-        ]
+        "name": "reference",
+        "label": "Reference"
       }
     ]
   },
   {
-    "id": "links",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title"
-      }
-    ]
-  },
-  {
-    "id": "imageLink",
+    "id": "hero",
     "fields": [
       {
         "component": "reference",
         "valueType": "string",
-        "name": "linkImage",
-        "label": "Link Image",
+        "name": "image",
+        "label": "Image",
         "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
       }
     ]
   },
