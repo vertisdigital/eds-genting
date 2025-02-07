@@ -95,8 +95,6 @@ function buildAutoBlocks(main) {
       while (section.firstChild) {
         tabPanel.appendChild(section.firstChild);
       }
-      // Remove the original section after moving content
-      sections.forEach((section) => section.parentNode.removeChild(section));
       
       console.log(section);
       console.log(section.textContent);
@@ -109,6 +107,10 @@ function buildAutoBlocks(main) {
       console.log(tabsContent);
 
     });
+
+    // Remove the original section after moving content
+    sections.forEach((section) => section.parentNode.removeChild(section));
+    
     console.log(tabsNav, tabsContent);
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
