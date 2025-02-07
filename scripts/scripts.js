@@ -11,7 +11,7 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
-import { processTabs } from './autoblocks.js';
+import processTabs from './autoblocks.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
