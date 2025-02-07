@@ -78,10 +78,9 @@ function buildAutoBlocks(main) {
     tabsContent.classList.add("tabs-content");
 
     sections.forEach((section, index) => {
-      console.log(section);
-      console.log(section.textContent);
       const metadata = section.querySelector(".section-metadata > div :last-child");
       const tabTitle = metadata ? metadata.textContent.trim(): `CustTitle ${index + 1}`;
+      
       const tabButton = document.createElement("button");
       tabButton.classList.add("tab-button");
       tabButton.textContent = tabTitle;
@@ -96,16 +95,11 @@ function buildAutoBlocks(main) {
         tabPanel.appendChild(section.firstChild);
       }
       
-      console.log(section);
-      console.log(section.textContent);
-      console.log(tabPanel);
+      console.log(tabButton.outerHTML);
+      console.log(tabPanel.outerHTML);
       
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
-
-      console.log(tabsNav);
-      console.log(tabsContent);
-
     });
 
     // Remove the original section after moving content
