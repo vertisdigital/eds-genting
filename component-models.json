@@ -444,9 +444,9 @@
         "component": "aem-content",
         "name": "link",
         "label": "Link", 
+        "required":true,
         "validation": {
-          "rootPath": "/content/genting-singapore/index",
-          "required":true
+          "rootPath": "/content/genting-singapore/index"          
         }
       },
       {
