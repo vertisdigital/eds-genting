@@ -537,7 +537,7 @@ header nav .nav-tools {
     top: var(--nav-height);
     left: -100%;
     width: 100%;
-    height: calc(100vh - var(--nav-height));
+    /* height: calc(100vh - var(--nav-height)); */
     background-color: var(--background-color);
     flex-direction: column;
     padding: 2rem;
@@ -619,6 +619,10 @@ header nav .nav-tools {
 
 
 /* My header css */
+
+.columns-wrapper{
+  background:transparent;
+}
 .header-nav{
   width: 100%;
   padding: 30px 0; 
@@ -686,6 +690,9 @@ header nav .nav-tools {
   display: flex;
 
 }
+.header-nav .primary-nav .nav-item [data-aue-prop="title"]:hover{
+  color: var(--primary-gold);
+}
 
 .header-nav .primary-nav .nav-item.active [data-aue-prop="title"]{
   color: var(--primary-gold);
@@ -733,6 +740,13 @@ header nav .nav-tools {
   background: none;
 }
 
+.secondary-header .secondary-header-wrapper h2{
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 50px;
+  margin-bottom: 36px;
+}
+
 .secondary-nav .secondary-header-links{
   padding-top: 36px;
   border-top: 2px solid var(--text-color);
@@ -759,10 +773,9 @@ header nav .nav-tools {
   background: none;
   text-decoration: none;
   color: var(--text-color);
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 400;
-  line-height: 40px;
-  letter-spacing:-0.5px;
+  line-height: 30px;
   padding: 0;
   transition: text-decoration 0.3s ease-in-out;
   border-radius: 0;
@@ -771,14 +784,13 @@ header nav .nav-tools {
 }
 
 .secondary-nav .secondary-header-links .nav-links li .button-container::after{
-  content: '🡢';
   margin-left: auto;
-  color: var(--text-color);
   margin-top: 5px;
 }
 
 .secondary-nav .secondary-header-links .nav-links li .button-container:hover a,
 .secondary-nav .secondary-header-links .nav-links li .button-container:hover::after {
+  content: '🡢';
   color: var(--primary-gold);
 }
 
@@ -827,7 +839,9 @@ header nav .nav-tools {
     margin-top: -4px;
     padding-right: 10px;
   }
-  
+  .header-nav .primary-nav>div:last-child .nav-item [data-aue-prop="title"]::after{
+    content: "";
+  } 
 
   /* Sub-Menu */
   .secondary-nav .secondary-header{
@@ -853,9 +867,7 @@ header nav .nav-tools {
 
   .secondary-header .secondary-header-wrapper h2{
     font-size: 32px;
-    font-weight: 500;
     line-height: 42px;
-    margin-bottom: 36px;
   }
 
   .secondary-nav .secondary-header-links .nav-links{
@@ -865,7 +877,7 @@ header nav .nav-tools {
   .secondary-nav .secondary-header-links .nav-links li{
     margin-bottom: 38px;
   }
- 
+  
   .secondary-nav .secondary-header-links .nav-links li .button-container a{
     margin-bottom: 0;
   }

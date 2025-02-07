@@ -1,5 +1,9 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragmentCustom } from '../fragment/fragment.js';
+import SvgIcon from "../../shared-components/SvgIcon.js";
+import stringToHtml from "../../shared-components/Utility.js";
+
+
 
 /**
  * Sets AEM data attributes
@@ -39,26 +43,50 @@ function createNavItem(itemData, resourcePath) {
   // Create title
   const titleDiv = document.createElement('div');
   const titleContent = document.createElement('div');
-  const detailedcaption = document.createElement('div');
+  const detailedcaption = document.createElement('a');
+  // const detailedCaptionLink = document.querySelector('[data-aue-prop]="linkText"');
+  // console.log(detailedCaptionLink);
+  // detailedcaption.href = detailedCaptionLink.href;
   setAEMAttributes(titleContent, {
     prop: 'title',
     label: 'Title',
     type: 'text',
   });
+
   setAEMAttributes(detailedcaption, {
-    prop: 'detailedcaption',
-    label: 'Detailed Caption',
+    prop: 'linkText',
+    label: 'Text',
     type: 'text',
   });
   titleContent.textContent = itemData.title;
-  detailedcaption.textContent = itemData.caption;
+  if (itemData.caption) {
+    detailedcaption.textContent = typeof itemData.caption === 'string' 
+      ? itemData.caption 
+      : itemData.caption.textContent || '';
+  
+    if (itemData.caption) {
+      detailedcaption.href = itemData.caption.href;
+    }
+  
+    detailedcaption.setAttribute('title', "Overview");
+  
+    if (itemData.captionTarget) {
+      detailedcaption.setAttribute('target', itemData.captionTarget);
+    }
+  }
+  
   titleDiv.appendChild(titleContent);
   navItem.appendChild(titleDiv);
   navItem.appendChild(detailedcaption);
 
   // Store caption as data attribute instead of creating element
-  if (itemData.caption) {
-    navItem.dataset.caption = itemData.caption;
+  // if (itemData.caption) {
+  //   navItem.dataset.caption = itemData.caption;
+  // }
+  if (itemData.caption && itemData.captionTarget) {
+    navItem.dataset.captionText = itemData.caption.textContent?.trim() || '';
+    navItem.dataset.captionHref = itemData.caption.href;
+    navItem.dataset.captionTarget = itemData.captionTarget;
   }
 
   // Create links
@@ -117,6 +145,7 @@ function createNavItem(itemData, resourcePath) {
  * @param {Element} block The header block element
  */
 function createHeaderStructure(block) {
+  console.log(block);
   // Create main section container
   const section = document.createElement('div');
   section.className = 'section columns-container container-xl container-md container-sm';
@@ -164,7 +193,7 @@ function createHeaderStructure(block) {
   // Create logo section
   const logoWrapper = document.createElement('div');
   logoWrapper.className = 'logo-wrapper';
-  const logoContent = block.querySelector('[data-aue-model="image"]')?.cloneNode(true);
+  const logoContent = block.querySelectorAll('[data-aue-model="image"]')[0]?.cloneNode(true);
   if (logoContent) {
     logoWrapper.appendChild(logoContent);
   }
@@ -178,7 +207,9 @@ function createHeaderStructure(block) {
     const resourcePath = navSection.getAttribute('data-aue-resource');
     return createNavItem({
       title: navSection.querySelector('[data-aue-prop="title"]')?.textContent,
-      caption: navSection.querySelector('[data-aue-prop="detailedcaption"]')?.textContent,
+      // caption: navSection.querySelector('[data-aue-prop="detailedcaption"]')?.textContent,
+      caption: navSection.querySelector('[title="Overview"]'),
+      captionTarget: '_self',
       links: Array.from(navSection.querySelectorAll('[data-aue-model="linkField"]')).map((link) => ({
         text: link.querySelector('[data-aue-prop="linkText"]')?.textContent,
         href: link.querySelector('a')?.getAttribute('href'),
@@ -196,27 +227,27 @@ function createHeaderStructure(block) {
   });
 
   // Create search icon
-  const searchWrapper = document.createElement('div');
-  setAEMAttributes(searchWrapper, {
-    behavior: 'component',
-    prop: 'text',
-    label: 'Text',
-    filter: 'text',
-    type: 'richtext',
-  }, 'section_0/columns/row1/col1/text');
-  searchWrapper.className = 'search-icon-wrapper';
-  const searchIcon = document.createElement('span');
-  searchIcon.className = 'icon icon-search';
-  const searchImg = document.createElement('img');
-  searchImg.setAttribute('data-icon-name', 'search');
-  searchImg.src = '/content/genting-singapore.headerbackend.resource/icons/search.svg';
-  searchImg.alt = '';
-  searchImg.loading = 'lazy';
-  searchIcon.appendChild(searchImg);
-  searchWrapper.appendChild(searchIcon);
+  // const searchWrapper = document.createElement('div');
+  // setAEMAttributes(searchWrapper, {
+  //   behavior: 'component',
+  //   prop: 'text',
+  //   label: 'Text',
+  //   filter: 'text',
+  //   type: 'richtext',
+  // }, 'section_0/columns/row1/col1/text');
+  // searchWrapper.className = 'search-icon-wrapper';
+  // const searchIcon = document.createElement('span');
+  // searchIcon.className = 'icon icon-search';
+  // const searchImg = document.createElement('img');
+  // searchImg.setAttribute('data-icon-name', 'search');
+  // searchImg.src = '/content/genting-singapore.headerbackend.resource/icons/search.svg';
+  // searchImg.alt = '';
+  // searchImg.loading = 'lazy';
+  // searchIcon.appendChild(searchImg);
+  // searchWrapper.appendChild(searchIcon);
 
   // Assemble the structure
-  nav.append(logoWrapper, primaryNav, searchWrapper);
+  nav.append(logoWrapper, primaryNav);
   column.appendChild(nav);
   columns.appendChild(column);
   columnsWrapper.appendChild(columns);
@@ -239,35 +270,53 @@ function initializeHeader(header) {
   overlay.className = 'nav-overlay';
   header.appendChild(overlay);
 
-  // Add hamburger menu for mobile
-  const hamburger = document.createElement('div');
-  hamburger.className = 'hamburger';
-  hamburger.innerHTML = '<span class="hamburger-icon"></span>';
+  // Create the hamburger menu button
+const hamburger = document.createElement('div');
+hamburger.className = 'hamburger';
 
-  // Add hamburger before logo
-  const nav = header.querySelector('.header-nav');
-  nav.insertBefore(hamburger, nav.firstChild);
+// Create SVG icons
+const hamburgerIcon = stringToHtml(SvgIcon({ name: 'hamburger', class: 'hamburger-icon', size: '18px' }));
+const closeIcon = stringToHtml(SvgIcon({ name: 'close', class: 'close-icon', size: '18px' }));
 
-  // Handle hamburger click
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    const primaryNav = header.querySelector('.primary-nav');
-    primaryNav.classList.toggle('active');
+// Set the initial icon
+hamburger.appendChild(hamburgerIcon);
 
-    // Close secondary navigation if open when toggling hamburger
-    if (!hamburger.classList.contains('active')) {
+// Select navigation elements
+const nav = header.querySelector('.header-nav');
+nav.insertBefore(hamburger, nav.firstChild);
+
+// Handle hamburger click
+hamburger.addEventListener('click', () => {
+  // Toggle class first
+  hamburger.classList.toggle('active');
+  const primaryNav = header.querySelector('.primary-nav');
+  primaryNav.classList.toggle('active');
+
+  // Use setTimeout to ensure class toggle happens before icon change
+  setTimeout(() => {
+    if (hamburger.classList.contains('active')) {
+      hamburger.replaceChildren(closeIcon);
+    } else {
+      hamburger.replaceChildren(hamburgerIcon);
+
+      // Close secondary navigation if it's open
       const activeItem = header.querySelector('.nav-item.active');
       const activeSecondary = header.querySelector('.secondary-nav.active');
-      if (activeItem) activeItem.classList.remove(activeClass);
-      if (activeSecondary) activeSecondary.classList.remove(activeClass);
-      overlay.classList.remove(activeClass);
+      if (activeItem) activeItem.classList.remove('active');
+      if (activeSecondary) activeSecondary.classList.remove('active');
+      overlay.classList.remove('active');
       currentActive = null;
     }
-  });
+  }, 0);
+});
+
 
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
-    const detailedCaption = linksDiv?.dataset.caption;
+    const detailedCaptionText = linksDiv?.dataset.captionText;
+    const detailedCaptionLink = linksDiv?.dataset.captionHref;
+    const detailedCaptionTarget = linksDiv?.dataset.captionTarget;
+
     const originalLinks = item.querySelector('.nav-links');
 
     if (originalLinks) {
@@ -284,10 +333,15 @@ function initializeHeader(header) {
       const closeBtn = document.createElement('button');
       closeBtn.className = 'close-btn';
       closeBtn.setAttribute('aria-label', 'Close menu');
-      closeBtn.innerHTML = '×';
+      const closeBtnIcon = SvgIcon({name:'close', className:'close-icon',size:18});
+      console.log(closeBtnIcon);
+      // closeBtn.append(stringToHtml(closeBtnIcon));,
+      closeBtn.innerHTML = closeBtnIcon;
 
-      const heading = document.createElement('h2');
-      heading.textContent = detailedCaption || 'Overview';
+      const heading = document.createElement('a');
+      heading.textContent = detailedCaptionText || 'Overview';
+      heading.href = detailedCaptionLink;
+      heading.setAttribute('target', detailedCaptionTarget);
 
       // Wrapper for secondaryHeader and linksContainer
       const secondaryNavWrapper = document.createElement('div');
@@ -395,18 +449,51 @@ function initializeHeader(header) {
   });
 
   // Handle scroll behavior
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-    header.classList.toggle('header--scrolled', currentScroll > 0);
+  // let lastScroll = 0;
+  // window.addEventListener('scroll', () => {
+  //   const currentScroll = window.scrollY;
+  //   header.classList.toggle('header--scrolled', currentScroll > 0);
 
-    if (currentScroll > lastScroll && currentScroll > 100) {
-      header.classList.add('header--hidden');
-    } else {
-      header.classList.remove('header--hidden');
-    }
-    lastScroll = currentScroll;
-  });
+  //   if (currentScroll > lastScroll && currentScroll > 100) {
+  //     header.classList.add('header--hidden');
+  //   } else {
+  //     header.classList.remove('header--hidden');
+  //   }
+  //   lastScroll = currentScroll;
+  
+  // });
+
+    const handleScroll = () => {
+      if (!header) return;
+
+      const headerTop = header.getBoundingClientRect().top;
+      const headerLogo = header.querySelector('.logo-wrapper');
+
+      if (headerTop <= 0) {
+        header.classList.add('fixed-header'); // Add class when it reaches top: 0
+        const logoContentTwo = header.querySelectorAll('[data-aue-model="image"]')[1]?.cloneNode(true);
+        if (logoContentTwo) {
+          headerLogo.innerHTML="";
+          headerLogo.appendChild(logoContentTwo);
+        }
+
+      } else {
+        const logoContentOne = header.querySelectorAll('[data-aue-model="image"]')[0]?.cloneNode(true);
+        header.classList.remove('fixed-header'); // Remove class if not at top
+        headerLogo.innerHTML="";
+        if (logoContentOne) {
+        logoContentOne.appendChild(logoContentOne);
+        }
+      }
+    };
+
+    // Optimize performance using debounce
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(handleScroll, 10);
+    });
+
 
   // Update nav items with grid classes
   header.querySelectorAll('.nav-item').forEach((item) => {

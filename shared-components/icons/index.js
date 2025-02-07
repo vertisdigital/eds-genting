@@ -48,6 +48,14 @@ export const icons = {
     </clipPath>
   </defs>
 </svg>`,
+hamburger:`<svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 30 24" fill="none">
+<line x1="3" y1="1.5119" x2="28" y2="1.5119" stroke="black" stroke-width="2.97619"/>
+<line x1="3" y1="10.5119" x2="28" y2="10.5119" stroke="black" stroke-width="2.97619"/>
+<line x1="3" y1="20.5119" x2="28" y2="20.5119" stroke="black" stroke-width="2.97619"/>
+</svg>`,
+  close: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+  <path d="M15.4 1L17 2.6L10.6 9L17 15.4L15.4 17L9 10.6L2.6 17L0.999998 15.4L7.4 9L0.999999 2.6L2.6 1L9 7.4L15.4 1Z" fill="black"/>
+</svg>`
   // Add other icons here as needed
 };
 
