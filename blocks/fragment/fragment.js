@@ -54,7 +54,7 @@ export async function loadFragmentCustom(path) {
 
     // Get query parameters from current URL
     const queryParams = window.location.search; // Includes "?" if parameters exist
-    const resp = await fetch(`${path}.plain.html${queryParams}`);
+    const resp = await fetch(`${path}.html${queryParams}`);
 
     if (resp.ok) {
       const main = document.createElement('main');
