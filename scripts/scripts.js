@@ -105,6 +105,9 @@ function buildAutoBlocks(main) {
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
 
+      console.log(tabsNav);
+      console.log(tabsContent);
+
     });
     console.log(tabsNav, tabsContent);
     tabsWrapper.appendChild(tabsNav);
