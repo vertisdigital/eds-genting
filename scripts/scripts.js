@@ -65,6 +65,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     const sections = [...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)')];
+    console.log(sections);
     if (sections.length === 0) return;
 
     const tabsWrapper = document.createElement("div");
@@ -100,7 +101,7 @@ function buildAutoBlocks(main) {
       tabsContent.appendChild(tabPanel);
 
     });
-
+    console.log(tabsNav,tabsContent);
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
     main.appendChild(tabsWrapper);
