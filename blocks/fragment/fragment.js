@@ -24,7 +24,7 @@ export async function loadFragment(path) {
      let newPath = window.location.href;
      newPath = newPath.replace(".html", ".plain.html");
         let  resp = await fetch(`${newPath}`);
-    resp = await fetch(`${path}.plain.html`);
+    resp = await fetch(`${newPath}.plain.html`);
     if (resp.ok) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();
