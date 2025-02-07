@@ -14,11 +14,11 @@ export default async function decorate(block) {
   // const fragment = block;
   if (fragment) {
     // Create main element with data attributes
-    const main = document.createElement('main');
+   /* const main = document.createElement('main');
     main.setAttribute('data-aue-resource', 'urn:aemconnection:/content/genting-singapore/footer/jcr:content/root');
     main.setAttribute('data-aue-label', 'Main');
     main.setAttribute('data-aue-filter', 'main');
-    main.setAttribute('data-aue-type', 'container');
+    main.setAttribute('data-aue-type', 'container');*/
 
     // Create section element with data attributes
     const section = document.createElement('section');
@@ -44,7 +44,7 @@ export default async function decorate(block) {
     }
 
     // Append section and footer to main
-    main.appendChild(section);
+    //main.appendChild(section);
 
     // Get existing main element
     // const existingMain = document.getElementsByTagName('main')[0];
@@ -509,7 +509,7 @@ export default async function decorate(block) {
     });
     section.appendChild(footer);
     block.innerHTML = '';
-    block.appendChild(main);
+    block.append(section);
   }
 }
 
