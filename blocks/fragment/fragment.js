@@ -23,7 +23,7 @@ export async function loadFragment(path) {
     path = path.replace(/(\.plain)?\.html/, '');
     newPath = newPath.replace(".html", ".plain.html");
         const resp = await fetch(`${newPath}`);
-    const resp = await fetch(`${path}.plain.html`);
+     resp = await fetch(`${path}.plain.html`);
     if (resp.ok) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();
@@ -48,10 +48,10 @@ export async function loadFragment(path) {
 export async function loadFragmentCustom(path) {
   let newPath = window.location.href;
   if (path && path.startsWith('/')) {
-    const resp1 = await fetch(`${newPath}`);
-    if (resp1.ok) {
+    const resp = await fetch(`${newPath}`);
+    if (resp.ok) {
       const main = document.createElement('main');
-      main.innerHTML = await resp1.text();
+      main.innerHTML = await resp.text();
       const parser = new DOMParser();
       const doc = parser.parseFromString(main.innerHTML, 'text/html');
 
