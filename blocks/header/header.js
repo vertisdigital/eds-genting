@@ -156,7 +156,7 @@ function createHeaderStructure(block) {
   //   label: 'Section',
   //   filter: 'section',
   // }, 'urn:aemconnection:/content/genting-singapore/nav/jcr:content/root/section_0');
-  section.setAttribute('data-section-status', 'loaded');
+  // section.setAttribute('data-section-status', 'loaded');
 
   // Create columns wrapper
   const columnsWrapper = document.createElement('div');
@@ -173,8 +173,8 @@ function createHeaderStructure(block) {
   //   filter: 'columns',
   //   behavior: 'component',
   // }, columnsResource);
-  columns.setAttribute('data-block-name', 'columns');
-  columns.setAttribute('data-block-status', 'loaded');
+  // columns.setAttribute('data-block-name', 'columns');
+  // columns.setAttribute('data-block-status', 'loaded');
 
   // Create column content
   const column = document.createElement('div');
@@ -527,7 +527,7 @@ export default async function decorate(block) {
 
   if (fragment && true) {
     const header = createHeaderStructure(fragment);
-    document.getElementsByTagName('main')[0].remove();
+    // document.getElementsByTagName('main')[0].remove();
     block.innerHTML = '';
     block.appendChild(header);
 
