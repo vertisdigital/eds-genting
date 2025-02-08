@@ -127,6 +127,7 @@
     flex-wrap: wrap;
     gap: 10px;
     row-gap: 15px;
+    padding: 0 18px;
 }
 
 
@@ -255,9 +256,7 @@
 
     }
 
-    .footer .mt-4 .footer-bottom-links .copywrite-right{
-        padding: 0 18px;
-    }
+   
    
 }
 
