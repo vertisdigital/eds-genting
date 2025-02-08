@@ -117,18 +117,7 @@ function createNavItem(itemData, resourcePath) {
       //   type: 'text',
       // });
       a.textContent = link.text;
-
-      if (link.target) {
-        const targetDiv = document.createElement('div');
-        // setAEMAttributes(targetDiv, {
-        //   prop: 'linkTarget',
-        //   label: 'Link Target',
-        //   type: 'text',
-        // });
-        targetDiv.textContent = link.target;
-        li.appendChild(targetDiv);
-      }
-
+  
       linkContainer.appendChild(a);
       li.appendChild(linkContainer);
       linksUl.appendChild(li);
