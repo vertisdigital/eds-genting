@@ -1,5 +1,0 @@
-{
-  "toolbar": ["bold", "italic", "underline", "source"],
-  "allowedContent": true,
-  "removePlugins": ["image"]
-}
