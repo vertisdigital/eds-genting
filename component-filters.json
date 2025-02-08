@@ -19,7 +19,6 @@
       "fragment",
       "coreprinciples",
       "feature",
-      "feature1",
       "linkField",
       "socialLinks",
       "links",
@@ -74,20 +73,6 @@
   },
   {
     "id": "featureItem",
-    "components": [
-      "linkField"
-    ]
-  },
-  {
-    "id": "feature1",
-    "components": [
-      "featureItem1",
-      "linkField",
-      "indices"
-    ]
-  },
-  {
-    "id": "featureItem1",
     "components": [
       "linkField"
     ]
@@ -148,15 +133,13 @@
     "components": [
       "statistics",
       "statisticsDescription",
-      "feature1",
-      "featureItem1"
+      "feature"
     ]
   },
   {
     "id": "statistics",
     "components": [
-      "feature1",
-      "featureItem1"
+      "featureItem"
     ]
   }
 ]
