@@ -757,28 +757,8 @@
       },
       {
         "component": "text",
-        "name": "ctaText",
-        "label": "Text"
-      },
-      {
-        "component": "text",
-        "name": "ctaTitle",
-        "label": "Title"
-      },
-      {
-        "component": "select",
-        "name": "ctaType1",
-        "label": "Type",
-        "options": [
-          {
-            "name": "self",
-            "value": "_self"
-          },
-          {
-            "name": "blank",
-            "value": "_blank"
-          }
-        ]
+        "name": "ctaCaption",
+        "label": "CTA Caption"
       }
     ]
   },
