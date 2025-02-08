@@ -60,7 +60,7 @@
 }
 
 .projectcards .project-card [data-aue-prop="image"]{
-  /* height: 253px; */
+  height: 253px;
   margin-bottom: 12px;
 }
 
@@ -148,7 +148,7 @@
   }
 
   .projectcards .project-card [data-aue-prop="image"]{
-    /* height: 361px; */
+    height: 361px;
     margin-bottom: 10px;
   }
 
@@ -195,7 +195,7 @@
     }
     
     .projectcards .project-card [data-aue-prop="image"]{
-      /* height: 206px; */
+      height: 206px;
       margin-bottom: 8px;
     }
 
