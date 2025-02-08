@@ -195,7 +195,7 @@ export default function decorate(block) {
   }
 
   // Clear original block content and append new structure
-  block.textContent = '';
+  //block.textContent = '';
   block.appendChild(projectCardsContainer);
 
   // Add keyboard navigation and accessibility attributes
