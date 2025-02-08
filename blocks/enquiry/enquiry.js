@@ -32,17 +32,19 @@ export default function decorate(block) {
   const headingContainer = document.createElement('div');
   const headingText = wrapper.querySelector('[data-aue-prop="heading"]')?.textContent.trim();
   const headingElement = document.createElement('div');
-  headingElement.innerHTML = Heading({
-    text: headingText,
-    level: 2,
-    className: 'enquiry-heading',
-  });
-
+  
+  if (headingText) {
+    headingElement.innerHTML = Heading({
+      text: headingText,
+      level: 2,
+      className: 'enquiry-heading',
+    });
   // Add authoring attributes to heading
   const heading = headingElement.firstElementChild;
-  heading.setAttribute('data-aue-prop', 'heading');
-  heading.setAttribute('data-aue-label', 'Heading');
-  heading.setAttribute('data-aue-type', 'text');
+    heading.setAttribute('data-aue-prop', 'heading');
+    heading.setAttribute('data-aue-label', 'Heading');
+    heading.setAttribute('data-aue-type', 'text');
+  }
 
   headingContainer.appendChild(heading);
   leftCol.appendChild(headingContainer);
