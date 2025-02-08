@@ -11,17 +11,17 @@ import stringToHtml from "../../shared-components/Utility.js";
  * @param {Object} config Configuration object
  * @param {string} resourcePath Resource path
  */
-function setAEMAttributes(element, config, resourcePath = '') {
-  if (resourcePath) {
-    element.setAttribute('data-aue-resource', `${resourcePath}`);
-  }
+// function setAEMAttributes(element, config, resourcePath = '') {
+//   if (resourcePath) {
+//     element.setAttribute('data-aue-resource', `${resourcePath}`);
+//   }
 
-  Object.entries(config).forEach(([key, value]) => {
-    if (value) {
-      element.setAttribute(`data-aue-${key}`, value);
-    }
-  });
-}
+//   Object.entries(config).forEach(([key, value]) => {
+//     if (value) {
+//       element.setAttribute(`data-aue-${key}`, value);
+//     }
+//   });
+// }
 
 /**
  * Creates navigation item with proper attributes
@@ -31,13 +31,13 @@ function setAEMAttributes(element, config, resourcePath = '') {
  */
 function createNavItem(itemData, resourcePath) {
   const navItem = document.createElement('div');
-  setAEMAttributes(navItem, {
-    type: 'container',
-    behavior: 'component',
-    model: 'links',
-    label: 'Links',
-    filter: 'links',
-  }, resourcePath);
+  // setAEMAttributes(navItem, {
+  //   type: 'container',
+  //   behavior: 'component',
+  //   model: 'links',
+  //   label: 'Links',
+  //   filter: 'links',
+  // }, resourcePath);
   navItem.className = 'links';
 
   // Create title
@@ -47,17 +47,17 @@ function createNavItem(itemData, resourcePath) {
   // const detailedCaptionLink = document.querySelector('[data-aue-prop]="linkText"');
   // console.log(detailedCaptionLink);
   // detailedcaption.href = detailedCaptionLink.href;
-  setAEMAttributes(titleContent, {
-    prop: 'title',
-    label: 'Title',
-    type: 'text',
-  });
+  // setAEMAttributes(titleContent, {
+  //   prop: 'title',
+  //   label: 'Title',
+  //   type: 'text',
+  // });
 
-  setAEMAttributes(detailedcaption, {
-    prop: 'linkText',
-    label: 'Text',
-    type: 'text',
-  });
+  // setAEMAttributes(detailedcaption, {
+  //   prop: 'linkText',
+  //   label: 'Text',
+  //   type: 'text',
+  // });
   titleContent.textContent = itemData.title;
   if (itemData.caption) {
     detailedcaption.textContent = typeof itemData.caption === 'string' 
@@ -97,12 +97,12 @@ function createNavItem(itemData, resourcePath) {
     itemData.links.forEach((link) => {
       const li = document.createElement('li');
       li.className = 'col-xl-4 col-lg-4';
-      setAEMAttributes(li, {
-        type: 'component',
-        model: 'linkField',
-        filter: 'linkField',
-        label: 'Link Field',
-      }, link.resourcePath);
+      // setAEMAttributes(li, {
+      //   type: 'component',
+      //   model: 'linkField',
+      //   filter: 'linkField',
+      //   label: 'Link Field',
+      // }, link.resourcePath);
 
       const linkContainer = document.createElement('div');
       linkContainer.className = 'button-container';
@@ -111,11 +111,11 @@ function createNavItem(itemData, resourcePath) {
       a.href = link.href;
       a.className = 'button';
       a.title = link.text;
-      setAEMAttributes(a, {
-        prop: 'linkText',
-        label: 'Text',
-        type: 'text',
-      });
+      // setAEMAttributes(a, {
+      //   prop: 'linkText',
+      //   label: 'Text',
+      //   type: 'text',
+      // });
       a.textContent = link.text;
 
       if (link.target) {
@@ -149,13 +149,13 @@ function createHeaderStructure(block) {
   // Create main section container
   const section = document.createElement('div');
   section.className = 'section columns-container container-xl container-md container-sm';
-  setAEMAttributes(section, {
-    type: 'container',
-    behavior: 'component',
-    model: 'section',
-    label: 'Section',
-    filter: 'section',
-  }, 'urn:aemconnection:/content/genting-singapore/nav/jcr:content/root/section_0');
+  // setAEMAttributes(section, {
+  //   type: 'container',
+  //   behavior: 'component',
+  //   model: 'section',
+  //   label: 'Section',
+  //   filter: 'section',
+  // }, 'urn:aemconnection:/content/genting-singapore/nav/jcr:content/root/section_0');
   section.setAttribute('data-section-status', 'loaded');
 
   // Create columns wrapper
@@ -166,13 +166,13 @@ function createHeaderStructure(block) {
   const columns = document.createElement('div');
   columns.className = 'columns block';
   const columnsResource = block.querySelector('[data-aue-label="Columns"]')?.getAttribute('data-aue-resource');
-  setAEMAttributes(columns, {
-    type: 'container',
-    model: 'columns',
-    label: 'Columns',
-    filter: 'columns',
-    behavior: 'component',
-  }, columnsResource);
+  // setAEMAttributes(columns, {
+  //   type: 'container',
+  //   model: 'columns',
+  //   label: 'Columns',
+  //   filter: 'columns',
+  //   behavior: 'component',
+  // }, columnsResource);
   columns.setAttribute('data-block-name', 'columns');
   columns.setAttribute('data-block-status', 'loaded');
 
@@ -180,11 +180,11 @@ function createHeaderStructure(block) {
   const column = document.createElement('div');
   const columnResource = block.querySelector('[data-aue-label="Column"]')?.getAttribute('data-aue-resource');
 
-  setAEMAttributes(column, {
-    type: 'container',
-    label: 'Column',
-    filter: 'column',
-  }, columnResource);
+  // setAEMAttributes(column, {
+  //   type: 'container',
+  //   label: 'Column',
+  //   filter: 'column',
+  // }, columnResource);
 
   // Create navigation list
   const nav = document.createElement('nav');
