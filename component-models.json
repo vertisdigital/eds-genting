@@ -389,6 +389,10 @@
         "label": "Link SVG Icon",
         "options": [
           {
+            "name": "Select",
+            "value": "select"
+          },
+          {
             "name": "Right Arrow",
             "value": "right-arrow"
           },
@@ -399,6 +403,18 @@
           {
             "name": "Top Right Arrow",
             "value": "top-right-arrow"
+          },
+          {
+            "name": "Twitter",
+            "value": "twitter"
+          },
+          {
+            "name": "Linked In",
+            "value": "linkedin"
+          },
+          {
+            "name": "Youtube",
+            "value": "youtube"
           }
         ]
       },
@@ -448,6 +464,13 @@
         "name": "linkImage",
         "label": "Link Image",
         "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
       }
     ]
   },
