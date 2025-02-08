@@ -902,5 +902,25 @@
         "label": "Read Less Label"
       }
     ]
+  },
+  {
+    "id": "indices",
+    "fields": [
+      {
+        "component": "text",
+        "name": "moreIndices",
+        "label": "More Indices"
+      },
+      {
+        "component": "text",
+        "name": "lessIndices",
+        "label": "Less Indices"
+      },
+      {
+        "component": "text",
+        "name": "indexNumber",
+        "label": "Index Number"
+      }
+    ]
   }
 ]
