@@ -60,7 +60,7 @@ export default function processTabs(main) {
     if (!tabButton) return;
 
     const index = parseInt(tabButton.dataset.index, 10); // Convert to integer
-    if (isNaN(index)) return; // Prevent errors if index is undefined
+    if (Number.isNaN(index)) return; // Prevent errors if index is undefined
 
     tabsWrapper
       .querySelectorAll(".tab-title")
