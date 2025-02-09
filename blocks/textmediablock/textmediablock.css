@@ -109,7 +109,6 @@
 
   [data-richtext-prop="description"] {
     margin-top: 32px;
-    flex: 1;
   }
 
   /* Media First Layout */
@@ -120,6 +119,21 @@
   /* Text First Layout */
   .textmediablock[data-layout="textfirst"] > div:not(:first-child) {
     flex-direction: row-reverse;
+  }
+
+  /* Ensure text content appears together with heading first */
+  .textmediablock[data-layout="textfirst"] [data-aue-model="textsection"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .textmediablock[data-layout="textfirst"] [data-aue-prop="heading"] {
+    order: -1;
+  }
+
+  .textmediablock[data-layout="textfirst"] [data-richtext-prop="description"] {
+    order: 1;
   }
 }
 
