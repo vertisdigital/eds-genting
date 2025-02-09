@@ -885,5 +885,26 @@
         }
       }
     ]
+  },
+  {
+    "id": "textmediasection",
+    "fields": [
+      {
+        "component": "select",
+        "name": "layout",
+        "label": "Layout",
+        "required": true,
+        "options": [
+          {
+            "name": "Media First",
+            "value": "mediafirst"
+          },
+          {
+            "name": "Text Section First",
+            "value": "textfirst"
+          }
+        ]
+      }
+    ]
   }
 ]
