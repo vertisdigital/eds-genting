@@ -389,7 +389,8 @@
         "label": "Link SVG Icon",
         "options": [
           {
-            "name": "Select"
+            "name": "Select",
+            "value": ""
           },
           {
             "name": "Right Arrow",
