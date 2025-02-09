@@ -111,9 +111,7 @@ export default function decorate(block) {
       if (picture) {
         const imageContainer = document.createElement('div');
         imageContainer.className = 'project-image';
-        const img = document.createElement('img');
-        img.src = 'https://cdn.builder.io/api/v1/image/assets/TEMP/3818aa4f34615b927264d6d8cab07f1e20d364cf0b7277c747dd56359fc99bce?placeholderIfAbsent=true&apiKey=16b1633103d8450ead7bc93647340540';
-        imageContainer.appendChild(img);
+        imageContainer.appendChild(picture);
         rightCol.appendChild(imageContainer);
       }
     }
