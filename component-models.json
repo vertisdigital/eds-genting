@@ -556,11 +556,6 @@
       },
       {
         "component": "text",
-        "name": "ctaText",
-        "label": "Text"
-      },
-      {
-        "component": "text",
         "name": "ctaTitle",
         "label": "Title"
       },
