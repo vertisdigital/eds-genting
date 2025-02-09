@@ -489,19 +489,19 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title",
+        "label": "Section Name",
         "required": true,
         "validation": {
-          "maxLength": 100,
+          "maxLength": 50,
           "customErrorMsg": "Title cannot exceed 100 characters"
         }
       },
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading",
+        "label": "Section Title",
         "validation": {
-          "maxLength": 250,
+          "maxLength": 100,
           "customErrorMsg": "Heading cannot exceed 250 characters"
         }
       }
@@ -517,6 +517,7 @@
         "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
+        "required": true,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
         }
@@ -531,15 +532,15 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title",
+        "label": "Report Name",
         "required": true,
         "validation": {
-          "maxLength": 30,
+          "maxLength": 60,
           "customErrorMsg": "Title cannot exceed 30 characters"
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "value": "",
         "label": "Description",
