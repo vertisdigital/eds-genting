@@ -84,8 +84,7 @@
 
   [data-aue-model="media"],
   [data-aue-model="textsection"] {
-    flex: 0 0 calc(50% - (var(--text-media-gap-desktop) / 2));
-    max-width: calc(50% - (var(--text-media-gap-desktop) / 2));
+    width: calc((100% - var(--text-media-gap-desktop)) / 2);
   }
 
   [data-aue-model="media"] {
@@ -98,19 +97,19 @@
 
   [data-aue-model="textsection"] {
     padding: 0;
-    display: flex !important;
-    flex-direction: column !important;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   [data-aue-prop="heading"] {
     font-size: var(--heading-size-desktop);
     margin-top: 32px;
-    order: -1; /* Ensure heading always comes first */
   }
 
   [data-richtext-prop="description"] {
     margin-top: 32px;
-    order: 1; /* Ensure description always comes second */
+    flex: 1;
   }
 
   /* Media First Layout */
