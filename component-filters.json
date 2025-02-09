@@ -131,7 +131,7 @@
   {
     "id": "textmediasection",
     "components": [
-      "image",
+      "media",
       "textsection"
     ]
   }

@@ -469,7 +469,25 @@
               }
             }
           }
-        }
+        },
+        {
+          "id": "media",
+          "fields": [
+            {
+              "component": "custom-asset-namespace:custom-asset",
+              "name": "image",
+              "label": "Image",
+              "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+              "valueType": "string"
+            },
+            {
+              "component": "text",
+              "name": "imageAlt",
+              "label": "Alt Text",
+              "valueType": "string"
+            }
+          ]
+        }  
       ]
     }
   ]
