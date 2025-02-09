@@ -577,12 +577,12 @@ header nav .nav-tools {
 /* My header css */
 
 .header-wrapper{
-  background-color: grey;
+  background-color: transparent;
 }
 .header-wrapper.fixed-header{ 
   position: fixed;
   top: 0;
-  background-color: yellow;
+  background-color: white;
   transition: all 0.2s ease-in-out;
 }
 .header-wrapper.fixed-header .primary-nav .nav-item .primary-menu-links {
