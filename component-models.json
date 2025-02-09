@@ -836,7 +836,7 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title",
+        "label": "Section Title",
         "required": true,
         "validation": {
           "maxLength": 100,
@@ -847,17 +847,16 @@
       {
         "component": "text",
         "name": "firstCtaCaption",
-        "label": "FirstCtaCaption",
-        "required": true,
+        "label": "Investors",
         "validation": {
-          "requiredErrorMsg": "First CTA caption is mandatory"
+          "maxLength": 50,
+          "customErrorMsg": "Investors caption cannot exceed 50 characters"
         }
       },
       {
         "component": "aem-content",
         "name": "firstCta",
-        "label": "FirstCta",
-        "required": true,
+        "label": "cta link",
         "linkTarget": "_blank",
         "validation": {
           "requiredErrorMsg": "First CTA link is mandatory",
@@ -867,20 +866,18 @@
       {
         "component": "text",
         "name": "secondCtaCaption",
-        "label": "SecondCtaCaption",
-        "required": true,
+        "label": "Awards & Recognition",
         "validation": {
-          "requiredErrorMsg": "Second CTA caption is mandatory"
+          "maxLength": 50,
+          "customErrorMsg": "Awards & Recognition caption cannot exceed 50 characters"
         }
       },
       {
         "component": "aem-content",
         "name": "secondCta",
-        "label": "SecondCta",
-        "required": true,
+        "label": "cta link",
         "linkTarget": "_blank",
         "validation": {
-          "requiredErrorMsg": "Second CTA link is mandatory",
           "rootPath": "/content/genting-singapore/index"
         }
       }
