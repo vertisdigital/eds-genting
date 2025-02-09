@@ -33,4 +33,4 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initTextMediaBlock);
 } else {
   initTextMediaBlock();
-} 
+}

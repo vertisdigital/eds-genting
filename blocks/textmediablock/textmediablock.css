@@ -108,4 +108,4 @@
   .textmediablock[data-layout="textfirst"] > div:not(:first-child) {
     flex-direction: row-reverse;
   }
-} 
+}
