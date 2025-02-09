@@ -71,20 +71,19 @@
     align-items: stretch;
     min-height: 480px; /* Taller on desktop */
     gap: 64px; /* Increased gap between image and text */
-    justify-content: space-between;
   }
 
-  [data-aue-model="media"] {
-    flex: 0 0 calc(50% - 32px);
-  }
-
+  [data-aue-model="media"],
   [data-aue-model="textsection"] {
-    flex: 0 0 calc(50% - 32px);
-    padding: 0;
+    width: calc(50% - 32px); /* Fixed width accounting for gap */
   }
 
   [data-aue-model="media"] img {
     min-height: 480px; /* Match container height */
+  }
+
+  [data-aue-model="textsection"] {
+    padding: 0;
   }
 
   [data-aue-prop="heading"] {
@@ -93,8 +92,10 @@
   }
 
   [data-richtext-prop="description"] {
-    word-wrap: break-word;
-    margin-top: 32px; /* Increased spacing on desktop */
+    margin-top: 32px;
+    max-width: 100%; /* Ensure text stays within container */
+    overflow-wrap: break-word;
+    display: inline-block; /* This helps contain the text */
   }
 
   /* Media First Layout */
