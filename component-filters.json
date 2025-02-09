@@ -29,7 +29,7 @@
       "enquiry",
       "tiles",
       "textsection",
-      "TextMediaBlock"
+      "textmediablock"
     ]
   },
   {
@@ -61,7 +61,7 @@
       "enquiry",
       "tiles",
       "textsection",
-      "TextMediaBlock"
+      "textmediablock"
     ]
   },
   {
@@ -129,7 +129,7 @@
     ]
   },
   {
-    "id": "TextMediaBlock",
+    "id": "textmediablock",
     "components": [
       "media",
       "textsection"
