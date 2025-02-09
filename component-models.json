@@ -641,7 +641,7 @@
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading",
+        "label": "Title",
         "required": true,
         "validation": {
           "maxLength": 100,
@@ -649,13 +649,13 @@
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "value": "",
         "label": "Description",
         "valueType": "string",
         "validation": {
-          "maxSize": 250,
+          "maxSize": 300,
           "customErrorMsg": "Description cannot exceed 250 characters"
         }
       },
