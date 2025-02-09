@@ -99,7 +99,7 @@ function createNavItem(itemData, resourcePath) {
 function createHeaderStructure(block) {
   // Create main section container
   const section = document.createElement('div');
-  section.className = 'header-wrapper section columns-container container-xl container-md container-sm';
+  section.className = 'header-inner-wrapper section columns-container container-xl container-md container-sm';
   // Create columns wrapper
   const columnsWrapper = document.createElement('div');
   columnsWrapper.className = 'columns-wrapper';
