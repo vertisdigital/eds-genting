@@ -565,7 +565,7 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title",
+        "label": "Section Name",
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -574,7 +574,7 @@
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading",
+        "label": "Section Title",
         "required": true,
         "validation": {
           "maxLength": 100,
@@ -582,13 +582,13 @@
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "value": "",
-        "label": "Description",
+        "label": "Section Description",
         "valueType": "string",
         "validation": {
-          "maxSize": 250,
+          "maxSize": 500,
           "customErrorMsg": "Description cannot exceed 250 characters"
         }
       }
@@ -616,10 +616,10 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title",
+        "label": "ProjectTitle",
         "required": true,
         "validation": {
-          "maxLength": 10,
+          "maxLength": 25,
           "customErrorMsg": "Title cannot exceed 10 characters"
         }
       },
@@ -627,9 +627,8 @@
         "component": "text",
         "name": "location",
         "label": "Location",
-        "required": true,
         "validation": {
-          "maxLength": 10,
+          "maxLength": 15,
           "customErrorMsg": "Location cannot exceed 10 characters"
         }
       }
