@@ -86,6 +86,7 @@
     padding-top: 0; /* Remove mobile padding */
     padding-left: 0;
     padding-right: 0;
+    max-width: calc(50% - 32px); /* Ensure text section doesn't exceed image width */
   }
 
   [data-aue-prop="heading"] {
@@ -97,6 +98,7 @@
     width: 100%;
     word-wrap: break-word;
     margin-top: 32px; /* Increased spacing on desktop */
+    max-width: 100%; /* Ensure description stays within text section */
   }
 
   /* Media First Layout */
