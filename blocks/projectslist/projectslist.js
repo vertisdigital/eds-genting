@@ -100,25 +100,19 @@ export default function decorate(block) {
     const rightCol = document.createElement("div");
     rightCol.className = "col-xl-6 col-md-3 container-sm-4";
 
-    const image = document.createElement("img");
-    image.className = "project-image";
     const imageLink = project.querySelector(
       'a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]'
     );
     if (imageLink) {
-      // const imageUrl = imageLink.getAttribute("href");
-      const imageUrl =
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtnvAOajH9gS4C30cRF7rD_voaTAKly2Ntaw&s";
-      const imageAlt = imageLink.getAttribute("title") || "Project Image";
+      const imageUrl = imageLink.getAttribute("href");
       const picture = createOptimizedPicture(imageUrl, "", false);
       // Remove original link
       imageLink.remove();
       if (picture) {
-        const img = document.createElement("img");
-        img.className = "project-image";
-        img.src =
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtnvAOajH9gS4C30cRF7rD_voaTAKly2Ntaw&s"; // Replace with your image URL
-        rightCol.appendChild(img);
+        const imageContainer = document.createElement("div");
+        imageContainer.className = "project-image";
+        imageContainer.appendChild(picture);
+        rightCol.appendChild(imageContainer);
       }
     }
     projectContainer.appendChild(leftCol);
