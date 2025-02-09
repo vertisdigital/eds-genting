@@ -45,7 +45,7 @@ export default function decorate(block) {
 
     // Create left column (heading) - 40% on desktop and tablet
     const leftCol = document.createElement('div');
-    leftCol.className = 'col-xl-6 col-md-3 container-sm-4';
+    leftCol.className = 'col-xl-6 col-md-3 container-sm-4 left-col';
 
     const titleText = project.querySelector('[data-aue-prop="title"]');
     if (titleText) {
@@ -98,7 +98,7 @@ export default function decorate(block) {
 
     // Create right column (description and contacts) - 60% on desktop and tablet
     const rightCol = document.createElement('div');
-    rightCol.className = 'col-xl-6 col-md-3 container-sm-4';
+    rightCol.className = 'col-xl-6 col-md-3 container-sm-4 right-col';
 
     const imageLink = project.querySelector(
       'a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]',
@@ -111,7 +111,9 @@ export default function decorate(block) {
       if (picture) {
         const imageContainer = document.createElement('div');
         imageContainer.className = 'project-image';
-        imageContainer.appendChild(picture);
+        const img = document.createElement('img');
+        img.src = 'https://cdn.builder.io/api/v1/image/assets/TEMP/3818aa4f34615b927264d6d8cab07f1e20d364cf0b7277c747dd56359fc99bce?placeholderIfAbsent=true&apiKey=16b1633103d8450ead7bc93647340540';
+        imageContainer.appendChild(img);
         rightCol.appendChild(imageContainer);
       }
     }
