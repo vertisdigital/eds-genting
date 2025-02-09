@@ -1,7 +1,5 @@
 .textmediablock {
-  width: 100vw; /* Full viewport width */
-  margin-left: calc(-50vw + 50%); /* Center the full-width block */
-  margin-right: calc(-50vw + 50%);
+  width: 100%;
   position: relative;
 }
 
@@ -10,9 +8,10 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  max-width: var(--container-width);
+  width: 100%;
+  max-width: 1440px; /* Match coreprinciples max-width */
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 32px; /* Standard padding from coreprinciples */
 }
 
 /* Media styles */
@@ -34,8 +33,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align to top */
-  padding: 0 1rem;
+  justify-content: flex-start;
 }
 
 [data-aue-prop="heading"] {
@@ -44,7 +42,7 @@
   color: var(--text-color);
   line-height: 1.1;
   white-space: nowrap;
-  margin: 0; /* Remove default margins */
+  margin: 0;
 }
 
 [data-richtext-prop="description"] {
@@ -60,8 +58,7 @@
     flex-direction: row;
     align-items: stretch;
     min-height: 400px;
-    gap: 4rem; /* Increase gap between image and text */
-    padding: 0 2rem;
+    gap: 4rem;
   }
 
   [data-aue-model="media"],
@@ -70,7 +67,7 @@
   }
 
   [data-aue-model="textsection"] {
-    padding: 0; /* Remove padding to align with image */
+    padding: 0;
   }
 
   [data-aue-prop="heading"] {
@@ -78,8 +75,8 @@
   }
 
   [data-richtext-prop="description"] {
-    width: 100%; /* Ensure text fills available space */
-    word-wrap: break-word; /* Enable text wrapping */
+    width: 100%;
+    word-wrap: break-word;
   }
 
   /* Media First Layout */
