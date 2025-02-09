@@ -31,9 +31,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1rem;
+  justify-content: flex-start; /* Align to top */
+  padding: 0 1rem;
 }
 
 [data-aue-prop="heading"] {
@@ -41,14 +40,15 @@
   font-weight: 600;
   color: var(--text-color);
   line-height: 1.1;
-  white-space: nowrap; /* Prevent text wrapping */
+  white-space: nowrap;
+  margin: 0; /* Remove default margins */
 }
 
 [data-richtext-prop="description"] {
   font-size: 1rem;
   line-height: 1.5;
   color: var(--text-color);
-  max-width: 90%; /* Ensure text doesn't stretch too wide */
+  margin-top: 1.5rem;
 }
 
 /* Layout variations */
@@ -61,6 +61,7 @@
     flex-direction: row;
     align-items: stretch;
     min-height: 400px;
+    gap: 4rem; /* Increase gap between image and text */
   }
 
   [data-aue-model="media"],
@@ -69,11 +70,16 @@
   }
 
   [data-aue-model="textsection"] {
-    padding: 2rem 4rem 2rem 3rem; /* More padding on right side */
+    padding: 0; /* Remove padding to align with image */
   }
 
   [data-aue-prop="heading"] {
-    font-size: 2.5rem; /* Slightly larger on desktop */
+    font-size: 2.5rem;
+  }
+
+  [data-richtext-prop="description"] {
+    width: 100%; /* Ensure text fills available space */
+    word-wrap: break-word; /* Enable text wrapping */
   }
 
   /* Media First Layout */
