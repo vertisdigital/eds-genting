@@ -10,7 +10,7 @@ export default function processTabs(main) {
   topContainer.classList ="container-xl container-lg container-md container-sm";
 
   const tabsWrapper = document.createElement("div");
-  tabsWrapper.classList.add("tabs-container");
+  tabsWrapper.classList.add("tabs-container1");
 
   const tabsNav = document.createElement("div");
   tabsNav.classList.add("tabs-header");
@@ -25,10 +25,9 @@ export default function processTabs(main) {
     const tabButton = document.createElement("div");
     tabButton.classList.add("tab-title");    
     tabButton.dataset.index = index;
-    tabButton.textContent = "tabTitle";
+    tabButton.textContent = tabTitle;
 
     console.log(tabTitle, tabButton.outerHTML, tabButton);
-      
     const tabPanel = document.createElement("div");
     tabPanel.classList.add("tab-panel");
     if (index === 0) tabPanel.classList.add("active");
@@ -40,10 +39,8 @@ export default function processTabs(main) {
     while (clonedContent.firstChild) {
       tabPanel.appendChild(clonedContent.firstChild);
     }
-
     tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
-    console.log(tabTitle, tabButton.outerHTML, tabButton);
   });
 
   // Remove the original section after moving content
@@ -59,7 +56,7 @@ export default function processTabs(main) {
     const tabButton = event.target.closest(".tab-title"); // Ensure we target the correct element
     if (!tabButton) return;
 
-    const index = parseInt(tabButton.dataset.index, 10); // Convert to integer
+    const index = parseInt((tabButton.dataset.index ?? tabButton.parentNode.dataset.index), 10); // Convert to integer
     if (Number.isNaN(index)) return; // Prevent errors if index is undefined
 
     tabsWrapper
