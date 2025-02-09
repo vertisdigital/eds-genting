@@ -893,7 +893,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://textmediasection--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore",
