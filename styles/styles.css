@@ -49,8 +49,10 @@ Usage Example:
   --link-hover-color: #236097;
   --midnight-blue: #0D2C48;
   --primary-gold: #B29152;
+  --antique-gold: #b5904b;
   --bronze-brown: #957842;
   --light-grey: #EEE;
+  --soft-ivory-light: #e3d5b1;
   --soft-ivory: #F5E7C4;
   --whisper-gray: #F7F7F7;
 
@@ -746,53 +748,46 @@ main .section.highlight {
   width: 100%;
   margin: 0 auto;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
 }
 .tabs-header-wrapper {
   background: #f5efe2; /* Light beige background */
   padding: 15px;
   border-bottom: 2px solid #ddd;
 }
-
-.tabs-header {
-  display: flex;
+.tabs-container .tabs-header{
+  margin-bottom: 36px;
 }
 
-.tabs-header > div, .tab-title {
-  flex: 1;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  padding: 10px;
-  cursor: pointer;
+.tabs-container .tabs-header .tab-title{
   position: relative;
-}
-.tabs-header > div {
-  display: flex;
-  padding-top: 36px;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 36px;
-  flex: 1 0 0;
+  text-align: center;
+  padding: 36px 0 45px 0;
+  color: var(--body-text-color);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30px;
 }
 
-.tab-title.active {
-  background: #e3d5b1; /* Slightly darker beige */
-  color: #b5904b; /* Golden brown */
+.tabs-container .tabs-header .tab-title.active {
+  background: var(--soft-ivory-light); 
+  color: var(--primary-gold);
+  border-bottom: 2px solid var(--primary-gold);
 }
-
-.tab-title.active::after {
+.tabs-container .tabs-header .tab-title.active::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: #b5904b; /* Golden brown underline */
+  bottom: 0; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid var(--primary-gold); /* Same color as the div */
 }
+
+
+
 
 .tabs-content-wrapper {
   padding: 20px;
