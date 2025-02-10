@@ -18,11 +18,18 @@
       "cards",
       "columns",
       "fragment",
+      "coreprinciples",
       "feature",
       "linkField",
       "socialLinks",
       "links",
-      "imageLink"
+      "imageLink",
+      "exploremore",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "tiles",
+      "textsection"
     ]
   },
   {
@@ -53,9 +60,16 @@
       "image",
       "button",
       "title",
+      "coreprinciples",
       "imageLink",
       "socialLinks",
-      "links"
+      "links",
+      "exploremore",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "tiles",
+      "textsection"
     ]
   },
   {
@@ -90,9 +104,36 @@
     ]
   },
   {
+    "id": "listing",
+    "components": [
+      "listitem",
+      "linkField"
+      ]
+  },
+  {
+    "id": "projectcards",
+    "components": [
+      "projectcard",
+      "linkField"
+    ]
+  },
+  {
     "id": "herobanner",
     "components": [
       "bannercarousel"
+    ]
+
+  },
+  {
+    "id": "tiles",
+    "components": [
+      "tile"
+    ]
+  },
+  {
+    "id": "coreprinciples",
+    "components": [
+      "coreprinciple"
     ]
   }
 ]
