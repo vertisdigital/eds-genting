@@ -828,22 +828,31 @@
       },
       {
         "component": "text",
-        "name": "imageAlt",
-        "label": "ImageAltText",
-        "description": "DescriptiveTextForScreenReaders"
+        "name": "altTextImg",
+        "label": "Image Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "Title cannot exceed 30 characters"
+        }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "value": "",
         "label": "Description",
-        "valueType": "string"
+        "valueType": "string",
+        "validation": {
+          "maxLength": 200,
+          "customErrorMsg": "Description cannot exceed 200 characters"
+        }
       }
+
     ]
   },
   {
