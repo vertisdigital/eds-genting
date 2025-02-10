@@ -493,7 +493,7 @@
         "required": true,
         "validation": {
           "maxLength": 50,
-          "customErrorMsg": "Title cannot exceed 100 characters"
+          "customErrorMsg": "Title cannot exceed 50 characters"
         }
       },
       {
@@ -532,7 +532,7 @@
         "required": true,
         "validation": {
           "maxLength": 60,
-          "customErrorMsg": "Title cannot exceed 30 characters"
+          "customErrorMsg": "Title cannot exceed 60 characters"
         }
       },
       {
@@ -565,11 +565,11 @@
         "label": "Target",
         "options": [
           {
-            "name": "self",
+            "name": "Same Tab",
             "value": "_self"
           },
           {
-            "name": "blank",
+            "name": "New Tab",
             "value": "_blank"
           }
         ]
