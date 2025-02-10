@@ -812,8 +812,9 @@
       },
       {
         "component": "text",
-        "name": "AltTextForImage",
-        "label": "Image Alt Text"
+        "name": "imageAlt",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
