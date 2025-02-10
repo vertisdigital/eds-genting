@@ -640,7 +640,7 @@
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading",
+        "label": "Title",
         "required": true,
         "validation": {
           "maxLength": 100,
@@ -648,14 +648,14 @@
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "value": "",
         "label": "Description",
         "valueType": "string",
         "validation": {
-          "maxSize": 250,
-          "customErrorMsg": "Description cannot exceed 250 characters"
+          "maxLength": 300,
+          "customErrorMsg": "Description cannot exceed 300 characters"
         }
       },
       {
@@ -669,7 +669,7 @@
         "component": "text",
         "name": "phoneIconAlt",
         "label": "PhoneIconAltText",
-        "description": "DescriptiveTextForScreenReaders"
+        "description": "Alt Text For Phone Icon"
       },
       {
         "component": "text",
@@ -694,7 +694,7 @@
         "component": "text",
         "name": "emailIconAlt",
         "label": "EmailIconAltText",
-        "description": "DescriptiveTextForScreenReaders"
+        "description": "Alt Text For Email Icon"
       },
       {
         "component": "text",
@@ -719,7 +719,7 @@
         "component": "text",
         "name": "addressIconAlt",
         "label": "AddressIconAltText",
-        "description": "DescriptiveTextForScreenReaders"
+        "description": "Alt Text For Address Icon"
       },
       {
         "component": "text",
