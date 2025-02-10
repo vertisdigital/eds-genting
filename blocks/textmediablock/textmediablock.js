@@ -1,5 +1,6 @@
 function initTextMediaBlock() {
   const blocks = document.querySelectorAll('.textmediablock');
+  blocks.className = 'container-xl container-md container-sm';
   
   blocks.forEach(block => {
     // Handle image elements
