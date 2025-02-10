@@ -30,8 +30,6 @@ import stringToHtml from "../../shared-components/Utility.js";
  * @returns {Element} Navigation item element
  */
 function createNavItem(itemData, resourcePath) {
-  
-  console.log(itemData.subHeadingLink);
   const navItem = document.createElement('div');
   navItem.className = 'links';
 
@@ -41,13 +39,13 @@ function createNavItem(itemData, resourcePath) {
   const titleContent = document.createElement('div');
   const detailedcaption = document.createElement('a');
   titleContent.textContent = itemData.title;
-  if (itemData.subHeadingLink) {
-    // detailedcaption.textContent = typeof itemData.caption === 'string' 
-    //   ? itemData.caption 
-    //   : itemData.caption.textContent || '';
+  if (itemData.caption) {
+    detailedcaption.textContent = typeof itemData.caption === 'string' 
+      ? itemData.caption 
+      : itemData.caption.textContent || '';
   
-    if (itemData.subHeadingLink) {
-      detailedcaption.href = itemData.subHeadingLink;
+    if (itemData.caption) {
+      detailedcaption.href = itemData.caption.href;
     }
   
     detailedcaption.setAttribute('title', "Overview");
@@ -133,12 +131,10 @@ function createHeaderStructure(block) {
   // Extract and create navigation items
   const navItems = Array.from(block.querySelectorAll('[data-aue-model="links"]')).map((navSection, index) => {
     const resourcePath = navSection.getAttribute('data-aue-resource');
-    console.log("nav", navSection);
     return createNavItem({
       title: navSection.querySelector('[data-aue-prop="title"]')?.textContent,
       // caption: navSection.querySelector('[data-aue-prop="detailedcaption"]')?.textContent,
       caption: navSection.querySelector('[title="Overview"]'),
-      subHeadingLink: navSection.querySelector('[data-aue-prop="linkText"]').getElementsByTagName("href"),
       captionTarget: '_self',
       links: Array.from(navSection.querySelectorAll('[data-aue-model="linkField"]')).map((link) => ({
         text: link.querySelector('[data-aue-prop="linkText"]')?.textContent,
@@ -411,13 +407,11 @@ export default async function decorate(block) {
 
       const headerTop = header.getBoundingClientRect().top;
       const headerLogo = header.querySelector('.logo-wrapper');
-      console.log(headerTop);
 
       if (headerTop <= 0) {
         header.classList.add('fixed-header'); // Add class when it reaches top: 0
         const logoContentTwo = imageTwo;
         
-        console.log(header)
         if (logoContentTwo) {
           headerLogo.innerHTML="";
           headerLogo.appendChild(logoContentTwo);
@@ -452,26 +446,22 @@ export default async function decorate(block) {
 
       const headerTop = header.getBoundingClientRect().top;
       const headerLogo = header.querySelector('.logo-wrapper');
-      console.log(headerTop);
 
       if (headerTop <= 0) {
         header.classList.add('fixed-header'); // Add class when it reaches top: 0
         const logoContentTwo = imageTwo;
         
-        console.log("less than zero")
         if (logoContentTwo) {
           headerLogo.innerHTML="";
           headerLogo.appendChild(logoContentTwo);
         }
 
       } else {
-        console.log("greater than zero");
         const logoContentOne = imageOne;
-        header.classList.remove("fixed-header"); // Remove class if not at top
-        headerLogo.innerHTML = "";
-        
+        header.classList.remove('fixed-header'); // Remove class if not at top
+        headerLogo.innerHTML="";
         if (logoContentOne) {
-          headerLogo.appendChild(logoContentOne); // Correctly appending the logo
+          headerLogo.appendChild(logoContentOne);
         }
       }
     };
