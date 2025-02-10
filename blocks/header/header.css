@@ -428,9 +428,9 @@ header nav .nav-tools {
 }
 
 @media (width <= 768px) {
-  .header-inner-wrapper .header-nav {
+  /* .header-inner-wrapper .header-nav {
     padding: 16px;
-  }
+  } */
 
 
   .header-inner-wrapper .hamburger-icon {
