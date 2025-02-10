@@ -812,9 +812,8 @@
       },
       {
         "component": "text",
-        "name": "imageAlt",
-        "label": "ImageAltText",
-        "description": "DescriptiveTextForScreenReaders"
+        "name": "altText",
+        "label": "Alt Text"
       },
       {
         "component": "text",
