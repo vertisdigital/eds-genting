@@ -588,7 +588,7 @@
         "label": "Section Description",
         "valueType": "string",
         "validation": {
-          "maxSize": 500,
+          "maxLength": 500,
           "customErrorMsg": "Description cannot exceed 250 characters"
         }
       }
