@@ -65,7 +65,7 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
-    processTabs(main);
+    processTabs(main, moveInstrumentation);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
