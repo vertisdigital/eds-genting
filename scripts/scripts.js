@@ -72,7 +72,7 @@ function buildAutoBlocks(main) {
 }
 
 /**
- * Decorates the main element.
+ * Decorates the main element. 
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
