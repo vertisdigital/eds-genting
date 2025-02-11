@@ -83,7 +83,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
-  decorateBlocks(main);
+  // decorateBlocks(main);
 }
 
 /**

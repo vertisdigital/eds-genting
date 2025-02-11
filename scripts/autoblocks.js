@@ -29,7 +29,7 @@ export default function processTabs(main, moveInstrumentation) {
       : `CustTitle ${index + 1}`;
 
     const tabButton = document.createElement('div');
-    tabButton.classList.add('tab-title','col-xl-6','col-lg-6','col-3','col-2');
+    tabButton.classList.add('tab-title','col-xl-6','col-lg-6','col-md-3','col-sm-2');
     tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
 

@@ -748,11 +748,7 @@ main .section.highlight {
   width: 100%;
   margin: 0 auto;
 }
-.tabs-header-wrapper {
-  background: #f5efe2; 
-  padding: 15px;
-  border-bottom: 2px solid #ddd;
-}
+
 .tabs-header{
   margin-bottom: 36px;
 }
@@ -766,6 +762,7 @@ main .section.highlight {
   font-weight: 600;
   line-height: 30px;
   border-bottom: 2px solid  var(--body-text-color);
+  cursor: pointer;
 }
 
 .tab-title.active {
