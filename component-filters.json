@@ -17,15 +17,19 @@
       "cards",
       "columns",
       "fragment",
+      "coreprinciples",
       "feature",
       "linkField",
       "socialLinks",
       "links",
       "imageLink",
+      "exploremore",
       "listing",
       "projectcards",
       "enquiry",
-      "tiles"
+      "tiles",
+      "textsection",
+      "textmediablock"
     ]
   },
   {
@@ -47,13 +51,17 @@
       "image",
       "button",
       "title",
+      "coreprinciples",
       "imageLink",
       "socialLinks",
       "links",
+      "exploremore",
       "listing",
       "projectcards",
       "enquiry",
       "tiles",
+      "textsection",
+      "textmediablock",
       "linkField"
     ]
   },
@@ -98,8 +106,7 @@
   {
     "id": "projectcards",
     "components": [
-      "projectcard",
-      "linkField"
+      "projectcard"
     ]
   },
   {
@@ -113,6 +120,19 @@
     "id": "tiles",
     "components": [
       "tile"
+    ]
+  },
+  {
+    "id": "coreprinciples",
+    "components": [
+      "coreprinciple"
+    ]
+  },
+  {
+    "id": "textmediablock",
+    "components": [
+      "media",
+      "textsection"
     ]
   }
 ]
