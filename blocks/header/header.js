@@ -42,21 +42,24 @@ function createNavItem(itemData) {
   const titleContent = document.createElement('div');
   const detailedcaption = document.createElement('a');
 
-  if (itemData?.overviewLinkText === "Contact") {
-    // For Contact menu item, create a direct link using the button container data
+  // Check if this is the Contact menu item
+  if (itemData.title === "Contact" && itemData.links?.length === 1) {
+    // For Contact, create a direct link using the first link in the array
     const contactLink = document.createElement('a');
-    contactLink.href = itemData.links?.[0]?.href || itemData.overviewLinkHref;
-    contactLink.textContent = itemData.title || 'Contact';
-    contactLink.setAttribute('target', itemData.links?.[0]?.target || itemData.overviewLinkTarget || '_self');
+    contactLink.textContent = itemData.links[0].text;
+    contactLink.href = itemData.links[0].href;
+    contactLink.setAttribute('target', itemData.links[0].target || '_self');
     titleContent.appendChild(contactLink);
     
-    // Skip creating submenu elements for Contact
-    detailedcaption.style.display = 'none';
-    overviewLink.style.display = 'none';
-  } else {
-    titleContent.textContent = itemData.title;
+    // Skip creating submenu elements
+    titleDiv.appendChild(titleContent);
+    navItem.appendChild(titleDiv);
+    return navItem;
   }
 
+  // Normal menu item handling
+  titleContent.textContent = itemData.title;
+  
   if (itemData.caption) {
     detailedcaption.textContent = typeof itemData.caption === 'string' 
       ? itemData.caption 
@@ -92,8 +95,8 @@ function createNavItem(itemData) {
   }
   detailedcaption.innerText = "";
 
-  // Create links (skip for Contact)
-  if (itemData.links?.length && itemData?.overviewLinkText !== "Contact") {
+  // Create links
+  if (itemData.links?.length) {
     const linksUl = document.createElement('ul');
     linksUl.className = 'nav-links row';
 
