@@ -132,7 +132,7 @@
       {
         "component": "text",
         "name": "tabtitle",
-        "label": "Tab Title"
+        "label": "Tab Title" 
       }
     ]
   },
