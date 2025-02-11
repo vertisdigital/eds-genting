@@ -1,10 +1,9 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragmentCustom } from '../fragment/fragment.js';
-import SvgIcon from "../../shared-components/SvgIcon.js";
-import stringToHtml from "../../shared-components/Utility.js";
+import SvgIcon from '../../shared-components/SvgIcon.js';
+import stringToHtml from '../../shared-components/Utility.js';
 
 // Add these variables at the top level of the file
-let lastScrollPosition = 0;
 let ticking = false;
 let isHeaderFixed = false;
 
@@ -43,14 +42,14 @@ function createNavItem(itemData) {
   const detailedcaption = document.createElement('a');
 
   // Check if this is the Contact menu item
-  if (itemData.title === "Contact" && itemData.links?.length === 1) {
+  if (itemData.title === 'Contact' && itemData.links?.length === 1) {
     // For Contact, create a direct link using the first link in the array
     const contactLink = document.createElement('a');
     contactLink.textContent = itemData.links[0].text;
     contactLink.href = itemData.links[0].href;
     contactLink.setAttribute('target', itemData.links[0].target || '_self');
     titleContent.appendChild(contactLink);
-    
+
     // Skip creating submenu elements
     titleDiv.appendChild(titleContent);
     navItem.appendChild(titleDiv);
@@ -59,18 +58,18 @@ function createNavItem(itemData) {
 
   // Normal menu item handling
   titleContent.textContent = itemData.title;
-  
+
   if (itemData.caption) {
-    detailedcaption.textContent = typeof itemData.caption === 'string' 
-      ? itemData.caption 
+    detailedcaption.textContent = typeof itemData.caption === 'string'
+      ? itemData.caption
       : itemData.caption.textContent || '';
-  
+
     if (itemData.caption) {
       detailedcaption.href = itemData.caption.href;
     }
-  
-    detailedcaption.setAttribute('title', "Overview");
-  
+
+    detailedcaption.setAttribute('title', 'Overview');
+
     if (itemData.captionTarget) {
       detailedcaption.setAttribute('target', itemData.captionTarget);
     }
@@ -78,11 +77,11 @@ function createNavItem(itemData) {
 
   // create overview link
   const overviewLink = document.createElement('a');
-  overviewLink.className = 'overview-link displayNone';
+  overviewLink.className = 'overview-link display-none';
   overviewLink.textContent = itemData.overviewLinkText;
   overviewLink.href = itemData.overviewLinkHref;
   overviewLink.setAttribute('target', itemData.overviewLinkTarget);
-  
+
   titleDiv.appendChild(titleContent);
   navItem.appendChild(titleDiv);
   navItem.appendChild(detailedcaption);
@@ -93,7 +92,7 @@ function createNavItem(itemData) {
     navItem.dataset.captionHref = itemData.caption.href;
     navItem.dataset.captionTarget = itemData.captionTarget;
   }
-  detailedcaption.innerText = "";
+  detailedcaption.innerText = '';
 
   // Create links
   if (itemData.links?.length) {
@@ -110,7 +109,7 @@ function createNavItem(itemData) {
         a.href = link.href;
         a.className = 'button';
         a.title = link.text;
-        a.textContent = link.text;  
+        a.textContent = link.text;
         linkContainer.appendChild(a);
         li.appendChild(linkContainer);
         linksUl.appendChild(li);
@@ -131,7 +130,7 @@ function createHeaderStructure(block) {
   // Create main section container
   const section = document.createElement('div');
   section.className = 'header-inner-wrapper section columns-container container-xl container-md container-sm';
-  
+
   // Create columns wrapper
   const columnsWrapper = document.createElement('div');
   columnsWrapper.className = 'columns-wrapper';
@@ -150,7 +149,7 @@ function createHeaderStructure(block) {
   // Create logo section
   const logoWrapper = document.createElement('a');
   logoWrapper.className = 'logo-wrapper';
-  logoWrapper.href = "/";
+  logoWrapper.href = '/';
 
   // Get both logo images from fragment
   const images = block.querySelectorAll('[data-aue-model="image"]');
@@ -176,22 +175,20 @@ function createHeaderStructure(block) {
   primaryNav.className = 'primary-nav row';
 
   // Extract and create navigation items
-  const navItems = Array.from(block.querySelectorAll('[data-aue-model="links"]')).map((navSection, index) => {
-    return createNavItem({
-      title: navSection.querySelector('[data-aue-prop="title"]')?.textContent,
-      overviewLinkText: navSection.querySelector('[data-aue-prop="linkText"]')?.textContent,
-      overviewLinkHref: navSection.querySelector('[data-aue-prop="linkText"]')?.getAttribute('href'),
-      overviewLinkTarget: navSection.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
-      caption: navSection.querySelector('[title="Overview"]'),
-      captionTarget: '_self',
-      links: Array.from(navSection.querySelectorAll('[data-aue-model="linkField"]')).map((link) => ({
-        text: link.querySelector('[data-aue-prop="linkText"]')?.textContent,
-        href: link.querySelector('a')?.getAttribute('href'),
-        target: link.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
-        resourcePath: link.getAttribute('data-aue-resource'),
-      })),
-    });
-  });
+  const navItems = Array.from(block.querySelectorAll('[data-aue-model="links"]')).map((navSection) => createNavItem({
+    title: navSection.querySelector('[data-aue-prop="title"]')?.textContent,
+    overviewLinkText: navSection.querySelector('[data-aue-prop="linkText"]')?.textContent,
+    overviewLinkHref: navSection.querySelector('[data-aue-prop="linkText"]')?.getAttribute('href'),
+    overviewLinkTarget: navSection.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
+    caption: navSection.querySelector('[title="Overview"]'),
+    captionTarget: '_self',
+    links: Array.from(navSection.querySelectorAll('[data-aue-model="linkField"]')).map((link) => ({
+      text: link.querySelector('[data-aue-prop="linkText"]')?.textContent,
+      href: link.querySelector('a')?.getAttribute('href'),
+      target: link.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
+      resourcePath: link.getAttribute('data-aue-resource'),
+    })),
+  }));
 
   navItems.forEach((item) => {
     const li = document.createElement('li');
@@ -202,7 +199,7 @@ function createHeaderStructure(block) {
 
   // Create search icon
   const searchWrapper = document.createElement('div');
-  const searchIcon =SvgIcon({name:'search', className:'icon-search', size:'14'})
+  const searchIcon = SvgIcon({ name: 'search', className: 'icon-search', size: '14' });
   searchWrapper.appendChild(stringToHtml(searchIcon));
 
   // Assemble the structure
@@ -230,45 +227,44 @@ function initializeHeader(header) {
   header.appendChild(overlay);
 
   // Create the hamburger menu button
-const hamburger = document.createElement('div');
-hamburger.className = 'hamburger';
+  const hamburger = document.createElement('div');
+  hamburger.className = 'hamburger';
 
-// Create SVG icons
-const hamburgerIcon = stringToHtml(SvgIcon({ name: 'hamburger', class: 'hamburger-icon', size: '30px' }));
-const closeIcon = stringToHtml(SvgIcon({ name: 'close', class: 'close-icon', size: '30px' }));
+  // Create SVG icons
+  const hamburgerIcon = stringToHtml(SvgIcon({ name: 'hamburger', class: 'hamburger-icon', size: '30px' }));
+  const closeIcon = stringToHtml(SvgIcon({ name: 'close', class: 'close-icon', size: '30px' }));
 
-// Set the initial icon
-hamburger.appendChild(hamburgerIcon);
+  // Set the initial icon
+  hamburger.appendChild(hamburgerIcon);
 
-// Select navigation elements
-const nav = header.querySelector('.header-nav');
-nav.insertBefore(hamburger, nav.firstChild);
+  // Select navigation elements
+  const nav = header.querySelector('.header-nav');
+  nav.insertBefore(hamburger, nav.firstChild);
 
-// Handle hamburger click
-hamburger.addEventListener('click', () => {
+  // Handle hamburger click
+  hamburger.addEventListener('click', () => {
   // Toggle class first
-  hamburger.classList.toggle('active');
-  const primaryNav = header.querySelector('.primary-nav');
-  primaryNav.classList.toggle('active');
+    hamburger.classList.toggle('active');
+    const primaryNav = header.querySelector('.primary-nav');
+    primaryNav.classList.toggle('active');
 
-  // Use setTimeout to ensure class toggle happens before icon change
-  setTimeout(() => {
-    if (hamburger.classList.contains('active')) {
-      hamburger.replaceChildren(closeIcon);
-    } else {
-      hamburger.replaceChildren(hamburgerIcon);
+    // Use setTimeout to ensure class toggle happens before icon change
+    setTimeout(() => {
+      if (hamburger.classList.contains('active')) {
+        hamburger.replaceChildren(closeIcon);
+      } else {
+        hamburger.replaceChildren(hamburgerIcon);
 
-      // Close secondary navigation if it's open
-      const activeItem = header.querySelector('.nav-item.active');
-      const activeSecondary = header.querySelector('.secondary-nav.active');
-      if (activeItem) activeItem.classList.remove('active');
-      if (activeSecondary) activeSecondary.classList.remove('active');
-      overlay.classList.remove('active');
-      currentActive = null;
-    }
-  }, 0);
-});
-
+        // Close secondary navigation if it's open
+        const activeItem = header.querySelector('.nav-item.active');
+        const activeSecondary = header.querySelector('.secondary-nav.active');
+        if (activeItem) activeItem.classList.remove('active');
+        if (activeSecondary) activeSecondary.classList.remove('active');
+        overlay.classList.remove('active');
+        currentActive = null;
+      }
+    }, 0);
+  });
 
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
@@ -293,7 +289,7 @@ hamburger.addEventListener('click', () => {
       const closeBtn = document.createElement('button');
       closeBtn.className = 'close-btn';
       closeBtn.setAttribute('aria-label', 'Close menu');
-      const closeBtnIcon = SvgIcon({name:'close', className:'close-icon',size:18});
+      const closeBtnIcon = SvgIcon({ name: 'close', className: 'close-icon', size: 18 });
       closeBtn.innerHTML = closeBtnIcon;
 
       const heading = document.createElement('a');
@@ -407,8 +403,6 @@ hamburger.addEventListener('click', () => {
     }
   });
 
-
-
   // Update nav items with grid classes
   header.querySelectorAll('.nav-item').forEach((item) => {
     const wrapper = document.createElement('div');
@@ -438,7 +432,7 @@ function updateHeaderState(header) {
   const scrollPosition = window.scrollY;
   const defaultLogo = header.querySelector('.default-logo');
   const scrollLogo = header.querySelector('.scroll-logo');
-  
+
   if (defaultLogo && scrollLogo) {
     if (scrollPosition > 0 && !isHeaderFixed) {
       header.classList.add('fixed-header');
@@ -459,8 +453,6 @@ function updateHeaderState(header) {
  * @param {Element} header Header element
  */
 function handleScroll(header) {
-  lastScrollPosition = window.scrollY;
-
   if (!ticking) {
     window.requestAnimationFrame(() => {
       updateHeaderState(header);
@@ -489,11 +481,10 @@ export default async function decorate(block) {
 
     // Add optimized scroll handler
     window.addEventListener('scroll', () => handleScroll(header), { passive: true });
-    
+
     // Ensure header starts with no fixed class
     header.classList.remove('fixed-header');
     isHeaderFixed = false;
-
   } else {
     const header = createHeaderStructure(block);
     block.textContent = '';
@@ -502,7 +493,7 @@ export default async function decorate(block) {
 
     // Add optimized scroll handler
     window.addEventListener('scroll', () => handleScroll(header), { passive: true });
-    
+
     // Ensure header starts with no fixed class
     header.classList.remove('fixed-header');
     isHeaderFixed = false;

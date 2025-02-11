@@ -397,7 +397,7 @@ drive sustainable growth and transformative impact through world-class integrate
     </div>
   </div>
 </div>`,
-// Add other block mock content
+  // Add other block mock content
   listing: `<div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/listing/jcr:content/root/section/block" data-aue-type="container" data-block-name="listing" data-aue-behavior="component" data-aue-model="listing" data-aue-label="Listing" data-aue-filter="listing" class="listing">
 <div>
 <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">Investor’s Initatives</div>
