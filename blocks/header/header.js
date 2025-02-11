@@ -41,7 +41,16 @@ function createNavItem(itemData) {
   titleDiv.className = 'primary-menu-links';
   const titleContent = document.createElement('div');
   const detailedcaption = document.createElement('a');
+  if(itemData?.overviewLinkText!=="Contact"){
   titleContent.textContent = itemData.title;
+  }
+  else{
+    const contactUs = document.createElement('a');
+    contactUs.textContent = itemData?.overviewLinkText;
+    contactUs.href = itemData?.overviewLinkHref;
+    contactUs.setAttribute('target', itemData?.captionTarget);
+    titleContent.append(contactUs);
+  }
   if (itemData.caption) {
     detailedcaption.textContent = typeof itemData.caption === 'string' 
       ? itemData.caption 
@@ -201,8 +210,8 @@ const hamburger = document.createElement('div');
 hamburger.className = 'hamburger';
 
 // Create SVG icons
-const hamburgerIcon = stringToHtml(SvgIcon({ name: 'hamburger', class: 'hamburger-icon', size: '18px' }));
-const closeIcon = stringToHtml(SvgIcon({ name: 'close', class: 'close-icon', size: '18px' }));
+const hamburgerIcon = stringToHtml(SvgIcon({ name: 'hamburger', class: 'hamburger-icon', size: '30px' }));
+const closeIcon = stringToHtml(SvgIcon({ name: 'close', class: 'close-icon', size: '30px' }));
 
 // Set the initial icon
 hamburger.appendChild(hamburgerIcon);
