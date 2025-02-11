@@ -3,6 +3,20 @@ import Heading from '../../shared-components/Heading.js';
 import stringToHTML from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
+  // processing the sesction title
+  const heading = block.querySelector('[data-aue-prop="heading"]');
+  if (heading) {
+    const titleText = heading.textContent;
+    const titleHtml = Heading({
+      level: 2,
+      text: titleText,
+      className: 'statistics-title',
+    });
+    const parsedHtml = stringToHTML(titleHtml);
+    moveInstrumentation(heading, parsedHtml);
+    block.appendChild(parsedHtml);
+    heading.remove();
+  }
 
   // finding the feature items
   const featureItems = block.querySelectorAll('[data-aue-model="featureItem"]');
@@ -26,13 +40,15 @@ export default function decorate(block) {
       .querySelector('[data-aue-prop="feature-heading"]')
       .classList.add('text-container');
   });
-  // insert the feature container as first element
-  block.insertBefore(featureContainer, block.firstChild);
 
   // processing the statistics description block
   const statisticBlock = block.querySelector(
     '[data-aue-model="statisticsDescription"]',
   );
+
+  // insert the feature container as first element
+  // block.insertBefore(featureContainer, statisticBlock);
+  block.appendChild(featureContainer);
   if (statisticBlock) {
     // replacing the title with  h2
     const titleElement = statisticBlock.querySelector(
@@ -43,7 +59,7 @@ export default function decorate(block) {
       const header = document.createElement('header');
       moveInstrumentation(titleElement, header);
       const titleHtml = Heading({
-        level: 2,
+        level: 3,
         text: titleText,
         className: 'statistics-title',
       });
@@ -60,19 +76,54 @@ export default function decorate(block) {
       descriptionElement.classList.add('statistics-description');
     }
 
-    // adding class to read more and read less
-    const readMoreElement = statisticBlock.querySelector(
-      '[data-aue-prop="readMoreLabel"]',
-    );
-    if (readMoreElement) {
-      readMoreElement.classList.add('read-more');
-    }
+    const descriptionChildren = statisticBlock.querySelector(
+      '[data-aue-prop="description"]',
+    ).children;
 
-    const readLessElement = statisticBlock.querySelector(
-      '[data-aue-prop="readLessLabel"]',
-    );
-    if (readLessElement) {
-      readLessElement.classList.add('read-less');
+    if (descriptionChildren.length > 1) {
+      for (let i = 1; i < descriptionChildren.length; i += 1) {
+        descriptionChildren[i].classList.add('hide');
+      }
+
+      const readMoreContent = statisticBlock.querySelector(
+        '[data-aue-prop="readMoreLabel"]',
+      );
+      const readMoreElement = document.createElement('a');
+      const readLessElement = document.createElement('a');
+
+      readMoreElement.setAttribute('href', '#');
+      readMoreElement.setAttribute('data-aue-prop', 'readMoreLabel');
+      readMoreElement.textContent = statisticBlock.readMoreContent?.textContent ?? 'Read More';
+      readMoreElement.onclick = (e) => {
+        e.preventDefault();
+        for (let i = 1; i < descriptionChildren.length; i += 1) {
+          descriptionChildren[i].classList.remove('hide');
+        }
+        readMoreElement.classList.add('hide');
+        readLessElement.classList.remove('hide');
+      };
+      statisticBlock.appendChild(readMoreElement);
+      readMoreContent.remove();
+
+      const readLessContent = statisticBlock.querySelector(
+        '[data-aue-prop="readLessLabel"]',
+      );
+      readLessElement.setAttribute('href', '#');
+      readLessElement.setAttribute('data-aue-prop', 'readLessLabel');
+      readLessElement.textContent = readLessContent?.textContentt ?? 'Read Less';
+      readLessElement.classList.add('hide');
+      readLessElement.onclick = (e) => {
+        e.preventDefault();
+        for (let i = 1; i < descriptionChildren.length; i += 1) {
+          descriptionChildren[i].classList.add('hide');
+        }
+        readMoreElement.classList.remove('hide');
+        readLessElement.classList.add('hide');
+      };
+      statisticBlock.appendChild(readLessElement);
+      readLessContent.remove();
+
+      block.appendChild(statisticBlock);
     }
   }
 }
