@@ -743,8 +743,6 @@ main .section.highlight {
 
 /* Tab Container */
 .tabs-container {
-  display: flex;
-  flex-direction: column;
   width: 100%;
   margin: 0 auto;
 }
@@ -752,12 +750,15 @@ main .section.highlight {
 .tabs-header {
   display: flex;
   justify-content: flex-start;
-  gap: 0;
   border-bottom: 2px solid var(--body-text-color);
+  margin: 0;
+}
+
+.tabs-header .col-6 {
+  padding: 0;
 }
 
 .tab-title {
-  flex: 1;
   position: relative;
   text-align: center;
   padding: 36px 0;
@@ -771,7 +772,7 @@ main .section.highlight {
   border-bottom: 2px solid transparent;
   margin-bottom: -2px;
   transition: all 0.3s ease;
-  max-width: 50%;
+  width: 100%;
 }
 
 .tab-title:hover {
