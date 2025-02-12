@@ -31,9 +31,10 @@ export default function processTabs(main, moveInstrumentation) {
     let tabTitle = `Tab ${index + 1}`; // Default title
     
     if (metadata) {
-      const titleDiv = metadata.querySelector('div:last-child');
-      if (titleDiv && titleDiv.textContent.trim()) {
-        tabTitle = titleDiv.textContent.trim().replace('tabtitle ', '');
+      const titleDivs = metadata.querySelectorAll('div > div');
+      if (titleDivs.length >= 2) {
+        // Get the second div which contains the actual title
+        tabTitle = titleDivs[1].textContent.trim();
       }
     }
     
@@ -64,13 +65,14 @@ export default function processTabs(main, moveInstrumentation) {
     }
 
     // Move content to tab panel
-    moveInstrumentation(section, tabPanel);
-    
-    // Move all non-metadata content to the panel
-    Array.from(section.children).forEach(child => {
-      if (!child.classList?.contains('section-metadata')) {
-        tabPanel.appendChild(child);
-      }
+    const contentElements = Array.from(section.children).filter(child => 
+      !child.classList.contains('section-metadata')
+    );
+
+    contentElements.forEach(element => {
+      const clone = element.cloneNode(true);
+      moveInstrumentation(element, clone);
+      tabPanel.appendChild(clone);
     });
 
     tabsNav.appendChild(tabButton);
@@ -87,7 +89,7 @@ export default function processTabs(main, moveInstrumentation) {
   main.appendChild(topContainer);
 
   // Add click handler using event delegation
-  tabsNav.addEventListener('click', (event) => {
+  tabsWrapper.addEventListener('click', (event) => {
     const clickedTab = event.target.closest('.tab-title');
     if (!clickedTab) return;
 
