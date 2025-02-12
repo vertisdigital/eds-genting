@@ -2,13 +2,19 @@ import Heading from '../../shared-components/Heading.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 
 /**
 * Loads and decorates the Hero Banner
 * @param {Element} block The herobanner block element
 */
 export default function decorate(block) {
+
+  const featureResource = block.querySelector('[data-aue-label="Feature"]');
+
   const container = document.createElement('div');
+  moveInstrumentation(featureResource, container);
 
   container.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
 
@@ -24,9 +30,7 @@ export default function decorate(block) {
   if (titleElement) {
     const titleText = titleElement.textContent;
     const header = document.createElement('header');
-    header.setAttribute('data-aue-prop', 'title');
-    header.setAttribute('data-aue-type', 'text');
-    header.setAttribute('data-aue-label', 'Title');
+    moveInstrumentation(titleElement, header);
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
     header.append(parsedHtml);
@@ -40,10 +44,7 @@ export default function decorate(block) {
     const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
     const parsedHtml = stringToHTML(headingHtml);
-
-    parsedHtml.setAttribute('data-aue-prop', 'heading');
-    parsedHtml.setAttribute('data-aue-label', 'Heading');
-    parsedHtml.setAttribute('data-aue-type', 'text');
+    moveInstrumentation(headingElement, parsedHtml);
     aboutUsLeftContent.append(parsedHtml);
     headingElement.remove();
   }
@@ -56,9 +57,7 @@ export default function decorate(block) {
     const subHeadingElement = document.createElement('p');
     subHeadingElement.className = 'about-us-left-sub-heading';
     subHeadingElement.textContent = subHeadingText;
-    Array.from(subHeading.attributes).forEach((attr) => {
-      subHeadingElement.setAttribute(attr.name, attr.value);
-    });
+    moveInstrumentation(subHeading, subHeadingElement);
 
     aboutUsLeftContent.appendChild(subHeadingElement);
     subHeading.remove();
@@ -69,9 +68,7 @@ export default function decorate(block) {
   if (linkField) {
     // Preserve original container
     const linkContainer = document.createElement('div');
-    Array.from(linkField.attributes).forEach((attr) => {
-      linkContainer.setAttribute(attr.name, attr.value);
-    });
+    moveInstrumentation(linkField, linkContainer);
 
     // Create link text div
     const linkTextDiv = document.createElement('div');
@@ -89,9 +86,7 @@ export default function decorate(block) {
       const linkElement = document.createElement('a');
 
       // Copy all attributes from original link
-      Array.from(originalLink.attributes).forEach((attr) => {
-        linkElement.setAttribute(attr.name, attr.value);
-      });
+      moveInstrumentation(originalLink, linkElement);
 
       // Set additional attributes
       linkElement.className = 'button';
@@ -125,10 +120,8 @@ export default function decorate(block) {
     aboutUsDescription.forEach((description) => {
     // Create feature item container
       const featureContainer = document.createElement('div');
-      Array.from(description.attributes).forEach((attr) => {
-        featureContainer.setAttribute(attr.name, attr.value);
-        featureContainer.classList.add('about-us-right-content');
-      });
+      featureContainer.classList.add('about-us-right-content');
+      moveInstrumentation(description, featureContainer);
 
       // Handle image feature
       const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
@@ -151,9 +144,8 @@ export default function decorate(block) {
           });
 
           const parsedImage = stringToHTML(imageHtml);
-          Array.from(imageElement.attributes).forEach((attr) => {
-            parsedImage.querySelector('img').setAttribute(attr.name, attr.value);
-          });
+          moveInstrumentation(imageElement, parsedImage.querySelector('img'));
+
           imageContainer.appendChild(parsedImage);
           featureContainer.appendChild(imageContainer);
           featureContainer.classList.add('image-container');
@@ -171,9 +163,7 @@ export default function decorate(block) {
         textContent.forEach((text) => {
           const span = document.createElement('span');
           span.textContent = text.textContent;
-          Array.from(text.attributes).forEach((attr) => {
-            span.setAttribute(attr.name, attr.value);
-          });
+          moveInstrumentation(text, span);
           statisticDiv.appendChild(span);
         });
 
