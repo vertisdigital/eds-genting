@@ -753,6 +753,8 @@ main .section.highlight {
   display: flex;
   margin-bottom: 36px;
   gap: 24px;
+  position: relative;
+  z-index: 2;
 }
 
 .tab-title {
@@ -767,10 +769,12 @@ main .section.highlight {
   border: none;
   background: none;
   border-bottom: 2px solid var(--body-text-color);
-  cursor: pointer;
+  cursor: pointer !important;
   user-select: none;
   transition: all 0.3s ease;
   min-width: 200px;
+  pointer-events: auto !important;
+  z-index: 1;
 }
 
 .tab-title:hover {

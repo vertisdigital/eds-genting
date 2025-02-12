@@ -44,6 +44,13 @@ export default function processTabs(main, moveInstrumentation) {
     tabButton.dataset.tabIndex = index;
     tabButton.textContent = tabTitle;
     tabButton.type = 'button';
+    tabButton.style.pointerEvents = 'auto'; // Ensure clicks are captured
+    tabButton.style.cursor = 'pointer';
+
+    // Add individual click handler for debugging
+    tabButton.addEventListener('click', (e) => {
+      console.log('Direct button click:', e.target);
+    });
 
     // Create tab panel
     const tabPanel = document.createElement('div');
@@ -83,12 +90,18 @@ export default function processTabs(main, moveInstrumentation) {
 
   // Add click handler using event delegation
   tabsWrapper.addEventListener('click', (event) => {
+    console.log('Tab click event fired', event.target);
     const clickedTab = event.target.closest('.tab-title');
-    if (!clickedTab) return;
+    if (!clickedTab) {
+      console.log('No tab title found');
+      return;
+    }
+    console.log('Clicked tab:', clickedTab);
 
     const index = parseInt(clickedTab.dataset.tabIndex, 10);
     const allTabs = tabsNav.querySelectorAll('.tab-title');
     const allPanels = tabsContent.querySelectorAll('.tab-panel');
+    console.log('Found tabs:', allTabs.length, 'panels:', allPanels.length);
 
     // Update tabs
     allTabs.forEach((tab, i) => {
