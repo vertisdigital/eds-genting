@@ -37,19 +37,13 @@ export function moveAttributes(from, to, attributes) {
  * @param {Element} to the element to copy attributes to
  */
 export function moveInstrumentation(from, to) {
-  if (!from || !to) return;
-  
-  // Get all data attributes and configuration attributes
-  const attributesToMove = [...from.attributes]
-    .map(({ nodeName }) => nodeName)
-    .filter(attr => (
-      attr.startsWith('data-') || 
-      attr.startsWith('data-aue-') || 
-      attr.startsWith('data-richtext-') ||
-      attr === 'class'
-    ));
-
-  moveAttributes(from, to, attributesToMove);
+  moveAttributes(
+    from,
+    to,
+    [...from.attributes]
+      .map(({ nodeName }) => nodeName)
+      .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-')),
+  );
 }
 
 /**
