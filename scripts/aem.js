@@ -745,3 +745,16 @@ export {
   waitForFirstImage,
   wrapTextNodes,
 };
+
+export function getConfig() {
+  return {
+    // ... other config options ...
+    preserveAttributes: [
+      'data-aue-prop',
+      'data-aue-model', 
+      'data-aue-label',
+      'data-aue-resource'
+    ],
+    // ... rest of config ...
+  };
+}

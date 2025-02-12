@@ -37,13 +37,29 @@ export function moveAttributes(from, to, attributes) {
  * @param {Element} to the element to copy attributes to
  */
 export function moveInstrumentation(from, to) {
-  moveAttributes(
-    from,
-    to,
-    [...from.attributes]
-      .map(({ nodeName }) => nodeName)
-      .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-')),
-  );
+  if (!from || !to) return;
+  
+  // Preserve all data attributes
+  const dataAttributes = [
+    'data-aue-prop',
+    'data-aue-model',
+    'data-aue-label',
+    'data-aue-resource'
+  ];
+  
+  dataAttributes.forEach(attr => {
+    const value = from.getAttribute(attr);
+    if (value) {
+      to.setAttribute(attr, value);
+    }
+  });
+  
+  // Also preserve any other data- attributes
+  Array.from(from.attributes).forEach(attr => {
+    if (attr.name.startsWith('data-') && !dataAttributes.includes(attr.name)) {
+      to.setAttribute(attr.name, attr.value);
+    }
+  });
 }
 
 /**
