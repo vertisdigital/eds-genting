@@ -28,14 +28,14 @@ export default function decorate(block) {
   // Find the title and replace it with a heading
   const titleElement = block.querySelector('[data-aue-prop="title"]');
   if (titleElement) {
-    const header = document.createElement('div');
+    const header = document.createElement('header');
     moveInstrumentation(titleElement, header);
     const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
     header.append(parsedHtml);
     aboutUsLeftContent.append(header);
-    //titleElement.remove();
+    titleElement.remove();
   }
 
   // Find the heading and replace it with a heading
@@ -46,7 +46,7 @@ export default function decorate(block) {
     const parsedHtml = stringToHTML(headingHtml);
     moveInstrumentation(headingElement, parsedHtml);
     aboutUsLeftContent.append(parsedHtml);
-    //headingElement.remove();
+    headingElement.remove();
   }
 
   // Find the sub-heading and replace it with a sub-heading
@@ -60,7 +60,7 @@ export default function decorate(block) {
     subHeadingElement.textContent = subHeadingText;
 
     aboutUsLeftContent.appendChild(subHeadingElement);
-    //subHeading.remove();
+    subHeading.remove();
   }
 
   // Find the LinkField and replace it with arrow icon
