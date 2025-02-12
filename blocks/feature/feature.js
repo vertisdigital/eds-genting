@@ -29,25 +29,11 @@ export default function decorate(block) {
   const titleElement = block.querySelector('[data-aue-prop="title"]');
   if (titleElement) {
     const header = document.createElement('header');
+    moveInstrumentation(titleElement, header);
     const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
-    
-    // Add error checking and logging
-    const h3Element = parsedHtml.querySelector('h3');
-    if (!h3Element) {
-      console.error('H3 element not found in parsed HTML:', parsedHtml);
-      // Fallback: create h3 directly if Heading component failed
-      const h3 = document.createElement('h3');
-      h3.textContent = titleText;
-      h3.className = 'about-us-left-title';
-      moveInstrumentation(titleElement, h3);
-      header.append(h3);
-    } else {
-      moveInstrumentation(titleElement, h3Element);
-      header.append(parsedHtml);
-    }
-    
+    header.append(parsedHtml);
     aboutUsLeftContent.append(header);
     titleElement.remove();
   }
@@ -58,21 +44,8 @@ export default function decorate(block) {
     const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
     const parsedHtml = stringToHTML(headingHtml);
-    
-    const h2Element = parsedHtml.querySelector('h2');
-    if (!h2Element) {
-      console.error('H2 element not found in parsed HTML:', parsedHtml);
-      // Fallback: create h2 directly
-      const h2 = document.createElement('h2');
-      h2.textContent = headingText;
-      h2.className = 'about-us-left-heading';
-      moveInstrumentation(headingElement, h2);
-      aboutUsLeftContent.append(h2);
-    } else {
-      moveInstrumentation(headingElement, h2Element);
-      aboutUsLeftContent.append(parsedHtml);
-    }
-    
+    moveInstrumentation(headingElement, parsedHtml);
+    aboutUsLeftContent.append(parsedHtml);
     headingElement.remove();
   }
 
