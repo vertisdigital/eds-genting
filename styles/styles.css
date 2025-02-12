@@ -764,7 +764,7 @@ main .section.highlight {
   font-weight: 600;
   line-height: 30px;
   border-bottom: 2px solid var(--body-text-color);
-  cursor: pointer;
+  cursor: pointer !important;
   user-select: none;
   transition: all 0.3s ease;
 }

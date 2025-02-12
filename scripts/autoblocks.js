@@ -27,8 +27,16 @@ export default function processTabs(main, moveInstrumentation) {
     console.log(`Processing tab section ${index}`);
     
     // Get tab title from metadata
-    const metadata = section.querySelector('.section-metadata > div:last-child');
-    const tabTitle = metadata?.textContent.trim() || `Tab ${index + 1}`;
+    const metadata = section.querySelector('.section-metadata');
+    let tabTitle = `Tab ${index + 1}`; // Default title
+    
+    if (metadata) {
+      const titleDiv = metadata.querySelector('div:last-child');
+      if (titleDiv && titleDiv.textContent.trim()) {
+        tabTitle = titleDiv.textContent.trim();
+      }
+    }
+    
     console.log('Tab title:', tabTitle);
 
     // Create tab button
@@ -39,6 +47,7 @@ export default function processTabs(main, moveInstrumentation) {
     tabButton.setAttribute('tabindex', index === 0 ? '0' : '-1');
     tabButton.dataset.tabIndex = index;
     tabButton.textContent = tabTitle;
+    tabButton.style.cursor = 'pointer'; // Ensure cursor is pointer
 
     // Create tab panel
     const tabPanel = document.createElement('div');
@@ -58,7 +67,7 @@ export default function processTabs(main, moveInstrumentation) {
     // Move all non-metadata content to the panel
     Array.from(section.children).forEach(child => {
       if (!child.classList?.contains('section-metadata')) {
-        tabPanel.appendChild(child);
+        tabPanel.appendChild(child.cloneNode(true));
       }
     });
 
@@ -66,7 +75,7 @@ export default function processTabs(main, moveInstrumentation) {
     tabsContent.appendChild(tabPanel);
   });
 
-  // Remove original sections
+  // Remove original sections after cloning content
   sections.forEach(section => section.remove());
 
   // Build tab structure
@@ -75,24 +84,14 @@ export default function processTabs(main, moveInstrumentation) {
   topContainer.appendChild(tabsWrapper);
   main.appendChild(topContainer);
 
-  // Add click handler with debugging
+  // Add click handler
   tabsNav.addEventListener('click', (event) => {
-    console.log('Tab click detected');
     const clickedTab = event.target.closest('.tab-title');
-    if (!clickedTab) {
-      console.log('No tab title element found in click target');
-      return;
-    }
+    if (!clickedTab) return;
 
-    console.log('Clicked tab:', clickedTab.textContent);
     const index = parseInt(clickedTab.dataset.tabIndex, 10);
-    console.log('Tab index:', index);
-
     const allTabs = tabsNav.querySelectorAll('.tab-title');
     const allPanels = tabsContent.querySelectorAll('.tab-panel');
-    
-    console.log('Number of tabs:', allTabs.length);
-    console.log('Number of panels:', allPanels.length);
 
     // Update tabs
     allTabs.forEach((tab, i) => {
@@ -108,8 +107,6 @@ export default function processTabs(main, moveInstrumentation) {
       panel.classList.toggle('active', isVisible);
       panel.setAttribute('aria-hidden', !isVisible);
     });
-
-    console.log('Tab switch complete');
   });
 
   // Add keyboard navigation
