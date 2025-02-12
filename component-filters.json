@@ -29,7 +29,8 @@
       "enquiry",
       "tiles",
       "textsection",
-      "textmediablock"
+      "textmediablock",
+      "projectslist"
     ]
   },
   {
@@ -62,7 +63,8 @@
       "tiles",
       "textsection",
       "textmediablock",
-      "linkField"
+      "linkField",
+      "projectslist"
     ]
   },
   {
@@ -133,6 +135,12 @@
     "components": [
       "media",
       "textsection"
+    ]
+  },
+  {
+    "id": "projectslist",
+    "components": [
+      "projectslistitem"
     ]
   }
 ]
