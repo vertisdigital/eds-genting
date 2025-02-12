@@ -376,7 +376,7 @@ function wrapTextNodes(block) {
         || nodeName.startsWith('data-richtext'))
       .forEach(({ nodeName, nodeValue }) => {
         wrapper.setAttribute(nodeName, nodeValue);
-        el.removeAttribute(nodeName);
+        //el.removeAttribute(nodeName);
       });
     el.append(wrapper);
   };
