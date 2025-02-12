@@ -10,9 +10,6 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 * @param {Element} block The herobanner block element
 */
 export default function decorate(block) {
-  // Create a unique identifier for this block instance
-  const blockId = `feature-${Math.random().toString(36).substr(2, 9)}`;
-  block.setAttribute('id', blockId);
 
   // const featureResource = block.querySelector('[data-aue-label="Feature"]');
 
@@ -28,14 +25,17 @@ export default function decorate(block) {
   const aboutUsLeftContent = document.createElement('div');
   aboutUsLeftContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-left');
 
-  // Scope all querySelector calls to this specific block
+  // Find the title and replace it with a heading
   const titleElement = block.querySelector('[data-aue-prop="title"]');
   if (titleElement) {
     const header = document.createElement('header');
-    moveInstrumentation(titleElement, header);
     const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
+    
+    // Move instrumentation to the actual h3 element, not the header
+    moveInstrumentation(titleElement, parsedHtml.querySelector('h3'));
+    
     header.append(parsedHtml);
     aboutUsLeftContent.append(header);
     titleElement.remove();
@@ -118,7 +118,7 @@ export default function decorate(block) {
     const aboutUsRightContent = document.createElement('div');
     aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
-    // Scope the querySelectorAll to this specific block
+    // Collect all imageAndDescription elements first
     const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
     aboutUsDescription.forEach((description) => {
     // Create feature item container
@@ -191,7 +191,6 @@ export default function decorate(block) {
       aboutUsRightContent.appendChild(featureContainer);
     });
 
-    // Clear only this block's content
     block.innerHTML = '';
     aboutUsStats.appendChild(aboutUsLeftContent);
     aboutUsStats.appendChild(aboutUsRightContent);
