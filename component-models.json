@@ -636,7 +636,6 @@
         "label": "Section Title",
         "required": true,
         "validation": {
-          "minLength": 1,
           "maxLength": 100,
           "customErrorMsg": "Heading cannot exceed 100 characters"
         }
@@ -997,12 +996,12 @@
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "longdescription",
         "label": "Long Description",
         "valueType": "string",
         "validation": {
-          "maxSize": 250,
+          "maxLength": 250,
           "customErrorMsg": "Long description cannot exceed 250 characters"
         }
       },
