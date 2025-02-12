@@ -44,8 +44,8 @@ export default function decorate(block) {
     const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
     const parsedHtml = stringToHTML(headingHtml);
-    aboutUsLeftContent.append(parsedHtml);
     moveInstrumentation(headingElement, parsedHtml);
+    aboutUsLeftContent.append(parsedHtml);
     //headingElement.remove();
   }
 
