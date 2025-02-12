@@ -28,17 +28,32 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content');
 
-    // Get all direct children excluding metadata
+    // Get only the authored tab content blocks
     const tabBlocks = Array.from(tabSection.children).filter(child => 
-      !child.classList.contains('section-metadata')
+      !child.classList.contains('section-metadata') &&
+      (child.hasAttribute('data-richtext-prop') || 
+       child.getAttribute('data-aue-model') === 'textmediablock' ||
+       child.getAttribute('data-aue-type') === 'container')
     );
 
-    // Create tabs for each block
+    // Create tabs for authored content only
     tabBlocks.forEach((block, index) => {
       // Create tab button
       const tabButton = document.createElement('button');
       tabButton.classList.add('tab-title');
-      tabButton.textContent = `Tab ${index + 1}`;
+      
+      // Get tab title from content
+      let tabTitle;
+      if (block.hasAttribute('data-richtext-prop')) {
+        // For text blocks, use first line as title
+        tabTitle = block.textContent.split('\n')[0].trim();
+      } else {
+        // For container blocks, try to get heading
+        const heading = block.querySelector('[data-aue-prop="heading"]');
+        tabTitle = heading ? heading.textContent.trim() : `Tab ${index + 1}`;
+      }
+      
+      tabButton.textContent = tabTitle;
       tabButton.dataset.index = index.toString();
 
       // Create tab panel
@@ -59,8 +74,8 @@ export default function processTabs(main, moveInstrumentation) {
       tabsContent.appendChild(tabPanel);
     });
 
-    // Add click handlers with event delegation
-    tabsWrapper.addEventListener('click', (event) => {
+    // Add click handlers
+    tabsNav.addEventListener('click', (event) => {
       const clickedTab = event.target.closest('.tab-title');
       if (!clickedTab) return;
 
@@ -68,9 +83,11 @@ export default function processTabs(main, moveInstrumentation) {
       const allTabs = tabsNav.querySelectorAll('.tab-title');
       const allPanels = tabsContent.querySelectorAll('.tab-panel');
 
+      // Remove active class from all tabs and panels
       allTabs.forEach(tab => tab.classList.remove('active'));
       allPanels.forEach(panel => panel.classList.remove('active'));
 
+      // Add active class to clicked tab and corresponding panel
       clickedTab.classList.add('active');
       allPanels[index].classList.add('active');
     });
