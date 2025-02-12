@@ -49,16 +49,9 @@ export default function processTabs(main, moveInstrumentation) {
   const tabsContent = document.createElement('div');
   tabsContent.classList.add('tabs-content');
 
-  // Store all blocks that need to be loaded
-  const blocksToLoad = new Set();
-
   sections.forEach((section, index) => {
-    const metadata = section.querySelector(
-      '.section-metadata > div :last-child',
-    );
-    const tabTitle = metadata
-      ? metadata.textContent.trim()
-      : `Tab ${index + 1}`;
+    const metadata = section.querySelector('.section-metadata > div :last-child');
+    const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
 
     const tabButton = document.createElement('div');
     tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
@@ -67,9 +60,14 @@ export default function processTabs(main, moveInstrumentation) {
 
     const tabPanel = document.createElement('div');
     tabPanel.classList.add('tab-panel');
-    if (index === 0) tabPanel.classList.add('active');
 
-    // Preserve block information and collect blocks to load
+    // Set initial active state for first tab
+    if (index === 0) {
+      tabButton.classList.add('active');
+      tabPanel.classList.add('active');
+    }
+
+    // Process blocks in the section
     const blocks = section.querySelectorAll('div[class]');
     blocks.forEach(block => {
       const classes = Array.from(block.classList);
@@ -77,48 +75,51 @@ export default function processTabs(main, moveInstrumentation) {
         if (!className.includes('section-metadata') && 
             !className.startsWith('tabs-') && 
             !className.startsWith('col-')) {
-          block.dataset.blockName = className;
-          blocksToLoad.add(className);
+          // Create a new block element
+          const newBlock = document.createElement('div');
+          newBlock.classList.add(className, 'block');
+          newBlock.dataset.blockName = className;
+          
+          // Copy content and attributes
+          newBlock.innerHTML = block.innerHTML;
+          Array.from(block.attributes).forEach(attr => {
+            if (!attr.name.startsWith('class')) {
+              newBlock.setAttribute(attr.name, attr.value);
+            }
+          });
+          
+          // Replace original block with new one
+          block.replaceWith(newBlock);
+          
+          // If this is in the first tab, load the block immediately
+          if (index === 0) {
+            loadBlock(newBlock);
+          }
         }
       });
     });
 
-    // Clone with block information preserved
-    const clonedContent = section.cloneNode(true);
-    clonedContent.querySelector('.section-metadata')?.remove();
-
-    // Process blocks in cloned content
-    const clonedBlocks = clonedContent.querySelectorAll('div[data-block-name]');
-    clonedBlocks.forEach(block => {
-      block.classList.add('block', block.dataset.blockName);
+    // Move content to panel
+    Array.from(section.children).forEach(child => {
+      if (!child.classList?.contains('section-metadata')) {
+        tabPanel.appendChild(child);
+      }
     });
-
-    moveInstrumentation(section, tabPanel);
-
-    while (clonedContent.firstChild) {
-      tabPanel.appendChild(clonedContent.firstChild);
-    }
 
     tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
   });
 
-  // Remove the original sections
-  sections.forEach((section) => section.parentNode.removeChild(section));
+  // Remove original sections
+  sections.forEach(section => section.remove());
 
+  // Build structure
   tabsWrapper.appendChild(tabsNav);
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
+  main.appendChild(topContainer);
 
-  // Insert at the original position
-  const firstSection = sections[0];
-  if (firstSection && firstSection.parentNode) {
-    firstSection.parentNode.insertBefore(topContainer, firstSection);
-  } else {
-    main.appendChild(topContainer);
-  }
-
-  // Handle tab switching with block loading
+  // Handle tab switching
   tabsNav.addEventListener('click', async (event) => {
     const tabButton = event.target.closest('.tab-title');
     if (!tabButton) return;
@@ -141,22 +142,9 @@ export default function processTabs(main, moveInstrumentation) {
     if (activePanel) {
       activePanel.classList.add('active');
       
-      // Load blocks in the newly active panel
+      // Load blocks in the newly active panel if not already loaded
       const blocks = activePanel.querySelectorAll('[data-block-name]');
       await Promise.all(Array.from(blocks).map(block => loadBlock(block)));
     }
-  });
-
-  // Load blocks in the first tab immediately
-  const firstPanel = tabsContent.querySelector('.tab-panel.active');
-  if (firstPanel) {
-    const blocks = firstPanel.querySelectorAll('[data-block-name]');
-    Promise.all(Array.from(blocks).map(block => loadBlock(block)));
-  }
-
-  // Preload CSS for all blocks
-  blocksToLoad.forEach(blockName => {
-    const cssPath = `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`;
-    loadCSS(cssPath);
   });
 }
