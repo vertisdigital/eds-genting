@@ -28,7 +28,7 @@ export default function decorate(block) {
   // Find the title and replace it with a heading
   const titleElement = block.querySelector('[data-aue-prop="title"]');
   if (titleElement) {
-    const header = document.createElement('header');
+    const header = document.createElement('div');
     moveInstrumentation(titleElement, header);
     const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
