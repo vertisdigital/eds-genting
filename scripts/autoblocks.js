@@ -50,11 +50,12 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content');
  
-    // Process each section
+    // Get tab sections
     const tabSections = Array.from(section.children).filter(
       child => !child.classList.contains('section-metadata')
     );
  
+    // Create tab buttons
     tabSections.forEach((tabSection, index) => {
       const metadata = tabSection.querySelector('.section-metadata > div :last-child');
       const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
@@ -64,30 +65,16 @@ export default function processTabs(main, moveInstrumentation) {
       tabButton.dataset.index = index;
       tabButton.textContent = tabTitle;
  
-      const tabPanel = document.createElement('div');
-      tabPanel.classList.add('tab-panel');
- 
+      // Set initial active state
       if (index === 0) {
         tabButton.classList.add('active');
-        tabPanel.classList.add('active');
+        tabSection.classList.add('tab-panel', 'active');
+      } else {
+        tabSection.classList.add('tab-panel');
       }
  
-      // Create a clone for the tab panel
-      const clonedContent = tabSection.cloneNode(true);
-      Array.from(clonedContent.children).forEach(child => {
-        if (!child.classList?.contains('section-metadata')) {
-          tabPanel.appendChild(child);
-        }
-      });
- 
       tabsNav.appendChild(tabButton);
-      tabsContent.appendChild(tabPanel);
- 
-      // Hide original section but keep it in DOM
-      tabSection.style.visibility = 'hidden';
-      tabSection.style.height = '0';
-      tabSection.style.overflow = 'hidden';
-      tabSection.style.position = 'absolute';
+      tabsContent.appendChild(tabSection);
     });
  
     // Build structure
@@ -95,8 +82,9 @@ export default function processTabs(main, moveInstrumentation) {
     tabsWrapper.appendChild(tabsContent);
     topContainer.appendChild(tabsWrapper);
  
-    // Add visual tabs at the beginning
-    section.insertBefore(topContainer, section.firstChild);
+    // Replace section content while keeping the section
+    section.innerHTML = '';
+    section.appendChild(topContainer);
  
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
