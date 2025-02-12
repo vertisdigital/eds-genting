@@ -3,82 +3,125 @@
  * @param {Element} main The container element
  */
 export default function processTabs(main, moveInstrumentation) {
+  // Find only the top-level tab sections
   const sections = [
-    ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
+    ...main.querySelectorAll('[data-aue-model="tabs"]'),
   ];
-  if (sections.length === 0) return;
+  
+  if (!sections.length) return;
 
-  const topContainer = document.createElement('div');
-  topContainer.classList = 'container-xl container-lg container-md container-sm';
-
-  const tabsWrapper = document.createElement('div');
-  tabsWrapper.classList.add('tabs-container');
-
-  const tabsNav = document.createElement('div');
-  tabsNav.classList.add('tabs-header','row');
-
-  const tabsContent = document.createElement('div');
-  tabsContent.classList.add('tabs-content');
-
-  sections.forEach((section, index) => {
-    const metadata = section.querySelector(
-      '.section-metadata > div :last-child',
-    );
-    const tabTitle = metadata
-      ? metadata.textContent.trim()
-      : `CustTitle ${index + 1}`;
-
-    const tabButton = document.createElement('div');
-    tabButton.classList.add('tab-title','col-xl-6','col-lg-6','col-md-3','col-sm-2');
-    tabButton.dataset.index = index;
-    tabButton.textContent = tabTitle;
-
-    const tabPanel = document.createElement('div');
-    tabPanel.classList.add('tab-panel');
-    if (index === 0) tabPanel.classList.add('active');
-
-    moveInstrumentation(section, tabPanel);
-    // Clone the section content instead of moving it
-    const clonedContent = section.cloneNode(true);
-    clonedContent.querySelector('.section-metadata')?.remove(); // Remove metadata from content
-
-    while (clonedContent.firstChild) {
-      tabPanel.appendChild(clonedContent.firstChild);
+  sections.forEach((tabSection) => {
+    // Skip if this is a nested tab
+    if (tabSection.closest('[data-aue-model="tabs"]') !== tabSection) {
+      return;
     }
-    tabsNav.appendChild(tabButton);
-    tabsContent.appendChild(tabPanel);
+
+    // Ensure tab section has the required classes
+    tabSection.classList.add('tabs', 'block');
+    
+    // Create container structure
+    const tabsWrapper = document.createElement('div');
+    tabsWrapper.classList.add('tabs-container');
+
+    const tabsNav = document.createElement('div');
+    tabsNav.classList.add('tabs-header');
+
+    const tabsContent = document.createElement('div');
+    tabsContent.classList.add('tabs-content');
+
+    // Get all direct children excluding metadata
+    const tabBlocks = Array.from(tabSection.children).filter(child => 
+      !child.classList.contains('section-metadata')
+    );
+
+    // Store original content references
+    const tabContents = tabBlocks.map(block => ({
+      content: block,
+      title: block.hasAttribute('data-richtext-prop') ? 
+        block.textContent.trim() : 
+        (block.querySelector('[data-aue-prop="heading"]')?.textContent.trim() || `Tab ${index + 1}`)
+    }));
+
+    // Create tabs for each content block
+    tabContents.forEach(({ content, title }, index) => {
+      // Create tab button
+      const tabButton = document.createElement('button');
+      tabButton.classList.add('tab-title');
+      tabButton.textContent = title;
+      tabButton.setAttribute('role', 'tab');
+      tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+      tabButton.dataset.index = index.toString();
+
+      // Create tab panel
+      const tabPanel = document.createElement('div');
+      tabPanel.classList.add('tab-panel');
+      tabPanel.setAttribute('role', 'tabpanel');
+      tabPanel.id = `tab-panel-${index}`;
+      tabButton.setAttribute('aria-controls', `tab-panel-${index}`);
+
+      // Set initial active state for first tab
+      if (index === 0) {
+        tabButton.classList.add('active');
+        tabPanel.classList.add('active');
+      }
+
+      // Move the content to panel
+      tabPanel.appendChild(content);
+
+      // Add button to nav and panel to content
+      tabsNav.appendChild(tabButton);
+      tabsContent.appendChild(tabPanel);
+    });
+
+    // Add click handlers
+    tabsNav.addEventListener('click', (event) => {
+      const clickedTab = event.target.closest('.tab-title');
+      if (!clickedTab) return;
+
+      // Store the index before any DOM modifications
+      const index = parseInt(clickedTab.dataset.index, 10);
+      const allTabs = tabsNav.querySelectorAll('.tab-title');
+      const allPanels = tabsContent.querySelectorAll('.tab-panel');
+
+      // Update tab states
+      allTabs.forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
+      clickedTab.classList.add('active');
+      clickedTab.setAttribute('aria-selected', 'true');
+
+      // Update panel states
+      allPanels.forEach(panel => panel.classList.remove('active'));
+      if (allPanels[index]) {
+        allPanels[index].classList.add('active');
+      }
+
+      // Prevent any default behavior
+      event.preventDefault();
+      event.stopPropagation();
+    });
+
+    // Assemble the tabs structure
+    tabsWrapper.appendChild(tabsNav);
+    tabsWrapper.appendChild(tabsContent);
+
+    // Clear original content except metadata
+    const metadata = tabSection.querySelector('.section-metadata');
+    tabSection.innerHTML = '';
+    if (metadata) {
+      tabSection.appendChild(metadata);
+    }
+    
+    // Add the new structure
+    tabSection.appendChild(tabsWrapper);
+
+    // Mark this section as processed
+    tabSection.dataset.tabsProcessed = 'true';
+
+    // Move instrumentation if needed
+    if (moveInstrumentation) {
+      moveInstrumentation(tabSection, tabsWrapper);
+    }
   });
-
-  // Remove the original section after moving content
-  sections.forEach((section) => section.parentNode.removeChild(section));
-
-  tabsWrapper.appendChild(tabsNav);
-  tabsWrapper.appendChild(tabsContent);
-  topContainer.appendChild(tabsWrapper);
-  main.appendChild(topContainer);
-
-  // Handle tab switching
-  tabsNav.addEventListener('click', (event) => {
-    const tabButton = event.target.closest('.tab-title'); // Ensure we target the correct element
-    if (!tabButton) return;
-
-    const index = parseInt(
-      tabButton.dataset.index ?? tabButton.parentNode.dataset.index,
-      10,
-    ); // Convert to integer
-    if (Number.isNaN(index)) return; // Prevent errors if index is undefined 
-
-    tabsWrapper
-      .querySelectorAll('.tab-title')
-      .forEach((btn) => btn.classList.remove('active'));
-    tabsWrapper
-      .querySelectorAll('.tab-panel')
-      .forEach((panel) => panel.classList.remove('active'));
-
-    tabButton.classList.add('active');
-    tabsContent.children[index]?.classList.add('active'); // Ensure safe access
-  });
-
-  // Activate the first tab by default
-  tabsNav.children[0]?.classList.add('active');
 }
