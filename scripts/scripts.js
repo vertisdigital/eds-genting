@@ -105,7 +105,7 @@ async function loadEager(doc) {
       loadFonts();
     }
   } catch (e) {
-    // do nothing
+    // do nothing  
   }
 }
 
