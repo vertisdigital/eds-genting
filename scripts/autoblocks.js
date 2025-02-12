@@ -12,7 +12,7 @@ export default function processTabs(main, moveInstrumentation) {
 
   // Find only the top-level tab sections
   const sections = [
-    ...main.querySelectorAll(':scope > [data-aue-model="tabs"]'),
+    ...main.querySelectorAll('[data-aue-model="tabs"]'),
   ];
   console.log('Found tab sections:', sections.length);
   
@@ -33,42 +33,37 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsWrapper = document.createElement('div');
     tabsWrapper.classList.add('tabs-container');
 
-    // Create tab header container
     const tabsNav = document.createElement('div');
     tabsNav.classList.add('tabs-header');
 
-    // Create tab content container
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content');
 
-    // Get only the content blocks (text and blocks), excluding metadata and nested tabs
+    // Get all direct children excluding metadata
     const tabBlocks = Array.from(tabSection.children).filter(child => 
-      !child.classList.contains('section-metadata') &&
-      child.getAttribute('data-aue-model') !== 'tabs' &&
-      (child.hasAttribute('data-richtext-resource') || 
-       child.getAttribute('data-aue-type') === 'container')
+      !child.classList.contains('section-metadata')
     );
-    console.log('Found tab blocks:', tabBlocks.length);
 
-    // Create default tab titles
-    const defaultTitles = ['RWS', 'RWS 2.0'];
-
-    // Create tabs only for the first two blocks
-    tabBlocks.slice(0, 2).forEach((block, index) => {
-      console.log(`Creating tab ${index} with title: ${defaultTitles[index]}`);
-      
+    // Create tabs for each block
+    tabBlocks.forEach((block, index) => {
       // Create tab button
       const tabButton = document.createElement('button');
       tabButton.classList.add('tab-title');
-      tabButton.textContent = defaultTitles[index];
+      
+      // Get tab title from the content
+      let tabTitle = 'Tab ' + (index + 1);
+      if (block.hasAttribute('data-richtext-prop')) {
+        // For text blocks, use their content
+        tabTitle = block.textContent.trim();
+      } else if (block.querySelector('[data-aue-prop="heading"]')) {
+        // For container blocks, try to get the heading
+        tabTitle = block.querySelector('[data-aue-prop="heading"]').textContent.trim();
+      }
+      
+      tabButton.textContent = tabTitle;
       tabButton.setAttribute('role', 'tab');
       tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
       tabButton.dataset.index = index.toString();
-
-      // Create the indicator element
-      const indicator = document.createElement('div');
-      indicator.classList.add('tab-indicator');
-      tabButton.appendChild(indicator);
 
       // Create tab panel
       const tabPanel = document.createElement('div');
@@ -84,7 +79,7 @@ export default function processTabs(main, moveInstrumentation) {
       }
 
       // Move the content to panel
-      tabPanel.appendChild(block.cloneNode(true));
+      tabPanel.appendChild(block);
 
       // Add button to nav and panel to content
       tabsNav.appendChild(tabButton);
@@ -122,8 +117,12 @@ export default function processTabs(main, moveInstrumentation) {
     tabsWrapper.appendChild(horizontalLine);
     tabsWrapper.appendChild(tabsContent);
 
-    // Clear original content
+    // Clear original content except metadata
+    const metadata = tabSection.querySelector('.section-metadata');
     tabSection.innerHTML = '';
+    if (metadata) {
+      tabSection.appendChild(metadata);
+    }
     
     // Add the new structure
     tabSection.appendChild(tabsWrapper);
