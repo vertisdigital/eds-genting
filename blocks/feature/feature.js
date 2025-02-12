@@ -10,105 +10,125 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 * @param {Element} block The herobanner block element
 */
 export default function decorate(block) {
+  // Handle multiple feature sections if present
+  const featureResources = block.querySelectorAll('[data-aue-label="Feature"]');
+  
+  featureResources.forEach(featureResource => {
+    const container = document.createElement('div');
+    moveInstrumentation(featureResource, container);
+    container.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
 
-  // const featureResource = block.querySelector('[data-aue-label="Feature"]');
+    const aboutUsStats = document.createElement('div');
+    aboutUsStats.classList.add('row', 'about-us-stats');
 
-  const container = document.createElement('div');
-  // moveInstrumentation(featureResource, container);
+    // About-Us left container
+    const aboutUsLeftContent = document.createElement('div');
+    aboutUsLeftContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-left');
 
-  container.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
+    // Find the title and replace it with a heading
+    const titleElement = featureResource.querySelector('[data-aue-prop="title"]');
+    if (titleElement) {
+      const header = document.createElement('header');
+      // Copy all data attributes from titleElement to header
+      Array.from(titleElement.attributes).forEach(attr => {
+        if (attr.name.startsWith('data-')) {
+          header.setAttribute(attr.name, attr.value);
+        }
+      });
 
-  const aboutUsStats = document.createElement('div');
-  aboutUsStats.classList.add('row', 'about-us-stats');
+      const titleText = titleElement.textContent;
+      const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
+      const parsedHtml = stringToHTML(titleHtml);
+      header.append(parsedHtml);
+      aboutUsLeftContent.append(header);
+      titleElement.remove();
+    }
 
-  // About-Us left container
-  const aboutUsLeftContent = document.createElement('div');
-  aboutUsLeftContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-left');
+    // Find the heading and replace it with a heading
+    const headingElement = featureResource.querySelector('[data-aue-prop="heading"]');
+    if (headingElement) {
+      const headingText = headingElement.textContent;
+      const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
+      const parsedHtml = stringToHTML(headingHtml);
+      
+      // Copy all data attributes from headingElement to parsedHtml
+      Array.from(headingElement.attributes).forEach(attr => {
+        if (attr.name.startsWith('data-')) {
+          parsedHtml.setAttribute(attr.name, attr.value);
+        }
+      });
+      
+      aboutUsLeftContent.append(parsedHtml);
+      headingElement.remove();
+    }
 
-  // Find the title and replace it with a heading
-  const titleElement = block.querySelector('[data-aue-prop="title"]');
-  const header = document.createElement('header');
-  moveInstrumentation(titleElement, header);
-  if (titleElement) {
-    const titleText = titleElement.textContent;
-    const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
-    const parsedHtml = stringToHTML(titleHtml);
-    header.append(parsedHtml);
-    aboutUsLeftContent.append(header);
-    titleElement.remove();
-  }
+    // Find the sub-heading and replace it with a sub-heading
+    const subHeading = featureResource.querySelector('[data-aue-prop="sub-heading"]');
+    if (subHeading) {
+      const subHeadingElement = document.createElement('p');
+      subHeadingElement.className = 'about-us-left-sub-heading';
+      
+      // Copy all data attributes from subHeading to subHeadingElement
+      Array.from(subHeading.attributes).forEach(attr => {
+        if (attr.name.startsWith('data-')) {
+          subHeadingElement.setAttribute(attr.name, attr.value);
+        }
+      });
 
-  // Find the heading and replace it with a heading
-  const headingElement = block.querySelector('[data-aue-prop="heading"]');
-  if (headingElement) {
-    const headingText = headingElement.textContent;
-    const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
-    const parsedHtml = stringToHTML(headingHtml);
-    moveInstrumentation(headingElement, parsedHtml);
-    aboutUsLeftContent.append(parsedHtml);
-    headingElement.remove();
-  }
+      const subHeadingText = subHeading.querySelector('p')?.textContent || '';
+      subHeadingElement.textContent = subHeadingText;
 
-  // Find the sub-heading and replace it with a sub-heading
+      aboutUsLeftContent.appendChild(subHeadingElement);
+      subHeading.remove();
+    }
 
-  const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
-  if (subHeading) {
-    const subHeadingElement = document.createElement('p');
-    subHeadingElement.className = 'about-us-left-sub-heading';
-    moveInstrumentation(subHeading, subHeadingElement);
-    const subHeadingText = subHeading.querySelector('p').textContent;
-    subHeadingElement.textContent = subHeadingText;
+    // Find the LinkField and replace it with arrow icon
+    const linkField = featureResource.querySelector('[data-aue-model="linkField"]');
+    if (linkField) {
+      // Preserve original container
+      const linkContainer = document.createElement('div');
+      moveInstrumentation(linkField, linkContainer);
 
-    aboutUsLeftContent.appendChild(subHeadingElement);
-    subHeading.remove();
-  }
+      // Create link text div
+      const linkTextDiv = document.createElement('div');
+      const linkTextP = document.createElement('p');
+      linkTextP.className = 'button-container';
 
-  // Find the LinkField and replace it with arrow icon
-  const linkField = block.querySelector('[data-aue-model="linkField"]');
-  if (linkField) {
-    // Preserve original container
-    const linkContainer = document.createElement('div');
-    moveInstrumentation(linkField, linkContainer);
+      // Handle link text
+      const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
+      const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
+      const originalTargetName = originalTarget.textContent;
+      originalLink.setAttribute('target', originalTargetName);
+      originalLink.innerHTML = '';
+      originalTarget.innerHTML = '';
+      if (originalLink) {
+        const linkElement = document.createElement('a');
 
-    // Create link text div
-    const linkTextDiv = document.createElement('div');
-    const linkTextP = document.createElement('p');
-    linkTextP.className = 'button-container';
+        // Copy all attributes from original link
+        moveInstrumentation(originalLink, linkElement);
 
-    // Handle link text
-    const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
-    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
-    const originalTargetName = originalTarget.textContent;
-    originalLink.setAttribute('target', originalTargetName);
-    originalLink.innerHTML = '';
-    originalTarget.innerHTML = '';
-    if (originalLink) {
-      const linkElement = document.createElement('a');
+        // Set additional attributes
+        linkElement.className = 'button';
 
-      // Copy all attributes from original link
-      moveInstrumentation(originalLink, linkElement);
+        const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
 
-      // Set additional attributes
-      linkElement.className = 'button';
+        const arrowIconName = arrowIcon.textContent.replace('-', '');
+        arrowIcon.innerHTML = '';
+        if (!arrowIcon) {
+          linkElement.textContent = originalLink.textContent;
+        } else {
+          const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
+          linkElement.append(stringToHTML(arrowSVG));
 
-      const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
+          // Assemble link structure
+          linkTextP.appendChild(linkElement);
+          linkTextDiv.appendChild(linkTextP);
+          linkContainer.appendChild(linkTextDiv);
+        }
 
-      const arrowIconName = arrowIcon.textContent.replace('-', '');
-      arrowIcon.innerHTML = '';
-      if (!arrowIcon) {
-        linkElement.textContent = originalLink.textContent;
-      } else {
-        const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
-        linkElement.append(stringToHTML(arrowSVG));
-
-        // Assemble link structure
-        linkTextP.appendChild(linkElement);
-        linkTextDiv.appendChild(linkTextP);
-        linkContainer.appendChild(linkTextDiv);
+        // Add to container
+        aboutUsLeftContent.appendChild(linkContainer);
       }
-
-      // Add to container
-      aboutUsLeftContent.appendChild(linkContainer);
     }
 
     // About-Us right container
@@ -116,12 +136,17 @@ export default function decorate(block) {
     aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
     // Collect all imageAndDescription elements first
-    const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
+    const aboutUsDescription = featureResource.querySelectorAll('[data-aue-model="featureItem"]');
     aboutUsDescription.forEach((description) => {
-    // Create feature item container
       const featureContainer = document.createElement('div');
       featureContainer.classList.add('about-us-right-content');
-      moveInstrumentation(description, featureContainer);
+      
+      // Copy all data attributes from description to featureContainer
+      Array.from(description.attributes).forEach(attr => {
+        if (attr.name.startsWith('data-')) {
+          featureContainer.setAttribute(attr.name, attr.value);
+        }
+      });
 
       // Handle image feature
       const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
@@ -188,10 +213,9 @@ export default function decorate(block) {
       aboutUsRightContent.appendChild(featureContainer);
     });
 
-    block.innerHTML = '';
     aboutUsStats.appendChild(aboutUsLeftContent);
     aboutUsStats.appendChild(aboutUsRightContent);
     container.append(aboutUsStats);
     block.appendChild(container);
-  }
+  });
 }
