@@ -39,8 +39,27 @@
     "components": [
       "text",
       "image",
+      "button",
+      "title",
+      "hero",
+      "herobanner",
       "cards",
-      "linkField"
+      "columns",
+      "fragment",
+      "coreprinciples",
+      "feature",
+      "linkField",
+      "socialLinks",
+      "links",
+      "imageLink",
+      "exploremore",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "tiles",
+      "textsection",
+      "textmediablock",
+      "projectslist"
     ]
   },
   {
