@@ -37,10 +37,6 @@ export default function processTabs(main, moveInstrumentation) {
   }
  
   sections.forEach((section) => {
-    // Create container structure
-    const container = document.createElement('div');
-    container.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
-    
     const tabsWrapper = document.createElement('div');
     tabsWrapper.classList.add('tabs-container');
  
@@ -50,7 +46,7 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content-wrapper');
  
-    // Get all sections (excluding metadata)
+    // Get tab sections
     const tabSections = Array.from(section.children).filter(
       child => !child.classList.contains('section-metadata')
     );
@@ -83,13 +79,20 @@ export default function processTabs(main, moveInstrumentation) {
         tabPanel.classList.add('active');
       }
  
-      // Move content to panel while preserving original
-      const clonedContent = tabSection.cloneNode(true);
-      clonedContent.querySelector('.section-metadata')?.remove();
-      tabPanel.appendChild(clonedContent);
- 
-      // Keep original section but hide it
-      tabSection.style.display = 'none';
+      // Process blocks and move them to panel
+      const blocks = tabSection.querySelectorAll('div[class]:not(.section-metadata)');
+      blocks.forEach(block => {
+        const blockName = Array.from(block.classList)[0];
+        if (blockName) {
+          block.classList.add('block');
+          block.dataset.blockName = blockName;
+          tabPanel.appendChild(block);
+          
+          if (index === 0) {
+            loadBlock(block);
+          }
+        }
+      });
  
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
@@ -98,10 +101,10 @@ export default function processTabs(main, moveInstrumentation) {
     // Build structure
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
-    container.appendChild(tabsWrapper);
  
-    // Insert tabs before the first section
-    section.insertBefore(container, section.firstChild);
+    // Replace section content
+    section.innerHTML = '';
+    section.appendChild(tabsWrapper);
  
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
