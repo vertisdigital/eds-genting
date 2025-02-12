@@ -33,14 +33,14 @@ export default function processTabs(main, moveInstrumentation) {
     if (metadata) {
       const titleDiv = metadata.querySelector('div:last-child');
       if (titleDiv && titleDiv.textContent.trim()) {
-        tabTitle = titleDiv.textContent.trim();
+        tabTitle = titleDiv.textContent.trim().replace('tabtitle ', ''); // Remove 'tabtitle ' prefix
       }
     }
     
     console.log('Tab title:', tabTitle);
 
     // Create tab button
-    const tabButton = document.createElement('div');
+    const tabButton = document.createElement('button'); // Changed from div to button
     tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
     tabButton.setAttribute('role', 'tab');
     tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
@@ -48,12 +48,15 @@ export default function processTabs(main, moveInstrumentation) {
     tabButton.dataset.tabIndex = index;
     tabButton.textContent = tabTitle;
     tabButton.style.cursor = 'pointer'; // Ensure cursor is pointer
+    tabButton.type = 'button'; // Add button type
 
     // Create tab panel
     const tabPanel = document.createElement('div');
     tabPanel.classList.add('tab-panel');
     tabPanel.setAttribute('role', 'tabpanel');
     tabPanel.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
+    tabPanel.id = `tab-panel-${index}`; // Add ID for aria-controls
+    tabButton.setAttribute('aria-controls', `tab-panel-${index}`); // Link button to panel
     
     // Set initial active state
     if (index === 0) {

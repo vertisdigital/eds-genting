@@ -763,10 +763,13 @@ main .section.highlight {
   font-size: 24px;
   font-weight: 600;
   line-height: 30px;
+  border: none;
+  background: none;
   border-bottom: 2px solid var(--body-text-color);
-  cursor: pointer !important;
+  cursor: pointer;
   user-select: none;
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .tab-title:hover {
