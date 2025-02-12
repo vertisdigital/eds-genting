@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "statisticsSection"
     ]
   },
   {
@@ -29,7 +30,10 @@
       "enquiry",
       "tiles",
       "textsection",
-      "textmediablock"
+      "textmediablock",
+      "statisticsSection",
+      "statistics",
+      "statisticsDescription"
     ]
   },
   {
@@ -69,7 +73,8 @@
     "id": "feature",
     "components": [
       "featureItem",
-      "linkField"
+      "linkField",
+      "indices"
     ]
   },
   {
@@ -133,6 +138,21 @@
     "components": [
       "media",
       "textsection"
+    ]
+  },
+  {
+    "id": "statisticsSection",
+    "components": [
+      "statistics",
+      "statisticsDescription",
+      "feature"
+    ]
+  },
+  {
+    "id": "statistics",
+    "components": [
+      "statisticsDescription",
+      "featureItem"
     ]
   }
 ]
