@@ -26,10 +26,13 @@ export default function processTabs(main, moveInstrumentation) {
     let tabTitle = `Tab ${index + 1}`; // Default title
     
     if (metadata) {
-      // Find the title divs - looking for the actual title value
-      const titleDivs = metadata.querySelectorAll('div > div');
-      if (titleDivs.length >= 2) {
-        tabTitle = titleDivs[1].textContent.trim();
+      const titleDiv = metadata.querySelector('div:last-child');
+      if (titleDiv && titleDiv.textContent.trim()) {
+        // Get only the second part after "tabtitle"
+        const titleParts = titleDiv.textContent.trim().split(' ');
+        if (titleParts.length > 1) {
+          tabTitle = titleParts.slice(1).join(' '); // Get everything after "tabtitle"
+        }
       }
     }
 
@@ -54,47 +57,51 @@ export default function processTabs(main, moveInstrumentation) {
       tabPanel.classList.add('active');
     }
 
-    // Move content to panel (without cloning)
-    Array.from(section.children).forEach(child => {
-      if (!child.classList?.contains('section-metadata')) {
-        tabPanel.appendChild(child);
-      }
+    // Move content to panel
+    const contentElements = Array.from(section.children).filter(child => 
+      !child.classList?.contains('section-metadata')
+    );
+
+    contentElements.forEach(element => {
+      const clone = element.cloneNode(true);
+      moveInstrumentation(element, clone);
+      tabPanel.appendChild(clone);
     });
 
     tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
   });
 
-  // Remove original sections
+  // Remove original sections after cloning content
   sections.forEach(section => section.remove());
 
-  // Build structure
+  // Build tab structure
   tabsWrapper.appendChild(tabsNav);
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
   main.appendChild(topContainer);
 
-  // Add click handler
-  const buttons = tabsNav.querySelectorAll('.tab-title');
-  const panels = tabsContent.querySelectorAll('.tab-panel');
+  // Add click handler using event delegation
+  tabsWrapper.addEventListener('click', (event) => {
+    const clickedTab = event.target.closest('.tab-title');
+    if (!clickedTab) return;
 
-  buttons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-      // Deactivate all tabs
-      buttons.forEach(btn => {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-selected', 'false');
-      });
-      panels.forEach(panel => {
-        panel.classList.remove('active');
-        panel.setAttribute('aria-hidden', 'true');
-      });
+    const index = parseInt(clickedTab.dataset.tabIndex, 10);
+    const allTabs = tabsNav.querySelectorAll('.tab-title');
+    const allPanels = tabsContent.querySelectorAll('.tab-panel');
 
-      // Activate clicked tab
-      button.classList.add('active');
-      button.setAttribute('aria-selected', 'true');
-      panels[index].classList.add('active');
-      panels[index].setAttribute('aria-hidden', 'false');
+    // Update tabs
+    allTabs.forEach((tab, i) => {
+      const isSelected = i === index;
+      tab.classList.toggle('active', isSelected);
+      tab.setAttribute('aria-selected', isSelected);
+    });
+
+    // Update panels
+    allPanels.forEach((panel, i) => {
+      const isVisible = i === index;
+      panel.classList.toggle('active', isVisible);
+      panel.setAttribute('aria-hidden', !isVisible);
     });
   });
 }
