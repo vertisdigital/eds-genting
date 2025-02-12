@@ -4,7 +4,6 @@ import {
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
   decorateTemplateAndTheme,
   waitForFirstImage,
   loadSection,
@@ -114,7 +113,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
-  decorateBlocks(main);
+  //decorateBlocks(main);
 }
 
 /**
