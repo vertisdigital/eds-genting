@@ -23,6 +23,9 @@ export default function processTabs(main, moveInstrumentation) {
   const tabsContent = document.createElement('div');
   tabsContent.classList.add('tabs-content-wrapper');
 
+  // Store panels array to maintain reference
+  const panels = [];
+
   sections.forEach((section, index) => {
     console.log(`Processing tab section ${index}`);
     
@@ -69,12 +72,37 @@ export default function processTabs(main, moveInstrumentation) {
     // Move all non-metadata content to the panel
     Array.from(section.children).forEach(child => {
       if (!child.classList?.contains('section-metadata')) {
-        tabPanel.appendChild(child.cloneNode(true));
+        const clonedChild = child.cloneNode(true);
+        tabPanel.appendChild(clonedChild);
       }
+    });
+
+    // Add click handler to each button individually
+    tabButton.addEventListener('click', () => {
+      // Remove active class from all tabs and panels
+      const allTabs = tabsNav.querySelectorAll('.tab-title');
+      allTabs.forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+        tab.setAttribute('tabindex', '-1');
+      });
+
+      panels.forEach(panel => {
+        panel.classList.remove('active');
+        panel.setAttribute('aria-hidden', 'true');
+      });
+
+      // Add active class to clicked tab and its panel
+      tabButton.classList.add('active');
+      tabButton.setAttribute('aria-selected', 'true');
+      tabButton.setAttribute('tabindex', '0');
+      tabPanel.classList.add('active');
+      tabPanel.setAttribute('aria-hidden', 'false');
     });
 
     tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
+    panels.push(tabPanel);
   });
 
   // Remove original sections after cloning content
@@ -85,31 +113,6 @@ export default function processTabs(main, moveInstrumentation) {
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
   main.appendChild(topContainer);
-
-  // Add click handler
-  tabsNav.addEventListener('click', (event) => {
-    const clickedTab = event.target.closest('.tab-title');
-    if (!clickedTab) return;
-
-    const index = parseInt(clickedTab.dataset.tabIndex, 10);
-    const allTabs = tabsNav.querySelectorAll('.tab-title');
-    const allPanels = tabsContent.querySelectorAll('.tab-panel');
-
-    // Update tabs
-    allTabs.forEach((tab, i) => {
-      const isSelected = i === index;
-      tab.classList.toggle('active', isSelected);
-      tab.setAttribute('aria-selected', isSelected);
-      tab.setAttribute('tabindex', isSelected ? '0' : '-1');
-    });
-
-    // Update panels
-    allPanels.forEach((panel, i) => {
-      const isVisible = i === index;
-      panel.classList.toggle('active', isVisible);
-      panel.setAttribute('aria-hidden', !isVisible);
-    });
-  });
 
   // Add keyboard navigation
   tabsNav.addEventListener('keydown', (event) => {
