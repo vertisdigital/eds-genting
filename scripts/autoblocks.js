@@ -50,15 +50,11 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content');
  
-    // Store original content
-    const originalContent = section.innerHTML;
- 
-    // Get sections for tabs
+    // Process each section
     const tabSections = Array.from(section.children).filter(
       child => !child.classList.contains('section-metadata')
     );
  
-    // Process each section
     tabSections.forEach((tabSection, index) => {
       const metadata = tabSection.querySelector('.section-metadata > div :last-child');
       const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
@@ -76,8 +72,9 @@ export default function processTabs(main, moveInstrumentation) {
         tabPanel.classList.add('active');
       }
  
-      // Move content to panel
-      Array.from(tabSection.children).forEach(child => {
+      // Create a clone for the tab panel
+      const clonedContent = tabSection.cloneNode(true);
+      Array.from(clonedContent.children).forEach(child => {
         if (!child.classList?.contains('section-metadata')) {
           tabPanel.appendChild(child);
         }
@@ -85,6 +82,12 @@ export default function processTabs(main, moveInstrumentation) {
  
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
+ 
+      // Hide original section but keep it in DOM
+      tabSection.style.visibility = 'hidden';
+      tabSection.style.height = '0';
+      tabSection.style.overflow = 'hidden';
+      tabSection.style.position = 'absolute';
     });
  
     // Build structure
@@ -92,15 +95,8 @@ export default function processTabs(main, moveInstrumentation) {
     tabsWrapper.appendChild(tabsContent);
     topContainer.appendChild(tabsWrapper);
  
-    // Clear and update section
-    section.innerHTML = '';
-    section.appendChild(topContainer);
- 
-    // Add hidden div with original content for content tree
-    const originalContentDiv = document.createElement('div');
-    originalContentDiv.style.display = 'none';
-    originalContentDiv.innerHTML = originalContent;
-    section.appendChild(originalContentDiv);
+    // Add visual tabs at the beginning
+    section.insertBefore(topContainer, section.firstChild);
  
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
