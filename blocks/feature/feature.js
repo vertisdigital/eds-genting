@@ -41,11 +41,11 @@ export default function decorate(block) {
   // Find the heading and replace it with a heading
   const headingElement = block.querySelector('[data-aue-prop="heading"]');
   if (headingElement) {
-    moveInstrumentation(headingElement, parsedHtml);
     const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
     const parsedHtml = stringToHTML(headingHtml);
     aboutUsLeftContent.append(parsedHtml);
+    moveInstrumentation(headingElement, parsedHtml);
     //headingElement.remove();
   }
 
