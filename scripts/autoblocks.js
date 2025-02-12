@@ -37,43 +37,35 @@ export default function processTabs(main, moveInstrumentation) {
   }
  
   sections.forEach((section) => {
-    // Create visual tab structure
+    const topContainer = document.createElement('div');
+    topContainer.classList = 'container-xl container-lg container-md container-sm';
+ 
     const tabsWrapper = document.createElement('div');
-    tabsWrapper.classList.add('tabs-container');
+    tabsWrapper.classList.add('tabs-container', 'block');
+    tabsWrapper.dataset.blockName = 'tabs';
  
     const tabsNav = document.createElement('div');
-    tabsNav.classList.add('tabs-header');
+    tabsNav.classList.add('tabs-header', 'row');
  
     const tabsContent = document.createElement('div');
-    tabsContent.classList.add('tabs-content-wrapper');
+    tabsContent.classList.add('tabs-content');
  
-    // Get tab sections
     const tabSections = Array.from(section.children).filter(
       child => !child.classList.contains('section-metadata')
     );
  
-    // Create tabs and panels
     tabSections.forEach((tabSection, index) => {
-      const metadata = tabSection.querySelector('.section-metadata');
-      let tabTitle = `Tab ${index + 1}`;
-      if (metadata) {
-        const titleDivs = metadata.querySelectorAll('div > div');
-        if (titleDivs.length >= 2) {
-          tabTitle = titleDivs[1].textContent.trim();
-        }
-      }
+      const metadata = tabSection.querySelector('.section-metadata > div :last-child');
+      const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
  
-      // Create tab button
       const tabButton = document.createElement('div');
-      tabButton.classList.add('tab-title');
+      tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
       tabButton.dataset.index = index;
       tabButton.textContent = tabTitle;
  
-      // Create tab panel
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
  
-      // Set initial active state
       if (index === 0) {
         tabButton.classList.add('active');
         tabPanel.classList.add('active');
@@ -82,27 +74,21 @@ export default function processTabs(main, moveInstrumentation) {
       // Move content to panel
       Array.from(tabSection.children).forEach(child => {
         if (!child.classList?.contains('section-metadata')) {
-          const clone = child.cloneNode(true);
-          tabPanel.appendChild(clone);
+          tabPanel.appendChild(child);
         }
       });
  
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
+ 
+      // Keep original section in DOM but hide it
+      tabSection.style.cssText = 'position: absolute; visibility: hidden; height: 0; overflow: hidden;';
     });
  
-    // Build structure
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
- 
-    // Insert tabs before first section
-    section.insertBefore(tabsWrapper, section.firstChild);
- 
-    // Hide original sections but keep them in DOM
-    tabSections.forEach(tabSection => {
-      tabSection.style.display = 'none';
-      tabSection.setAttribute('data-tab-content', 'true');
-    });
+    topContainer.appendChild(tabsWrapper);
+    main.appendChild(topContainer);
  
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
@@ -113,19 +99,23 @@ export default function processTabs(main, moveInstrumentation) {
       if (Number.isNaN(index)) return;
  
       // Update tabs
-      tabsNav.querySelectorAll('.tab-title').forEach(btn => {
+      tabsWrapper.querySelectorAll('.tab-title').forEach(btn => {
         btn.classList.remove('active');
       });
       tabButton.classList.add('active');
  
       // Update panels
-      tabsContent.querySelectorAll('.tab-panel').forEach(panel => {
+      tabsWrapper.querySelectorAll('.tab-panel').forEach(panel => {
         panel.classList.remove('active');
       });
       
       const activePanel = tabsContent.children[index];
       if (activePanel) {
         activePanel.classList.add('active');
+        
+        // Load blocks in newly visible panel
+        const blocks = activePanel.querySelectorAll('[data-block-name]');
+        await Promise.all(Array.from(blocks).map(block => loadBlock(block)));
       }
     });
   });
