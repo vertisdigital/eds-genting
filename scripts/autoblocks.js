@@ -26,7 +26,7 @@ export default function processTabs(main, moveInstrumentation) {
     );
     const tabTitle = metadata
       ? metadata.textContent.trim()
-      : `CustTitle ${index + 1}`;
+      : `Tab ${index + 1}`;
 
     const tabButton = document.createElement('div');
     tabButton.classList.add('tab-title','col-xl-6','col-lg-6','col-md-3','col-sm-2');
