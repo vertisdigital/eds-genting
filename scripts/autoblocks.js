@@ -1,3 +1,5 @@
+import { loadCSS } from './aem.js';
+
 /**
  * Process all the tab auto blocks
  * @param {Element} main The container element
@@ -7,6 +9,32 @@ export default function processTabs(main, moveInstrumentation) {
     ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
   ];
   if (sections.length === 0) return;
+
+  // Function to load block CSS and JS
+  async function loadBlock(block) {
+    const blockName = block.dataset.blockName;
+    if (!blockName) return;
+
+    try {
+      // Load block CSS
+      const cssPath = `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`;
+      await loadCSS(cssPath);
+
+      // Load block JS
+      const jsPath = `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.js`;
+      try {
+        const module = await import(jsPath);
+        if (module.default) {
+          module.default(block);
+        }
+      } catch (error) {
+        // JS file might not exist, which is ok
+        console.debug(`No JS module for block ${blockName}`);
+      }
+    } catch (error) {
+      console.error(`Error loading block ${blockName}:`, error);
+    }
+  }
 
   const topContainer = document.createElement('div');
   topContainer.classList = 'container-xl container-lg container-md container-sm';
@@ -20,6 +48,9 @@ export default function processTabs(main, moveInstrumentation) {
 
   const tabsContent = document.createElement('div');
   tabsContent.classList.add('tabs-content');
+
+  // Store all blocks that need to be loaded
+  const blocksToLoad = new Set();
 
   sections.forEach((section, index) => {
     const metadata = section.querySelector(
@@ -38,7 +69,7 @@ export default function processTabs(main, moveInstrumentation) {
     tabPanel.classList.add('tab-panel');
     if (index === 0) tabPanel.classList.add('active');
 
-    // Preserve block information before cloning
+    // Preserve block information and collect blocks to load
     const blocks = section.querySelectorAll('div[class]');
     blocks.forEach(block => {
       const classes = Array.from(block.classList);
@@ -47,6 +78,7 @@ export default function processTabs(main, moveInstrumentation) {
             !className.startsWith('tabs-') && 
             !className.startsWith('col-')) {
           block.dataset.blockName = className;
+          blocksToLoad.add(className);
         }
       });
     });
@@ -86,8 +118,8 @@ export default function processTabs(main, moveInstrumentation) {
     main.appendChild(topContainer);
   }
 
-  // Handle tab switching
-  tabsNav.addEventListener('click', (event) => {
+  // Handle tab switching with block loading
+  tabsNav.addEventListener('click', async (event) => {
     const tabButton = event.target.closest('.tab-title');
     if (!tabButton) return;
 
@@ -104,17 +136,27 @@ export default function processTabs(main, moveInstrumentation) {
     tabsWrapper.querySelectorAll('.tab-panel').forEach(panel => {
       panel.classList.remove('active');
     });
+    
     const activePanel = tabsContent.children[index];
     if (activePanel) {
       activePanel.classList.add('active');
-      // Re-trigger block decoration for newly visible content
-      const undecorated = activePanel.querySelectorAll('div[data-block-name]:not(.block)');
-      undecorated.forEach(block => {
-        block.classList.add('block', block.dataset.blockName);
-      });
+      
+      // Load blocks in the newly active panel
+      const blocks = activePanel.querySelectorAll('[data-block-name]');
+      await Promise.all(Array.from(blocks).map(block => loadBlock(block)));
     }
   });
 
-  // Activate first tab by default
-  tabsNav.children[0]?.classList.add('active');
+  // Load blocks in the first tab immediately
+  const firstPanel = tabsContent.querySelector('.tab-panel.active');
+  if (firstPanel) {
+    const blocks = firstPanel.querySelectorAll('[data-block-name]');
+    Promise.all(Array.from(blocks).map(block => loadBlock(block)));
+  }
+
+  // Preload CSS for all blocks
+  blocksToLoad.forEach(blockName => {
+    const cssPath = `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`;
+    loadCSS(cssPath);
+  });
 }
