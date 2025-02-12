@@ -120,14 +120,6 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-  
-  // Add this to ensure tab panels maintain their state
-  const tabPanels = main.querySelectorAll('.tabs.block .tab-panel');
-  tabPanels.forEach(panel => {
-    if (panel.classList.contains('active')) {
-      panel.style.display = 'block';
-    }
-  });
 }
 
 /**
