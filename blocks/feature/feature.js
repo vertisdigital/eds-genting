@@ -28,7 +28,7 @@ export default function decorate(block) {
   if (titleElement) {
     const header = document.createElement('header');
     moveInstrumentation(titleElement, header);
-
+    
     const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
@@ -110,9 +110,8 @@ export default function decorate(block) {
         linkContainer.appendChild(linkTextDiv);
       }
     }
+    aboutUsLeftContent.appendChild(linkContainer);
   }
-
-  aboutUsLeftContent.appendChild(linkContainer);
 
     // About-Us right container
     const aboutUsRightContent = document.createElement('div');
