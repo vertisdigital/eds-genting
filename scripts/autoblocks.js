@@ -48,12 +48,25 @@ export default function processTabs(main, moveInstrumentation) {
   const tabsNav = document.createElement('div');
   tabsNav.classList.add('tabs-header', 'row');
  
-  // Create tab0 and tab1 containers
+  // Create tab0 and tab1 containers with data blocks
+  const tab0Block = document.createElement('div');
+  tab0Block.classList.add('tab0-block', 'block');
+  tab0Block.dataset.blockName = 'tab0';
+  tab0Block.dataset.aueModel = 'tab0';
+
+  const tab1Block = document.createElement('div');
+  tab1Block.classList.add('tab1-block', 'block');
+  tab1Block.dataset.blockName = 'tab1';
+  tab1Block.dataset.aueModel = 'tab1';
+
   const tab0 = document.createElement('div');
   tab0.classList.add('tab0');
+  tab0Block.appendChild(tab0);
+
   const tab1 = document.createElement('div');
   tab1.classList.add('tab1');
- 
+  tab1Block.appendChild(tab1);
+
   // Create tabs-content container
   const tabsContent = document.createElement('div');
   tabsContent.classList.add('tabs-content');
@@ -123,8 +136,8 @@ export default function processTabs(main, moveInstrumentation) {
  
   // Build structure
   tabsWrapper.appendChild(tabsNav);
-  tabsWrapper.appendChild(tab0);
-  tabsWrapper.appendChild(tab1);
+  tabsWrapper.appendChild(tab0Block);
+  tabsWrapper.appendChild(tab1Block);
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
   main.appendChild(topContainer);
