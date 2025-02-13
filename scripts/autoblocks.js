@@ -4,7 +4,7 @@ import { loadCSS } from './aem.js';
  * Process all the tab auto blocks
  * @param {Element} main The container element
  */
-export default function processTabs(main, moveAttributes) {
+export default function processTabs(main, moveInstrumentation) {
   const sections = [
     ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
   ];
@@ -60,9 +60,7 @@ export default function processTabs(main, moveAttributes) {
  
     const tabPanel = document.createElement('div');
     tabPanel.classList.add('tab-panel');
-    tabPanel.setAttribute('data-aue-resource', 'urn:aemconnection:/content/genting-singapore/index/projects-page-blocks/tabs-test/jcr:content/root/section_988627796');
-    tabPanel.setAttribute('data-aue-resource', section.dataset.aueResource);
-    moveAttributes(section, tabPanel, ['data-aue-resource, data-aue-model', 'data-aue-prop', 'data-aue-label', 'data-aue-behavior']);
+    moveInstrumentation(section, tabPanel);
  
     // Set initial active state for first tab
     if (index === 0) {
