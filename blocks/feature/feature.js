@@ -196,7 +196,60 @@ export default function decorate(block) {
         aboutUsRightContent.appendChild(featureContainer);
       });
     }
+    // check if data-aue-model="indices" exists
+    const indices = block.querySelector('[data-aue-model="indices"]');
+    if (indices) {
+    // get less indices, more indices and indexnumber content elements
+      const lessIndices = indices.querySelector(
+        '[data-aue-prop="lessIndices"]'
+      );
+      const moreIndices = indices.querySelector(
+        '[data-aue-prop="moreIndices"]'
+      );
+      const indexNumber = parseInt(
+        indices.querySelector('[data-aue-prop="indexNumber"]')?.textContent,
+        10
+      );
+      // getting all the feature items in aboutUsDescription
+      const convDescription = aboutUsRightContent.querySelectorAll(
+        '[data-aue-model="featureItem"]'
+      );
+      // featureitems are  more than indexNumber indices then hide 
+      // the remaing and show link to show more indices link with remaining indices count in text
+      if (indexNumber < convDescription.length) {
+      // hide the remaining indices
+        for (let i = indexNumber; i < convDescription.length; i += 1) {
+          convDescription[i].style.display = 'none';
+        }
+        // show the link to show more indices
+        const showMoreIndicesLink = document.createElement('button');
+        // show the link to show less indices
+        const showLessIndicesLink = document.createElement('button');
+        showMoreIndicesLink.textContent = `${moreIndices?.textContent ?? 'Show More'} (${convDescription.length - indexNumber})`;
+        showMoreIndicesLink.classList.add('show-more-indices');
+        showMoreIndicesLink.addEventListener('click', () => {
+          for (let i = indexNumber; i < convDescription.length; i += 1) {
+            convDescription[i].style.display = 'block';
+          }
+          showMoreIndicesLink.style.display = 'none';
+          showLessIndicesLink.style.display = 'block';
+        });
+       
+        showLessIndicesLink.textContent = lessIndices?.textContent ?? 'Show Less';
+        showLessIndicesLink.classList.add('show-less-indices');
+        showLessIndicesLink.style.display = 'none';
+        showLessIndicesLink.addEventListener('click', () => {
+          for (let i = indexNumber; i < convDescription.length; i += 1) {
+            convDescription[i].style.display = 'none';
+          }
+          showMoreIndicesLink.style.display = 'block';
+          showLessIndicesLink.style.display = 'none';
+        });
 
+        aboutUsRightContent.appendChild(showMoreIndicesLink);
+        aboutUsRightContent.appendChild(showLessIndicesLink);
+      }
+    }
     block.innerHTML = '';
     aboutUsStats.appendChild(aboutUsLeftContent);
     aboutUsStats.appendChild(aboutUsRightContent);
