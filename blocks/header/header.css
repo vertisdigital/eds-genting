@@ -745,8 +745,9 @@ header .header{
 }
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after {
   content: '🡢';
-  width: 25px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
+  text-decoration: none!important;
 }
 
 /* .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after{
