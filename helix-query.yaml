@@ -1,5 +1,5 @@
 version: 1
-
+ 
 indices:
   default:
     include:
@@ -32,7 +32,7 @@ indices:
       image:
         select: meta[property="og:image"]
         value: attribute(el, "content")
-
+ 
       # Block content
       # 1. Cards
       cardsText:
@@ -41,12 +41,12 @@ indices:
       cardsImage:
         select: .cards-card-image img
         value: attribute(el, "src")
-
+ 
       # 2. Columns
       columnsContent:
         select: .columns-img-col
         value: textContent(el)
-
+ 
       # 3. Core Principles
       corePrinciplesTitle:
         select: div[data-aue-model="coreprinciple"] [data-aue-prop="title"]
@@ -57,7 +57,7 @@ indices:
       corePrinciplesImage:
         select: div[data-aue-model="coreprinciple"] a
         value: textContent(el)
-
+ 
       # 4. Enquiry
       enquiryHeading:
         select: div[data-aue-model="enquiry"] [data-aue-prop="heading"]
@@ -74,7 +74,7 @@ indices:
       enquiryAddress:
         select: div[data-aue-model="enquiry"] [data-aue-prop="address"]
         value: textContent(el)
-
+ 
       # 5. Explore More
       exploreModeTitle:
         select: .exploremore [data-aue-prop="title"]
@@ -85,7 +85,7 @@ indices:
       exploreModeSecondCta:
         select: .exploremore [data-aue-prop="secondCtaCaption"]
         value: textContent(el)
-
+ 
       # 6. Feature
       featureTitle:
         select: div[data-aue-model="feature"] [data-aue-prop="title"]
@@ -105,7 +105,7 @@ indices:
       featureStatistic:
         select: div[data-aue-model="featureItem"] .statistic
         value: textContent(el)
-
+ 
       # 7. Footer
       footerDescription:
         select: .footer [data-richtext-prop="description"]
@@ -113,17 +113,17 @@ indices:
       footerLinks:
         select: .footer .nav-sections a
         value: textContent(el)
-
+ 
       # 8. Fragment
       fragmentReference:
         select: .fragment [data-aue-prop="reference"]
         value: textContent(el)
-
+ 
       # 9. Header
       headerLinks:
         select: .nav-wrapper .nav-sections a
         value: textContent(el)
-
+ 
       # 10. Hero
       heroText:
         select: .hero [data-richtext-prop="text"]
@@ -131,7 +131,7 @@ indices:
       heroImage:
         select: .hero picture img
         value: attribute(el, "src")
-
+ 
       # 11. Hero Banner
       heroBannerHeading:
         select: div[data-aue-model="herobanner"] [data-aue-prop="bannerheading"]
@@ -145,7 +145,7 @@ indices:
       heroBannerImage:
         select: div[data-aue-model="herobanner"] a
         value: textContent(el)
-
+ 
       # 12. Listing
       listingTitle:
         select: div[data-aue-model="listing"] [data-aue-prop="title"]
@@ -159,7 +159,7 @@ indices:
       listingItemDescription:
         select: div[data-aue-model="listitem"] [data-aue-prop="description"]
         value: textContent(el)
-
+ 
       # 13. Project Cards
       projectCardsTitle:
         select: div[data-aue-model="projectcards"] [data-aue-prop="title"]
@@ -179,7 +179,7 @@ indices:
       projectCardImage:
         select: div[data-aue-model="projectcard"] a
         value: textContent(el)
-
+ 
       # 14. Text Media Block
       textMediaBlockHeading:
         select: div[data-aue-model="textmediablock"] [data-aue-prop="heading"]
@@ -190,7 +190,7 @@ indices:
       textMediaBlockImage:
         select: div[data-aue-model="media"] a
         value: textContent(el)
-
+ 
       # 15. Text Section
       textSectionHeading:
         select: div[data-aue-model="textsection"] [data-aue-prop="heading"]
@@ -198,7 +198,7 @@ indices:
       textSectionDescription:
         select: div[data-aue-model="textsection"] [data-richtext-prop="description"]
         value: textContent(el)
-
+ 
       # 16. Tiles
       tilesHeading:
         select: div[data-aue-model="tile"] [data-aue-prop="heading"]
