@@ -65,7 +65,7 @@ export default function processTabs(main, moveInstrumentation) {
  
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
-    moveInstrumentation(section, tabPanel);
+      //moveInstrumentation(section, tabPanel);
  
       if (index === 0) {
         tabButton.classList.add('active');
