@@ -1,151 +1,190 @@
 import { loadCSS } from './aem.js';
- 
+
 /**
- * Process all the tab auto blocks
+ * Process all the tab auto blocks with enhanced accessibility and error handling
  * @param {Element} main The container element
+ * @param {Function} moveInstrumentation Function to move instrumentation
  */
-export default function processTabs(main, moveInstrumentation) {
-  // Update selector to handle both tabs and section models that have tab titles
-  const sections = [
-    ...main.querySelectorAll('[data-aue-model="tabs"], [data-aue-model="section"][data-tabtitle]'),
-  ];
+export default async function processTabs(main, moveInstrumentation) {
+  // Early return if no tab sections found
+  const sections = [...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)')];
   if (sections.length === 0) return;
- 
-  // Function to load block CSS and JS
+
+  /**
+   * Loads block CSS and JS with enhanced error handling
+   * @param {Element} block The block element to load resources for
+   */
   async function loadBlock(block) {
     const blockName = block.dataset.blockName;
     if (!blockName) return;
- 
+
     try {
-      // Load block CSS
       const cssPath = `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`;
       await loadCSS(cssPath);
- 
-      // Load block JS
+
       const jsPath = `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.js`;
-      try {
-        const module = await import(jsPath);
-        if (module.default) {
-          module.default(block);
-        }
-      } catch (error) {
-        // JS file might not exist, which is ok
-        console.debug(`No JS module for block ${blockName}`);
+      const module = await import(jsPath);
+      if (module.default) {
+        await module.default(block);
       }
     } catch (error) {
-      console.error(`Error loading block ${blockName}:`, error);
+      // Only log JS loading errors as errors, CSS/module may not exist
+      if (error.message.includes('.js')) {
+        console.error(`Error loading block ${blockName}:`, error);
+      } else {
+        console.debug(`No resources found for block ${blockName}`);
+      }
     }
   }
- 
+
+  // Create container following proper grid hierarchy
   const topContainer = document.createElement('div');
-  topContainer.classList = 'container-xl container-lg container-md container-sm';
-  //moveInstrumentation(section, topContainer);
+  topContainer.className = 'container-xl';
 
- 
+  const row = document.createElement('div');
+  row.className = 'row';
+  topContainer.appendChild(row);
+
   const tabsWrapper = document.createElement('div');
-  tabsWrapper.classList.add('tabs-container', 'block');
-  tabsWrapper.dataset.blockName = 'tabs';
-  // Preserve AEM authoring attributes
-  tabsWrapper.dataset.aueType = 'container';
-  tabsWrapper.dataset.aueBehavior = 'component';
-  tabsWrapper.dataset.aueModel = 'tabs';
-  tabsWrapper.dataset.aueLabel = 'tabs';
-  tabsWrapper.dataset.aueFilter = 'tabs';
- 
+  tabsWrapper.className = 'col-12';
+  tabsWrapper.setAttribute('role', 'tablist');
+  row.appendChild(tabsWrapper);
+
   const tabsNav = document.createElement('div');
-  tabsNav.classList.add('tabs-header', 'row');
- 
+  tabsNav.className = 'tabs-header row';
+  
   const tabsContent = document.createElement('div');
-  tabsContent.classList.add('tabs-content');
- 
+  tabsContent.className = 'tabs-content';
+
+  // Process each tab section
   sections.forEach((section, index) => {
-    // Get tab title from data-tabtitle attribute or metadata
-    const tabTitle = section.dataset.tabtitle || 
-                    section.querySelector('.section-metadata > div :last-child')?.textContent?.trim() || 
-                    `Tab ${index + 1}`;
+    const metadata = section.querySelector('.section-metadata > div :last-child');
+    const tabTitle = metadata?.textContent.trim() || `Tab ${index + 1}`;
+    const tabId = `tab-${index}`;
+    const panelId = `panel-${index}`;
 
-    const tabButton = document.createElement('div');
-    tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
-    tabButton.dataset.index = index;
+    // Create accessible tab button
+    const tabButton = document.createElement('button');
+    tabButton.className = 'tab-title col-md-3 col-sm-6';
+    tabButton.setAttribute('role', 'tab');
+    tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+    tabButton.setAttribute('aria-controls', panelId);
+    tabButton.id = tabId;
     tabButton.textContent = tabTitle;
- 
-    const tabPanel = document.createElement('div');
-    tabPanel.classList.add('tab-panel');
-    // Preserve original section attributes
-    Array.from(section.attributes).forEach(attr => {
-      if (!['class', 'style'].includes(attr.name)) {
-        tabPanel.setAttribute(attr.name, attr.value);
-      }
-    });
- 
-    // Set initial active state
-    if (index === 0) {
-      tabButton.classList.add('active');
-      tabPanel.classList.add('active');
-    }
- 
-    // Process blocks while preserving AEM authoring structure
-    const blocks = section.querySelectorAll('[data-aue-model]');
-    blocks.forEach(block => {
-      if (!block.classList.contains('section-metadata')) {
-        const blockWrapper = document.createElement('div');
-        blockWrapper.className = block.className;
-        // Preserve all data attributes
-        Array.from(block.attributes).forEach(attr => {
-          if (attr.name.startsWith('data-')) {
-            blockWrapper.setAttribute(attr.name, attr.value);
-          }
-        });
-        
-        blockWrapper.innerHTML = block.innerHTML;
-        tabPanel.appendChild(blockWrapper);
 
-        // Load block if in first tab
-        if (index === 0 && block.dataset.blockName) {
-          loadBlock(blockWrapper);
+    // Create accessible tab panel
+    const tabPanel = document.createElement('div');
+    tabPanel.className = 'tab-panel';
+    tabPanel.setAttribute('role', 'tabpanel');
+    tabPanel.setAttribute('aria-labelledby', tabId);
+    tabPanel.id = panelId;
+    tabPanel.hidden = index !== 0;
+
+    moveInstrumentation(section, tabPanel);
+
+    // Process blocks within the section
+    const blocks = section.querySelectorAll('div[class]');
+    blocks.forEach(block => {
+      const blockClasses = Array.from(block.classList)
+        .filter(cls => !cls.includes('section-metadata') && 
+                      !cls.startsWith('tabs-') && 
+                      !cls.startsWith('col-'));
+
+      if (blockClasses.length) {
+        const newBlock = document.createElement('div');
+        newBlock.className = `${blockClasses[0]} block`;
+        newBlock.dataset.blockName = blockClasses[0];
+        
+        // Copy content and non-class attributes
+        newBlock.innerHTML = block.innerHTML;
+        Array.from(block.attributes)
+          .filter(attr => !attr.name.startsWith('class'))
+          .forEach(attr => newBlock.setAttribute(attr.name, attr.value));
+        
+        block.replaceWith(newBlock);
+        
+        if (index === 0) {
+          loadBlock(newBlock);
         }
       }
     });
- 
+
+    // Move non-metadata content to panel
+    Array.from(section.children)
+      .filter(child => !child.classList?.contains('section-metadata'))
+      .forEach(child => tabPanel.appendChild(child));
+
     tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
   });
- 
-  // Remove original sections
+
+  // Clean up and build structure
   sections.forEach(section => section.remove());
- 
-  // Build structure
-  tabsWrapper.appendChild(tabsNav);
-  tabsWrapper.appendChild(tabsContent);
-  topContainer.appendChild(tabsWrapper);
+  tabsWrapper.append(tabsNav, tabsContent);
   main.appendChild(topContainer);
- 
-  // Handle tab switching
-  tabsNav.addEventListener('click', async (event) => {
-    const tabButton = event.target.closest('.tab-title');
-    if (!tabButton) return;
- 
-    const index = parseInt(tabButton.dataset.index, 10);
-    if (Number.isNaN(index)) return;
- 
-    // Update tabs
-    tabsWrapper.querySelectorAll('.tab-title').forEach(btn => {
-      btn.classList.remove('active');
-    });
-    tabButton.classList.add('active');
- 
-    // Update panels
-    tabsWrapper.querySelectorAll('.tab-panel').forEach(panel => {
-      panel.classList.remove('active');
-    });
-   
-    const activePanel = tabsContent.children[index];
-    if (activePanel) {
-      activePanel.classList.add('active');
-     
-      // Load blocks in the newly active panel if not already loaded
-      const blocks = activePanel.querySelectorAll('[data-block-name]');
-      await Promise.all(Array.from(blocks).map(block => loadBlock(block)));
-    }
-  });
+
+  // Handle tab switching with keyboard support
+  tabsNav.addEventListener('click', handleTabClick);
+  tabsNav.addEventListener('keydown', handleTabKeyboard);
+}
+
+/**
+ * Handle tab click events
+ * @param {Event} event Click event
+ */
+async function handleTabClick(event) {
+  const tabButton = event.target.closest('[role="tab"]');
+  if (!tabButton) return;
+  
+  await switchToTab(tabButton);
+}
+
+/**
+ * Handle keyboard navigation for tabs
+ * @param {KeyboardEvent} event Keyboard event
+ */
+function handleTabKeyboard(event) {
+  const targetTab = event.target.closest('[role="tab"]');
+  if (!targetTab) return;
+
+  const tabs = [...targetTab.parentElement.querySelectorAll('[role="tab"]')];
+  const index = tabs.indexOf(targetTab);
+
+  let newTab;
+  switch (event.key) {
+    case 'ArrowLeft':
+      newTab = tabs[index - 1] || tabs[tabs.length - 1];
+      break;
+    case 'ArrowRight':
+      newTab = tabs[index + 1] || tabs[0];
+      break;
+    default:
+      return;
+  }
+
+  event.preventDefault();
+  newTab.focus();
+  switchToTab(newTab);
+}
+
+/**
+ * Switch to the specified tab
+ * @param {Element} newTab The tab to switch to
+ */
+async function switchToTab(newTab) {
+  const wrapper = newTab.closest('[role="tablist"]');
+  const oldTab = wrapper.querySelector('[aria-selected="true"]');
+  
+  if (oldTab) {
+    oldTab.setAttribute('aria-selected', 'false');
+    document.getElementById(oldTab.getAttribute('aria-controls')).hidden = true;
+  }
+
+  newTab.setAttribute('aria-selected', 'true');
+  const newPanel = document.getElementById(newTab.getAttribute('aria-controls'));
+  newPanel.hidden = false;
+
+  // Load blocks in newly visible panel
+  const blocks = newPanel.querySelectorAll('[data-block-name]');
+  await Promise.all([...blocks].map(block => loadBlock(block)));
 }
