@@ -37,16 +37,8 @@ export default function processTabs(main, moveInstrumentation) {
   }
  
   sections.forEach((section) => {
-    // Store original section content and attributes
-    const originalContent = section.innerHTML;
-    const originalAttributes = [...section.attributes].map(attr => ({
-      name: attr.name,
-      value: attr.value
-    }));
- 
     const topContainer = document.createElement('div');
     topContainer.classList = 'container-xl container-lg container-md container-sm';
-    moveInstrumentation(section, topContainer);
  
     const tabsWrapper = document.createElement('div');
     tabsWrapper.classList.add('tabs-container', 'block');
@@ -73,7 +65,7 @@ export default function processTabs(main, moveInstrumentation) {
  
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
-      moveInstrumentation(tabSection, tabPanel);
+    moveInstrumentation(section, tabPanel);
  
       if (index === 0) {
         tabButton.classList.add('active');
@@ -127,15 +119,9 @@ export default function processTabs(main, moveInstrumentation) {
     tabsWrapper.appendChild(tabsContent);
     topContainer.appendChild(tabsWrapper);
  
-    // Create a new section with the same attributes
-    const newSection = document.createElement('section');
-    originalAttributes.forEach(attr => {
-      newSection.setAttribute(attr.name, attr.value);
-    });
-    newSection.appendChild(topContainer);
- 
-    // Replace the original section
-    section.replaceWith(newSection);
+    // Replace section content with tabs while maintaining position
+    section.innerHTML = '';
+    section.appendChild(topContainer);
  
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
