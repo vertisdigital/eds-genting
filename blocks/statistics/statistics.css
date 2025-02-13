@@ -1,7 +1,63 @@
+.statistic-container .statistics-row{
+  padding-bottom: 50px;
+  border: 1px solid var(--text-color);
+}
+.statistic-container .statistics-description-wrapper{
+  padding: 50px 0;
+}
+.statistic-container .statistics-description-wrapper h3{
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 50px; 
+  color: var(--text-color); 
+}
+.statistics-description-wrapper .statistics-description{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--body-text-color);
+}
+.statistics-description-wrapper .statistics-description .hide{
+  display: none;
+}
+.statistics-description-wrapper button{
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration-line: underline;
+  color:var(--primary-gold);
+  margin-left: auto;
+}
+.statistics-description-wrapper button.hide{
+  display: none;
+}
+.statistic-container .feature-title p{
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 80px; 
+  color: var(--primary-gold);
+}
 
-/* About-Us CSS */
-.feature-wrapper1 .about-us-stats1{
-  display: flex;
-  margin: auto;
-  margin-bottom: 18px;
+.statistic-container .text-container{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px; 
+  color: var(--body-text-color);
+}
+
+@media(width<=992px){
+
+  .statistic-container .feature-title p{
+    font-size: 64px;
+    line-height: 64px; 
+  }
+
+}
+
+@media(width<768px){
+  .statistic-container .feature-title p{
+    font-size: 48px;
+    line-height: 48px; 
+  }
 }

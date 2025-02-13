@@ -22,7 +22,7 @@ export default function decorate(block) {
   const featureItems = block.querySelectorAll('[data-aue-model="featureItem"]');
 
   const featureContainer = document.createElement('div');
-  featureContainer.className = 'row';
+  featureContainer.className = 'row statistics-row';
 
   featureItems.forEach((featureItem) => {
     featureContainer.appendChild(featureItem);
@@ -88,10 +88,9 @@ export default function decorate(block) {
       const readMoreContent = statisticBlock.querySelector(
         '[data-aue-prop="readMoreLabel"]',
       );
-      const readMoreElement = document.createElement('a');
-      const readLessElement = document.createElement('a');
+      const readMoreElement = document.createElement('button');
+      const readLessElement = document.createElement('button');
 
-      readMoreElement.setAttribute('href', '#');
       readMoreElement.setAttribute('data-aue-prop', 'readMoreLabel');
       readMoreElement.textContent = statisticBlock.readMoreContent?.textContent ?? 'Read More';
       readMoreElement.onclick = (e) => {
