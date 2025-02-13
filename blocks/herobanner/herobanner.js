@@ -49,7 +49,7 @@ export default function decorate(block) {
     imageLink.remove();
   }
 
-  let heroContent = block.querySelector('.hero-content');
+  let heroContent = document.createElement('div')
   heroContent.classList.add('hero-content', 'columns-container', 'container-xl', 'container-md', 'container-sm');
 
   const headingElement = block.querySelector('[data-aue-prop="bannerheading"]');
