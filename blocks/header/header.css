@@ -580,12 +580,12 @@ header .header{
   display: none;
 }
 
-.header-inner-wrapper .fixed-header .header-nav .primary-nav .nav-item .primary-menu-links,
-.header-inner-wrapper .fixed-header .header-nav .primary-nav .nav-item .primary-menu-links a{
+.header.fixed-header .header-nav .primary-nav .nav-item .primary-menu-links,
+.header.fixed-header .header-nav .primary-nav .nav-item .primary-menu-links a{
   color: var(--background-color);
  }
 
- .header-inner-wrapper .header-nav .icon-wrapper.icon-search{
+ .header.fixed-header .header-nav .icon-wrapper.icon-search{
   width: 32px;
   height: 32px;
   color: var(--background-color)!important;
@@ -612,12 +612,12 @@ header .header{
   transition: all 0.2s ease-in-out;
 } */
 
-.header-inner-wrapper.fixed-header .primary-nav .nav-item .primary-menu-links,
-.header-inner-wrapper.fixed-header .primary-nav .nav-item .primary-menu-links a{
+.header.fixed-header .primary-nav .nav-item .primary-menu-links,
+.header.fixed-header .primary-nav .nav-item .primary-menu-links a{
   color: var(--text-color)!important;
 } 
 
-.header-inner-wrapper.fixed-header .header-nav .icon-wrapper.icon-search{
+.header.fixed-header .header-nav .icon-wrapper.icon-search{
   color: var(--text-color)!important;
 } 
 
@@ -733,12 +733,20 @@ header .header{
   color:var(--text-color);
   text-decoration-thickness: 1px;
 }
-
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a:hover{
   color: var(--primary-gold);
-
-  /* border-bottom: 1px solid var(--primary-gold); */
   cursor: pointer;
+}
+
+.header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a::after{
+  margin-left: 48px;
+  margin-top: 5px;
+  color: var(--primary-gold);
+}
+.header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after {
+  content: '🡢';
+  width: 25px;
+  height: 24px;
 }
 
 /* .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after{
@@ -842,11 +850,11 @@ content: '🡢';
     color: var(--background-color);
   }
 
-  .header-inner-wrapper.fixed-header .header-nav .hamburger{
+ .header.fixed-header .header-nav .hamburger{
     color: var(--text-color);
   }
 
-  .header-inner-wrapper.fixed-header .header-nav .hamburger.active{
+  .header.fixed-header .header-nav .hamburger.active{
     color: var(--text-color);
   }
 
