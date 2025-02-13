@@ -9,12 +9,12 @@ export default function decorate(block) {
   if (!heroContainer) {
     heroContainer = document.createElement('div');
     heroContainer.className = 'hero-banner-container';
-    // heroContainer.classList.add('hero-banner-container','columns-container', 'container-xl', 'container-md', 'container-sm');
+    // heroContainer.classList.add('hero-banner-container','columns-container', 'container-xl', 'container-md',
+    //  'container-sm');
     // heroContainer.setAttribute('data-aue-resource', 'herobanner');
     // heroContainer.setAttribute('data-aue-type', 'block');
   }
 
- 
   const imageLink = block.querySelector('a[href]');
   if (imageLink) {
     const imageUrl = imageLink.getAttribute('href');
@@ -49,7 +49,7 @@ export default function decorate(block) {
     imageLink.remove();
   }
 
-  let heroContent = document.createElement('div')
+  const heroContent = document.createElement('div');
   heroContent.classList.add('hero-content', 'columns-container', 'container-xl', 'container-md', 'container-sm');
 
   const headingElement = block.querySelector('[data-aue-prop="bannerheading"]');
@@ -435,8 +435,8 @@ export default function decorate(block) {
   carouselContainer.appendChild(carouselWrapper);
   if (carouselItems.length) {
     heroContainer.appendChild(carouselContainer);
-    if(carouselItems.length > 1){
-    heroContainer.appendChild(navigations);
+    if (carouselItems.length > 1) {
+      heroContainer.appendChild(navigations);
     }
   }
 
