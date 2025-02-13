@@ -67,29 +67,29 @@ function buildAutoBlocks(main) {
   try {
     // Process tabs first but maintain their position
     processTabs(main, moveInstrumentation);
-    
+   
     // Debug before processing
     console.log('Before processing - Blocks with "block" class:', main.querySelectorAll('.block').length);
-    
+   
     // Find blocks inside columns and tabs containers
     const containerBlocks = main.querySelectorAll(`
       .columns div[class],
       [data-aue-model="tabs"] div[class],
       [data-aue-filter="tabs"] div[class]
     `);
-    
+   
     console.log('Container blocks found:', containerBlocks.length);
-    
+   
     containerBlocks.forEach((block) => {
       const classes = Array.from(block.classList);
       classes.forEach((className) => {
-        if (!className.startsWith('columns-') && !className.startsWith('tabs-') 
+        if (!className.startsWith('columns-') && !className.startsWith('tabs-')
             && className !== 'columns' && className !== 'tabs'
             && className !== 'section-metadata') {
           // Add block class and ensure block type is the first class
           block.classList.remove(className);
           block.classList.add(className, 'block');
-          
+         
           // Force block decoration for this element
           if (!block.dataset.blockName) {
             block.dataset.blockName = className;
@@ -97,17 +97,16 @@ function buildAutoBlocks(main) {
         }
       });
     });
-    
+   
     // Debug after processing
     console.log('After processing - Blocks with "block" class:', main.querySelectorAll('.block').length);
     console.log('Block elements:', main.querySelectorAll('.block'));
-    
+   
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
-
 /**
  * Decorates the main element. 
  * @param {Element} main The main element
