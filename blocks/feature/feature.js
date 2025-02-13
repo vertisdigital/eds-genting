@@ -219,9 +219,9 @@ export default function decorate(block) {
           convDescription[i].style.display = 'none';
         }
         // show the link to show more indices
-        const showMoreIndicesLink = document.createElement('a');
+        const showMoreIndicesLink = document.createElement('button');
         // show the link to show less indices
-        const showLessIndicesLink = document.createElement('a');
+        const showLessIndicesLink = document.createElement('button');
         showMoreIndicesLink.textContent = `${moreIndices?.textContent ?? 'Show More'} (${convDescription.length - indexNumber})`;
         showMoreIndicesLink.classList.add('show-more-indices');
         showMoreIndicesLink.addEventListener('click', () => {
