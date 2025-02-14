@@ -137,7 +137,7 @@ export default function processTabs(main, moveInstrumentation) {
       console.warn('Failed to move main instrumentation:', err);
     }
 
-    main.appendChild(topContainer);
+    main.insertBefore(topContainer, main.firstChild);
 
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
