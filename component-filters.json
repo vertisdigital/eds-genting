@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "statisticsSection"
     ]
   },
   {
@@ -30,7 +31,10 @@
       "tiles",
       "textsection",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "statisticsSection",
+      "statistics",
+      "statisticsDescription"
     ]
   },
   {
@@ -71,7 +75,8 @@
     "id": "feature",
     "components": [
       "featureItem",
-      "linkField"
+      "linkField",
+      "indices"
     ]
   },
   {
@@ -141,6 +146,21 @@
     "id": "projectslist",
     "components": [
       "projectslistitem"
+    ]
+  },
+  {
+    "id": "statisticsSection",
+    "components": [
+      "statistics",
+      "statisticsDescription",
+      "feature"
+    ]
+  },
+  {
+    "id": "statistics",
+    "components": [
+      "statisticsDescription",
+      "featureItem"
     ]
   }
 ]
