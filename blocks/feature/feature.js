@@ -93,19 +93,21 @@ export default function decorate(block) {
       if (originalLink && !arrowIcon) {
         linkElement.textContent = originalLink.textContent;
       } else if (arrowIcon && !originalLink) {
+        const arrowSpan = document.createElement('span');
+        moveInstrumentation(arrowIcon, arrowSpan);
         const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '24px' });
-        moveInstrumentation(arrowIcon, arrowSVG);
-        linkElement.append(stringToHTML(arrowSVG));
+        arrowSpan.append(stringToHTML(arrowSVG));
+        linkElement.append(arrowSpan);
         // Assemble link structure
         linkTextP.appendChild(linkElement);
         linkTextDiv.appendChild(linkTextP);
         linkContainer.appendChild(linkTextDiv);
       } else if (arrowIcon && originalLink) {
-        const linkText = document.createElement('span');
-        linkText.innerText = originalLink.textContent;
-        linkElement.append(linkText);
+        const arrowSpan = document.createElement('span');
+        arrowSpan.innerText = originalLink.textContent;
+        linkElement.append(arrowSpan);
         const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
-        moveInstrumentation(arrowIcon, arrowSVG);
+        moveInstrumentation(arrowIcon, linkText);
         linkElement.append(stringToHTML(arrowSVG));
         linkTextP.append(linkElement);
         linkTextDiv.appendChild(linkTextP);
