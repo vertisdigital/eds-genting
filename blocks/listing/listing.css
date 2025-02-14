@@ -196,7 +196,7 @@
 }
 
 .listing-wrapper .listing [data-aue-prop="title"] {
-  font-family: dmSans-bold;
+  /* font-family: dmSans-bold; */
   font-size: 16px;
   font-weight: 600;
   color: var(--text-color);
@@ -204,7 +204,7 @@
 }
 
 .listing-wrapper .listing [data-aue-prop="heading"] {
-  font-family: dmSans-medium;
+  /* font-family: dmSans-medium; */
   font-size: 28px;
   font-weight: 500;
   color: var(--text-color);
