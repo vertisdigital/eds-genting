@@ -42,8 +42,7 @@ export default function processTabs(main, moveInstrumentation) {
     topContainer.classList = 'container-xl container-lg container-md container-sm';
  
     const tabsWrapper = document.createElement('div');
-    tabsWrapper.classList.add('tabs-container', 'block');
-    tabsWrapper.dataset.blockName = 'tabs';
+    tabsWrapper.classList.add('tabs-container');
  
     const tabsNav = document.createElement('div');
     tabsNav.classList.add('tabs-header', 'row');
@@ -84,7 +83,8 @@ export default function processTabs(main, moveInstrumentation) {
       // Clone content for visual panel
       Array.from(section.children).forEach(child => {
         if (!child.classList?.contains('section-metadata')) {
-          tabPanel.appendChild(child.cloneNode(true));
+          const clone = child.cloneNode(true);
+          tabPanel.appendChild(clone);
         }
       });
  
@@ -100,9 +100,13 @@ export default function processTabs(main, moveInstrumentation) {
     tabsWrapper.appendChild(tabsContent);
     topContainer.appendChild(tabsWrapper);
  
-    // Add both visual and content tree structures
+    // Clear and update container
+    tabContainer.innerHTML = '';
     tabContainer.appendChild(tabsContainer); // For content tree
     tabContainer.appendChild(topContainer); // For visual display
+ 
+    // Load tabs CSS
+    loadCSS(`${window.hlx.codeBasePath}/blocks/tabs/tabs.css`);
  
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
