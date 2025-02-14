@@ -105,10 +105,10 @@ export default function decorate(block) {
       } else if (arrowIcon && originalLink) {
         const arrowSpan = document.createElement('span');
         arrowSpan.innerText = originalLink.textContent;
-        linkElement.append(arrowSpan);
+        moveInstrumentation(arrowIcon, arrowSpan);
         const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
-        moveInstrumentation(arrowIcon, linkText);
-        linkElement.append(stringToHTML(arrowSVG));
+        arrowSpan.append(stringToHTML(arrowSVG));
+        linkElement.append(arrowSpan);
         linkTextP.append(linkElement);
         linkTextDiv.appendChild(linkTextP);
         linkContainer.appendChild(linkTextDiv);
