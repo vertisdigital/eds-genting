@@ -37,7 +37,14 @@ export default function processTabs(main, moveInstrumentation) {
   }
  
   tabContainers.forEach((tabContainer) => {
-    // Create visual container
+    // Get all tabs sections within this container
+    const tabSections = Array.from(tabContainer.children).filter(
+      child => !child.classList.contains('section-metadata') && child.dataset.aueModel === 'tabs'
+    );
+ 
+    if (tabSections.length === 0) return;
+ 
+    // Create visual structure
     const topContainer = document.createElement('div');
     topContainer.classList = 'container-xl container-lg container-md container-sm';
  
@@ -50,27 +57,17 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content');
  
-    // Get all tabs sections within this container
-    const tabSections = Array.from(tabContainer.children).filter(
-      child => !child.classList.contains('section-metadata') && child.dataset.aueModel === 'tabs'
-    );
- 
-    // Create a container for preserving original tabs
-    const tabsContainer = document.createElement('div');
-    tabsContainer.dataset.aueModel = 'tabs';
-    tabsContainer.style.display = 'none'; // Hide but keep in DOM
- 
     tabSections.forEach((section, index) => {
       const metadata = section.querySelector('.section-metadata > div :last-child');
       const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
  
-      // Create visual tab button
+      // Create tab button
       const tabButton = document.createElement('div');
       tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
       tabButton.dataset.index = index;
       tabButton.textContent = tabTitle;
  
-      // Create visual tab panel
+      // Create tab panel
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
       moveInstrumentation(section, tabPanel);
@@ -80,33 +77,28 @@ export default function processTabs(main, moveInstrumentation) {
         tabPanel.classList.add('active');
       }
  
-      // Clone content for visual panel
+      // Move content to panel
       Array.from(section.children).forEach(child => {
         if (!child.classList?.contains('section-metadata')) {
-          const clone = child.cloneNode(true);
-          tabPanel.appendChild(clone);
+          tabPanel.appendChild(child);
         }
       });
  
-      // Keep original section in hidden container
-      tabsContainer.appendChild(section);
- 
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
+ 
+      // Keep section in DOM but empty
+      section.innerHTML = '';
+      section.style.display = 'none';
     });
  
-    // Build visual structure
+    // Build structure
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
     topContainer.appendChild(tabsWrapper);
  
-    // Clear and update container
-    tabContainer.innerHTML = '';
-    tabContainer.appendChild(tabsContainer); // For content tree
-    tabContainer.appendChild(topContainer); // For visual display
- 
-    // Load tabs CSS
-    loadCSS(`${window.hlx.codeBasePath}/blocks/tabs/tabs.css`);
+    // Insert visual structure before the first tab section
+    tabContainer.insertBefore(topContainer, tabContainer.firstChild);
  
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
@@ -126,11 +118,11 @@ export default function processTabs(main, moveInstrumentation) {
       tabsWrapper.querySelectorAll('.tab-panel').forEach(panel => {
         panel.classList.remove('active');
       });
-     
+      
       const activePanel = tabsContent.children[index];
       if (activePanel) {
         activePanel.classList.add('active');
-       
+        
         // Load blocks in newly visible panel
         const blocks = activePanel.querySelectorAll('[data-block-name]');
         await Promise.all(Array.from(blocks).map(block => loadBlock(block)));
