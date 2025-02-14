@@ -41,7 +41,10 @@ export default function processTabs(main, moveInstrumentation) {
 
   const topContainer = document.createElement('div');
   topContainer.classList = 'container-xl container-lg container-md container-sm';
-  moveInstrumentation(mainWrapper, topContainer);
+  
+  if (mainWrapper) {
+    moveInstrumentation(mainWrapper, topContainer);
+  }
 
   const tabsWrapper = document.createElement('div');
   tabsWrapper.classList.add('tabs-container', 'block');
@@ -117,7 +120,6 @@ export default function processTabs(main, moveInstrumentation) {
 
   // Remove original sections
   sections.forEach((section) => section.remove());
-  // moveInstrumentation(mainWrapper, mainContainer);
 
   // Build structure
   tabsWrapper.appendChild(tabsNav);
