@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "statisticsSection"
     ]
   },
   {
@@ -15,7 +16,24 @@
       "hero",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "coreprinciples",
+      "feature",
+      "linkField",
+      "socialLinks",
+      "links",
+      "imageLink",
+      "exploremore",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "tiles",
+      "textsection",
+      "textmediablock",
+      "projectslist",
+      "statisticsSection",
+      "statistics",
+      "statisticsDescription"
     ]
   },
   {
@@ -46,13 +64,29 @@
     "id": "feature",
     "components": [
       "featureItem",
-      "linkField"
+      "linkField",
+      "indices"
     ]
   },
   {
     "id": "featureItem",
     "components": [
       "linkField"
+    ]
+  },
+  {
+    "id": "statisticsSection",
+    "components": [
+      "statistics",
+      "statisticsDescription",
+      "feature"
+    ]
+  },
+  {
+    "id": "statistics",
+    "components": [
+      "statisticsDescription",
+      "featureItem"
     ]
   }
 ]
