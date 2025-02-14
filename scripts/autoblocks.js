@@ -88,7 +88,7 @@ export default function processTabs(main, moveInstrumentation) {
  
       // Process blocks in the section
       const blocks = section.querySelectorAll('div[class]');
-      blocks.forEach((block,index) => {
+      blocks.forEach((block) => {
         const classes = Array.from(block.classList);
         classes.forEach(className => {
           if (!className.includes('section-metadata') &&
@@ -111,9 +111,7 @@ export default function processTabs(main, moveInstrumentation) {
             block.replaceWith(newBlock);
            
             // If this is in the first tab, load the block immediately
-            if (index === 0) {
               loadBlock(newBlock);
-            }
           }
         });
       });
