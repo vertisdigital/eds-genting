@@ -13,7 +13,7 @@ export default function decorate(block) {
 
   const projectsContainer = wrapper.querySelector(
     '[data-aue-model="projectslist"]',
-  );
+  ) || wrapper;
 
   Array.from(projectsContainer.children).forEach((project) => {
     const projectContainer = document.createElement('div');
