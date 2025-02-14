@@ -6,7 +6,6 @@ import { loadCSS } from './aem.js';
  */
 export default function processTabs(main, moveInstrumentation) {
   const mainWrapper = main.querySelector('.section-metadata-container');
-  const mainContainer = document.createElement('div');
   const sections = [
     ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
   ];
@@ -124,8 +123,9 @@ export default function processTabs(main, moveInstrumentation) {
   tabsWrapper.appendChild(tabsNav);
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
-  mainContainer.appendChild(topContainer);
-  main.appendChild(topContainer);
+
+  const tabsPosition = main.querySelector('[data-aue-label="tabsposition"]');
+  main.insertBefore(topContainer, tabsPosition || main.firstChild);
  
   // Handle tab switching
   tabsNav.addEventListener('click', async (event) => {
