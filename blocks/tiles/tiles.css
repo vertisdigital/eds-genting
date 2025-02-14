@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   overflow: hidden;
+
   /* min-height: 430px !important; */
   aspect-ratio: 1;
 }
@@ -56,10 +57,8 @@
 }
 
 .factsheet-button {
-  display: inline-flex;
   align-items: center;
   color: var(--primary-gold) !important;
-  text-decoration: none;
   font-weight: 600;
   font-size: 16px;
   align-self: flex-end;
@@ -263,11 +262,13 @@
   .tiles-wrapper {
     padding: 56px 0;
   }
+
   .row.tiles-container {
     row-gap: 36px;
     margin-left: -18px;
     margin-right: -18px;
   }
+
   .row.tiles-container > div {
     padding: 0 18px;
   }
@@ -277,11 +278,13 @@
   .tiles-wrapper {
     padding: 68px 0;
   }
+
   .row.tiles-container {
     row-gap: 48px;
     margin-left: -24px;
     margin-right: -24px;
   }
+
   .row.tiles-container > div {
     padding: 0 24px;
   }
