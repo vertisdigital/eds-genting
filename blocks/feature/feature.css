@@ -49,19 +49,18 @@
  font-size: 12px;
 }
 
-
-
 .about-us-left a.button{
-  
-  padding: 10px;
   display: inline-flex;
-  background: none;
-  margin: 0;
+  align-items: center;
+  text-decoration: underline;
+  color: var(--primary-gold);
 }
 
-.about-us-left .button-container a span{
+.about-us-left .button-container a .icon-wrapper.about-us-left-link{
   width: 16px;
   height: 16px;
+  line-height: 1;
+  margin-left: 16px;
 }
 
 .about-us-left .about-us-left-link svg{
@@ -180,10 +179,6 @@ color: var(--body-text-color);
     margin-bottom: 10px;
   }
 
-  .about-us-left a.button{
-    padding: 12px;
-  }
-
   .about-us-stats .about-us-right-content.text-container{
     margin-bottom: 36px;
     padding-top: 16px;
@@ -238,10 +233,6 @@ color: var(--body-text-color);
 
   .about-us-left .about-us-left-sub-heading{
     margin-bottom: 10px;
-  }
-
-  .about-us-left a.button{
-    padding: 16px;
   }
 
   .about-us-stats .about-us-right-content{
