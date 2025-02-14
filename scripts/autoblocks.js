@@ -37,14 +37,13 @@ export default function processTabs(main, moveInstrumentation) {
   }
  
   tabContainers.forEach((tabContainer) => {
+    // Create visual container
     const topContainer = document.createElement('div');
     topContainer.classList = 'container-xl container-lg container-md container-sm';
-    //moveInstrumentation(section, topContainer);
-
+ 
     const tabsWrapper = document.createElement('div');
     tabsWrapper.classList.add('tabs-container', 'block');
     tabsWrapper.dataset.blockName = 'tabs';
-    tabsWrapper.dataset.aueModel = 'tabs';
  
     const tabsNav = document.createElement('div');
     tabsNav.classList.add('tabs-header', 'row');
@@ -57,45 +56,53 @@ export default function processTabs(main, moveInstrumentation) {
       child => !child.classList.contains('section-metadata') && child.dataset.aueModel === 'tabs'
     );
  
+    // Create a container for preserving original tabs
+    const tabsContainer = document.createElement('div');
+    tabsContainer.dataset.aueModel = 'tabs';
+    tabsContainer.style.display = 'none'; // Hide but keep in DOM
+ 
     tabSections.forEach((section, index) => {
       const metadata = section.querySelector('.section-metadata > div :last-child');
       const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
  
+      // Create visual tab button
       const tabButton = document.createElement('div');
       tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
       tabButton.dataset.index = index;
       tabButton.textContent = tabTitle;
  
+      // Create visual tab panel
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
-      tabPanel.dataset.aueModel = 'tabs';
       moveInstrumentation(section, tabPanel);
  
-      // Set initial active state for first tab
       if (index === 0) {
         tabButton.classList.add('active');
         tabPanel.classList.add('active');
       }
  
-      // Move content to panel while preserving structure
+      // Clone content for visual panel
       Array.from(section.children).forEach(child => {
         if (!child.classList?.contains('section-metadata')) {
-          tabPanel.appendChild(child);
+          tabPanel.appendChild(child.cloneNode(true));
         }
       });
+ 
+      // Keep original section in hidden container
+      tabsContainer.appendChild(section);
  
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
     });
  
-    // Build structure
+    // Build visual structure
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
     topContainer.appendChild(tabsWrapper);
  
-    // Replace tabContainer content while preserving the container
-    tabContainer.innerHTML = '';
-    tabContainer.appendChild(topContainer);
+    // Add both visual and content tree structures
+    tabContainer.appendChild(tabsContainer); // For content tree
+    tabContainer.appendChild(topContainer); // For visual display
  
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
