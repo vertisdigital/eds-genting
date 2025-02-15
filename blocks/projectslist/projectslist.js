@@ -19,7 +19,6 @@ export default function decorate(block) {
     const projectContainer = document.createElement('div');
     projectContainer.className = 'projectslistitem';
     moveInstrumentation(project, projectContainer);
-    proje
 
     // Create left column (heading) - 40% on desktop and tablet
     const leftCol = document.createElement('div');
