@@ -55,13 +55,13 @@
 .hero-arrow-icon {
   cursor: pointer;
   transition: transform 0.3s ease;
-  padding: 16px 16px 16px 0;
-
+  padding: 16px;
+  color: var(--primary-gold);
 }
 
-.hero-arrow-icon:hover {
+/* .hero-arrow-icon:hover {
   transform: translateY(4px);
-}
+} */
 
 .icon-wrapper {
   display: inline-flex;
@@ -124,8 +124,8 @@
 
 .left-carousel-arrow {
   /* margin-top: 3px; */
-  margin-top: 1px;
-
+  margin-top: 2px;
+  margin-right: -2px;
 }
 
 /* Carousel item container */
@@ -135,22 +135,26 @@
   justify-content: flex-start;
   align-items: center;
   align-self: stretch;
+  gap: 36px;
+  padding: 36px;
 }
 
 /* Left side: Text content (Title, Description, Read More) */
 .carousel-content {
   flex: 0 0 70%;
   text-align: left;
-  padding-left: 36px; /* added this from the second declaration */
-  padding-right: 0;  /* added this from the second declaration */
 }
 
 .carousel-image {
-  width: 151px;
-  height: 118px;
+  max-width: 151px;
+  max-height: 118px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.carousel-image picture{
+  width: 100%;
+  height: 100%;   
 }
 
 .news-title {
@@ -282,12 +286,8 @@
 
   .hero-description {
     font-size: 16px;
-    padding-left: 10px;
   }
 
-  .hero-arrow-icon { 
-    padding-left: 10px;
-  }
 
   .hero-banner-carousal {
     left: 0;
@@ -301,6 +301,11 @@
 
   .news-description {
     font-size: 14px;
+  }
+
+  .carousel-item {
+    gap: 24px;
+    padding: 24px;
   }
 
   .carousel-item {
@@ -328,7 +333,7 @@
   .navigation-arrows {
     gap:3px;
     padding-right: 5px;
-    bottom: 40px;
+    bottom: 34px;
   }
 
   .left-carousel-arrow {
@@ -340,6 +345,10 @@
     height: 12px;
     width: 12px;
     margin: 0 1px;
+  }
+
+  .ellipse{
+    margin-top: -2px;
   }
 
   .ellipse svg {
