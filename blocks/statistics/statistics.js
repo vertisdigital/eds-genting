@@ -3,7 +3,7 @@ import Heading from '../../shared-components/Heading.js';
 import stringToHTML from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
-  // processing the sesction title
+// processing the sesction title
   const heading = block.querySelector('[data-aue-prop="heading"]');
   if (heading) {
     const titleText = heading.textContent;
@@ -35,10 +35,10 @@ export default function decorate(block) {
     );
     featureItem
       .querySelector('[data-aue-prop="feature-title"]')
-      .classList.add('statistic-item');
+      ?.classList.add('statistic-item');
     featureItem
       .querySelector('[data-aue-prop="feature-heading"]')
-      .classList.add('text-container');
+      ?.classList.add('text-container');
   });
 
   block.appendChild(featureContainer);
@@ -78,10 +78,14 @@ export default function decorate(block) {
       const readMoreContent = statisticBlockDescription.querySelector(
         '[data-aue-prop="readMoreLabel"]',
       );
+      const readLessContent = statisticBlockDescription.querySelector(
+        '[data-aue-prop="readLessLabel"]',
+      );
       const readMoreElement = document.createElement('button');
       const readLessElement = document.createElement('button');
+      moveInstrumentation(readMoreContent, readMoreElement);
+      moveInstrumentation(readLessContent, readLessElement);
 
-      readMoreElement.setAttribute('data-aue-prop', 'readMoreLabel');
       readMoreElement.textContent = statisticBlockDescription.readMoreContent?.textContent ?? 'Read More';
 
       // removing the readMoreContent
@@ -97,10 +101,6 @@ export default function decorate(block) {
       };
       statisticBlockDescription.appendChild(readMoreElement);
 
-      const readLessContent = statisticBlockDescription.querySelector(
-        '[data-aue-prop="readLessLabel"]',
-      );
-      readLessElement.setAttribute('data-aue-prop', 'readLessLabel');
       readLessElement.textContent = readLessContent?.textContentt ?? 'Read Less';
       // removing the readLessContent
       readLessContent.remove();
