@@ -1,6 +1,7 @@
 .statistics .statistics-row {
     padding-bottom: 50px;
     border-bottom: 1px solid var(--text-color);
+    row-gap: 36px;
 }
 
 .statistics-container .feature-wrapper .about-us-right-content{
@@ -105,9 +106,15 @@
         font-size: 64px;
         line-height: 64px;
     }
+    .statistics .statistics-row {
+        row-gap: 24px;
+    }
 }
 
 @media (width<768px) {
+    .statistics .statistics-row {
+        row-gap: 18px;
+    }
     .statistics .statistic-item {
         font-size: 48px;
         line-height: 48px;
