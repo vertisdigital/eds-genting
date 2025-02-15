@@ -66,42 +66,42 @@ export default function decorate(block) {
         buttonContainer.remove();
       }
     }
-  });
 
-  if (!isFirsTileImage) {
-    const buttonContainer = firstTile.querySelector('.button-container');
-
-    const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"]');
-    const downArraowWithLine = SvgIcon({
-      name: 'downArraowWithLine',
-      className: 'factsheet-button-arrow animation-element',
-      size: '14',
-      color: '',
-    });
-    if (buttonContainer && ctaCaption) {
-      const link = buttonContainer.querySelector('a');
-      if (link) {
-        // Create new anchor with CTA text and button link
-        const ctaLink = document.createElement('a');
-        ctaLink.href = link.href;
-        ctaLink.className = 'factsheet-button animated-cta';
-        ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
-
-        // Add download icon
-        // const downloadIcon = new SvgIcon('download');
-        // ctaLink.insertBefore(downloadIcon, ctaLink.firstChild);
-
-        // Add arrow icon
-        // const arrowIcon = new SvgIcon('arrow-right');
-        // ctaLink.appendChild(arrowIcon);
-
-        // Replace CTA caption with link
-        ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
+    if (!isFirsTileImage) {
+      const buttonContainer = firstTile.querySelector('.button-container');
+  
+      const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"]');
+      const downArraowWithLine = SvgIcon({
+        name: 'downArraowWithLine',
+        className: 'factsheet-button-arrow animation-element',
+        size: '14',
+        color: '',
+      });
+      if (buttonContainer && ctaCaption) {
+        const link = buttonContainer.querySelector('a');
+        if (link) {
+          // Create new anchor with CTA text and button link
+          const ctaLink = document.createElement('a');
+          ctaLink.href = link.href;
+          ctaLink.className = 'factsheet-button animated-cta';
+          ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
+  
+          // Add download icon
+          // const downloadIcon = new SvgIcon('download');
+          // ctaLink.insertBefore(downloadIcon, ctaLink.firstChild);
+  
+          // Add arrow icon
+          // const arrowIcon = new SvgIcon('arrow-right');
+          // ctaLink.appendChild(arrowIcon);
+  
+          // Replace CTA caption with link
+          ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
+        }
+        // Remove button container
+        buttonContainer.remove();
       }
-      // Remove button container
-      buttonContainer.remove();
     }
-  }
+  });
 
   // Clear block and add row
   block.textContent = '';
