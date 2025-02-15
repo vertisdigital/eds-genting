@@ -741,6 +741,7 @@ header .header{
   line-height: 50px;
   letter-spacing: -0.5px;
   color:var(--text-color);
+  text-decoration: underline;
   text-decoration-thickness: 1px;
 }
 
@@ -803,6 +804,7 @@ content: '🡢';
   display: flex;
   align-items: center;
   margin-bottom: 36px;
+  cursor: pointer;
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container a{

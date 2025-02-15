@@ -117,7 +117,7 @@ export default function decorate(block) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
       className: 'hero-arrow-icon',
-      size: '32',
+      size: '24',
       color: 'white',
     });
     const parsedHtml = stringToHTML(arrowIconHtml);
