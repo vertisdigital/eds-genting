@@ -808,6 +808,12 @@ main .section.highlight {
   font-weight: 400;
   color: var(--body-text-color);
 }
+.tabs-container .about-us-stats .about-us-right-content .feature-item{
+  border-top: 1px solid var(--text-color);
+  align-items: flex-start;
+  padding-top: 20px;
+  margin-bottom: 40px;
+}
 .cards {
   margin-top: 10px;
 }
@@ -824,6 +830,11 @@ main .section.highlight {
     font-weight: 600;
     line-height: 26px;
   }
+  .tabs-container .about-us-stats .about-us-right-content .feature-item
+  {
+      margin-bottom: 36px;
+      padding-top: 16px;
+  }
 }
 
 @media(width<768px){
@@ -831,4 +842,10 @@ main .section.highlight {
     font-size: 18px;
     line-height: 24px;
   }
+  .tabs-container .about-us-stats .about-us-right-content .feature-item
+  {
+    padding-top: 12px;
+    margin-bottom: 40px;
+  }
+
 }
