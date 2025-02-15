@@ -103,9 +103,17 @@ export default function decorate(block) {
     }
   });
 
-  // Clear block and add row
   block.textContent = '';
-  block.appendChild(row);
+
+
+  if (isFirsTileImage) {
+    const allImageVariation = document.createElement('div');
+    allImageVariation.className = 'tile-wrapper ';
+    allImageVariation.appendChild(row);
+    block.appendChild(allImageVariation);
+  } else {
+    block.appendChild(row);
+  }
 
   // Add list role for accessibility
   block.setAttribute('role', 'list');
