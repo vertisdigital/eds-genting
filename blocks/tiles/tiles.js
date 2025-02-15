@@ -20,15 +20,15 @@ export default function decorate(block) {
 
   // Move existing tiles into grid columns
   const tiles = Array.from(block.children);
+  const firstTile = tiles[0];
+  const isFirsTileImage = firstTile && firstTile.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
+
   tiles.forEach((tile, index) => {
     // Handle first tile's download button
-    const firstTile = tiles[0];
     const col = document.createElement('div');
     col.className = 'col-sm-4 col-md-3 col-xl-6';
     col.appendChild(tile);
     row.appendChild(col);
-
-    const isFirsTileImage = firstTile && firstTile.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
 
     if (isFirsTileImage || index > 0) {
       // Handle image tiles (all except first)
