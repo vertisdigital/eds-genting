@@ -1,5 +1,5 @@
 import { loadCSS } from './aem.js';
-import Heading  from '../shared-components/Heading.js'
+import Heading from '../shared-components/Heading.js';
 import stringToHTML from '../shared-components/Utility.js';
 /**
  * Process all the tab auto blocks
@@ -42,7 +42,7 @@ export default function processTabs(main, moveInstrumentation) {
 
   const topContainer = document.createElement('div');
   topContainer.classList = 'container-xl container-lg container-md container-sm';
-  
+
   if (mainWrapper) {
     moveInstrumentation(mainWrapper, topContainer);
   }
@@ -127,17 +127,15 @@ export default function processTabs(main, moveInstrumentation) {
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
 
-
-  //creating the panel heading with the data inside data-block-name="section-metadata" in the panel with data-aue-model="tabspanel"
-  let tabSectionMetaData = mainWrapper.querySelector('[data-block-name="section-metadata"]');
+  //Processing the tab section headings
+  const tabSectionMetaData = mainWrapper.querySelector('[data-block-name="section-metadata"]');
   tabSectionMetaData.classList.add('panel-heading');
-  //all meta data
-  tabSectionMetaData.querySelectorAll(":scope > div").forEach((metaData) => {
-    let metaDataBlocks = metaData.querySelectorAll(":scope > div")
-    if(metaDataBlocks[0].textContent.trim() === 'panelheading')
-    {
-      let headingText = metaDataBlocks[1].textContent.trim();
-      let panelHeading = document.createElement('div');
+  // all meta data
+  tabSectionMetaData.querySelectorAll(':scope > div').forEach((metaData) => {
+    const metaDataBlocks = metaData.querySelectorAll(':scope > div');
+    if (metaDataBlocks[0].textContent.trim() === 'panelheading') {
+      const headingText = metaDataBlocks[1].textContent.trim();
+      const panelHeading = document.createElement('div');
       const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
       const parsedHtml = stringToHTML(headingHtml);
       panelHeading.appendChild(parsedHtml);
