@@ -81,13 +81,11 @@ export default function decorate(block) {
         const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '24px' });
         originalLink.append(stringToHTML(arrowSVG));
       }
+    }
 
-    }
- 
     aboutUsLeftContent.appendChild(linkContainer);
-    }
-    
   }
+
   // About-Us right container
   const aboutUsRightContent = document.createElement('div');
   aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
