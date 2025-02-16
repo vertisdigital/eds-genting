@@ -184,7 +184,7 @@
   },
   {
     "id": "tabspanel",
-    "components": ["tabs"]
+    "components": ["title","tabs"]
   },
   {
     "id": "statisticsSection",
