@@ -872,6 +872,16 @@ main .section.highlight {
   border-radius: 8px;
 }
 
+/* TabsPanel Section Styles */
+.section.tabspanel {
+  padding: var(--section-padding);
+}
+
+.section.tabspanel [data-aue-prop="panelheading"] {
+  margin-bottom: 2rem;
+  font-size: var(--heading-font-size-l);
+  color: var(--text-color);
+}
 @media(width<=992px){
   .tabpanel {
     padding-top: 56px;
@@ -929,18 +939,7 @@ main .section.highlight {
     line-height: 34px;
   }
 
-}
 
-/* TabsPanel Section Styles */
-.section.tabspanel {
-  padding: var(--section-padding);
-}
-
-.section.tabspanel [data-aue-prop="panelheading"] {
-  margin-bottom: 2rem;
-  font-size: var(--heading-font-size-l);
-  color: var(--text-color);
-}
   .tabs-container .about-us-stats .about-us-left-title{
     font-size: 22px;
   }
@@ -956,3 +955,4 @@ main .section.highlight {
     line-height: 20px;
   }
 
+}
