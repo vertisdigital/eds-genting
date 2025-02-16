@@ -57,7 +57,6 @@ export default function decorate(block) {
     moveInstrumentation(subHeading, subHeadingElement);
     const subHeadingText = subHeading.querySelector('p').textContent;
     subHeadingElement.textContent = subHeadingText;
-
     aboutUsLeftContent.appendChild(subHeadingElement);
     subHeading.remove();
   }
@@ -68,53 +67,26 @@ export default function decorate(block) {
     const linkContainer = document.createElement('div');
     linkContainer.className = 'links-container';
     moveInstrumentation(linkField, linkContainer);
-
-    // Create container for each link
-
-    // Create link text div
-    const linkTextDiv = document.createElement('div');
-    const linkTextP = document.createElement('p');
-    linkTextP.className = 'button-container';
-
     // Handle link text
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
+
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
-    const originalTargetName = originalTarget?.textContent;
+    if (originalLink && originalTarget) {
+      originalLink.setAttribute('target', originalTarget?.textContent.trim());
+      originalTarget.textContent = '';
+    }
 
     if (originalLink) {
-      originalLink.setAttribute('target', originalTargetName);
-      const linkElement = document.createElement('a');
-      moveInstrumentation(originalLink, linkElement);
-      linkElement.className = 'button';
-
       const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
       const arrowIconName = arrowIcon.textContent.replace('-', '');
-      arrowIcon.innerText = '';
-      if (originalLink && !arrowIcon) {
-        linkElement.textContent = originalLink.textContent;
-      } else if (arrowIcon && !originalLink) {
-        const arrowSpan = document.createElement('span');
-        moveInstrumentation(arrowIcon, arrowSpan);
+      arrowIcon.textContent = '';
+       if (arrowIcon && !originalLink) {
         const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '24px' });
-        arrowSpan.append(stringToHTML(arrowSVG));
-        linkElement.append(arrowSpan);
-        // Assemble link structure
-        linkTextP.appendChild(linkElement);
-        linkTextDiv.appendChild(linkTextP);
-        linkContainer.appendChild(linkTextDiv);
+        originalLink.append(stringToHTML(arrowSVG));
       } else if (arrowIcon && originalLink) {
-        const arrowSpan = document.createElement('span');
-        arrowSpan.innerText = originalLink.textContent;
-        moveInstrumentation(arrowIcon, arrowSpan);
         const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
-        arrowSpan.append(stringToHTML(arrowSVG));
-        linkElement.append(arrowSpan);
-        linkTextP.append(linkElement);
-        linkTextDiv.appendChild(linkTextP);
-        linkContainer.appendChild(linkTextDiv);
+        originalLink.append(stringToHTML(arrowSVG));
       }
-      originalLink.innerHTML = '';
-      originalTarget.innerHTML = '';
       aboutUsLeftContent.appendChild(linkContainer);
     }
   }
