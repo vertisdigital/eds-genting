@@ -861,6 +861,10 @@ main .section.highlight {
   line-height: 24px;
 }
 
+.tabs-container .statistics .statistic-item{
+  font-size: 40px;
+}
+
 .cards {
   margin-top: 10px;
 }
