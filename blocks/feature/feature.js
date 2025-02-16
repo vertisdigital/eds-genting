@@ -69,26 +69,24 @@ export default function decorate(block) {
     moveInstrumentation(linkField, linkContainer);
     // Handle link text
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
-
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
+    const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
+    const arrowIconName = arrowIcon.textContent.replace('-', '');
+    arrowIcon.textContent = '';
+
     if (originalLink && originalTarget) {
       originalLink.setAttribute('target', originalTarget?.textContent.trim());
       originalTarget.textContent = '';
-    }
-
-    if (originalLink) {
-      const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
-      const arrowIconName = arrowIcon.textContent.replace('-', '');
-      arrowIcon.textContent = '';
-       if (arrowIcon && !originalLink) {
+      if (arrowIcon) {
         const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '24px' });
         originalLink.append(stringToHTML(arrowSVG));
-      } else if (arrowIcon && originalLink) {
-        const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
-        originalLink.append(stringToHTML(arrowSVG));
       }
-      aboutUsLeftContent.appendChild(linkContainer);
+
     }
+ 
+    aboutUsLeftContent.appendChild(linkContainer);
+    }
+    
   }
   // About-Us right container
   const aboutUsRightContent = document.createElement('div');

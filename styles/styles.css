@@ -753,9 +753,11 @@ main .section.highlight {
   margin: 0 auto; 
   margin-bottom: 24px;
 }
+
 .tabs-container .about-us-stats{
   margin-bottom: 80px;
 }
+
 .tabs-header{
   margin-bottom: 36px;
 }
@@ -797,8 +799,9 @@ main .section.highlight {
 
 .tab-panel {
   display: none;
+
   .container-xl, .container-lg, .container-md, .container-sm, .container{
-    padding: 0px;
+    padding: 0;
   }
 }
 
@@ -806,12 +809,13 @@ main .section.highlight {
   display: block;
 }
 
-/*Tab section overrides*/
+/* Tab section overrides */
 
 .tabs-container .about-us-stats .about-us-right-content p{
   font-weight: 400;
   color: var(--body-text-color);
 }
+
 .tabs-container .about-us-stats .about-us-right-content
 {
   border-top: 1px solid var(--text-color);
@@ -820,22 +824,25 @@ main .section.highlight {
   margin-bottom: 36px;
   gap: 16px;
 }
+
 .tabs-container .about-us-stats .about-us-left-title{
   color: var(--text-color);
   font-size: 28px;
   font-weight: 400;
   line-height: 40px;
 }
+
 .tabs-container .about-us-stats .about-us-right-content:first-child{
   border-top: none;
 }
-.tabs-container .about-us-stats .about-us-right-content .statistics{
+
+.tabs-container .about-us-stats .about-us-right-content .statistic{
   color: var(--primary-gold);
   font-size: 40px;
   font-weight: 500;
   line-height: 50px;
-
 }
+
 .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"]{
   color: var(--body-text-color);
   font-size: 16px;
@@ -859,19 +866,23 @@ main .section.highlight {
     font-weight: 600;
     line-height: 26px;
   }
+
   .tabs-container .about-us-stats .about-us-right-content
   {
       margin-bottom: 16px;
       padding-top: 16px;
   }
+
   .tabs-container .about-us-stats .about-us-left-title{
     font-size: 24px;
   }
-  .tabs-container .about-us-stats .about-us-right-content .statistics{
+
+  .tabs-container .about-us-stats .about-us-right-content .statistic{
     font-size: 32px;
     line-height: 42px;
   
   }
+
   .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"]{
     font-size: 16px;
     line-height: 20px;
@@ -884,19 +895,23 @@ main .section.highlight {
     font-size: 18px;
     line-height: 24px;
   }
+
   .tabs-container .about-us-stats .about-us-right-content
   {
     padding-top: 12px;
     margin-bottom: 40px;
   }
+
   .tabs-container .about-us-stats .about-us-left-title{
     font-size: 22px;
   }
-  .tabs-container .about-us-stats .about-us-right-content .statistics{
+
+  .tabs-container .about-us-stats .about-us-right-content .statistic{
     font-size: 28px;
     line-height: 34px;
   
   }
+
   .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"]{
     font-size: 14px;
     line-height: 20px;
