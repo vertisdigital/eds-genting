@@ -71,8 +71,7 @@ export default function decorate(block) {
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
     const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
-    const arrowIconName = arrowIcon.textContent.replace('-', '');
-    arrowIcon.textContent = '';
+    const arrowIconName = arrowIcon?.textContent.replace('-', '');
 
     if (originalLink && originalTarget) {
       originalLink.setAttribute('target', originalTarget?.textContent.trim());
@@ -81,9 +80,10 @@ export default function decorate(block) {
         const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '24px' });
         originalLink.append(stringToHTML(arrowSVG));
       }
-    }
-    linkContainer.appendChild(originalLink);
+          linkContainer.appendChild(originalLink);
     aboutUsLeftContent.appendChild(linkContainer);
+    }
+
   }
 
   // About-Us right container
