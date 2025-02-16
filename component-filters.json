@@ -179,6 +179,10 @@
     ]
   },
   {
+    "id": "tabsposition",
+    "components": [null]
+  },
+  {
     "id": "tabspanel",
     "components": ["title","tabs"]
   },
