@@ -801,6 +801,9 @@ main .section.highlight {
 .tab-panel.active {
   display: block;
 }
+.panel-heading{
+  margin-bottom: 30px;
+}
 .panel-heading h2{
     font-family: var(--heading-font-family);
     font-size: 40px;
@@ -843,6 +846,7 @@ main .section.highlight {
       margin-bottom: 36px;
       padding-top: 16px;
   }
+  
   .panel-heading h2{
     font-size: 32px;
     line-height: 42px;
