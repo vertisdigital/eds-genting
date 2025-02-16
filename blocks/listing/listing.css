@@ -236,3 +236,26 @@
     margin-bottom: 36px;
   }
 }
+
+.content-wrapper {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.arrow-link-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.left-arrow-icon {
+  fill: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.arrow-link-wrapper:hover .left-arrow-icon {
+  transform: translateX(5px);
+}
