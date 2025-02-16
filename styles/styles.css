@@ -877,3 +877,14 @@ main .section.highlight {
   }
 
 }
+
+/* TabsPanel Section Styles */
+.section.tabspanel {
+  padding: var(--section-padding);
+}
+
+.section.tabspanel [data-aue-prop="panelheading"] {
+  margin-bottom: 2rem;
+  font-size: var(--heading-font-size-l);
+  color: var(--text-color);
+}
