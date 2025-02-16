@@ -13,28 +13,38 @@ export default function decorate(block) {
     const row = document.createElement('div');
     row.classList.add('row');
 
+    // Get all content elements
+    const title = item.querySelector('[data-aue-type="text"]');
+    const description = item.querySelector('[data-aue-prop="description"]');
+    const link = item.querySelector('.button-container a');
+    const linkTarget = item.querySelector('[data-aue-label="Target"]');
+
     // Process image
     const imgContainer = item.querySelector('div:first-child');
     if (imgContainer) {
       imgContainer.classList.add('col-xl-4', 'col-md-2', 'col-sm-4');
 
-      const link = imgContainer.querySelector('a');
-      if (link) {
-        const picture = document.createElement('picture');
+      const imgAnchor = imgContainer.querySelector('a');
+      if (imgAnchor) {
         const img = document.createElement('img');
-        img.src = link.href;
+        // Set initial src to ensure img tag has a value
+        img.src = imgAnchor.href;
         img.alt = '';
-        picture.appendChild(img);
-
+        
         ImageComponent({
           element: img,
-          src: link.href,
+          src: imgAnchor.href,
           alt: '',
           lazy: true,
         });
 
-        link.innerHTML = '';
-        link.appendChild(picture);
+        // Create picture element to properly handle responsive images
+        const picture = document.createElement('picture');
+        picture.appendChild(img);
+
+        // Replace anchor with picture element containing the image
+        imgContainer.innerHTML = '';
+        imgContainer.appendChild(picture);
       }
       row.appendChild(imgContainer);
     }
@@ -42,12 +52,6 @@ export default function decorate(block) {
     // Create single wrapper for content
     const contentWrapper = document.createElement('div');
     contentWrapper.classList.add('col-xl-8', 'col-md-4', 'col-sm-4', 'content-wrapper');
-
-    // Get all content elements
-    const title = item.querySelector('[data-aue-type="text"]');
-    const description = item.querySelector('[data-aue-prop="description"]');
-    const link = item.querySelector('.button-container a');
-    const linkTarget = item.querySelector('[data-aue-label="Target"]');
 
     // Add content elements to wrapper
     if (title) {
