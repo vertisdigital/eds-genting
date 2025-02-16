@@ -66,8 +66,10 @@
 
 .about-us-left .about-us-left-link svg{
   color:var(--primary-gold);
+  position: relative;
+  width: 16px;
+  height: 16px;
 }
-
 
 .about-us-stats .about-us-right-content{
   display: flex;
@@ -139,6 +141,11 @@
 .about-us-stats .about-us-right-content.text-container p{
 color: var(--body-text-color);
 }
+
+.about-us-left a.button {
+  background: none;
+}
+
 
 /* Responsive design */
 @media  (width >= 768px) {
@@ -241,7 +248,7 @@ color: var(--body-text-color);
   }
 
   .about-us-left a.button{
-    padding: 16px;
+    padding: 0;
   }
 
   .about-us-stats .about-us-right-content{

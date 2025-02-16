@@ -82,7 +82,7 @@ export default function decorate(block) {
         originalLink.append(stringToHTML(arrowSVG));
       }
     }
-
+    linkContainer.appendChild(originalLink);
     aboutUsLeftContent.appendChild(linkContainer);
   }
 
