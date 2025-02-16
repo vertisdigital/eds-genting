@@ -136,7 +136,7 @@ export default function processTabs(main, moveInstrumentation) {
     if (metaDataBlocks[0].textContent.trim() === 'panelheading') {
       const headingText = metaDataBlocks[1].textContent.trim();
       const panelHeading = document.createElement('div');
-      const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
+      const headingHtml = Heading({ level: 2, text: headingText, className: '' });
       const parsedHtml = stringToHTML(headingHtml);
       panelHeading.appendChild(parsedHtml);
       tabSectionMetaData.appendChild(panelHeading);
