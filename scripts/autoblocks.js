@@ -100,10 +100,8 @@ export default function processTabs(main, moveInstrumentation) {
           // Replace original block with new one
           block.replaceWith(newBlock);
 
-          // If this is in the first tab, load the block immediately
-          if (index === 0) {
-            loadBlock(newBlock);
-          }
+          // Load all blocks immediately instead of just the first tab
+          loadBlock(newBlock);
         }
       });
     });
@@ -148,8 +146,8 @@ export default function processTabs(main, moveInstrumentation) {
   const tabsPosition = main.querySelector('[data-aue-label="tabsposition"]');
   main.insertBefore(topContainer, tabsPosition || main.firstChild);
 
-  // Handle tab switching
-  tabsNav.addEventListener('click', async (event) => {
+  // Simplified tab switching handler - just toggle visibility
+  tabsNav.addEventListener('click', (event) => {
     const tabButton = event.target.closest('.tab-title');
     if (!tabButton) return;
 
@@ -170,10 +168,6 @@ export default function processTabs(main, moveInstrumentation) {
     const activePanel = tabsContent.children[index];
     if (activePanel) {
       activePanel.classList.add('active');
-
-      // Load blocks in the newly active panel if not already loaded
-      const blocks = activePanel.querySelectorAll('[data-block-name]');
-      await Promise.all(Array.from(blocks).map((block) => loadBlock(block)));
     }
   });
 }

@@ -961,18 +961,10 @@ main .section.highlight {
 }
 
 @media(width >= 1024px){
-  .tabs-container .about-us-stats .about-us-right-content div{
-    display: inline-flex;
+  .tabs-container .about-us-stats .about-us-right-content{
+    display: flex;
     flex-direction: row;
     align-items: center;
-  }
-
-  .tabs-container .about-us-stats .about-us-right-content div:first-child {
-    width: 20%;
-  }
-
-  .tabs-container .about-us-stats .about-us-right-content div:last-child {
-    width: 80%;
   }
 
   .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child{
