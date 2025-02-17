@@ -132,7 +132,7 @@ Usage Example:
 }
 
 body {
-  /* display: none; */
+  display: none;
   margin: 0;
   background-color: var(--background-color);
   color: var(--body-text-color);
