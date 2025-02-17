@@ -727,15 +727,6 @@
           "maxLength": 15,
           "customErrorMsg": "Location cannot exceed 10 characters"
         }
-      },
-      {
-        "component": "text",
-        "name": "locationTitle",
-        "label": "Location Title",
-        "validation": {
-          "maxLength": 15,
-          "customErrorMsg": "Location cannot exceed 10 characters"
-        }
       }
     ]
   },
