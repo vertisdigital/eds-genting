@@ -1114,21 +1114,21 @@
     "fields": [
       {
         "component": "custom-asset-namespace:custom-asset",
-        "name": "headerlogo_staticimage",
-        "label": "Static Image",
+        "name": "staticlogo",
+        "label": "Static Logo",
         "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "custom-asset-namespace:custom-asset",
-        "name": "headerlogo_stickyimage",
-        "label": "Sticky Image",  
+        "name": "stickylogo",
+        "label": "Sticky Logo",  
         "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "aem-content",
-        "name": "headerlogo_reference",
+        "name": "reference",
         "label": "Reference"
       }
     ]
