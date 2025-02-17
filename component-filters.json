@@ -15,7 +15,6 @@
       "image",
       "button",
       "title",
-      "headerlogo",
       "hero",
       "herobanner",
       "cards",
@@ -60,6 +59,7 @@
   {
     "id": "column",
     "components": [
+      "headerlogo",
       "text",
       "image",
       "button",
