@@ -55,6 +55,7 @@ Usage Example:
   --soft-ivory-light: #e3d5b1;
   --soft-ivory: #F5E7C4;
   --whisper-gray: #F7F7F7;
+  --soft-ivory-blue: #FBF6E9;
 
  
   /* fonts */
@@ -765,7 +766,7 @@ main .section.highlight {
 .tab-title{
   position: relative;
   text-align: center;
-  padding: 36px 0 45px;
+  padding: 45px 0 33px;
   color: var(--body-text-color);
   font-size: 24px;
   font-weight: 600;
@@ -775,7 +776,7 @@ main .section.highlight {
 }
 
 .tab-title.active {
-  background: var(--soft-ivory-light); 
+  background: var(--soft-ivory-blue); 
   color: var(--primary-gold);
   border-bottom: 2px solid var(--primary-gold);
 }
@@ -961,18 +962,15 @@ main .section.highlight {
 }
 
 @media(width >= 1024px){
-  .tabs-container .about-us-stats .about-us-right-content div{
-    display: inline-flex;
+
+  .tabs-container .about-us-stats .about-us-right-content:nth-child(2) > div:nth-child(2) {
+    width: 53%;
+  }
+  
+  .tabs-container .about-us-stats .about-us-right-content{
+    display: flex;
     flex-direction: row;
     align-items: center;
-  }
-
-  .tabs-container .about-us-stats .about-us-right-content div:first-child {
-    width: 20%;
-  }
-
-  .tabs-container .about-us-stats .about-us-right-content div:last-child {
-    width: 80%;
   }
 
   .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child{
