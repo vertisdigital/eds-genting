@@ -1129,7 +1129,10 @@
       {
         "component": "aem-content",
         "name": "reference",
-        "label": "Reference"
+        "label": "Reference",
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       }
     ]
   }
