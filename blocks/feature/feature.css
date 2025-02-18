@@ -42,6 +42,11 @@
   line-height: 28px;
 
 }
+.about-us-left h2.about-us-left-heading[data-aue-label="Title"] {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+}
 
 .about-us-left .about-us-left-sub-heading{
  margin: 0;
@@ -150,6 +155,13 @@ color: var(--body-text-color);
   padding-right: 0;
 }
 
+.statistics-container .feature-wrapper .about-us-stats .about-us-right-content p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--body-text-color);
+}
+
 
 /* Responsive design */
 @media  (width >= 768px) {
@@ -180,7 +192,10 @@ color: var(--body-text-color);
     font-size: 32px;
     line-height: 42px;
   }
-
+  .about-us-left h2.about-us-left-heading[data-aue-label="Title"] {
+    font-size: 18px;
+    line-height: 24px;
+  }
 
   .about-us-left .about-us-left-sub-heading{
     font-size: 16px;
@@ -219,7 +234,10 @@ color: var(--body-text-color);
     width: 72px;
     height: 72px;
   }
- 
+  .statistics-container .feature-wrapper .about-us-stats .about-us-right-content p {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 @media  (width >= 1024px) {
@@ -245,6 +263,9 @@ color: var(--body-text-color);
   .about-us-left h2.about-us-left-heading{
     font-size: 40px;
     line-height: 50px;
+  }
+  .about-us-left h2.about-us-left-heading[data-aue-label="Title"] {
+    font-size: 20px;
   }
 
   .about-us-left .about-us-left-sub-heading{

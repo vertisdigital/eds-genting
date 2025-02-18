@@ -336,9 +336,9 @@ main .section.highlight {
   margin-left: auto;
 }
 
-.animated-cta:hover .animation-element {
+/* .animated-cta:hover .animation-element {
   transform: translateX(0.25rem);
-}
+} */
  
 @media (width >= 320px) {
   .container-sm, .container {

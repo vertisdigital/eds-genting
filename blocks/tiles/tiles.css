@@ -78,6 +78,8 @@ a:any-link.factsheet-button {
 
 .factsheet-button .icon-wrapper {
   padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 /* .factsheet-button::after {

@@ -70,6 +70,13 @@
     line-height: 24px;
     margin-bottom: 10px;
     margin-top: 0;
+    color: var(--text-color);
+}
+
+.coreprinciples [data-aue-prop="description"] {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--body-text-color);
 }
 
 .coreprinciples [data-richtext-prop="description"] {
@@ -138,6 +145,11 @@
         font-size: 16px;
         line-height: 20px;
         margin-bottom: 8px;
+    }
+
+    .coreprinciples [data-aue-prop="description"] {
+        font-size: 14px;
+        line-height: 20px;
     }
 
     .coreprinciples [data-richtext-prop="description"] {
