@@ -260,7 +260,7 @@
 }
 
 .content-wrapper .left-arrow-icon {
-  fill: currentColor;
+  fill: currentcolor;
   transition: transform 0.3s ease;
 }
 

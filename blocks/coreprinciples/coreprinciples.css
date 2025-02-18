@@ -109,15 +109,19 @@
     .coreprinciples h3 {
         font-size: 18px;
     }
+
     .principles-item, .principles-item:first-child, .principles-item:last-child {
         padding: 0 12px;
     }
+
     .principles-item:not(:last-child) {
         margin-bottom: 24px;
     }
+
     .coreprinciples {
         padding: 56px 0;
     }
+
     .coreprinciples .coreprinciples::after {
         transform: translateY(56px);
     }
@@ -156,13 +160,16 @@
         font-size: 14px;
         line-height: 20px;
     }
+
     .coreprinciples .row {
         margin-left: -9px;
         margin-right: -9px;
     }
+
     .principles-item, .principles-item:first-child, .principles-item:last-child {
         padding: 0 9px;
     }
+
     .principles-item:not(:last-child) {
         margin-bottom: 18px;
     }
