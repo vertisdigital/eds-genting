@@ -122,7 +122,7 @@ export default function decorate(block) {
     });
     const parsedHtml = stringToHTML(arrowIconHtml);
     const anchorWrapper = document.createElement('a');
-    anchorWrapper.href = arrowIconLink.textContent;
+    anchorWrapper.href = arrowIconLink?.getAttribute('href');
     anchorWrapper.appendChild(parsedHtml);
     heroContent.appendChild(anchorWrapper);
   }
