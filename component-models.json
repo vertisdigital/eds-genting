@@ -200,7 +200,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -292,7 +292,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -574,7 +574,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "BackgroundImage",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "required": true,
@@ -682,7 +682,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "ProjectImage",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore/index"
@@ -770,7 +770,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "PhoneIcon",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -795,7 +795,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "emailIcon",
         "label": "EmailIcon",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -820,7 +820,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "AddressIcon",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -863,7 +863,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -912,7 +912,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1005,7 +1005,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://textmediasection--genting--wppopen.aem.page/tools/assets-selector/config.json"
+        "configUrl": "https://textmediasection--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
         "component": "reference",
@@ -1065,7 +1065,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       }
     ]
