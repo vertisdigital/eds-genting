@@ -136,7 +136,11 @@
       {
         "component": "text",
         "name": "tabtitle",
-        "label": "Tab Title" 
+        "label": "Tab Title",
+        "validation": {
+          "maxLength": 10,
+          "customErrorMsg": "Tab title cannot exceed 10 characters"
+        }
       }
     ]
   },
@@ -196,7 +200,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -243,12 +247,12 @@
       {
         "component": "text",
         "name": "ctabuttonText",
-        "label": "Text"
+        "label": "CTA Text"
       },
       {
         "component": "text",
         "name": "ctabuttonTitle",
-        "label": "Title"
+        "label": "CTA Title"
       },
       {
         "component": "number",
@@ -265,33 +269,33 @@
   },
   {
     "id": "bannercarousel",
-    "fields": [
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "image",
-        "label": "Carousel Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
-        "valueType": "string",
-        "validation": {
-          "rootPath": "/content/dam/genting-singapore"
-        }
-      },
+    "fields": [     
       {
         "component": "text",
         "name": "title",
-        "label": "Title",
+        "label": "News Label",
         "validation": {
-          "maxLength": 100,
+          "maxLength": 25,
           "customErrorMsg": "Title cannot exceed 25 characters"
         }
       },
       {
         "component": "text",
         "name": "description",
-        "label": "Description",
+        "label": "Title",
         "validation": {
-          "maxLength": 250,
+          "maxLength": 60,
           "customErrorMsg": "Description cannot exceed 60 characters"        
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Carousel Image",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "valueType": "string",
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
         }
       },
       {
@@ -304,7 +308,7 @@
         "component": "aem-content",
         "valueType": "string",
         "name": "readmorelink",
-        "label": "Read More Link",
+        "label": "CTA Link",
         "multi": false,
         "validation": {
           "rootPath": "/content/genting-singapore/index"
@@ -344,19 +348,35 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Section Name",
+        "description": "Section Name cannot exceed 35 characters",
+        "validation": {
+          "maxLength": 35,
+          "customErrorMsg": "Section Name cannot exceed 35 characters"
+        }
       },
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading"
+        "label": "Title",
+        "description": "Title cannot exceed 100 characters",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
       },
       {
         "component": "richtext",
         "name": "sub-heading",
         "value": "",
-        "label": "Sub Heading",
-        "valueType": "string"
+        "label": "Description",
+        "description": "Description cannot exceed 500 characters",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
       }
     ]
   },
@@ -367,25 +387,35 @@
         "component": "reference",
         "valueType": "string",
         "name": "feature-icon",
-        "label": "Feature Icon",
+        "label": "Icon",
         "multi": false
       },
       {
         "component": "text",
         "name": "feature-icon-alt",
-        "label": "Feature Icon Alt Text"
+        "label": "Icon Alt Text"
       },
       {
         "component": "richtext",
         "name": "feature-title",
         "value": "",
-        "label": "Feature Title",
-        "valueType": "string"
+        "label": "Statistics Numbers",
+        "description": "Statistics Numbers cannot exceed 15 characters",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 15,
+          "customErrorMsg": "Statistics Numbers cannot exceed 15 characters"
+        }
       },
       {
         "component": "richtext",
         "name": "feature-heading",
-        "label": "Feature Heading"
+        "label": "Text",
+        "description": "Text should be between 5 and 100 characters",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Text should be between 5 and 100 characters"
+        }
       }
     ]
   },
@@ -397,7 +427,7 @@
         "name": "link",
         "label": "Link",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -442,17 +472,27 @@
       {
         "component": "text",
         "name": "linkText",
-        "label": "Text"
+        "label": "Text",
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view.",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view."
+        }
       },
       {
         "component": "text",
         "name": "linkTitle",
-        "label": "Title"
+        "label": "Title",
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view.",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
+        }
       },
       {
         "component": "select",
         "name": "linkTarget",
-        "label": "Link Target",
+        "label": "Target",
         "options": [
           {
             "name": "Same Window",
@@ -531,6 +571,7 @@
         "name": "description",
         "value": "",
         "label": "Description",
+        "description": "Description must not exceed 500 characters",
         "valueType": "string",
         "validation": {
           "maxLength": 500,
@@ -555,7 +596,11 @@
       {
         "component": "text",
         "name": "heading",
-        "label": "Title"
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
       }
     ]
   },
@@ -566,7 +611,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "BackgroundImage",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "required": true,
@@ -662,7 +707,7 @@
         "valueType": "string",
         "validation": {
           "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 250 characters"
+          "customErrorMsg": "Description cannot exceed 500 characters"
         }
       }
     ]
@@ -674,7 +719,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "ProjectImage",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore/index"
@@ -702,7 +747,11 @@
       {
         "component": "text",
         "name": "projectTitle",
-        "label": "Title"
+        "label": "Title",
+        "validation": {
+          "maxLength": 25,
+          "customErrorMsg": "Title cannot exceed 25 characters"
+        }
       },
       {
         "component": "select",
@@ -725,7 +774,7 @@
         "label": "Location",
         "validation": {
           "maxLength": 15,
-          "customErrorMsg": "Location cannot exceed 10 characters"
+          "customErrorMsg": "Location cannot exceed 15 characters"
         }
       }
     ]
@@ -758,7 +807,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "PhoneIcon",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -783,7 +832,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "emailIcon",
         "label": "EmailIcon",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -808,7 +857,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "AddressIcon",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -830,7 +879,7 @@
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading",
+        "label": "Title",
         "required": true,
         "validation": {
           "maxLength": 100,
@@ -838,20 +887,20 @@
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "label": "Description",
         "valueType": "string",
         "validation": {
-          "maxSize": 250,
-          "customErrorMsg": "Description cannot exceed 250 characters"
+          "maxSize": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
         }
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -886,11 +935,9 @@
         "value": "",
         "label": "Description",
         "valueType": "string",
-        "required": true,
         "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters",
-          "requiredErrorMsg": "Description is mandatory"
+          "maxLength": 1000,
+          "customErrorMsg": "Description cannot exceed 500 characters"
         }
       }
     ]
@@ -902,7 +949,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -940,7 +987,7 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Section Title",
+        "label": "Title",
         "required": true,
         "validation": {
           "maxLength": 100,
@@ -995,7 +1042,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://textmediasection--genting--wppopen.aem.page/tools/assets-selector/config.json"
+        "configUrl": "https://textmediasection--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
         "component": "reference",
@@ -1055,7 +1102,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       }
     ]
@@ -1082,18 +1129,18 @@
         "component": "richtext",
         "name": "description",
         "value": "",
-        "label": "Description",
+        "label": "Short Description",
         "valueType": "string"
       },
       {
         "component": "text",
         "name": "readMoreLabel",
-        "label": "Read More Label"
+        "label": "Read More"
       },
       {
         "component": "text",
         "name": "readLessLabel",
-        "label": "Read Less Label"
+        "label": "Read Less"
       }
     ]
   },
@@ -1103,17 +1150,23 @@
       {
         "component": "text",
         "name": "moreIndices",
-        "label": "More Indices"
+        "label": "More Index"
       },
       {
         "component": "text",
         "name": "lessIndices",
-        "label": "Less Indices"
+        "label": "Less Index"
       },
       {
         "component": "text",
         "name": "indexNumber",
-        "label": "Index Number"
+        "label": "Index Count",
+        "description": "Index Count must be between 1 and 10",
+        "validation": {
+          "pattern": "^(10|[1-9])$",
+          "customErrorMsg": "Index Count must be a number between 1 and 10",
+          "type": "number"
+        }
       }
     ]
   },
@@ -1126,8 +1179,8 @@
         "label": "Panel Heading",
         "required": true,
         "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Panel heading cannot exceed 100 characters"
+          "maxLength": 80,
+          "customErrorMsg": "Panel heading cannot exceed 80 characters"
         }
       }
     ]
