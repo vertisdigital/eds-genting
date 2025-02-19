@@ -1041,5 +1041,6 @@ main::before {
   main::before {
     background: url(../icons/genting-page-desktop-bg-1920.jpg) repeat-y;
     background-position: center top;
+    background-size: 100%;
   }
 }

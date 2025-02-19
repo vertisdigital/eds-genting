@@ -160,7 +160,7 @@
   height: 100%;   
 }
 
-.carousel-image img {
+.hero-banner-container .carousel-image img {
   height: 118px;
 }
 
@@ -385,7 +385,7 @@
     flex: 1;
   }
 
-  .carousel-image img {
+  .hero-banner-container .carousel-image img {
     height: 92px;
     flex: 1 0 0;
   }
