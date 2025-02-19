@@ -210,7 +210,6 @@
         "component": "text",
         "name": "bannerheading",
         "label": "Banner Heading",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Banner Heading cannot exceed 100 characters"
@@ -258,7 +257,6 @@
         "component": "number",
         "name": "scrollInterval",
         "label": "Scroll Interval",
-        "required": true,
         "value": 5,
         "description": "Interval in seconds",
         "validation": {
@@ -360,7 +358,6 @@
         "name": "heading",
         "label": "Title",
         "description": "Title cannot exceed 100 characters",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -522,8 +519,7 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link", 
-        "required":true,
+        "label": "Link",
         "validation": {
           "rootPath": "/content/genting-singapore/index"          
         }
@@ -587,7 +583,6 @@
         "component": "text",
         "name": "title",
         "label": "Section Name",
-        "required": true,
         "validation": {
           "maxLength": 50,
           "customErrorMsg": "Section Name cannot exceed 50 characters"
@@ -614,7 +609,6 @@
         "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
-        "required": true,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
         }
@@ -628,7 +622,6 @@
         "component": "text",
         "name": "title",
         "label": "Report Name",
-        "required": true,
         "validation": {
           "maxLength": 60,
           "customErrorMsg": "Report Name cannot exceed 60 characters"
@@ -691,7 +684,6 @@
         "component": "text",
         "name": "heading",
         "label": "Section Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Section Title cannot exceed 100 characters"
@@ -783,7 +775,6 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -816,7 +807,6 @@
         "component": "text",
         "name": "phoneNumber",
         "label": "Phone Number",
-        "required": true,
         "validation": {
           "pattern": "^[+]?[0-9]{10,30}$",
           "minLength": 10,
@@ -840,7 +830,6 @@
         "component": "text",
         "name": "emailAddress",
         "label": "Email Address",
-        "required": true,
         "validation": {
           "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
           "minLength": 10,
@@ -874,7 +863,6 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -916,11 +904,9 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters",
-          "requiredErrorMsg": "Title is mandatory"
+          "customErrorMsg": "Title cannot exceed 100 characters"
         }
       },
       {
@@ -982,11 +968,9 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters",
-          "requiredErrorMsg": "Title is mandatory"
+          "customErrorMsg": "Title cannot exceed 100 characters"
         }
       },
       {
@@ -1058,7 +1042,6 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -1119,7 +1102,6 @@
         "name": "title",
         "label": "Title",
         "description": "Title cannot exceed 100 characters",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -1182,7 +1164,6 @@
         "component": "text",
         "name": "panelheading",
         "label": "Panel Heading",
-        "required": true,
         "validation": {
           "maxLength": 80,
           "customErrorMsg": "Panel heading cannot exceed 80 characters"
