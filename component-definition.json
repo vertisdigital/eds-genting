@@ -189,14 +189,14 @@
           }
         },
         {
-          "title": "Hero Banner", 
+          "title": "HeroBanner",
           "id": "herobanner",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Hero Banner",
+                  "name": "herobanner",
                   "model": "herobanner",
                   "filter": "herobanner"
                 }
@@ -212,8 +212,23 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Banner Carousel",
+                  "name": "bannercarousel",
                   "model": "bannercarousel"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Hero",
+          "id": "hero",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Hero",
+                  "model": "hero"
                 }
               }
             }
@@ -346,14 +361,14 @@
           }
         },
         {
-          "title": "Project Cards",
+          "title": "ProjectCards",
           "id": "projectcards",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Project Cards",
+                  "name": "ProjectCards",
                   "model": "projectcards",
                   "filter": "projectcards"
                 }
@@ -362,14 +377,14 @@
           }
         },
         {
-          "title": "Project Card",
+          "title": "ProjectCard",
           "id": "projectcard",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Project Card",
+                  "name": "ProjectCard",
                   "model": "projectcard"
                 }
               }
@@ -431,7 +446,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Text Section",
+                  "name": "textsection",
                   "model": "textsection",
                   "filter": "textsection"
                 }
@@ -447,7 +462,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Core Principles",
+                  "name": "coreprinciples",
                   "filter": "coreprinciples"
                 }
               }
@@ -462,7 +477,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Core Principle",
+                  "name": "coreprinciple",
                   "model": "coreprinciple"
                 }
               }
@@ -477,7 +492,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Exlore More",
+                  "name": "exploremore",
                   "model": "exploremore",
                   "filter": "exploremore"
                 }
@@ -493,7 +508,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Text Media Block",
+                  "name": "TextMediaBlock",
                   "model": "textmediablock",
                   "filter": "textmediablock"
                 }
@@ -509,7 +524,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "media",
+                  "name": "Media",
                   "model": "media"
                 }
               }
@@ -524,7 +539,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Projects List",
+                  "name": "projectslist",
                   "model": "projectslist",
                   "filter": "projectslist"
                 }
@@ -540,7 +555,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Projects List Item",
+                  "name": "projectslistitem",
                   "model": "projectslistitem"
                 }
               }
