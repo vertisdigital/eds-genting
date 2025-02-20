@@ -1,3 +1,7 @@
+.listing-wrapper {
+  background: #fff;
+}
+
 .listing {
   /* List styles */
   ul {
