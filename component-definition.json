@@ -189,7 +189,7 @@
           }
         },
         {
-          "title": "Hero Banner",
+          "title": "HeroBanner",
           "id": "herobanner",
           "plugins": {
             "xwalk": {
