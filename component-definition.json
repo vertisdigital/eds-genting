@@ -77,7 +77,7 @@
           }
         },
         {
-          "title": "TabsPanel",
+          "title": "Tabs Panel",
           "id": "tabspanel",
           "plugins": {
             "xwalk": {
@@ -93,7 +93,7 @@
           }
         },
         {
-          "title": "TabsPosition",
+          "title": "Tabs Position",
           "id": "tabsposition",
           "plugins": {
             "xwalk": {
@@ -189,7 +189,7 @@
           }
         },
         {
-          "title": "HeroBanner",
+          "title": "Hero Banner",
           "id": "herobanner",
           "plugins": {
             "xwalk": {
