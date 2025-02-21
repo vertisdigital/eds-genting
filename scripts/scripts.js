@@ -64,6 +64,7 @@ async function loadFonts() {
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
+  console.log('Building auto blocks');
   /*try {
     // Process tabs first but maintain their position
     processTabs(main, moveInstrumentation);
