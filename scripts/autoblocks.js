@@ -130,13 +130,19 @@ function addTabFunctionality({ tabs, panels, container }) {
 
   const tabNav = container.querySelector('.tab-nav');
 
+  if (!tabNav) {
+    console.warn("⚠️ .tab-nav not found when adding event listener!");
+    return;
+  }
+
+  console.log("✅ Found .tab-nav. Attaching click event...");
+
   tabNav.addEventListener('click', (e) => {
+    console.log("✅ Tab Click Detected:", e.target);
     const clickedTab = e.target.closest('.tab-title');
     if (!clickedTab) return;
 
     const index = Number(clickedTab.getAttribute('data-tab-index'));
-
-    console.log(`[Tab System] Tab clicked: "${clickedTab.textContent}" (Index: ${index})`);
     updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], index);
   });
 
@@ -168,12 +174,17 @@ function processTabs(main) {
     main.prepend(elements.container);
     console.log('[Tab System] Tab structure added to the DOM.');
 
+    // Ensure tab-nav exists before adding event listeners
+    if (!document.querySelector('.tab-nav')) {
+      console.warn("⚠️ .tab-nav is still missing after DOM update. Retrying...");
+      setTimeout(() => addTabFunctionality(elements), 100);
+    } else {
+      addTabFunctionality(elements);
+    }
+
     // Remove original sections
     structure.tabElements.forEach(section => section.remove());
     console.log('[Tab System] Removed original sections.');
-
-    // Add functionality after DOM insertion
-    addTabFunctionality(elements);
 
     console.log('[Tab System] Tab setup complete. Ready for interaction.');
   } catch (error) {
