@@ -66,9 +66,6 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   console.log('Building auto blocks');
   try {
-    // Handle tab styles first
-    handleTabStyles(main);
-    
     // Process tabs and maintain their position
     processTabs(main, moveInstrumentation);
 
@@ -85,11 +82,9 @@ function buildAutoBlocks(main) {
         if (!className.startsWith('columns-') && !className.startsWith('tabs-')
             && className !== 'columns' && className !== 'tabs'
             && className !== 'section-metadata') {
-          // Add block class and ensure block type is the first class
           block.classList.remove(className);
           block.classList.add(className, 'block');
 
-          // Force block decoration for this element
           if (!block.dataset.blockName) {
             block.dataset.blockName = className;
           }
@@ -97,7 +92,6 @@ function buildAutoBlocks(main) {
       });
     });
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
@@ -154,6 +148,10 @@ function handleTabStyles(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  // Run handleTabStyles before any decoration
+  handleTabStyles(main);
+  
+  // Then run other decorators
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main);
