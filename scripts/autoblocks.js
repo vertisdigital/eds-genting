@@ -19,6 +19,10 @@ function handleTabStyles(main) {
       const tabWrapper = document.createElement('div');
       tabWrapper.className = 'tab-wrapper';
       
+      // Store references to all tabs and panels
+      const tabs = [];
+      const panels = [];
+      
       // Process each tab section
       tabElements.forEach((section, index) => {
         const titleText = section.getAttribute('data-tabtitle');
@@ -28,33 +32,6 @@ function handleTabStyles(main) {
         tabTitle.textContent = titleText;
         tabTitle.className = 'tab-title';
         tabTitle.setAttribute('data-tab-index', index);
-        
-        // Add click handler with debugging
-        tabTitle.onclick = function() {
-          console.log('Tab clicked:', {
-            text: this.textContent,
-            index: this.getAttribute('data-tab-index')
-          });
-          
-          // Remove active class from all tabs and panels
-          const allTabs = tabNav.querySelectorAll('.tab-title');
-          const allPanels = tabWrapper.querySelectorAll('.tab');
-          
-          console.log('Found elements:', {
-            tabs: allTabs.length,
-            panels: allPanels.length
-          });
-          
-          allTabs.forEach(tab => tab.classList.remove('active'));
-          allPanels.forEach(panel => panel.classList.remove('active'));
-          
-          // Add active class to clicked tab and corresponding panel
-          this.classList.add('active');
-          allPanels[index].classList.add('active');
-          
-          console.log('Tab switch complete');
-        };
-        
         if (index === 0) tabTitle.classList.add('active');
         
         const clonedSection = section.cloneNode(true);
@@ -63,21 +40,39 @@ function handleTabStyles(main) {
         clonedSection.setAttribute('data-block-status', 'loaded');
         clonedSection.classList.toggle('active', index === 0);
         
+        // Store references
+        tabs.push(tabTitle);
+        panels.push(clonedSection);
+        
         tabNav.appendChild(tabTitle);
         tabWrapper.appendChild(clonedSection);
       });
 
+      // Build structure
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
       tabElements.forEach(section => section.remove());
       main.prepend(tabsContainer);
+
+      // Add click handlers after DOM is built
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          console.log('Tab clicked:', tab.textContent);
+          
+          // Update tabs
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          // Update panels
+          panels.forEach(p => p.classList.remove('active'));
+          panels[index].classList.add('active');
+        });
+      });
       
-      // Verify structure and handlers
-      console.log('Final structure:', {
-        container: tabsContainer,
-        tabs: tabNav.querySelectorAll('.tab-title'),
-        panels: tabWrapper.querySelectorAll('.tab'),
-        handlers: tabNav.querySelectorAll('.tab-title').length
+      console.log('Setup complete:', {
+        tabs: tabs.length,
+        panels: panels.length,
+        activeTab: tabs.find(t => t.classList.contains('active'))?.textContent
       });
     }
   } catch (error) {
