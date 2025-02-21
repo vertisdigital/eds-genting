@@ -111,56 +111,74 @@ function updateTabStates(tabs, panels, activeIndex) {
  * @param {Object} elements References to tab elements
  */
 function addTabFunctionality({ tabs, panels, container }) {
-  if (!tabs || !panels || !container) return;
+  if (!tabs || !panels || !container) {
+    console.warn('Missing required elements:', { tabs, panels, container });
+    return;
+  }
   
   console.log('Adding click handlers to tabs:', {
     numTabs: tabs.length,
-    numPanels: panels.length
+    numPanels: panels.length,
+    container: container.outerHTML
   });
 
-  // Use event delegation on tab nav instead of individual handlers
-  const tabNav = container.querySelector('.tab-nav');
-  if (!tabNav) return;
+  // Add direct click handlers to each tab
+  tabs.forEach((tab, index) => {
+    console.log('Setting up tab:', {
+      index,
+      tab: tab.outerHTML,
+      panel: panels[index].outerHTML
+    });
 
-  tabNav.addEventListener('click', (e) => {
+    // Add click handler directly to tab
+    tab.onclick = (e) => {
+      console.log('Tab clicked directly:', {
+        index,
+        target: e.target,
+        currentTarget: e.currentTarget
+      });
+
+      // Update tabs
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Update panels
+      panels.forEach(p => p.classList.remove('active'));
+      panels[index].classList.add('active');
+    };
+
+    // Also add click handler using addEventListener
+    tab.addEventListener('click', function(e) {
+      console.log('Tab clicked via event listener:', {
+        index,
+        target: e.target,
+        currentTarget: e.currentTarget
+      });
+    });
+
+    // Make tab clickable
+    tab.style.cursor = 'pointer';
+    tab.setAttribute('role', 'button');
+    tab.setAttribute('tabindex', '0');
+  });
+
+  // Also add container-level delegation as backup
+  container.addEventListener('click', (e) => {
     const clickedTab = e.target.closest('.tab-title');
     if (!clickedTab) return;
 
-    const index = parseInt(clickedTab.getAttribute('data-tab-index'), 10);
-    if (isNaN(index)) return;
-
-    console.log('Tab clicked:', {
-      index,
-      text: clickedTab.textContent
-    });
-
-    // Get fresh references to all tabs and panels
-    const allTabs = tabNav.querySelectorAll('.tab-title');
-    const allPanels = container.querySelectorAll('.tab');
-
-    // Update tabs
-    allTabs.forEach(tab => tab.classList.remove('active'));
-    clickedTab.classList.add('active');
-
-    // Update panels
-    allPanels.forEach(panel => panel.classList.remove('active'));
-    allPanels[index].classList.add('active');
-
-    console.log('Tab state updated:', {
-      activeTab: clickedTab.textContent,
-      activePanel: allPanels[index].getAttribute('data-tabtitle')
+    console.log('Tab clicked via delegation:', {
+      target: e.target,
+      clickedTab: clickedTab,
+      index: clickedTab.getAttribute('data-tab-index')
     });
   });
 
-  // Add keyboard support
-  tabNav.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    
-    const focusedTab = e.target.closest('.tab-title');
-    if (!focusedTab) return;
-    
-    e.preventDefault();
-    focusedTab.click();
+  // Log final setup
+  console.log('Tab handlers attached:', {
+    container: container.outerHTML,
+    tabs: tabs.map(t => t.outerHTML),
+    panels: panels.map(p => p.outerHTML)
   });
 }
 
