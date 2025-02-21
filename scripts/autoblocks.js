@@ -45,26 +45,25 @@ function handleTabStyles(main) {
       tabElements.forEach(section => section.remove());
       main.prepend(tabsContainer);
 
-      // Add global click handler
-      document.addEventListener('click', function(e) {
-        const clickedTab = e.target.closest('.tab-link');
-        if (!clickedTab || !tabsContainer.contains(clickedTab)) return;
-        
-        e.preventDefault();
-        
-        console.log('Tab clicked:', clickedTab.textContent);
-        
-        const index = parseInt(clickedTab.getAttribute('data-tab-index'), 10);
-        const allTabs = tabNav.querySelectorAll('.tab-link');
-        const allContent = tabWrapper.querySelectorAll('.tab');
-        
-        // Remove active class from all tabs and content
-        allTabs.forEach(tab => tab.classList.remove('active'));
-        allContent.forEach(content => content.classList.remove('active'));
-        
-        // Add active class to clicked tab and corresponding content
-        clickedTab.classList.add('active');
-        allContent[index].classList.add('active');
+      // Add click handler directly to each tab link
+      tabsContainer.querySelectorAll('.tab-link').forEach((tabLink, index) => {
+        tabLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          console.log('Tab clicked:', this.textContent);
+          
+          // Get fresh references
+          const allTabs = tabNav.querySelectorAll('.tab-link');
+          const allContent = tabWrapper.querySelectorAll('.tab');
+          
+          // Remove active class from all tabs and content
+          allTabs.forEach(tab => tab.classList.remove('active'));
+          allContent.forEach(content => content.classList.remove('active'));
+          
+          // Add active class to clicked tab and corresponding content
+          this.classList.add('active');
+          allContent[index].classList.add('active');
+        });
       });
     }
   } catch (error) {
