@@ -55,29 +55,32 @@ function handleTabStyles(main) {
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
       
-      // Add click handler using event delegation on container
-      tabsContainer.addEventListener('click', function(e) {
+      // Replace only the tab sections
+      tabElements.forEach(section => section.remove());
+      main.prepend(tabsContainer);
+      
+      // Add global click handler
+      document.addEventListener('click', function(e) {
         const tabLink = e.target.closest('.tab-link');
         if (!tabLink) return;
         
         e.preventDefault();
         console.log('Tab clicked:', tabLink.textContent);
         
+        const container = tabLink.closest('.tab-container');
+        if (!container) return;
+        
         const index = parseInt(tabLink.getAttribute('data-tab-index'), 10);
         
         // Update active states
-        this.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
+        container.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
         tabLink.classList.add('active');
         
         // Show/hide content
-        this.querySelectorAll('.tab').forEach((tab, i) => {
+        container.querySelectorAll('.tab').forEach((tab, i) => {
           tab.classList.toggle('active', i === index);
         });
       });
-      
-      // Replace only the tab sections
-      tabElements.forEach(section => section.remove());
-      main.prepend(tabsContainer);
       
       console.log('Tab structure complete');
     }
