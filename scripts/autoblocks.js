@@ -5,6 +5,11 @@
 function handleTabStyles(main) {
   try {
     const tabElements = main.querySelectorAll('div[data-tabtitle]');
+    console.log('Found tab elements:', {
+      count: tabElements.length,
+      elements: tabElements,
+      mainHTML: main.innerHTML
+    });
     
     if (tabElements.length > 0) {
       const tabsContainer = document.createElement('div');
@@ -20,8 +25,11 @@ function handleTabStyles(main) {
       // Create all tabs first, then add event listeners
       const tabs = [];
       
+      console.log('Starting tab creation loop');
+      console.log('Tab elements:', tabElements.innerHTML);
       tabElements.forEach((section, index) => {
         const tabTitle = section.getAttribute('data-tabtitle');
+        console.log(`Creating tab ${index}:`, { tabTitle, section });
         
         const tabLink = document.createElement('a');
         tabLink.textContent = tabTitle;
