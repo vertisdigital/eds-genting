@@ -29,7 +29,6 @@ function handleTabStyles(main) {
         tabLink.href = '#';
         tabLink.className = 'tab-link';
         tabLink.setAttribute('data-tab-index', index);
-        tabLink.style.cursor = 'pointer';
         if (index === 0) tabLink.classList.add('active');
         
         const clonedSection = section.cloneNode(true);
