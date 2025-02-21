@@ -756,29 +756,49 @@ main .section.highlight {
 /* Tab Navigation */
 .tab-nav {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
   border-bottom: 1px solid #e6e6e6;
   margin-bottom: 1.5rem;
 }
 
 .tab-link {
-  padding: 0.75rem 0;
-  color: #666;
+  padding: 0.75rem 1.5rem;
+  color: var(--link-color);
   text-decoration: none;
   position: relative;
   font-size: 1rem;
   font-weight: 400;
   cursor: pointer;
-  transition: color 0.2s ease;
+  min-width: 120px;
+  text-align: center;
 }
 
 .tab-link:hover {
-  color: #000;
+  color: var(--link-hover-color);
+  text-decoration: none;
 }
 
 .tab-link.active {
   color: #000;
   font-weight: 500;
+  text-decoration: none;
+  background-color: var(--soft-ivory-light);
+  border-radius: 4px 4px 0 0;
+}
+
+/* Arrow for active tab */
+.tab-link.active::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--soft-ivory-light);
+  z-index: 1;
 }
 
 .tab-link.active::after {
@@ -814,6 +834,6 @@ main .section.highlight {
   .tab-link {
     display: block;
     text-align: center;
-    padding: 0.5rem 0;
+    padding: 0.5rem 1.5rem;
   }
 }
