@@ -29,6 +29,24 @@ function handleTabStyles(main) {
         tabLink.className = 'tab-link';
         tabLink.setAttribute('data-tab-index', index);
         if (index === 0) tabLink.classList.add('active');
+        
+        // Add click handler immediately after creating the link
+        tabLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Remove active class from all tabs
+          tabNav.querySelectorAll('.tab-link').forEach(link => {
+            link.classList.remove('active');
+          });
+          tabLink.classList.add('active');
+          
+          // Show/hide content
+          tabWrapper.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+          });
+          tabWrapper.children[index].classList.add('active');
+        });
+        
         tabNav.appendChild(tabLink);
         
         const clonedSection = section.cloneNode(true);
@@ -37,44 +55,7 @@ function handleTabStyles(main) {
         clonedSection.setAttribute('data-block-status', 'loaded');
         clonedSection.classList.toggle('active', index === 0);
         tabWrapper.appendChild(clonedSection);
-        
-        tabs.push({ link: tabLink, content: clonedSection });
       });
-
-      // Add event listeners after DOM is built
-      tabs.forEach(tab => {
-        tab.link.addEventListener('click', (e) => {
-          e.preventDefault();
-          
-          const tabIndex = tab.link.getAttribute('data-tab-index');
-          const tabTitle = tab.link.textContent;
-          
-          // Remove active class from all tabs
-          tabs.forEach(t => {
-            t.link.classList.remove('active');
-            t.content.classList.remove('active');
-          });
-          
-          // Add active class to clicked tab
-          tab.link.classList.add('active');
-          tab.content.classList.add('active');
-          
-          // Update URL hash without scrolling
-          history.pushState(null, '', `#${tabTitle.toLowerCase()}`);
-        });
-      });
-
-      // Check URL hash on load
-      const { hash } = window.location;
-      if (hash) {
-        const tabTitle = hash.substring(1);
-        const matchingTab = tabs.find(tab => 
-          tab.link.textContent.toLowerCase() === tabTitle.toLowerCase()
-        );
-        if (matchingTab) {
-          matchingTab.link.click();
-        }
-      }
 
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
