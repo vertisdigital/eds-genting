@@ -66,34 +66,8 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   console.log('Building auto blocks');
   try {
-    // Handle tab styles first
-    handleTabStyles(main);
-    
-    // Process tabs and maintain their position
-    processTabs(main, moveInstrumentation);
-
-    // Find blocks inside columns and tabs containers
-    const containerBlocks = main.querySelectorAll(`
-      .columns div[class],
-      [data-aue-model="tabs"] div[class],
-      [data-aue-filter="tabs"] div[class]
-    `);
-
-    containerBlocks.forEach((block) => {
-      const classes = Array.from(block.classList);
-      classes.forEach((className) => {
-        if (!className.startsWith('columns-') && !className.startsWith('tabs-')
-            && className !== 'columns' && className !== 'tabs'
-            && className !== 'section-metadata') {
-          block.classList.remove(className);
-          block.classList.add(className, 'block');
-
-          if (!block.dataset.blockName) {
-            block.dataset.blockName = className;
-          }
-        }
-      });
-    });
+    // Process tabs
+    processTabs(main);
   } catch (error) {
     console.error('Auto Blocking failed', error);
   }
