@@ -134,6 +134,11 @@
     "id": "tabs",
     "fields": [
       {
+        "component": "hidden",
+        "name": "data-gens-style",
+        "value": "tabs"
+      },
+      {
         "component": "text",
         "name": "tabtitle",
         "label": "Tab Title",
