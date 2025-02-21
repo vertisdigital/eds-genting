@@ -486,7 +486,9 @@ function decorateSections(main) {
         nestedElement.classList.add(`section-nested-${sectionIndex + 1}-${childIndex + 1}-${nestedIndex + 1}`);
        
         // Decorate AEM structure if present
-        decorateAEMStructure(nestedElement, sectionIndex, childIndex);
+        if(!window.location.href.indexOf('author') > -1) {
+          decorateAEMStructure(nestedElement, sectionIndex, childIndex);
+        }
        
         // Continue with existing nested element processing
         [...nestedElement.children].forEach((deepElement, deepIndex) => {
