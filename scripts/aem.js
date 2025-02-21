@@ -476,14 +476,15 @@ function decorateSections(main) {
     let defaultContent = false;
    
     // Add section index class
-    section.classList.add(`section-block`);
+    section.classList.add(`section-${sectionIndex + 1}`);
    
     [...section.children].forEach((child, childIndex) => {
-      child.classList.add(`section-row-${childIndex + 1}`);
+      const childClass = child.className;
+      child.classList.add(`${childClass}-row`);
      
       // Add index classes to nested elements
       [...child.children].forEach((nestedElement, nestedIndex) => {
-        nestedElement.classList.add(`section-nested-${childIndex + 1}-${nestedIndex + 1}`);
+        nestedElement.classList.add(`${childClass}-nested-${sectionIndex + 1}-${nestedIndex + 1}`);
        
         // Decorate AEM structure if present
         if(window.location.href.indexOf('author') === -1) {
@@ -492,12 +493,12 @@ function decorateSections(main) {
        
         // Continue with existing nested element processing
         [...nestedElement.children].forEach((deepElement, deepIndex) => {
-          deepElement.classList.add(`section-element-${childIndex + 1}-${nestedIndex + 1}-${deepIndex + 1}`);
+          deepElement.classList.add(`${childClass}-element-${sectionIndex + 1}-${nestedIndex + 1}-${deepIndex + 1}`);
          
           // Add classes to innermost elements (like links, spans, etc.)
           if (deepElement.children.length > 0) {
             [...deepElement.children].forEach((innerElement, innerIndex) => {
-              innerElement.classList.add(`section-inner-${childIndex + 1}-${nestedIndex + 1}-${deepIndex + 1}-${innerIndex + 1}`);
+              innerElement.classList.add(`${childClass}-inner-${sectionIndex + 1}-${nestedIndex + 1}-${deepIndex + 1}-${innerIndex + 1}`);
             });
           }
         });
@@ -516,7 +517,7 @@ function decorateSections(main) {
    
     // Add wrappers to section with index classes
     wrappers.forEach((wrapper, wrapperIndex) => {
-      wrapper.classList.add(`section-wrapper-${wrapperIndex + 1}`);
+      wrapper.classList.add(`${childClass}-wrapper-${sectionIndex + 1}-${wrapperIndex + 1}`);
       section.append(wrapper);
     });
    
