@@ -46,6 +46,9 @@ function handleTabStyles(main) {
         tab.link.addEventListener('click', (e) => {
           e.preventDefault();
           
+          const tabIndex = tab.link.getAttribute('data-tab-index');
+          const tabTitle = tab.link.textContent;
+          
           // Remove active class from all tabs
           tabs.forEach(t => {
             t.link.classList.remove('active');
@@ -55,8 +58,23 @@ function handleTabStyles(main) {
           // Add active class to clicked tab
           tab.link.classList.add('active');
           tab.content.classList.add('active');
+          
+          // Update URL hash without scrolling
+          history.pushState(null, '', `#${tabTitle.toLowerCase()}`);
         });
       });
+
+      // Check URL hash on load
+      const { hash } = window.location;
+      if (hash) {
+        const tabTitle = hash.substring(1);
+        const matchingTab = tabs.find(tab => 
+          tab.link.textContent.toLowerCase() === tabTitle.toLowerCase()
+        );
+        if (matchingTab) {
+          matchingTab.link.click();
+        }
+      }
 
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);

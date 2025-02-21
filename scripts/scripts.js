@@ -146,6 +146,3 @@ async function loadPage() {
 }
 
 loadPage();
-
-// Add this in your initialization code
-loadCSS(`${window.hlx.codeBasePath}/blocks/tabs/tabs.css`);
