@@ -32,13 +32,29 @@ function handleTabStyles(main) {
       tabElements.forEach((section, index) => {
         const tabTitle = section.getAttribute('data-tabtitle');
         
-        // Create tab button
-        const tabButton = document.createElement('button');
-        tabButton.textContent = tabTitle;
-        tabButton.className = 'tab-button';
-        tabButton.setAttribute('data-tab-index', index);
-        if (index === 0) tabButton.classList.add('active');
-        tabNav.appendChild(tabButton);
+        // Create tab link
+        const tabLink = document.createElement('a');
+        tabLink.textContent = tabTitle;
+        tabLink.href = '#';
+        tabLink.className = 'tab-link';
+        tabLink.setAttribute('data-tab-index', index);
+        if (index === 0) tabLink.classList.add('active');
+        
+        // Add click handler directly to each link
+        tabLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Update active states
+          tabNav.querySelectorAll('.tab-link').forEach(lnk => lnk.classList.remove('active'));
+          tabLink.classList.add('active');
+          
+          // Show/hide content
+          tabWrapper.querySelectorAll('.tab').forEach((tab, i) => {
+            tab.style.display = i === index ? 'block' : 'none';
+          });
+        });
+        
+        tabNav.appendChild(tabLink);
         
         // Clone and prepare content
         const clonedSection = section.cloneNode(true);
@@ -53,27 +69,9 @@ function handleTabStyles(main) {
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
       
-      // Replace main content
-      main.innerHTML = '';
-      main.appendChild(tabsContainer);
-      
-      // Add click handlers
-      tabNav.addEventListener('click', (e) => {
-        const button = e.target.closest('.tab-button');
-        if (!button) return;
-        
-        const index = button.getAttribute('data-tab-index');
-        const tabs = tabWrapper.querySelectorAll('.tab');
-        
-        // Update active states
-        tabNav.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        // Show/hide content
-        tabs.forEach((tab, i) => {
-          tab.style.display = i === parseInt(index) ? 'block' : 'none';
-        });
-      });
+      // Replace only the tab sections, not the entire main content
+      tabElements.forEach(section => section.remove());
+      main.prepend(tabsContainer);
     }
   } catch (error) {
     console.error('Error in handleTabStyles:', error);
