@@ -105,33 +105,50 @@ function buildAutoBlocks(main) {
 function handleTabStyles() {
   try {
     const main = document.querySelector('main');
+    console.log('Main element found:', main);
+
     const tabElements = main.querySelectorAll('.section-metadata.tab');
+    console.log('Found tab elements:', tabElements.length, tabElements);
     
     if (tabElements.length > 0) {
       // Create tabs container
       const tabsContainer = document.createElement('div');
       tabsContainer.className = 'tabs-container';
+      console.log('Created tabs container:', tabsContainer);
       
-      tabElements.forEach(tab => {
+      tabElements.forEach((tab, index) => {
+        console.log(`Processing tab ${index}:`, tab);
+        
         // Remove tab class from section-metadata
         tab.classList.remove('tab');
+        console.log(`Removed tab class from section-metadata ${index}:`, tab.classList);
         
         // Add tab class to parent and clone to container
         const parentDiv = tab.parentElement;
+        console.log(`Parent div ${index}:`, parentDiv);
+        
         if (parentDiv) {
           const clonedDiv = parentDiv.cloneNode(true);
+          console.log(`Cloned div ${index}:`, clonedDiv);
+          
           clonedDiv.classList.add('tab');
+          console.log(`Added tab class to cloned div ${index}:`, clonedDiv.classList);
+          
           tabsContainer.appendChild(clonedDiv);
-          console.log('Successfully processed tab element');
+          console.log(`Added cloned div ${index} to tabs container. Container now:`, tabsContainer.innerHTML);
         }
       });
 
-      // Insert tabs container at the beginning of main
+      console.log('Final tabs container before prepend:', tabsContainer.innerHTML);
       main.prepend(tabsContainer);
-      console.log('Successfully created tabs container');
+      console.log('Main element after prepend:', main.innerHTML);
+    } else {
+      console.log('No tab elements found');
     }
   } catch (error) {
     console.error('Error in handleTabStyles:', error);
+    // Log the full error stack
+    console.error('Error stack:', error.stack);
   }
 }
 
