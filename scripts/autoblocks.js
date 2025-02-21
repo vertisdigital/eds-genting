@@ -38,30 +38,20 @@ function handleTabStyles(main) {
         tabLink.href = '#';
         tabLink.className = 'tab-link';
         tabLink.setAttribute('data-tab-index', index);
-        if (index === 0) tabLink.classList.add('active');
-        
-        // Add click handler directly to each link
-        tabLink.addEventListener('click', (e) => {
-          e.preventDefault();
-          
-          // Update active states
-          tabNav.querySelectorAll('.tab-link').forEach(lnk => lnk.classList.remove('active'));
-          tabLink.classList.add('active');
-          
-          // Show/hide content
-          tabWrapper.querySelectorAll('.tab').forEach((tab, i) => {
-            tab.style.display = i === index ? 'block' : 'none';
-          });
-        });
-        
-        tabNav.appendChild(tabLink);
         
         // Clone and prepare content
         const clonedSection = section.cloneNode(true);
         clonedSection.classList.add('tab', 'block');
         clonedSection.setAttribute('data-block-name', 'tab');
         clonedSection.setAttribute('data-block-status', 'loaded');
-        clonedSection.style.display = index === 0 ? 'block' : 'none';
+        
+        // Set initial active states
+        if (index === 0) {
+          tabLink.classList.add('active');
+          clonedSection.classList.add('active');
+        }
+        
+        tabNav.appendChild(tabLink);
         tabWrapper.appendChild(clonedSection);
       });
 
@@ -69,7 +59,29 @@ function handleTabStyles(main) {
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
       
-      // Replace only the tab sections, not the entire main content
+      // Add click handler to tab navigation
+      tabNav.addEventListener('click', (e) => {
+        e.preventDefault();
+        const link = e.target.closest('.tab-link');
+        if (!link) return;
+        
+        const index = parseInt(link.getAttribute('data-tab-index'), 10);
+        
+        // Update active states
+        tabNav.querySelectorAll('.tab-link').forEach(lnk => lnk.classList.remove('active'));
+        link.classList.add('active');
+        
+        // Show/hide content using classes instead of style
+        tabWrapper.querySelectorAll('.tab').forEach((tab, i) => {
+          if (i === index) {
+            tab.classList.add('active');
+          } else {
+            tab.classList.remove('active');
+          }
+        });
+      });
+      
+      // Replace only the tab sections
       tabElements.forEach(section => section.remove());
       main.prepend(tabsContainer);
     }
