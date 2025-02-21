@@ -767,10 +767,11 @@ main .section.highlight {
   position: relative;
   font-size: 1rem;
   font-weight: 400;
-  cursor: pointer;
+  cursor: pointer !important;
   min-width: 120px;
   text-align: center;
   border-bottom: 1px solid transparent;
+  user-select: none;
 }
 
 .tab-title:hover {

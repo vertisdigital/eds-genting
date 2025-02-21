@@ -28,6 +28,20 @@ function handleTabStyles(main) {
         tabTitle.textContent = titleText;
         tabTitle.className = 'tab-title';
         tabTitle.setAttribute('data-tab-index', index);
+        
+        // Add click handler to each tab title
+        tabTitle.addEventListener('click', function() {
+          console.log('Tab clicked directly:', this.textContent);
+          
+          // Remove active class from all tabs and panels
+          tabNav.querySelectorAll('.tab-title').forEach(tab => tab.classList.remove('active'));
+          tabWrapper.querySelectorAll('.tab').forEach(panel => panel.classList.remove('active'));
+          
+          // Add active class to clicked tab and corresponding panel
+          this.classList.add('active');
+          tabWrapper.children[index].classList.add('active');
+        });
+        
         if (index === 0) tabTitle.classList.add('active');
         
         const clonedSection = section.cloneNode(true);
@@ -40,41 +54,12 @@ function handleTabStyles(main) {
         tabWrapper.appendChild(clonedSection);
       });
 
-      // Build structure first
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
       tabElements.forEach(section => section.remove());
       main.prepend(tabsContainer);
-
-      // Add click handler after DOM is in place
-      const handleTabClick = (e) => {
-        const clickedTab = e.target.closest('.tab-title');
-        if (!clickedTab) return;
-        
-        console.log('Tab clicked:', clickedTab.textContent);
-
-        const index = parseInt(clickedTab.getAttribute('data-tab-index'), 10);
-        
-        // Update tabs
-        const allTabs = tabNav.querySelectorAll('.tab-title');
-        allTabs.forEach(tab => tab.classList.remove('active'));
-        clickedTab.classList.add('active');
-
-        // Update panels
-        const allPanels = tabWrapper.querySelectorAll('.tab');
-        allPanels.forEach(panel => panel.classList.remove('active'));
-        allPanels[index].classList.add('active');
-      };
-
-      // Bind click handler
-      tabNav.addEventListener('click', handleTabClick);
       
-      // Log final structure
-      console.log('Tab structure:', {
-        container: tabsContainer.outerHTML,
-        tabs: tabNav.querySelectorAll('.tab-title').length,
-        panels: tabWrapper.querySelectorAll('.tab').length
-      });
+      console.log('Tab setup complete with handlers attached');
     }
   } catch (error) {
     console.error('Error in handleTabStyles:', error);
