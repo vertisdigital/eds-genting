@@ -107,35 +107,49 @@ function handleTabStyles(main) {
     if (tabElements.length > 0) {
       // Create tabs container
       const tabsContainer = document.createElement('div');
-      tabsContainer.className = 'tabs-container';
-      console.log('Created tabs container:', tabsContainer);
+      tabsContainer.className = 'tabs-container section tab-container';
+      tabsContainer.setAttribute('data-section-status', 'loaded');
+      
+      // Create empty div (required structure)
+      const emptyDiv = document.createElement('div');
+      tabsContainer.appendChild(emptyDiv);
+      
+      // Create tab wrapper
+      const tabWrapper = document.createElement('div');
+      tabWrapper.className = 'tab-wrapper';
+      tabsContainer.appendChild(tabWrapper);
       
       tabElements.forEach((tab, index) => {
         console.log(`Processing tab ${index}:`, tab);
         
-        // Get the outermost parent div that contains both textmediablock and section-metadata
+        // Get the outermost parent div
         const parentDiv = tab.parentElement;
         console.log(`Found parent div ${index}:`, parentDiv);
         
         if (parentDiv) {
-          // Add tab class to parent div
-          parentDiv.classList.add('tab');
+          // Create tab block div
+          const tabBlock = document.createElement('div');
+          tabBlock.className = 'tab block';
+          tabBlock.setAttribute('data-block-name', 'tab');
+          tabBlock.setAttribute('data-block-status', 'loaded');
           
-          // Remove tab class from section-metadata
-          tab.classList.remove('tab');
+          // Clone the textmediablock and section-metadata
+          const textMediaBlock = parentDiv.querySelector('.textmediablock');
+          const sectionMetadata = tab.cloneNode(true);
+          sectionMetadata.classList.remove('tab');
           
-          // Move the entire parent div to tabs container
-          tabsContainer.appendChild(parentDiv.cloneNode(true));
-          console.log(`Cloned parent div ${index} to tabs container`);
+          // Add to tab block
+          if (textMediaBlock) tabBlock.appendChild(textMediaBlock.cloneNode(true));
+          tabBlock.appendChild(sectionMetadata);
+          
+          // Add tab block to wrapper
+          tabWrapper.appendChild(tabBlock);
         }
       });
 
-      // Replace the original content with tabs container
+      // Replace main content
       main.innerHTML = '';
       main.appendChild(tabsContainer);
-      console.log('Main element after replacement:', main.innerHTML);
-    } else {
-      console.log('No tab elements found');
     }
   } catch (error) {
     console.error('Error in handleTabStyles:', error);
