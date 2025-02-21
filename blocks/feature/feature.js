@@ -55,7 +55,7 @@ export default function decorate(block) {
     const subHeadingElement = document.createElement('p');
     subHeadingElement.className = 'about-us-left-sub-heading';
     moveInstrumentation(subHeading, subHeadingElement);
-    const subHeadingText = subHeading.querySelector('p').textContent;
+    const subHeadingText = subHeading.querySelector('p')?.textContent;
     subHeadingElement.textContent = subHeadingText;
     aboutUsLeftContent.appendChild(subHeadingElement);
     subHeading.remove();
