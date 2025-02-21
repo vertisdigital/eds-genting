@@ -21,11 +21,11 @@ function handleTabStyles(main) {
       
       // Process each tab section
       tabElements.forEach((section, index) => {
-        const tabTitle = section.getAttribute('data-tabtitle');
-        console.log('Creating tab:', { index, title: tabTitle });
+        const titleText = section.getAttribute('data-tabtitle');
+        console.log('Creating tab:', { index, title: titleText });
         
         const tabTitle = document.createElement('div');
-        tabTitle.textContent = tabTitle;
+        tabTitle.textContent = titleText;
         tabTitle.className = 'tab-title';
         tabTitle.setAttribute('data-tab-index', index);
         if (index === 0) tabTitle.classList.add('active');
