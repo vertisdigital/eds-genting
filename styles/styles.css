@@ -756,21 +756,19 @@ main .section.highlight {
 /* Tab Navigation */
 .tab-nav {
   display: flex;
-  gap: 3rem;
+  gap: 1.5rem;
   border-bottom: 1px solid #ddd;
   margin-bottom: 2rem;
   padding: 0;
 }
 
-/* Override default link styles */
-.tab-link:any-link {
-  padding: 0.5rem 0;
+.tab-link {
+  padding: 0.75rem 0;
   color: #666;
   text-decoration: none;
   position: relative;
-  font-size: 1.125rem;
+  font-size: 1rem;
   cursor: pointer;
-  transition: color 0.3s ease;
 }
 
 .tab-link:hover {
@@ -795,7 +793,7 @@ main .section.highlight {
 
 /* Tab Content */
 .tab-wrapper {
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .tab-wrapper .tab {
