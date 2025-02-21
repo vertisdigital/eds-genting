@@ -135,9 +135,9 @@
     "fields": [
       {
         "component": "select",
-        "name": "style",
+        "name": "classes",
         "value": "",
-        "label": "Style",
+        "label": "Style Classes",
         "valueType": "string",
         "options": [
           {
