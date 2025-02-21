@@ -751,6 +751,12 @@ main .section.highlight {
   display: none;
 }
 
+.tab-title {
+  position: relative !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
 /* Base tab styles with highest specificity */
 .tabs-container .tab-nav .tab-title {
   padding: 0.75rem 1.5rem;
@@ -781,6 +787,8 @@ main .section.highlight {
   border-bottom: 1px solid var(--primary-gold);
   cursor: pointer !important;
 }
+
+
 
 /* Tab navigation container */
 .tabs-container .tab-nav {
