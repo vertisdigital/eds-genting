@@ -114,15 +114,15 @@ function handleTabStyles(main) {
         console.log(`Processing tab ${index}:`, tab);
         
         // Get the parent div that contains both textmediablock and section-metadata
-        const parentDiv = tab.closest('div > div');
+        const parentDiv = tab.closest('div');
         console.log(`Found parent div ${index}:`, parentDiv);
         
         if (parentDiv) {
+          // Add tab class to parent div
+          parentDiv.classList.add('tab');
+          
           // Remove tab class from section-metadata
           tab.classList.remove('tab');
-          
-          // Add tab class to the top-level parent
-          parentDiv.classList.add('tab');
           
           // Move the entire parent div to tabs container
           tabsContainer.appendChild(parentDiv);
