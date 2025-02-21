@@ -42,7 +42,7 @@ function handleTabStyles(main) {
       });
 
       // Add event listeners after DOM is built
-      tabs.forEach((tab, index) => {
+      tabs.forEach(tab => {
         tab.link.addEventListener('click', (e) => {
           e.preventDefault();
           
