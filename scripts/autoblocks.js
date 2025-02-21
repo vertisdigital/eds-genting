@@ -14,25 +14,44 @@ function handleTabStyles(main) {
       
       // Create tab navigation
       const tabNav = document.createElement('div');
-      tabNav.className = 'tab-nav';  // Keep original class for styling
+      tabNav.className = 'tab-nav';
       
       // Create content wrapper
       const tabWrapper = document.createElement('div');
-      tabWrapper.className = 'tab-wrapper';  // Keep original class for styling
+      tabWrapper.className = 'tab-wrapper';
       
       // Process each tab section
       tabElements.forEach((section, index) => {
         const tabTitle = section.getAttribute('data-tabtitle');
         
-        // Create tab link (not div)
         const tabLink = document.createElement('a');
         tabLink.textContent = tabTitle;
         tabLink.href = '#';
         tabLink.className = 'tab-link';
         tabLink.setAttribute('data-tab-index', index);
+        
+        // Add click handler to each tab link
+        tabLink.onclick = function(e) {
+          console.log('Tab clicked:', this.textContent);
+          e.preventDefault();
+          
+          // Get all tabs and content
+          const allTabs = tabNav.querySelectorAll('.tab-link');
+          const allContent = tabWrapper.querySelectorAll('.tab');
+          
+          // Remove active class from all
+          allTabs.forEach(t => t.classList.remove('active'));
+          allContent.forEach(c => c.classList.remove('active'));
+          
+          // Add active class to clicked tab and content
+          this.classList.add('active');
+          allContent[index].classList.add('active');
+          
+          console.log('Tab switch complete');
+        };
+        
         if (index === 0) tabLink.classList.add('active');
         
-        // Create tab content
         const clonedSection = section.cloneNode(true);
         clonedSection.classList.add('tab', 'block');
         clonedSection.setAttribute('data-block-name', 'tab');
@@ -43,59 +62,15 @@ function handleTabStyles(main) {
         tabWrapper.appendChild(clonedSection);
       });
 
-      console.log('Before adding click handler to tabNav:', {
-        tabNav,
-        tabLinks: tabNav.querySelectorAll('.tab-link'),
-        tabWrapper,
-        tabContent: tabWrapper.querySelectorAll('.tab')
-      });
-
-      // Add single click handler to tab navigation
-      tabNav.addEventListener('click', (e) => {
-        console.log('Tab nav clicked:', {
-          event: e,
-          target: e.target,
-          currentTarget: e.currentTarget
-        });
-
-        const clickedTab = e.target.closest('.tab-link');
-        console.log('Clicked tab:', clickedTab);
-        
-        if (!clickedTab) return;
-        
-        e.preventDefault();
-        
-        // Get all tabs and content
-        const allTabs = tabNav.querySelectorAll('.tab-link');
-        const allContent = tabWrapper.querySelectorAll('.tab');
-        
-        console.log('Found elements:', {
-          allTabs,
-          allContent,
-          clickedIndex: clickedTab.getAttribute('data-tab-index')
-        });
-
-        // Remove active class from all tabs and content
-        allTabs.forEach(tab => tab.classList.remove('active'));
-        allContent.forEach(content => content.classList.remove('active'));
-        
-        // Add active class to clicked tab and corresponding content
-        const tabIndex = clickedTab.getAttribute('data-tab-index');
-        clickedTab.classList.add('active');
-        allContent[tabIndex].classList.add('active');
-        
-        console.log('After updating active states');
-      });
-
-      console.log('After adding click handler');
-
       // Build final structure
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
       
-      // Replace original content
       tabElements.forEach(section => section.remove());
       main.prepend(tabsContainer);
+      
+      console.log('Tab setup complete, click handlers attached to:', 
+        tabNav.querySelectorAll('.tab-link').length, 'tabs');
     }
   } catch (error) {
     throw new Error(`Error in handleTabStyles: ${error.message}`);
