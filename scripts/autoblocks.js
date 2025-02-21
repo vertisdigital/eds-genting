@@ -5,6 +5,7 @@
 function handleTabStyles(main) {
   try {
     const tabElements = main.querySelectorAll('div[data-tabtitle]');
+    console.log('Found tab elements:', tabElements.length);
     
     if (tabElements.length > 0) {
       const tabsContainer = document.createElement('div');
@@ -26,6 +27,39 @@ function handleTabStyles(main) {
         tabLink.href = '#';
         tabLink.className = 'tab-link';
         tabLink.setAttribute('data-tab-index', index);
+        
+        // Add click handler with debugging
+        tabLink.addEventListener('click', function clickHandler(e) {
+          console.log('Tab clicked:', {
+            index,
+            title: tabTitle,
+            target: e.target,
+            currentTarget: e.currentTarget
+          });
+          
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Get fresh references to elements
+          const currentTabs = tabNav.querySelectorAll('.tab-link');
+          const currentContent = tabWrapper.querySelectorAll('.tab');
+          
+          console.log('Found elements:', {
+            tabs: currentTabs.length,
+            content: currentContent.length
+          });
+          
+          // Update active states
+          currentTabs.forEach(t => t.classList.remove('active'));
+          currentContent.forEach(c => c.classList.remove('active'));
+          
+          this.classList.add('active');
+          currentContent[index].classList.add('active');
+          
+          console.log('Tab switch complete');
+          return false;
+        });
+        
         if (index === 0) tabLink.classList.add('active');
         
         const clonedSection = section.cloneNode(true);
@@ -38,34 +72,21 @@ function handleTabStyles(main) {
         tabWrapper.appendChild(clonedSection);
       });
 
-      // Single click handler for tab navigation
-      tabNav.addEventListener('click', function(e) {
-        const clickedTab = e.target.closest('.tab-link');
-        if (!clickedTab) return;
-        
-        e.preventDefault();
-        
-        const index = parseInt(clickedTab.getAttribute('data-tab-index'), 10);
-        if (isNaN(index)) return;
-        
-        // Update active states
-        const allTabs = tabNav.querySelectorAll('.tab-link');
-        const allContent = tabWrapper.querySelectorAll('.tab');
-        
-        allTabs.forEach(tab => tab.classList.remove('active'));
-        allContent.forEach(content => content.classList.remove('active'));
-        
-        clickedTab.classList.add('active');
-        allContent[index].classList.add('active');
-      });
-
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
+      
+      // Test click handler after DOM is built
+      const firstTab = tabNav.querySelector('.tab-link');
+      console.log('Testing click on first tab:', firstTab);
+      if (firstTab) {
+        firstTab.click();
+      }
       
       tabElements.forEach(section => section.remove());
       main.prepend(tabsContainer);
     }
   } catch (error) {
+    console.error('Error in handleTabStyles:', error);
     throw new Error(`Error in handleTabStyles: ${error.message}`);
   }
 }
