@@ -797,7 +797,7 @@ main .section.highlight {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--soft-ivory-light);
+  border-bottom: 8px solid var(--primary-gold);
   z-index: 1;
 }
 
