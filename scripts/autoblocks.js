@@ -118,52 +118,49 @@ function addTabFunctionality({ tabs, panels, container }) {
     numPanels: panels.length
   });
 
-  // Add direct click handlers to each tab
-  tabs.forEach((tab, index) => {
-    // Remove any existing handlers first
-    const newTab = tab.cloneNode(true);
-    tab.parentNode.replaceChild(newTab, tab);
-    
-    // Add click handler
-    newTab.onclick = function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      console.log('Tab clicked:', {
-        index,
-        text: this.textContent,
-        currentActive: tabs.findIndex(t => t.classList.contains('active'))
-      });
+  // Use event delegation on tab nav instead of individual handlers
+  const tabNav = container.querySelector('.tab-nav');
+  if (!tabNav) return;
 
-      // Update tabs
-      tabs.forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      
-      // Update panels
-      panels.forEach(p => p.classList.remove('active'));
-      panels[index].classList.add('active');
+  tabNav.addEventListener('click', (e) => {
+    const clickedTab = e.target.closest('.tab-title');
+    if (!clickedTab) return;
 
-      // Log state after update
-      console.log('Tab state updated:', {
-        activeTab: this.textContent,
-        activePanel: panels[index].getAttribute('data-tabtitle')
-      });
+    const index = parseInt(clickedTab.getAttribute('data-tab-index'), 10);
+    if (isNaN(index)) return;
 
-      return false; // Prevent any default behavior
-    };
+    console.log('Tab clicked:', {
+      index,
+      text: clickedTab.textContent
+    });
 
-    // Update tabs array with new element
-    tabs[index] = newTab;
+    // Get fresh references to all tabs and panels
+    const allTabs = tabNav.querySelectorAll('.tab-title');
+    const allPanels = container.querySelectorAll('.tab');
+
+    // Update tabs
+    allTabs.forEach(tab => tab.classList.remove('active'));
+    clickedTab.classList.add('active');
+
+    // Update panels
+    allPanels.forEach(panel => panel.classList.remove('active'));
+    allPanels[index].classList.add('active');
+
+    console.log('Tab state updated:', {
+      activeTab: clickedTab.textContent,
+      activePanel: allPanels[index].getAttribute('data-tabtitle')
+    });
   });
 
   // Add keyboard support
-  tabs.forEach(tab => {
-    tab.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        this.click();
-      }
-    });
+  tabNav.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    
+    const focusedTab = e.target.closest('.tab-title');
+    if (!focusedTab) return;
+    
+    e.preventDefault();
+    focusedTab.click();
   });
 }
 
