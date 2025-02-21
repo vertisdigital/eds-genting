@@ -5,6 +5,7 @@
 function handleTabStyles(main) {
   try {
     const tabElements = main.querySelectorAll('div[data-tabtitle]');
+    console.log('Found tab elements:', tabElements.length);
     
     if (tabElements.length > 0) {
       const tabsContainer = document.createElement('div');
@@ -38,44 +39,33 @@ function handleTabStyles(main) {
         tabWrapper.appendChild(clonedSection);
       });
 
-      // Add click handler to tab navigation
-      tabNav.addEventListener('click', (e) => {
-        const clickedTab = e.target.closest('.tab-link');
-        console.log('Clicked tab:', clickedTab);
-        if (!clickedTab) return;
-        
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const index = parseInt(clickedTab.getAttribute('data-tab-index'), 10);
-        if (isNaN(index)) return;
-        
-        // Get fresh references
-        const allTabs = tabNav.querySelectorAll('.tab-link');
-        const allContent = tabWrapper.querySelectorAll('.tab');
-        
-        // Update active states
-        allTabs.forEach(tab => tab.classList.remove('active'));
-        allContent.forEach(content => content.classList.remove('active'));
-        
-        clickedTab.classList.add('active');
-        allContent[index].classList.add('active');
-
-        // Load block if needed
-        const selectedContent = allContent[index];
-        if (selectedContent.dataset.blockStatus !== 'loaded') {
-          loadBlock(selectedContent);
-        }
-      });
-
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
       
-      // Remove original sections after cloning
       tabElements.forEach(section => section.remove());
-      
-      // Insert the tabs container
       main.prepend(tabsContainer);
+
+      // Add global click handler
+      document.addEventListener('click', function(e) {
+        const clickedTab = e.target.closest('.tab-link');
+        if (!clickedTab || !tabsContainer.contains(clickedTab)) return;
+        
+        e.preventDefault();
+        
+        console.log('Tab clicked:', clickedTab.textContent);
+        
+        const index = parseInt(clickedTab.getAttribute('data-tab-index'), 10);
+        const allTabs = tabNav.querySelectorAll('.tab-link');
+        const allContent = tabWrapper.querySelectorAll('.tab');
+        
+        // Remove active class from all tabs and content
+        allTabs.forEach(tab => tab.classList.remove('active'));
+        allContent.forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        clickedTab.classList.add('active');
+        allContent[index].classList.add('active');
+      });
     }
   } catch (error) {
     console.error('Error in handleTabStyles:', error);
