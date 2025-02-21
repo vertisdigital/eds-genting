@@ -864,3 +864,39 @@ main .section.highlight {
   margin-bottom: 1.5rem;
   border-bottom: 1px solid #ddd; /* Add visual separator */
 }
+
+/* Make tab styles more specific and ensure cursor works */
+.tabs-container .tab-nav .tab-title {
+  padding: 0.75rem 1.5rem;
+  color: var(--link-color);
+  position: relative;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer !important; /* Force cursor style */
+  min-width: 120px;
+  text-align: center;
+  border-bottom: 1px solid transparent;
+  user-select: none;
+  display: inline-block;
+}
+
+/* Remove duplicate/less specific styles */
+.tab-title {
+  display: none; /* Hide less specific version */
+}
+
+/* Update hover state */
+.tabs-container .tab-nav .tab-title:hover {
+  color: var(--link-hover-color);
+  cursor: pointer !important;
+}
+
+/* Update active state */
+.tabs-container .tab-nav .tab-title.active {
+  color: var(--primary-gold);
+  font-weight: 500;
+  background-color: var(--soft-ivory-light);
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid var(--primary-gold);
+  cursor: pointer !important;
+}

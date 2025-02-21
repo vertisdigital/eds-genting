@@ -118,37 +118,39 @@ function addTabFunctionality({ tabs, panels, container }) {
     numPanels: panels.length
   });
 
-  // Use event delegation on container
-  container.addEventListener('click', (e) => {
-    const clickedTab = e.target.closest('.tab-title');
-    if (!clickedTab) return;
-    
-    const index = parseInt(clickedTab.getAttribute('data-tab-index'), 10);
-    if (isNaN(index)) return;
-    
-    console.log('Tab clicked:', {
-      index,
-      text: clickedTab.textContent
-    });
+  // Add direct click handlers to each tab
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', function() {
+      console.log('Tab clicked:', {
+        index,
+        text: this.textContent,
+        currentActive: tabs.findIndex(t => t.classList.contains('active'))
+      });
 
-    // Update tabs
-    tabs.forEach(t => t.classList.remove('active'));
-    clickedTab.classList.add('active');
-    
-    // Update panels
-    panels.forEach(p => p.classList.remove('active'));
-    panels[index].classList.add('active');
+      // Update tabs
+      tabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Update panels
+      panels.forEach(p => p.classList.remove('active'));
+      panels[index].classList.add('active');
+
+      // Log state after update
+      console.log('Tab state updated:', {
+        activeTab: this.textContent,
+        activePanel: panels[index].getAttribute('data-tabtitle')
+      });
+    });
   });
 
   // Add keyboard support
-  container.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    
-    const focusedTab = e.target.closest('.tab-title');
-    if (!focusedTab) return;
-    
-    e.preventDefault();
-    focusedTab.click();
+  tabs.forEach(tab => {
+    tab.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
   });
 }
 
