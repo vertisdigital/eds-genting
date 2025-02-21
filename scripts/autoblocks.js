@@ -170,9 +170,12 @@ function processTabs(main) {
     const elements = assembleTabStructure(structure);
     console.log('[Tab System] Tab elements assembled:', elements);
 
-    // Add to DOM first
-    main.prepend(elements.container);
-    console.log('[Tab System] Tab structure added to the DOM.');
+    // Find the first tab element's position
+    const firstTabElement = structure.tabElements[0];
+    
+    // Insert the tab container before the first tab element
+    firstTabElement.parentNode.insertBefore(elements.container, firstTabElement);
+    console.log('[Tab System] Tab structure inserted at correct position.');
 
     // Ensure tab-nav exists before adding event listeners
     if (!document.querySelector('.tab-nav')) {
