@@ -107,8 +107,8 @@ function handleTabStyles() {
     const main = document.querySelector('main');
     console.log('Main element found:', main);
 
-    // Look for section-metadata with tab class
-    const tabElements = main.querySelectorAll('.section-metadata.tab');
+    // Look for sections with data-tabtitle
+    const tabElements = main.querySelectorAll('.section[data-tabtitle]');
     console.log('Found tab elements:', tabElements.length, tabElements);
     
     if (tabElements.length > 0) {
@@ -120,18 +120,10 @@ function handleTabStyles() {
       tabElements.forEach((tab, index) => {
         console.log(`Processing tab ${index}:`, tab);
         
-        // Remove tab class from section-metadata
-        tab.classList.remove('tab');
-        console.log(`Removed tab class from section-metadata ${index}:`, tab.classList);
-        
-        // Add tab class to parent and move to container
-        const parentDiv = tab.parentElement;
-        if (parentDiv) {
-          parentDiv.classList.add('tab');
-          // Move the entire parent div to tabs container
-          tabsContainer.appendChild(parentDiv);
-          console.log(`Moved parent div ${index} to tabs container`);
-        }
+        // Add tab class and move to container
+        tab.classList.add('tab');
+        tabsContainer.appendChild(tab);
+        console.log(`Moved tab ${index} to tabs container`);
       });
 
       console.log('Final tabs container before prepend:', tabsContainer.innerHTML);
