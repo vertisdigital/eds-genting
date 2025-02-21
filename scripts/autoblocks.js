@@ -1,4 +1,3 @@
-import stringToHTML from '../shared-components/Utility.js';
 /**
  * Process all the tab auto blocks
  * @param {Element} main The container element
