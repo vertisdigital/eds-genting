@@ -41,6 +41,7 @@ function handleTabStyles(main) {
       // Add click handler to tab navigation
       tabNav.addEventListener('click', (e) => {
         const clickedTab = e.target.closest('.tab-link');
+        console.log('Clicked tab:', clickedTab);
         if (!clickedTab) return;
         
         e.preventDefault();
