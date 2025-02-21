@@ -517,7 +517,7 @@ function decorateSections(main) {
    
     // Add wrappers to section with index classes
     wrappers.forEach((wrapper, wrapperIndex) => {
-      wrapper.classList.add(`${childClass}-wrapper-${sectionIndex + 1}-${wrapperIndex + 1}`);
+      wrapper.classList.add(`section-wrapper-${sectionIndex + 1}-${wrapperIndex + 1}`);
       section.append(wrapper);
     });
    
