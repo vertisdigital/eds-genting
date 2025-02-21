@@ -102,13 +102,12 @@ function buildAutoBlocks(main) {
   }*/
 
   // Handle tab styles
-  handleTabStyles();
+  handleTabStyles(main);
 }
 
-function handleTabStyles() {
+function handleTabStyles(main) {
   try {
-    const main = document.querySelector('main');
-    console.log('Main element found:', main.innerHTML);
+    console.log('Original HTML structure:', main.innerHTML);
 
     // Look for section-metadata with tab class
     const tabElements = main.querySelectorAll('.section-metadata.tab');
@@ -158,13 +157,15 @@ function handleTabStyles() {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
-  // hopefully forward compatible button decoration
+  // Run handleTabStyles first
+  handleTabStyles(main);
 
+  // Then run other decorators
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main);
-  decorateBlocks(main); // First decorate all blocks
-  buildAutoBlocks(main); // Then build auto blocks which will preserve block decoration
+  decorateBlocks(main);
+  buildAutoBlocks(main);
 }
 
 /**
