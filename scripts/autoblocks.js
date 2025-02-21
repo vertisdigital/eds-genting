@@ -14,6 +14,7 @@ function handleTabStyles(main) {
       
       const tabNav = document.createElement('div');
       tabNav.className = 'tab-nav';
+      tabNav.style.display = 'flex';
       
       const tabWrapper = document.createElement('div');
       tabWrapper.className = 'tab-wrapper';
@@ -21,12 +22,14 @@ function handleTabStyles(main) {
       // Process each tab section
       tabElements.forEach((section, index) => {
         const tabTitle = section.getAttribute('data-tabtitle');
+        console.log('Creating tab:', { index, title: tabTitle });
         
         const tabLink = document.createElement('a');
         tabLink.textContent = tabTitle;
         tabLink.href = '#';
         tabLink.className = 'tab-link';
         tabLink.setAttribute('data-tab-index', index);
+        tabLink.style.cursor = 'pointer';
         if (index === 0) tabLink.classList.add('active');
         
         const clonedSection = section.cloneNode(true);
@@ -69,7 +72,12 @@ function handleTabStyles(main) {
       // Bind click handler
       tabNav.addEventListener('click', handleTabClick);
       
-      console.log('Tab setup complete with click handler bound to:', tabNav);
+      // Log final structure
+      console.log('Tab structure:', {
+        container: tabsContainer.outerHTML,
+        tabs: tabNav.querySelectorAll('.tab-link').length,
+        panels: tabWrapper.querySelectorAll('.tab').length
+      });
     }
   } catch (error) {
     console.error('Error in handleTabStyles:', error);
