@@ -73,66 +73,6 @@ function buildAutoBlocks(main) {
   }
 }
 
-function handleTabStyles(main) {
-  try {
-    console.log('Starting handleTabStyles');
-    console.log('Current main HTML:', main.innerHTML);
-
-    // Look for sections with data-tabtitle attribute
-    const tabElements = main.querySelectorAll('div[data-tabtitle]');
-    console.log('Looking for div[data-tabtitle]:', tabElements);
-    
-    // Also try other selectors to see what's available
-    const sections = main.querySelectorAll('.section');
-    console.log('Available sections:', sections);
-    
-    if (tabElements.length > 0) {
-      // Create tabs container
-      const tabsContainer = document.createElement('div');
-      tabsContainer.className = 'tabs-container section tab-container';
-      tabsContainer.setAttribute('data-section-status', 'loaded');
-      
-      // Create empty div (required structure)
-      const emptyDiv = document.createElement('div');
-      tabsContainer.appendChild(emptyDiv);
-      
-      // Create tab wrapper
-      const tabWrapper = document.createElement('div');
-      tabWrapper.className = 'tab-wrapper';
-      tabsContainer.appendChild(tabWrapper);
-      
-      // Move each tab section into the wrapper
-      tabElements.forEach(section => {
-        // Clone the section with all its content
-        const clonedSection = section.cloneNode(true);
-        
-        // Add tab classes and attributes
-        clonedSection.classList.add('tab', 'block');
-        clonedSection.setAttribute('data-block-name', 'tab');
-        clonedSection.setAttribute('data-block-status', 'loaded');
-        
-        // Keep the original data-tabtitle
-        const tabTitle = section.getAttribute('data-tabtitle');
-        if (tabTitle) {
-          clonedSection.setAttribute('data-tabtitle', tabTitle);
-        }
-        
-        // Add to wrapper
-        tabWrapper.appendChild(clonedSection);
-      });
-
-      // Replace main content
-      main.innerHTML = '';
-      main.appendChild(tabsContainer);
-      console.log('Successfully created tabs structure');
-    } else {
-      console.log('No tab elements found. Current DOM structure:', main.innerHTML);
-    }
-  } catch (error) {
-    console.error('Error in handleTabStyles:', error);
-  }
-}
-
 /**
  * Decorates the main element.
  * @param {Element} main The main element

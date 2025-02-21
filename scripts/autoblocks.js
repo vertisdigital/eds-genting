@@ -1,5 +1,3 @@
-import { loadCSS } from './aem.js';
-import Heading from '../shared-components/Heading.js';
 import stringToHTML from '../shared-components/Utility.js';
 /**
  * Process all the tab auto blocks
