@@ -38,7 +38,7 @@ export default function decorate(block) {
   }
 
   // Find the heading and replace it with a heading
-  const headingElement = block.querySelector('[data-aue-prop="heading"]');
+  const headingElement = block.querySelector('[data-aue-prop="heading"],.section-inner-1-2-2-1-1');
   if (headingElement) {
     const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
@@ -50,7 +50,7 @@ export default function decorate(block) {
 
   // Find the sub-heading and replace it with a sub-heading
 
-  const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
+  const subHeading = block.querySelector('[data-aue-prop="sub-heading"],[data-aue-prop="description"]');
   if (subHeading) {
     const subHeadingElement = document.createElement('p');
     subHeadingElement.className = 'about-us-left-sub-heading';
@@ -100,7 +100,7 @@ export default function decorate(block) {
       moveInstrumentation(description, featureContainer);
 
       // Handle image feature
-      const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
+      const imageElement = description.querySelector('img[data-aue-prop="feature-icon"], [data-aue-prop="feature-icon"] img');
       if (imageElement) {
         const imageContainer = document.createElement('div');
         const imageLink = imageElement.getAttribute('src');
@@ -156,7 +156,7 @@ export default function decorate(block) {
       }
 
       // Handle feature heading
-      const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"], [data-richtext-prop="feature-heading"]');
+      const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"], [data-richtext-prop="feature-heading"], div:last-child');
       if (featureHeadingElement) {
         const headingContainer = document.createElement('div');
         const featureHeadingP = document.createElement('p');
