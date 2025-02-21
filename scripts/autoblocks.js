@@ -28,7 +28,7 @@ function handleTabStyles(main) {
         const tabLink = document.createElement('a');
         tabLink.textContent = tabTitle;
         tabLink.href = '#';
-        tabLink.className = 'tab-link';  // Keep original class for styling
+        tabLink.className = 'tab-link';
         tabLink.setAttribute('data-tab-index', index);
         if (index === 0) tabLink.classList.add('active');
         
@@ -43,9 +43,24 @@ function handleTabStyles(main) {
         tabWrapper.appendChild(clonedSection);
       });
 
+      console.log('Before adding click handler to tabNav:', {
+        tabNav,
+        tabLinks: tabNav.querySelectorAll('.tab-link'),
+        tabWrapper,
+        tabContent: tabWrapper.querySelectorAll('.tab')
+      });
+
       // Add single click handler to tab navigation
       tabNav.addEventListener('click', (e) => {
+        console.log('Tab nav clicked:', {
+          event: e,
+          target: e.target,
+          currentTarget: e.currentTarget
+        });
+
         const clickedTab = e.target.closest('.tab-link');
+        console.log('Clicked tab:', clickedTab);
+        
         if (!clickedTab) return;
         
         e.preventDefault();
@@ -54,6 +69,12 @@ function handleTabStyles(main) {
         const allTabs = tabNav.querySelectorAll('.tab-link');
         const allContent = tabWrapper.querySelectorAll('.tab');
         
+        console.log('Found elements:', {
+          allTabs,
+          allContent,
+          clickedIndex: clickedTab.getAttribute('data-tab-index')
+        });
+
         // Remove active class from all tabs and content
         allTabs.forEach(tab => tab.classList.remove('active'));
         allContent.forEach(content => content.classList.remove('active'));
@@ -62,7 +83,11 @@ function handleTabStyles(main) {
         const tabIndex = clickedTab.getAttribute('data-tab-index');
         clickedTab.classList.add('active');
         allContent[tabIndex].classList.add('active');
+        
+        console.log('After updating active states');
       });
+
+      console.log('After adding click handler');
 
       // Build final structure
       tabsContainer.appendChild(tabNav);
