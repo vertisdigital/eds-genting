@@ -101,7 +101,6 @@ function handleTabStyles(main) {
       main.prepend(tabsContainer);
     }
   } catch (error) {
-    // Use error boundary instead of console
     throw new Error(`Error in handleTabStyles: ${error.message}`);
   }
 }
