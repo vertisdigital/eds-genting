@@ -1023,11 +1023,6 @@
         "configUrl": "https://textmediasection--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
-        "component": "reference",
-        "name": "video",
-        "label": "Video"
-      },
-      {
         "component": "text",
         "name": "imageAlt",
         "label": "Alt Text",
