@@ -20,17 +20,7 @@ export default async function decorate(block) {
     const footer = document.createElement('div');
     // footer.classList.add('footer');
     // const container = fragment.firstElementChild;
-    const findColumnWrapper = (blockElement, index) => {
-      // Check first and last children for columns-wrapper
-      if (blockElement.children[index].classList.contains('columns')) {
-        return blockElement.children[index];
-      } if (blockElement.children[index].classList.contains('columns')) {
-        return blockElement.children[index];
-      }
-      return null;
-    };
 
-    //const container = findColumnWrapper(fragment.firstElementChild, 0);
     const container = fragment.firstElementChild;
 
     footer.setAttribute('role', 'contentinfo');
