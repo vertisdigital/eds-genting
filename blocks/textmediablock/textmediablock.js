@@ -24,11 +24,11 @@ function initTextMediaBlock() {
         linkElement.parentElement.replaceChild(img, linkElement);
       }
     }
-    block.children[1].classList.add('textblock');
+    block.children[1].classList?.add('textblock');
     //heading sesction
-    block.children[1].children[0].classList.add('heading');
+    block.children[1].children[0]?.classList?.add('heading');
     //text sesction
-    block.children[1].children[1].classList.add('textsection');
+    block.children[1].children[1]?.classList?.add('textsection');
   });
 }
 
