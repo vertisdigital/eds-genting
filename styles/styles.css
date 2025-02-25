@@ -799,7 +799,7 @@ main .section.highlight {
 }
 
 .tab-panel {
-  display: none !important;
+  display: none;
 
   .container-xl, .container-lg, .container-md, .container-sm, .container{
     padding: 0;
