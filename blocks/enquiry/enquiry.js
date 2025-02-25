@@ -7,7 +7,9 @@ export default function decorate(block) {
   const wrapper = block.closest('.enquiry-wrapper') || block;
   const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
 
-  moveInstrumentation(enquiryResource, wrapper);
+  if(enquiryResource){
+    moveInstrumentation(enquiryResource, wrapper);
+  }
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
