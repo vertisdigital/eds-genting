@@ -48,7 +48,7 @@ export default function decorate(block) {
   rightCol.className = 'col-xl-6 col-md-3 container-sm-4';
 
   // Add description with authoring attributes
-  const description = wrapper.querySelector('[data-aue-prop="description"], .enquiry-inner-1-2-1-1');
+  const description = wrapper.querySelector('[data-aue-prop="description"], [data-gen-prop="description"]');
   if (description) {
     const descriptionWrapper = document.createElement('div');
     descriptionWrapper.className = 'enquiry-description';
