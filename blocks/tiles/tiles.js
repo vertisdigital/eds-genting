@@ -1,4 +1,3 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 
 /**
