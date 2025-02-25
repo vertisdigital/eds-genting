@@ -201,7 +201,7 @@
  * Process tabs component
  * @param {Element} main The container element
  */
-function processTabs(main) {
+function processTabs(main, moveInstrumentation) {
   console.log('[Tab System] Processing tabs...');
 
   // Get all sections with data-tabtitle attribute
@@ -216,6 +216,10 @@ function processTabs(main) {
   // Create top container similar to old structure
   const topContainer = document.createElement('div');
   topContainer.className = 'container-xl container-lg container-md container-sm tabpanel';
+
+  // {
+  //   moveInstrumentation(mainWrapper, topContainer);
+  // }
 
   // Create tabs container
   const tabsWrapper = document.createElement('div');
@@ -240,6 +244,8 @@ function processTabs(main) {
     tabButton.className = 'tab-title col-xl-6 col-lg-6 col-md-3 col-sm-2';
     tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
+
+    moveInstrumentation(section, tabButton);
 
     // Create tab panel
     const tabPanel = document.createElement('div');
