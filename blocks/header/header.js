@@ -153,8 +153,8 @@ function createHeaderStructure(block) {
 
   // Get both logo images from fragment
   const images = block.querySelectorAll('picture');
-  const defaultLogo = images[0]?.querySelector('img').getAttribute('src');
-  const scrollLogo = images[1]?.querySelector('img').getAttribute('src');
+  const defaultLogo = images[0];
+  const scrollLogo = images[1];
 
   // Add both logos with appropriate classes
   if (defaultLogo) {
@@ -175,7 +175,7 @@ function createHeaderStructure(block) {
   primaryNav.className = 'primary-nav row';
 
   // Extract and create navigation items
-  const navItems = Array.from(block.querySelectorAll('.links')).map((navSection) => {
+  const navItems = Array.from(block.querySelectorAll('.links')).slice(1).map((navSection) => {
     const sections = [...navSection.children];
     
     // Extract title from first section
