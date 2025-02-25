@@ -33,7 +33,7 @@
     font-weight: 600;
   }
 
-  [data-aue-prop="heading"], [data-gen-prop="heading"], .listing > div:nth-child(2) [data-gen-prop="title"] {
+  [data-aue-prop="heading"], [data-gen-prop="heading"] {
     color: var(--text-color);
     font-size: 40px;
     font-weight: 500;
@@ -110,7 +110,7 @@
     font-weight: 700;
   }
 
-  [data-aue-prop="heading"], [data-gen-prop="heading"], .listing > div:nth-child(2) [data-gen-prop="title"]{
+  [data-aue-prop="heading"], [data-gen-prop="heading"]{
     font-size: 32px;
     margin-bottom: 24px;
     line-height: 42px;
@@ -147,7 +147,7 @@
 
   /* Mobile Design */
   @media (width < 768px) {
-    [data-aue-prop="heading"], [data-gen-prop="heading"], .listing > div:nth-child(2) [data-gen-prop="title"] {
+    [data-aue-prop="heading"], [data-gen-prop="heading"] {
       font-size: 28px;
       line-height: 34px;
       margin-bottom: 18px;
