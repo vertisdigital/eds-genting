@@ -1229,7 +1229,7 @@
     ]
   } ,
   {
-    "id": "awardstile",
+    "id": "test",
     "fields": [
       {
         "component": "text",
