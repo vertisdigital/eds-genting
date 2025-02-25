@@ -1,13 +1,13 @@
 import Heading from '../../shared-components/Heading.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
-// import { moveInstrumentation } from '../../scripts/scripts.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
   const wrapper = block.closest('.enquiry-wrapper') || block;
-  // const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
+  const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
 
-  // moveInstrumentation(enquiryResource, wrapper);
+  moveInstrumentation(enquiryResource, wrapper);
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
