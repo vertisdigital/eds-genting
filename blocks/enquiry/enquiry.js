@@ -5,9 +5,11 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
   const wrapper = block.closest('.enquiry-wrapper') || block;
-  // const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
+  const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
 
-  // moveInstrumentation(enquiryResource, wrapper);
+  if(enquiryResource){
+    moveInstrumentation(enquiryResource, wrapper);
+  }
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
@@ -46,7 +48,7 @@ export default function decorate(block) {
   rightCol.className = 'col-xl-6 col-md-3 container-sm-4';
 
   // Add description with authoring attributes
-  const description = wrapper.querySelector('[data-aue-prop="description"], .enquiry-inner-1-2-1-1');
+  const description = wrapper.querySelector('[data-aue-prop="description"], [data-gen-prop="description"]');
   if (description) {
     const descriptionWrapper = document.createElement('div');
     descriptionWrapper.className = 'enquiry-description';
@@ -113,7 +115,7 @@ export default function decorate(block) {
   const phone = wrapper.querySelector('[data-aue-prop="phoneNumber"], .enquiry-inner-1-4-1-1')?.textContent.trim();
   const email = wrapper.querySelector('[data-aue-prop="emailAddress"], .enquiry-inner-1-6-1-1')?.textContent.trim();
   const address = wrapper.querySelector('[data-aue-prop="address"], .enquiry-inner-1-8-1-1')?.textContent.trim();
-  const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]');
+  const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".svg"], a[href*="delivery-"]');
 
   if (phone) {
     contactItems.appendChild(createContactItem(phone, 'tel', 'phoneNumber', 'PhoneNumber', imageLink[0].getAttribute("href")));
