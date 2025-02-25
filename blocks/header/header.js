@@ -154,7 +154,7 @@ function createHeaderStructure(block) {
   // Get both logo images from fragment
   const images = block.querySelectorAll('picture');
   const defaultLogo = images[0]?.querySelector('img').getAttribute('src');
-  const scrollLogo = images[1]?..querySelector('img').getAttribute('src');
+  const scrollLogo = images[1]?.querySelector('img').getAttribute('src');
 
   // Add both logos with appropriate classes
   if (defaultLogo) {
