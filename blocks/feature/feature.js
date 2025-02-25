@@ -191,15 +191,16 @@ export default function decorate(block) {
 
     // getting all the feature items in aboutUsDescription
     const convDescription = aboutUsRightContent.children;
+    // removing the first child of all the feature items for the indices variant
+    for (const description of convDescription) {
+      description.children[0]?.remove();
+    }
       // featureitems are  more than indexNumber indices then hide
       // the remaing and show link to show more indices link with remaining indices count in text
     if (indexNumber < convDescription.length) {
       // hide the remaining indices
-      for (let i = 0; i < convDescription.length; i += 1) {
-        convDescription[i].children[0].remove();
-        if(i >= indexNumber) {
+      for (let i = indexNumber; i < convDescription.length; i += 1) {
           convDescription[i].style.display = 'none';
-        }
       }
 
       showMoreIndicesLink.textContent = `${moreIndices?.textContent ?? 'Show More'
