@@ -1200,7 +1200,7 @@
       },
       {
         "component": "text",
-        "name": "awardimageText",
+        "name": "awardimageAlt",
         "label": "Award Image AltText",
         "valueType": "string",
         "hidden": true
