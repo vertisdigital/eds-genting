@@ -1202,8 +1202,7 @@
         "component": "text",
         "name": "awardimageAlt",
         "label": "Award Image AltText",
-        "valueType": "string",
-        "hidden": true
+        "valueType": "string"
       },
       {
         "component": "text",
