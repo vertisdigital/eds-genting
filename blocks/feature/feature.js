@@ -52,13 +52,8 @@ export default function decorate(block) {
 
   const subHeading = blockchildren[2].children[0];
   if (subHeading) {
-    const subHeadingElement = document.createElement('p');
-    subHeadingElement.className = 'about-us-left-sub-heading';
-    moveInstrumentation(subHeading, subHeadingElement);
-    const subHeadingText = subHeading.querySelector('p')?.textContent;
-    subHeadingElement.textContent = subHeadingText;
-    aboutUsLeftContent.appendChild(subHeadingElement);
-    subHeading.remove();
+    subHeading.classList.add('about-us-left-sub-heading')
+    aboutUsLeftContent.appendChild(subHeading);
   }
 
   // Find all LinkFields and replace with arrow icons
