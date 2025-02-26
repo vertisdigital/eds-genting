@@ -56,6 +56,7 @@
   cursor: pointer;
   padding-left: 0;
   padding-right: 0;
+  font-size: 14px;
 }
 
 .about-us-left .links-container a span{
@@ -101,9 +102,8 @@
 }
 
 .about-us-stats .about-us-right-content.text-container{
-
   border-top: 1px solid var(--text-color);
-  align-items: flex-start;
+  align-items: center;
   padding-top: 12px;
   margin-bottom: 18px;
 }
@@ -124,10 +124,19 @@
   align-items: flex-start;
   justify-content: center;
   line-height: 0.8;
-}
 
-.about-us-stats .about-us-right-content .statistic span:nth-child(2){
+}
+.about-us-stats .about-us-right-content .statistic *:first-child{
+  color:var(--primary-gold) !important;
+  font-size:  48px;
+  font-weight: 400;
+  line-height: 48px; 
+}
+.about-us-stats .about-us-right-content .statistic *:nth-child(2){
+  color:var(--primary-gold) !important;
   font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
 }
 
 .about-us-stats .about-us-right-content p{
@@ -154,6 +163,13 @@ color: var(--body-text-color);
   font-weight: 400;
   line-height: 20px;
   color: var(--body-text-color);
+}
+.statistics-container .feature-wrapper .about-us-left {
+  margin-bottom: 18px;
+}
+
+.statistics-container .feature-wrapper .about-us-left {
+  margin-bottom: 24px;
 }
 
 
@@ -230,6 +246,15 @@ color: var(--body-text-color);
     width: 72px;
     height: 72px;
   }
+  .about-us-stats .about-us-right-content .statistic *:first-child{
+    font-size:  64px;
+    line-height: 64px; 
+  }
+  .about-us-stats .about-us-right-content .statistic *:nth-child(2){
+    font-size: 18px;
+    line-height: 24px; 
+  }
+  
 }
 
 @media  (width >= 1024px) {
@@ -277,14 +302,14 @@ color: var(--body-text-color);
   }
 
 
-  .about-us-stats .about-us-right-content .statistic span:first-child{
+  .about-us-stats .about-us-right-content .statistic *:first-child{
     font-size: 80px;
     line-height: 80px;
   }
 
-  .about-us-stats .about-us-right-content .statistic span:nth-child(2){
-    padding-left: 14px;
-    font-weight: 400;
+  .about-us-stats .about-us-right-content .statistic *:nth-child(2){
+    font-size: 20px;
+    line-height: 30px;
   }
 
   .about-us-stats .about-us-right-content>div:nth-child(2) p{
@@ -300,23 +325,9 @@ color: var(--body-text-color);
     margin-bottom: 36px;
   }
 }
-
 @media (width <= 1023px) {
-  .statistics-container .feature-wrapper .about-us-left {
-    margin-bottom: 24px;
-  }
-
   .statistics-container .feature-wrapper .about-us-left, .statistics-container .feature-wrapper .about-us-right {
     width: 100%;
     padding: 0;
-  }
-}
-@media (width <= 767px) {
-  .statistics-container .feature-wrapper .about-us-left {
-    margin-bottom: 18px;
-  }
-
-  .about-us-left .links-container a {
-    font-size: 14px;
   }
 }
