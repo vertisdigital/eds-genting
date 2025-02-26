@@ -1200,6 +1200,13 @@
       },
       {
         "component": "text",
+        "name": "awardimageText",
+        "label": "Award Image AltText",
+        "valueType": "string",
+        "hidden": true
+      },
+      {
+        "component": "text",
         "name": "awardyear",
         "label": "Award Year",
         "validation": {
