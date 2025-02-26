@@ -742,8 +742,7 @@ function decorateSections(main) {
     const wrappers = [];
     let defaultContent = false;
 
-    // Add section index class
-    section.classList.add(`section-${sectionIndex + 1}`);
+    //section.classList.add(`section-${sectionIndex + 1}`);
 
     // Track components with same name
     const componentNameCounts = {};
@@ -763,7 +762,7 @@ function decorateSections(main) {
 
       child.className = `${childClass} ${childClass}-row`;
 
-      // Add index classes to nested elements
+     // Add index classes to nested elements
       [...child.children].forEach((nestedElement, nestedIndex) => {
         nestedElement.className = `${childClass}-nested-${componentIndex}-${nestedIndex + 1}`;
 
@@ -773,22 +772,21 @@ function decorateSections(main) {
         }
 
         // Continue with existing nested element processing
-        [...nestedElement.children].forEach((deepElement, deepIndex) => {
-          deepElement.className = `${childClass}-element-${componentIndex}-${nestedIndex + 1}-${deepIndex + 1}`;
+        // [...nestedElement.children].forEach((deepElement, deepIndex) => {
+        //   deepElement.className = `${childClass}-element-${componentIndex}-${nestedIndex + 1}-${deepIndex + 1}`;
 
-          // Add classes to innermost elements (like links, spans, etc.)
-          if (deepElement.children.length > 0) {
-            [...deepElement.children].forEach((innerElement, innerIndex) => {
-              innerElement.className = `${childClass}-inner-${componentIndex}-${nestedIndex + 1}-${deepIndex + 1}-${innerIndex + 1}`;
-            });
-          }
-        });
+        //   // Add classes to innermost elements (like links, spans, etc.)
+        //   if (deepElement.children.length > 0) {
+        //     [...deepElement.children].forEach((innerElement, innerIndex) => {
+        //       innerElement.className = `${childClass}-inner-${componentIndex}-${nestedIndex + 1}-${deepIndex + 1}-${innerIndex + 1}`;
+        //     });
+        //   }
+        // });
       });
 
       // Create and process wrappers
       if ((child.tagName === 'DIV' && child.className) || !defaultContent) {
         const wrapper = document.createElement('div');
-        wrapper.classList.add(`wrapper-${childIndex + 1}`);
         wrappers.push(wrapper);
         defaultContent = child.tagName !== 'DIV' || !child.className;
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
@@ -798,7 +796,6 @@ function decorateSections(main) {
 
     // Add wrappers to section
     wrappers.forEach((wrapper, wrapperIndex) => {
-      wrapper.classList.add(`section-wrapper-${sectionIndex + 1}-${wrapperIndex + 1}`);
       section.append(wrapper);
     });
 
