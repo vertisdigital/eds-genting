@@ -55,7 +55,6 @@ export default function decorate(block) {
         ctaLink.href = buttonContainer.href;
         ctaLink.className = (index % 2 === 1) ? 'odd-learn-button learn-button' : 'learn-button';
         ctaLink.textContent = ctaCaption.textContent;
-        // Replace CTA caption with link
         ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
       }
 
@@ -67,8 +66,9 @@ export default function decorate(block) {
       }
     }
 
-    if (!isFirsTileImage) {
+    if (!isFirsTileImage && index === 0) {
       // const buttonContainer = firstTile.querySelector('.button-container');
+      col.classList.add('no-image-tile');
       const AllChildrenDivs = firstTile.children;
       const buttonContainer = AllChildrenDivs[3].querySelector('a');
       const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
