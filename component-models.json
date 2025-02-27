@@ -1196,6 +1196,12 @@
       },
       {
         "component": "text",
+        "name": "awardimageAlt",
+        "label": "Award Image AltText",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
         "name": "awardyear",
         "label": "Award Year",
         "validation": {
@@ -1218,7 +1224,7 @@
         "name": "awarddescription",
         "label": "Award Description",
         "validation": {
-          "maxLength": 250,
+          "maxLength": 200,
           "customErrorMsg": "Description cannot exceed 250 characters"
         }
       }
