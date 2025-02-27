@@ -312,13 +312,13 @@
 
 @media (width >= 993px) {
   .hero-banner-container img {
-    height: 1048px;
+    height: 936px;
   }
 }
 
 @media (width <= 991px) {
   .hero-banner-container img {
-    height: 946px;
+    height: 830px;
   }
 }
 
@@ -331,7 +331,7 @@
   }
 
   .hero-banner-container img {
-    height: 879px;
+    height: 769px;
   }
 
   .hero-content{
