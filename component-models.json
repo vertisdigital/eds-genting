@@ -1228,7 +1228,7 @@
         "name": "awarddescription",
         "label": "Award Description",
         "validation": {
-          "maxLength": 250,
+          "maxLength": 200,
           "customErrorMsg": "Description cannot exceed 250 characters"
         }
       }
