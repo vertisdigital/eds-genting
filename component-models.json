@@ -7,7 +7,7 @@
         "valueType": "string",
         "name": "image",
         "label": "image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -182,7 +182,7 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -231,7 +231,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -321,7 +321,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -416,7 +416,7 @@
         "valueType": "string",
         "name": "feature-icon",
         "label": "Icon",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -466,7 +466,7 @@
         "options": [
           {
             "name": "Select",
-            "value": "select"
+            "value": ""
           },
           {
             "name": "Right Arrow",
@@ -475,10 +475,6 @@
           {
             "name": "Download Arrow",
             "value": "download-arrow"
-          },
-          {
-            "name": "Top Right Arrow",
-            "value": "top-right-arrow"
           },
           {
             "name": "Twitter",
@@ -592,7 +588,7 @@
         "valueType": "string",
         "name": "linkImage",
         "label": "Link Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -639,7 +635,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Background Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "validation": {
@@ -742,10 +738,10 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
-          "rootPath": "/content/dam/genting-singapore/index"
+          "rootPath": "/content/dam/genting-singapore"
         }
       },
       {
@@ -828,7 +824,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "Phone Icon",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -851,7 +847,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "emailIcon",
         "label": "Email Icon",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -874,7 +870,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "Address Icon",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -915,7 +911,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -962,7 +958,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1107,7 +1103,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       }
     ]

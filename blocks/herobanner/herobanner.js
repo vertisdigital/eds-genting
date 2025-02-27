@@ -212,6 +212,8 @@ export default function decorate(block) {
       if (currentIndex === carouselItems.length - 1) {
         rightIcon.innerHTML = '';
         rightIcon.appendChild(stringToHTML(rightArrowDisabled));
+        leftIcon.innerHTML = '';
+        leftIcon.appendChild(stringToHTML(leftArrow));
       } else if (currentIndex === 0) {
         leftIcon.innerHTML = '';
         leftIcon.appendChild(stringToHTML(leftArrowDisabled));
@@ -362,41 +364,41 @@ export default function decorate(block) {
     // Add the image to the carousel
     const isImageExists = itemDivs[2].querySelector('p');
     if (isImageExists) {
-      //const pTag = firstDiv.querySelector('p');
-        const aTag = isImageExists.querySelector('a');
-        if (aTag) {
-          // const imgUrl = aTag.getAttribute('href');
-          const imgUrl = aTag?.getAttribute('href');
-          const imgAlt = aTag?.getAttribute('title');
+      // const pTag = firstDiv.querySelector('p');
+      const aTag = isImageExists.querySelector('a');
+      if (aTag) {
+        // const imgUrl = aTag.getAttribute('href');
+        const imgUrl = aTag?.getAttribute('href');
+        const imgAlt = aTag?.getAttribute('title');
 
-          const imgHtml = ImageComponent({
-            src: imgUrl,
-            alt: imgAlt,
-            className: 'news-thumbnail',
-            breakpoints: {
-              mobile: {
-                width: 768,
-                src: `${imgUrl}`,
-              },
-              tablet: {
-                width: 1024,
-                src: `${imgUrl}`,
-              },
-              desktop: {
-                width: 1920,
-                src: `${imgUrl}`,
-              },
+        const imgHtml = ImageComponent({
+          src: imgUrl,
+          alt: imgAlt,
+          className: 'news-thumbnail',
+          breakpoints: {
+            mobile: {
+              width: 768,
+              src: `${imgUrl}`,
             },
-            lazy: false,
-          });
+            tablet: {
+              width: 1024,
+              src: `${imgUrl}`,
+            },
+            desktop: {
+              width: 1920,
+              src: `${imgUrl}`,
+            },
+          },
+          lazy: false,
+        });
 
-          newsLatterImage.insertAdjacentHTML('beforeend', imgHtml);
-          newsLatterImage.setAttribute('data-aue-type', 'image');
-          newsLatterImage.setAttribute('data-aue-prop', 'image');
-          newsLatterImage.setAttribute('data-aue-label', 'News Image');
-          aTag.remove();
-        }
+        newsLatterImage.insertAdjacentHTML('beforeend', imgHtml);
+        newsLatterImage.setAttribute('data-aue-type', 'image');
+        newsLatterImage.setAttribute('data-aue-prop', 'image');
+        newsLatterImage.setAttribute('data-aue-label', 'News Image');
+        aTag.remove();
       }
+    }
     carouselWrapper.appendChild(carouselItem);
   });
 
