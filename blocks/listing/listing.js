@@ -123,24 +123,15 @@ export default function decorate(block) {
   // Process CTA section
   const linkField = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]');
   if (linkField) {
-    // const linkContainer = document.createElement('div');
-    // linkContainer.className = 'links-container';
-    // moveInstrumentation(linkField, linkContainer);
-
     // Get elements using index-based approach
     const divElements = linkField.children;
-    const linkWrapper = divElements[0]?.querySelector('.button-container a');
+    const linkWrapper = divElements[0]?.querySelector('a');
     const iconType = divElements[1]?.querySelector('p')?.textContent?.trim();
     const targetValue = divElements[2]?.querySelector('p')?.textContent?.trim();
 
     if (linkWrapper) {
       // Set target attribute
       linkWrapper.setAttribute('target', targetValue);
-
-      // Clear default content if needed
-      // if (linkWrapper.textContent.startsWith('/') || linkWrapper.textContent.startsWith('#')) {
-      //   linkWrapper.textContent = linkWrapper.title || '';
-      // }
 
       // Add arrow icon if icon type is specified
       if (iconType) {
