@@ -2,7 +2,7 @@ import ImageComponent from '../../shared-components/ImageComponent.js';
 import Heading from '../../shared-components/Heading.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
-import moveInstrumentation from '../../shared-components/Utility.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
@@ -44,7 +44,8 @@ export default function decorate(block) {
 
     const imageContainer = document.createElement('div');
     // Copy data attributes from parent element if they exist
-    moveInstrumentation(imageContainer, imageLink);
+    imageContainer.setAttribute('data-aue-model', 'bannerimage');
+    imageContainer.setAttribute('data-aue-label', 'Banner Image');
     imageContainer.insertAdjacentHTML('beforeend', imageHtml);
     heroContainer.appendChild(imageContainer);
     imageLink.remove();
@@ -74,7 +75,7 @@ export default function decorate(block) {
     const titleText = titleElement.textContent;
     const titleContainer = document.createElement('div');
     // Copy data attributes from source element
-    moveInstrumentation(titleContainer, titleElement);
+    moveInstrumentation(titleElement, titleContainer);
     const headingHtml = Heading({
       level: 2,
       text: titleText,
@@ -92,7 +93,7 @@ export default function decorate(block) {
     const descriptionDiv = document.createElement('div');
     descriptionDiv.className = 'hero-description';
     // Copy data attributes from source element
-    moveInstrumentation(descriptionDiv, descElement);
+    moveInstrumentation(descElement, descriptionDiv);
     descriptionDiv.textContent = descElement.textContent;
     heroContent.appendChild(descriptionDiv);
     descElement.remove();
@@ -118,7 +119,6 @@ export default function decorate(block) {
   );
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
-  moveInstrumentation(carouselItems, carouselContainer);
   const carouselWrapper = document.createElement('div');
   carouselWrapper.className = 'carousel-wrapper';
   carouselWrapper.setAttribute('data-aue-type', 'container');
@@ -222,49 +222,49 @@ export default function decorate(block) {
     const carouselItem = document.createElement('div');
     carouselItem.classList.add('carousel-item');
     // Copy data attributes from source carousel item
-    moveInstrumentation(carouselItem, item);
+    moveInstrumentation(item, carouselItem);
 
     const carouselItemContent = document.createElement('div');
     carouselItemContent.classList.add('carousel-content');
     moveInstrumentation(item, carouselContainer);
-    const newsLatterImage = document.createElement('div');
-    newsLatterImage.classList.add('carousel-image');
+    const newsLetterImage = document.createElement('div');
+    newsLetterImage.classList.add('carousel-image');
     const newsLinkDiv = document.createElement('div');
     newsLinkDiv.classList.add('news-link-container');
     const newsLinkArrowDiv = document.createElement('div');
     newsLinkArrowDiv.classList.add('news-link-arrow-container');
 
     carouselItem.appendChild(carouselItemContent);
-    carouselItem.appendChild(newsLatterImage);
+    carouselItem.appendChild(newsLetterImage);
 
     // Extract and append the title
     const itemDivs = item.querySelectorAll('div');
-    
+
     const carouselTitleElement = itemDivs[0].querySelector('p');
     if (carouselTitleElement) {
       const titleText = carouselTitleElement.textContent;
       const titleHtml = `<p class="news-title">${titleText}</p>`;
-      const titleContainer = document.createElement('div');   
-      moveInstrumentation(carouselTitleElement, titleContainer);
+      const titleContainer = document.createElement('div');
+      moveInstrumentation(itemDivs[0], titleContainer);
       titleContainer.insertAdjacentHTML('beforeend', titleHtml);
       carouselItemContent.appendChild(titleContainer);
       carouselTitleElement.remove();
     }
 
     // Extract and append the description
-    const descriptionElement =itemDivs[1].querySelector('p');;
+    const descriptionElement = itemDivs[1].querySelector('p');
     if (descriptionElement) {
       const descriptionText = descriptionElement.textContent;
       const descriptionHtml = `<p class="news-description">${descriptionText}</p>`;
       const descContainer = document.createElement('div');
-      moveInstrumentation(descContainer, descriptionElement);
+      moveInstrumentation(itemDivs[1], descContainer);
       descContainer.insertAdjacentHTML('beforeend', descriptionHtml);
       carouselItemContent.appendChild(descContainer);
       descriptionElement.remove();
     }
 
     // Extract and append the "Read More" label
-    const readMoreLabelElement =itemDivs[3].querySelector('p');
+    const readMoreLabelElement = itemDivs[3].querySelector('p');
     if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
       const buttonContainer = readMoreLabelElement.parentElement.nextElementSibling.querySelector('a');
@@ -273,7 +273,7 @@ export default function decorate(block) {
       const newUrl = currentUrl.replace(window.location.pathname, href);
       const readMoreLabelHtml = `<a class="news-link" href="${newUrl}" target="_blank">${readMoreLabelText}</a>`;
       const readMoreContainer = document.createElement('div');
-      moveInstrumentation(readMoreContainer, readMoreLabelElement);
+      moveInstrumentation(itemDivs[3], readMoreContainer);
       readMoreContainer.insertAdjacentHTML('beforeend', readMoreLabelHtml);
       newsLinkDiv.appendChild(readMoreContainer);
       readMoreLabelElement.remove();
@@ -355,8 +355,8 @@ export default function decorate(block) {
           lazy: false,
         });
 
-        newsLatterImage.insertAdjacentHTML('beforeend', imgHtml);
-        moveInstrumentation(aTag, newsLatterImage);
+        newsLetterImage.insertAdjacentHTML('beforeend', imgHtml);
+        moveInstrumentation(itemDivs[2], newsLetterImage);
         aTag.remove();
       }
     }
