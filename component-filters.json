@@ -4,7 +4,6 @@
     "components": [
       "section",
       "statisticsSection", 
-      "tabsectiontitle",
       "tabs"
     ]
   },
@@ -33,7 +32,8 @@
       "tiles",
       "textsection",
       "textmediablock",
-      "projectslist"      
+      "projectslist",
+      "tabsectiontitle"
     ]
   },
   {
