@@ -66,15 +66,17 @@ export default function decorate(block) {
     // Get all three divs containing link info
     const linkDivs = linkField.children;
     if (linkDivs.length === 3) {
-      const linkText = linkDivs[0].textContent.trim();
+      const linkText = linkDivs[0];
       const iconName = linkDivs[1].textContent.trim().replace('-', '');
       const target = linkDivs[2].textContent.trim();
 
       // Create link element
       const link = document.createElement('a');
-      link.href = '#';
-      link.textContent = linkText;
-      link.setAttribute('target', target || '_self');
+      // Get href from the link element if it exists, otherwise use the text content
+      const linkHref = linkText.querySelector('a');
+      link.href = linkHref;
+      link.textContent = linkText.textContent.trim();
+      link.setAttribute('target', target);
 
       // Add arrow icon if specified
       if (iconName) {
