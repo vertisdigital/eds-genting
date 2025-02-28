@@ -168,8 +168,8 @@
         "name": "tabtitle",
         "label": "Tab Title",
         "validation": {
-          "maxLength": 10,
-          "customErrorMsg": "Tab Title cannot exceed 10 characters"
+          "maxLength": 30,
+          "customErrorMsg": "Tab Title cannot exceed 30 characters"
         }
       }
     ]
