@@ -924,11 +924,6 @@ content: '🡢';
   }
  
 
-  .header-inner-wrapper .header-nav .primary-nav .nav-item{
-    padding: 24px 0;
-    border-bottom: 1px solid var(--text-color);
-
-  }
   
   .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links,
   .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links a{
