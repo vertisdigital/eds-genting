@@ -168,8 +168,8 @@
         "name": "tabtitle",
         "label": "Tab Title",
         "validation": {
-          "maxLength": 10,
-          "customErrorMsg": "Tab Title cannot exceed 10 characters"
+          "maxLength": 50,
+          "customErrorMsg": "Tab Title cannot exceed 50 characters"
         }
       }
     ]
@@ -1187,7 +1187,12 @@
       {
         "component": "text",
         "name": "sectionTitle",
-        "label": "Section Title"
+        "label": "Section Title",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 80,
+          "customErrorMsg": "Section Title cannot exceed 80 characters"
+        }
       }
     ]
   }
