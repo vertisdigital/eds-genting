@@ -32,7 +32,8 @@
       "tiles",
       "textsection",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "featureItem"
     ]
   },
   {
@@ -167,7 +168,7 @@
     "id": "statistics",
     "components": [
       "statisticsDescription",
-      "featureItem"
+      "section"
     ]
   }
 ]

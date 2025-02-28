@@ -142,6 +142,10 @@
           {
             "name": "Footer Copyrights",
             "value": "footer-copyrights"
+          },
+          {
+            "name": "Statistics Feature",
+            "value": "statistics-feature"
           }
         ]
       }
