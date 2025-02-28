@@ -505,7 +505,7 @@ function decorateAEMStructure(element) {
   const hasPicture = element.querySelector('div > picture') || element.children[0]?.tagName === 'DIV';
   const divElements = [...element.children].filter((el) => el.tagName === 'DIV');
   const isProjectCard = element.classList[0].indexOf('projectslist') === 0;
-  const isListing = element.classList[0].indexOf('listing') === 0;
+
   // Check for contact information in divs
   divElements.forEach((div) => {
     const text = div.textContent.trim();
