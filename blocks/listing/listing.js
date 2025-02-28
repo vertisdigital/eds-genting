@@ -1,12 +1,11 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
-import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
-import { moveInstrumentation } from '../../scripts/scripts.js';
+import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
   // Add container classes from styles.css
   block.classList.add('container-xl', 'container-md', 'container-sm');
-
+  const allChildItems = block.children;
   // Process list items
   const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
   listItems.forEach((item) => {
@@ -15,30 +14,13 @@ export default function decorate(block) {
     row.classList.add('row');
 
     // Get all content elements
-    const allDivElements = item.querySelectorAll('div');
-    
-    // Handle title with moveInstrumentation
-    const titleContainer = allDivElements[1];
-    const title = titleContainer.querySelector('p');
-    if (title) {
-      moveInstrumentation(titleContainer, title);
-    }
-
-    // Handle description with moveInstrumentation
-    const descContainer = allDivElements[2];
-    const description = descContainer.querySelector('p');
-    if (description) {
-      moveInstrumentation(descContainer, description);
-    }
-
+    const allDivElements = item.children;
+    // const title = item.querySelector('[data-aue-type="text"], [data-gen-type="text"]');
+    const title = allDivElements[1].querySelector('p');
+    const description = allDivElements[2].querySelector('p');
     const link = item.querySelector('.button-container a');
-    
-    // Handle link target with moveInstrumentation
-    const linkTargetContainer = allDivElements[4];
-    const linkTarget = linkTargetContainer.querySelector('p');
-    if (linkTarget) {
-      moveInstrumentation(linkTargetContainer, linkTarget);
-    }
+    // const linkTarget = item.querySelector('[data-aue-label="Target"]');
+    const linkTarget = allDivElements[4].querySelector('p');
 
     // Process image
     const imgContainer = item.querySelector('div:first-child');
@@ -52,26 +34,37 @@ export default function decorate(block) {
         img.src = imgAnchor.href;
         img.alt = '';
 
-        const imageHtml = ImageComponent({
-          src: imgAnchor.href,
-          alt: '',
-          className: 'listing-image',
-          breakpoints: {
-            mobile: {
-              width: 768,
-              src: `${imgAnchor.href}`,
-            },
-            tablet: {
-              width: 1024,
-              src: `${imgAnchor.href}`,
-            },
-            desktop: {
-              width: 1920,
-              src: `${imgAnchor.href}`,
-            },
+        // ImageComponent({
+        //   element: img,
+        //   src: imgAnchor.href,
+        //   alt: '',
+        //   lazy: true,
+        // });
+
+         const imageHtml = ImageComponent({
+        src: imgAnchor.href,
+        alt: "",
+        className: 'listing-image',
+        breakpoints: {
+          mobile: {
+            width: 768,
+            src: `${imgAnchor.href}`,
           },
-          lazy: true,
-        });
+          tablet: {
+            width: 1024,
+            src: `${imgAnchor.href}`,
+          },
+          desktop: {
+            width: 1920,
+            src: `${imgAnchor.href}`,
+          },
+        },
+        lazy: true,
+      });
+
+        // Create picture element to properly handle responsive images
+        // const picture = document.createElement('picture');
+        // picture.appendChild(img);
 
         // Replace anchor with picture element containing the image
         imgContainer.innerHTML = '';
@@ -120,35 +113,32 @@ export default function decorate(block) {
     item.setAttribute('tabindex', '0');
   });
 
-  // Process CTA section
-  const ctaContainer = block.querySelector('[data-aue-model="linkField"], [data-gen-model="linkField"]');
-  const ctaText = ctaContainer.querySelector('[data-aue-prop="linkTarget"], [data-gen-prop="linkTarget"]');
-  ctaText.innerHTML = '';
+ const ctaContainer = allChildItems[5];
 
-  // Find all LinkFields and replace with arrow icons
-  const linkField = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]');
-  if (linkField) {
-    const linkContainer = document.createElement('div');
-    linkContainer.className = 'links-container';
-    moveInstrumentation(linkField, linkContainer);
-    // Handle link text
-    const originalLink = linkField.querySelector('[data-aue-prop="linkText"],[data-gen-prop="linkText"]');
-    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"],[data-gen-prop="linkTarget"]');
-    const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"],[data-gen-prop="linkSvgIcon"]');
-
-    if (originalLink && originalTarget) {
-      originalLink.setAttribute('target', originalTarget?.textContent.trim());
-      // fix for text with / i.e. default content from AEM when link used
-      if (originalLink.textContent.startsWith('/') || originalLink.textContent.startsWith('#')) originalLink.textContent = '';
-      originalTarget.textContent = '';
-      if (arrowIcon) {
-        const arrowIconName = arrowIcon?.textContent.replace('-', '');
-        arrowIcon.textContent = '';
-        const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '24px' });
-        originalLink.append(stringToHtml(arrowSVG));
+if (ctaContainer) {
+  const ctaContainerChildren = ctaContainer.children;
+  const btnContainer = ctaContainerChildren[0]?.querySelector('a');
+  const svgIcon= ctaContainerChildren[1];
+  const ctaTarget = ctaContainerChildren[2]?.querySelector('p');
+  
+  if (btnContainer) {
+    if (svgIcon) {
+      const svgIconName = svgIcon.textContent.trim();
+      if(svgIconName && svgIconName !== 'select'){
+      const rightArrowSVG = SvgIcon({ name: `${svgIconName}`, className: 'arrow-icon', size: '18px' });
+      const parsedRightArrowSVG = stringToHtml(rightArrowSVG);
+      btnContainer.append(parsedRightArrowSVG);
       }
-      linkContainer.appendChild(originalLink);
-      block.appendChild(linkContainer);
+      svgIcon.innerHTML = '';
+    }
+    
+    if (ctaTarget) {
+    const ctaTargetText = ctaTarget.textContent.trim();
+      
+      btnContainer.target = ctaTargetText;
+      ctaTarget.innerHTML = '';
     }
   }
+}
+
 }
