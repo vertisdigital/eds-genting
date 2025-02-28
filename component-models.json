@@ -933,7 +933,10 @@
         "component": "aem-content",
         "name": "cta",
         "label": "CTA",
-        "condition": { "===": [{"var" : "reveal"}, false] }
+        "condition": { "===": [{"var" : "reveal"}, false] },
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       },
       {
         "component": "text",
