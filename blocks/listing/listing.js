@@ -131,7 +131,7 @@ export default function decorate(block) {
     const divElements = linkField.children;
     const linkWrapper = divElements[0]?.querySelector('.button-container a');
     const iconType = divElements[1]?.querySelector('p')?.textContent?.trim();
-    const targetValue = divElements[2]?.querySelector('p')?.textContent?.trim() || '_self';
+    const targetValue = divElements[2]?.querySelector('p')?.textContent?.trim();
 
     if (linkWrapper) {
       // Set target attribute
