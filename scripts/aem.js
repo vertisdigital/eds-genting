@@ -678,35 +678,6 @@ function decorateAEMStructure(element) {
     element.setAttribute('data-gen-model', 'linkField');
     element.setAttribute('data-gen-filter', 'linkField');
     element.setAttribute('data-gen-label', 'Link Field');
-
-    // Add attributes to link button
-    if (!isListing) {
-      const linkContainer = element.querySelector('div > a.button');
-      if (linkContainer) {
-        linkContainer.setAttribute('data-gen-prop', 'linkText');
-      linkContainer.setAttribute('data-gen-label', 'Text');
-      linkContainer.setAttribute('data-gen-type', 'text');
-    }
-
-    // Add attributes to first div after button
-    const [, firstDiv] = divElements;
-    if (firstDiv) {
-      const hasLongText = firstDiv.textContent.trim().length > 100;
-      if (!hasLongText) {
-        firstDiv.setAttribute('data-gen-prop', 'linkSvgIcon');
-        firstDiv.setAttribute('data-gen-label', 'Link SVG Icon');
-        firstDiv.setAttribute('data-gen-type', 'text');
-      }
-    }
-
-    // Add attributes to second div after button
-    const [, , secondDiv] = divElements;
-    if (secondDiv) {
-      secondDiv.setAttribute('data-gen-prop', 'linkTarget');
-      secondDiv.setAttribute('data-gen-label', 'Target');
-      secondDiv.setAttribute('data-gen-type', 'text');
-      }
-    }
   } else {
     // Handle single div text content
     const textDiv = divElements[0];
