@@ -194,7 +194,7 @@ function createHeaderStructure(block) {
       caption: overviewLink,
       captionTarget: '_self',
       // Map remaining sections as links (starting from index 4)
-      links: sections.slice(4).map((linkSection) => {
+      links: sections.slice(3).map((linkSection) => {
         const link = linkSection.querySelector('a');
         return {
           text: link?.getAttribute('title') || link?.textContent,
