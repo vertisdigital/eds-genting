@@ -168,7 +168,8 @@
     "id": "statistics",
     "components": [
       "statisticsDescription",
-      "section"
+      "section",
+      "statisticsContainer"
     ]
   }
 ]
