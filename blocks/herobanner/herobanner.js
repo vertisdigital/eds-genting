@@ -100,7 +100,7 @@ export default function decorate(block) {
   }
 
   const arrowIconLink = block.children[4];
-  if (arrowIconLink) {
+  if (arrowIconLink && arrowIconLink.querySelector('a')!=null) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
       className: 'hero-arrow-icon',
@@ -108,7 +108,7 @@ export default function decorate(block) {
       color: '#B29152',
     });
     const parsedHtml = stringToHTML(arrowIconHtml);
-    arrowIconLink.querySelector('a')?.textContent = '';
+    arrowIconLink.querySelector('a').textContent = '';
     arrowIconLink.querySelector('a')?.append(parsedHtml);
     heroContent.appendChild(arrowIconLink);
   }
