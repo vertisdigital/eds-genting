@@ -75,18 +75,18 @@
 
 @media (width < 768px) {
   .historymilestones > div:first-child > div {
-    font-size: 48px;
+      font-size: 48px;
   }
 
   .historymilestones > div:nth-child(n+3) {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding-bottom: 32px;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding-bottom: 32px;
   }
 
   .historymilestones > div:nth-child(n+3) > div:first-child {
-    grid-column: 1;
-    grid-row: auto;
-    order: -1;
+      grid-column: 1;
+      grid-row: auto;
+      order: -1;
   }
 }
