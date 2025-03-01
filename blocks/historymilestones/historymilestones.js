@@ -27,10 +27,10 @@ export default function decorate(block) {
 
         // Replace the link with the optimized picture
         imageLink.parentNode.replaceChild(picture, imageLink);
+
       }
     });
   });
-
 
   // Add accessibility attributes
   block.setAttribute('role', 'region');
