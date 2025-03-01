@@ -3,20 +3,8 @@
   padding: 40px 0;
 }
 
-/* Wrapper */
-.historymilestones-wrapper {
-  margin-bottom: 40px;
-}
-
-/* Row */
-.historymilestones-row {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Year section */
-.historymilestones-nested-1-1 p,
-.historymilestones-nested-2-1 p {
+/* Year section - first div */
+.historymilestones > div:first-child > div {
   font-family: var(--heading-font-family);
   font-size: 64px;
   font-weight: 500;
@@ -25,20 +13,16 @@
   margin-bottom: 16px;
 }
 
-/* Description section */
-.historymilestones-nested-1-2 p,
-.historymilestones-nested-2-2 p {
+/* Description section - second div */
+.historymilestones > div:nth-child(2) > div {
   font-size: 18px;
   line-height: 1.5;
   color: var(--body-text-color);
   margin-bottom: 24px;
 }
 
-/* Milestone items */
-.historymilestones-nested-1-3,
-.historymilestones-nested-2-3,
-.historymilestones-nested-2-4,
-.historymilestones-nested-2-5 {
+/* Milestone items - third div onwards */
+.historymilestones > div:nth-child(n+3) {
   display: grid;
   grid-template-columns: 1fr 200px;
   gap: 24px;
@@ -46,11 +30,8 @@
   position: relative;
 }
 
-/* Date */
-.historymilestones-nested-1-3 > div:nth-child(2) p,
-.historymilestones-nested-2-3 > div:nth-child(2) p,
-.historymilestones-nested-2-4 > div:nth-child(2) p,
-.historymilestones-nested-2-5 > div:nth-child(2) p {
+/* Date - second div inside milestone item */
+.historymilestones > div:nth-child(n+3) > div:nth-child(2) {
   font-size: 16px;
   font-weight: 500;
   color: #666666;
@@ -58,31 +39,22 @@
   text-transform: uppercase;
 }
 
-/* Description */
-.historymilestones-nested-1-3 > div:nth-child(3) p,
-.historymilestones-nested-2-3 > div:nth-child(3) p,
-.historymilestones-nested-2-4 > div:nth-child(3) p,
-.historymilestones-nested-2-5 > div:nth-child(3) p {
+/* Description - third div inside milestone item */
+.historymilestones > div:nth-child(n+3) > div:nth-child(3) {
   font-size: 16px;
   line-height: 1.5;
   color: var(--body-text-color);
 }
 
 /* Image */
-.historymilestones-nested-1-3 img,
-.historymilestones-nested-2-3 img,
-.historymilestones-nested-2-4 img,
-.historymilestones-nested-2-5 img {
+.historymilestones > div:nth-child(n+3) img {
   width: 100%;
   height: auto;
   display: block;
 }
 
 /* Horizontal line */
-.historymilestones-nested-1-3::after,
-.historymilestones-nested-2-3::after,
-.historymilestones-nested-2-4::after,
-.historymilestones-nested-2-5::after {
+.historymilestones > div:nth-child(n+3)::after {
   content: '';
   position: absolute;
   left: 0;
@@ -93,15 +65,11 @@
 }
 
 @media (width < 768px) {
-  .historymilestones-nested-1-1 p,
-  .historymilestones-nested-2-1 p {
+  .historymilestones > div:first-child > div {
     font-size: 48px;
   }
 
-  .historymilestones-nested-1-3,
-  .historymilestones-nested-2-3,
-  .historymilestones-nested-2-4,
-  .historymilestones-nested-2-5 {
+  .historymilestones > div:nth-child(n+3) {
     grid-template-columns: 1fr;
     gap: 16px;
   }
