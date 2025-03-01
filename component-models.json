@@ -271,7 +271,7 @@
         "label": "CTA Link",
         "multi": false,
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -340,7 +340,7 @@
         "label": "CTA Link",
         "multi": false,
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       }
     ]
@@ -553,7 +553,7 @@
         "name": "link",
         "label": "Link",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"          
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -676,7 +676,7 @@
         "name": "cta",
         "label": "CTA",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -758,7 +758,7 @@
         "name": "project",
         "label": "Link",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -1041,7 +1041,7 @@
         "linkTarget": "_blank",
         "validation": {
           "requiredErrorMsg": "CTA Link is mandatory",
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -1060,7 +1060,7 @@
         "label": "CTA Link",
         "linkTarget": "_blank",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       }
     ]
