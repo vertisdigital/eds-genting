@@ -1,0 +1,134 @@
+.sustainabilitygovernance {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Title */
+.sustainabilitygovernance > div:first-child {
+    margin-bottom: 20px;
+}
+
+.sustainabilitygovernance > div:first-child > div {
+    font-size: 32px;
+    font-weight: 500;
+    color: #000;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+/* Horizontal line under title */
+.sustainabilitygovernance > div:first-child > div::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #E5E5E5;
+}
+
+/* Governance Tiles */
+.sustainabilitygovernance > div:nth-child(n+2) {
+    display: flex;
+    gap: 24px;
+    padding: 32px 0;
+    position: relative;
+}
+
+/* Icon */
+.sustainabilitygovernance > div:nth-child(n+2) > div:first-child {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Icon images */
+.sustainabilitygovernance > div:nth-child(n+2) > div:first-child {
+    background-image: url('../icons/default-icon.svg');
+}
+
+.sustainabilitygovernance > div:nth-child(n+2) > div[class*="board-of-directors"] {
+    background-image: url('../icons/board-of-directors.svg');
+}
+
+.sustainabilitygovernance > div:nth-child(n+2) > div[class*="ceo"] {
+    background-image: url('../icons/ceo.svg');
+}
+
+.sustainabilitygovernance > div:nth-child(n+2) > div[class*="sustainability-steering-committee"] {
+    background-image: url('../icons/sustainability-steering-committee.svg');
+}
+
+.sustainabilitygovernance > div:nth-child(n+2) > div[class*="sustainability-working-groups"] {
+    background-image: url('../icons/sustainability-working-groups.svg');
+}
+
+.sustainabilitygovernance > div:nth-child(n+2) > div[class*="sustainability-department"] {
+    background-image: url('../icons/sustainability-department.svg');
+}
+
+/* Title */
+.sustainabilitygovernance > div:nth-child(n+2) > div:nth-child(2) {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 12px;
+}
+
+/* Description */
+.sustainabilitygovernance > div:nth-child(n+2) > div:nth-child(3) {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+}
+
+/* Content wrapper */
+.sustainabilitygovernance > div:nth-child(n+2) > div:not(:first-child) {
+    flex: 1;
+}
+
+/* Vertical connecting line */
+.sustainabilitygovernance > div:nth-child(n+2):not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 32px;
+    width: 1px;
+    height: 32px;
+    background-color: #E5E5E5;
+}
+
+/* Responsive Design */
+@media (width < 768px) {
+    .sustainabilitygovernance {
+        padding: 24px 16px;
+    }
+
+    .sustainabilitygovernance > div:first-child > div {
+        font-size: 24px;
+    }
+
+    .sustainabilitygovernance > div:nth-child(n+2) {
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px 0;
+    }
+
+    .sustainabilitygovernance > div:nth-child(n+2) > div:first-child {
+        width: 48px;
+        height: 48px;
+    }
+
+    .sustainabilitygovernance > div:nth-child(n+2) > div:nth-child(2) {
+        font-size: 18px;
+    }
+
+    /* Adjust vertical line for mobile */
+    .sustainabilitygovernance > div:nth-child(n+2):not(:last-child)::after {
+        left: 24px;
+    }
+} 
