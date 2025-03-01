@@ -34,6 +34,7 @@
 /* Image container */
 .historymilestones > div:nth-child(n+3) > div:first-child {
   margin-bottom: 24px;
+  /* No longer force it to the top */
 }
 
 /* Date - second div inside milestone item */
