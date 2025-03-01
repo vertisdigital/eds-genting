@@ -208,7 +208,7 @@ export default function decorate(block) {
       showMoreIndicesLink.classList.add('show-more-indices');
       showMoreIndicesLink.addEventListener('click', () => {
         for (let i = indexNumber; i < convDescription.length - 1; i += 1) {
-          convDescription[i].style.display = 'block';
+          convDescription[i].style.display = 'flex';
         }
         showMoreIndicesLink.style.display = 'none';
         showLessIndicesLink.style.display = 'block';
