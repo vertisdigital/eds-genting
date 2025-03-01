@@ -36,7 +36,7 @@ export default function decorate(block) {
         // Format: {deliveryUrl}/adobe/assets/{urn}/as/img.png?width={width}
         const newSrcset = srcset.replace(
           /\/adobe\/assets\/(.*?)(?:\?|$)/g,
-          (match, urn) => `${deliveryUrl}/adobe/assets/${urn}/as/img.png?width=`
+          (match, urn) => `${deliveryUrl}/adobe/assets/${urn}/as/img.png?`
         );
         source.setAttribute('srcset', newSrcset);
       }
@@ -48,7 +48,7 @@ export default function decorate(block) {
       // Format: {deliveryUrl}/adobe/assets/{urn}/as/img.png?width={width}
       const newSrc = src.replace(
         /\/adobe\/assets\/(.*?)(?:\?|$)/g,
-        (match, urn) => `${deliveryUrl}/adobe/assets/${urn}/as/img.png?width=`
+        (match, urn) => `${deliveryUrl}/adobe/assets/${urn}/as/img.png?`
       );
       img.setAttribute('src', newSrc);
     }
