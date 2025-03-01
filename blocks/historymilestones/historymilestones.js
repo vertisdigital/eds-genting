@@ -24,8 +24,8 @@ export default function decorate(block) {
     
     // Create picture element with optimized sources
     const picture = createOptimizedPicture(link.href, '', false, [
-      { media: '(min-width: 768px)', width: '400' },
-      { width: '320' }
+      { media: '(min-width: 768px)', width: '800' },
+      { width: '400' }
     ]);
 
     // Update image paths with correct delivery URL format
