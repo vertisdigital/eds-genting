@@ -1253,15 +1253,35 @@
     "id": "governancetile",
     "fields": [
       {
-        "component": "custom-asset-namespace:custom-asset",
+        "component": "select",
         "name": "icon",
         "label": "Icon",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
-        "multi": false,
-        "validation": {
-          "required": true,
-          "customErrorMsg": "Icon is required"
-        }
+        "options": [
+          {
+            "name": "Select",
+            "value": ""
+          },
+          {
+            "name": "Board of Directors",
+            "value": "board-of-directors"
+          },
+          {
+            "name": "CEO",
+            "value": "ceo"
+          },
+          {
+            "name": "Sustainability Steering Committee",
+            "value": "sustainability-steering-committee"
+          },
+          {
+            "name": "Sustainability Working Groups",
+            "value": "sustainability-working-groups"
+          },
+          {
+            "name": "Sustainability Department",
+            "value": "sustainability-department"
+          }
+        ]
       },
       {
         "component": "text",
