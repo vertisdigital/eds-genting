@@ -136,10 +136,10 @@ export default function decorate(block) {
       // Add arrow icon if icon type is specified
       if (iconType) {
         const iconName = iconType.replace('-', '');
-        const arrowSVG = SvgIcon({ 
-          name: iconName, 
-          className: 'about-us-left-link', 
-          size: '24px' 
+        const arrowSVG = SvgIcon({
+          name: iconName,
+          className: 'about-us-left-link',
+          size: '24px',
         });
         divElements[1].textContent = '';
         divElements[2].textContent = '';
