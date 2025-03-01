@@ -33,7 +33,6 @@ export default function decorate(block) {
     sources.forEach(source => {
       const srcset = source.getAttribute('srcset');
       if (srcset) {
-        // Format: {deliveryUrl}/adobe/assets/{urn}/as/img.png?width={width}
         const newSrcset = srcset.replace(
           /\/adobe\/assets\/(.*?)(?:\?|$)/g,
           (match, urn) => `${deliveryUrl}/adobe/assets/${urn}/as/img.png?`
@@ -45,7 +44,6 @@ export default function decorate(block) {
     const img = picture.querySelector('img');
     if (img) {
       const src = img.getAttribute('src');
-      // Format: {deliveryUrl}/adobe/assets/{urn}/as/img.png?width={width}
       const newSrc = src.replace(
         /\/adobe\/assets\/(.*?)(?:\?|$)/g,
         (match, urn) => `${deliveryUrl}/adobe/assets/${urn}/as/img.png?`
