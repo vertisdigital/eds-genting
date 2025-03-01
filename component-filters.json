@@ -40,7 +40,8 @@
     "components": [
       "feature",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "historymilestones"
     ]
   },
   {
