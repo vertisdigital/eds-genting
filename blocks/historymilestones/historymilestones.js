@@ -1,3 +1,5 @@
+import { createOptimizedPicture } from '../../scripts/aem.js';
+
 export default function decorate(block) {
   // Add container classes
   block.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
@@ -8,11 +10,10 @@ export default function decorate(block) {
     // Handle image
     const imgLink = item.querySelector('a');
     if (imgLink) {
-      const img = document.createElement('img');
-      img.src = imgLink.href;
-      img.alt = '';
-      img.loading = 'lazy';
-      imgLink.parentElement.replaceChild(img, imgLink);
+      const picture = createOptimizedPicture(imgLink.href, '', false, [
+        { width: '400' },
+      ]);
+      imgLink.parentElement.replaceChild(picture, imgLink);
     }
   });
 
