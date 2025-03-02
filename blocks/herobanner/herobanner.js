@@ -114,8 +114,9 @@ export default function decorate(block) {
   }
   heroContainer.appendChild(heroContent);
   const carouselItems = block.querySelectorAll(
-    '[data-aue-model="bannercarousel"],[data-gen-model="tile"], [data-gen-model="featureItem"]',
+    '[data-aue-model="bannercarousel"],[data-gen-model="featureItem"]',
   );
+  
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
   const carouselWrapper = document.createElement('div');
@@ -264,20 +265,18 @@ export default function decorate(block) {
 
     // Extract and append the "Read More" label
     const readMoreLabelElement = itemDivs[3].querySelector('p');
-    if (readMoreLabelElement) {
+  
+   if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
-      const buttonContainer = readMoreLabelElement.parentElement.nextElementSibling.querySelector('a');
-      const href = buttonContainer ? buttonContainer.getAttribute('href') : '';
-      const currentUrl = window.location.href;
-      const newUrl = currentUrl.replace(window.location.pathname, href);
-      const readMoreLabelHtml = `<a class="news-link" href="${newUrl}" target="_blank">${readMoreLabelText}</a>`;
+      const buttonContainer = itemDivs[4]?.querySelector('a');
+      const href = buttonContainer?.getAttribute('href') ?? '/' ;
+      const readMoreLabelHtml = `<a class="news-link" href="${href}">${readMoreLabelText}</a>`;
       const readMoreContainer = document.createElement('div');
       moveInstrumentation(itemDivs[3], readMoreContainer);
       readMoreContainer.insertAdjacentHTML('beforeend', readMoreLabelHtml);
       newsLinkDiv.appendChild(readMoreContainer);
       readMoreLabelElement.remove();
     }
-
     // Extract the two SVG icons and append them using ImageComponent
     const firstIconLink = block.querySelector(
       'a[href="material-symbols_chevron-left%20(1).svg"]',
