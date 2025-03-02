@@ -264,19 +264,7 @@ export default function decorate(block) {
 
     // Extract and append the "Read More" label
     const readMoreLabelElement = itemDivs[3].querySelector('p');
-    // if (readMoreLabelElement) {
-    //   const readMoreLabelText = readMoreLabelElement.textContent;
-    //   const buttonContainer = readMoreLabelElement.parentElement.nextElementSibling.querySelector('a');
-    //   const href = buttonContainer ? buttonContainer.getAttribute('href') : '';
-    //   const currentUrl = window.location.href;
-    //   const newUrl = currentUrl.replace(window.location.pathname, href);
-    //   const readMoreLabelHtml = `<a class="news-link" href="${newUrl}" target="_blank">${readMoreLabelText}</a>`;
-    //   const readMoreContainer = document.createElement('div');
-    //   moveInstrumentation(itemDivs[3], readMoreContainer);
-    //   readMoreContainer.insertAdjacentHTML('beforeend', readMoreLabelHtml);
-    //   newsLinkDiv.appendChild(readMoreContainer);
-    //   readMoreLabelElement.remove();
-    // }
+  
    if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
       const buttonContainer = itemDivs[4]?.querySelector('a');
