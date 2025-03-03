@@ -36,6 +36,12 @@
     font-size: 14px;
 }
 
+.awardsgallery .awardsgallery-grid {
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
 @media (width >= 768px) {
     .awardsgallery .awardsgallery-image {
         margin-bottom: 15px;
