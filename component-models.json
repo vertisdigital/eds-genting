@@ -828,7 +828,6 @@
         "label": "Email Details",
         "name": "emailDetails",
         "collapsible": true,
-        "multi": true,
         "fields": [
           {
             "component": "custom-asset-namespace:custom-asset",
