@@ -1248,7 +1248,7 @@
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "label": "Policy Description",
         "validation": {
