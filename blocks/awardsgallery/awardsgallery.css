@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #eee;
+    border: 1px solid var(--light-grey);
     height: 162px;
     margin-bottom: 10px;
 }
@@ -21,13 +21,13 @@
 }
 
 .awardsgallery .award-year {
-    color: #B29152;
+    color: var(--whisper-gray);
     font-size: 16px;
     font-weight: 600;
 }
 
 .awardsgallery .award-title {
-    color: #000;
+    color: var(--text-color);
     font-size: 16px;
     font-weight: 600;
 }
