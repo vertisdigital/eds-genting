@@ -33,7 +33,8 @@
       "textsection",
       "textmediablock",
       "projectslist",
-      "tabsectiontitle"
+      "tabsectiontitle",
+      "corporatepolicies"
     ]
   },
   {
@@ -169,6 +170,12 @@
     "components": [
       "statisticsDescription",
       "featureItem"
+    ]
+  },
+  {
+    "id": "corporatepolicies",
+    "components": [
+      "policytile"
     ]
   }
 ]
