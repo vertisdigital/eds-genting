@@ -1,63 +1,49 @@
 .corporatepolicies-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.corporatepolicies {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.corporatepolicies > div {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
-  padding-bottom: 20px;
-  border-bottom: 2px solid #ccc;
-}
-
-.corporatepolicies > div > div:first-child {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-}
-
-.corporatepolicies > div > div:nth-child(2) {
-  font-size: 16px;
-  color: #666;
-  display: flex;
-  flex-direction: column;
-}
-
-.corporatepolicies > div > div:nth-child(2) .cta {
-  font-size: 16px;
-  font-weight: bold;
-  color: #B29152;
-  margin-top: 10px;
-}
-
-.corporatepolicies > div > div:nth-child(4) {
-  display: none;
-}
-
-.corporatepolicies > div > div:nth-child(3) .cta-button {
-  display: inline-block;
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.corporatepolicies > div > div:nth-child(3) .cta-button:hover {
-  background-color: #0056b3;
-}
-
-@media (max-width: 768px) {
-  .corporatepolicies > div {
-    grid-template-columns: 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
   }
-} 
+  
+  .corporatepolicies {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .corporatepolicies > div {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .corporatepolicies > div > div:first-child {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .corporatepolicies > div > div:nth-child(2) {
+    font-size: 16px;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .corporatepolicies > div > div:nth-child(2) .cta {
+    font-size: 16px;
+    font-weight: bold;
+    color: #B29152; /* Correct font color */
+    margin-top: 10px;
+  }
+  
+  .corporatepolicies > div > div:nth-child(4) {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .corporatepolicies > div {
+      grid-template-columns: 1fr;
+    }
+  }
