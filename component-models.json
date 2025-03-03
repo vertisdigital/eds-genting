@@ -1282,19 +1282,5 @@
         }
       }
     ]
-  } ,
-  {
-    "id": "test",
-    "fields": [
-      {
-        "component": "text",
-        "name": "textHeading",
-        "label": "Title", 
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
-      }
-    ]
   }
 ]
