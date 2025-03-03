@@ -1367,6 +1367,11 @@
         "label": "Title"
       },
       {
+        "component": "text",
+        "name": "ctaText",
+        "label": "Text"
+      },
+      {
         "component": "select",
         "name": "ctaTarget",
         "label": "Target",
