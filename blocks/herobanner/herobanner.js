@@ -20,23 +20,29 @@ export default function decorate(block) {
   if (imageLink) {
     const imageUrl = imageLink.getAttribute('href');
     const imageAlt = imageLink.getAttribute('title') || 'Hero Image';
-
     const imageHtml = ImageComponent({
       src: imageUrl,
       alt: imageAlt,
       className: 'hero-image',
+      asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
           width: 768,
+          imgWidth: 768,
+          imgHeight: 540,
           src: `${imageUrl}`,
         },
         tablet: {
           width: 1024,
+          imgWidth: 1024,
+          imgHeight: 720,
           src: `${imageUrl}`,
         },
         desktop: {
           width: 1920,
           src: `${imageUrl}`,
+          imgWidth: 1920,
+          imgHeight: 800,
         },
       },
       lazy: false,
@@ -100,7 +106,7 @@ export default function decorate(block) {
   }
 
   const arrowIconLink = block.children[4];
-  if (arrowIconLink && arrowIconLink.querySelector('a')!=null) {
+  if (arrowIconLink && arrowIconLink.querySelector('a') != null) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
       className: 'hero-arrow-icon',
@@ -116,7 +122,7 @@ export default function decorate(block) {
   const carouselItems = block.querySelectorAll(
     '[data-aue-model="bannercarousel"],[data-gen-model="featureItem"]',
   );
-  
+
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
   const carouselWrapper = document.createElement('div');
@@ -265,11 +271,11 @@ export default function decorate(block) {
 
     // Extract and append the "Read More" label
     const readMoreLabelElement = itemDivs[3].querySelector('p');
-  
-   if (readMoreLabelElement) {
+
+    if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
       const buttonContainer = itemDivs[4]?.querySelector('a');
-      const href = buttonContainer?.getAttribute('href') ?? '/' ;
+      const href = buttonContainer?.getAttribute('href') ?? '/';
       const readMoreLabelHtml = `<a class="news-link" href="${href}">${readMoreLabelText}</a>`;
       const readMoreContainer = document.createElement('div');
       moveInstrumentation(itemDivs[3], readMoreContainer);
@@ -331,28 +337,35 @@ export default function decorate(block) {
         // const imgUrl = aTag.getAttribute('href');
         const imgUrl = aTag?.getAttribute('href');
         const imgAlt = aTag?.getAttribute('title');
-
         const imgHtml = ImageComponent({
           src: imgUrl,
           alt: imgAlt,
           className: 'news-thumbnail',
+          asImageName: 'hero.webp',
           breakpoints: {
             mobile: {
               width: 768,
               src: `${imgUrl}`,
+              imgWidth: 92,
+              imgHeight: 92,
             },
             tablet: {
               width: 1024,
               src: `${imgUrl}`,
+              imgWidth: 151,
+              imgHeight: 118,
             },
             desktop: {
               width: 1920,
               src: `${imgUrl}`,
+              imgWidth: 151,
+              imgHeight: 118,
             },
           },
           lazy: false,
         });
 
+    
         newsLetterImage.insertAdjacentHTML('beforeend', imgHtml);
         moveInstrumentation(itemDivs[2], newsLetterImage);
         aTag.remove();
