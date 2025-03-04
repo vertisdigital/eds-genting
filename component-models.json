@@ -1276,12 +1276,33 @@
       },
       {
         "component": "text",
-        "name": "description",
-        "label": "Description",
+        "name": "title",
+        "label": "Title",
         "validation": {
           "maxLength": 500,
           "customErrorMsg": "Description cannot exceed 500 characters"
         }
+      }
+    ]
+  },
+  {
+    "id": "loadmore",
+    "fields": [
+      {
+        "component": "text",
+        "name": "loadMoreLabel",
+        "label": "Load More",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "Load More cannot exceed 30 characters"
+        }
+      },
+      {
+        "component": "number",
+        "name": "loadMoreItems",
+        "label": "Load More Items",
+        "valueType": "number"
       }
     ]
   }
