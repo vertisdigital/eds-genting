@@ -634,7 +634,8 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Director"
+                  "name": "director",
+                  "model": "director"
                 }
               }
             }
