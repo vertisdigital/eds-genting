@@ -830,6 +830,34 @@
       },
       {
         "component": "tab",
+        "label": "Phone Details",
+        "name": "phoneDetailsTab"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "phoneIcon",
+        "label": "Phone Icon",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "phoneIconAlt",
+        "label": "Phone Icon Alt Text"
+      },
+      {
+        "component": "text",
+        "name": "phoneNumber",
+        "label": "Phone Number",
+        "validation": {
+          "regExp": "^[+]?[0-9]{10,30}$",
+          "minLength": 10,
+          "maxLength": 30,
+          "customErrorMsg": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
+        }
+      },
+      {
+        "component": "tab",
         "label": "Email Details",
         "name": "emailDetailsTab"
       },
@@ -912,34 +940,6 @@
             }
           }
         ]
-      },
-      {
-        "component": "tab",
-        "label": "Phone Details",
-        "name": "phoneDetailsTab"
-      },
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "phoneIcon",
-        "label": "Phone Icon",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "phoneIconAlt",
-        "label": "Phone Icon Alt Text"
-      },
-      {
-        "component": "text",
-        "name": "phoneNumber",
-        "label": "Phone Number",
-        "validation": {
-          "regExp": "^[+]?[0-9]{10,30}$",
-          "minLength": 10,
-          "maxLength": 30,
-          "customErrorMsg": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
-        }
       },
       {
         "component": "tab",
