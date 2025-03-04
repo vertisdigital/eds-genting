@@ -4,9 +4,6 @@ function getImageHTMl(image) {
   const imageLink = image.querySelector('a[href]');
   if (imageLink) {
     const imageContainer = document.createElement('div');
-    imageContainer.setAttribute('data-aue-prop', 'image');
-    imageContainer.setAttribute('data-aue-label', 'Image');
-    imageContainer.setAttribute('data-aue-type', 'image');
 
     const imageUrl = imageLink.getAttribute('href');
     const imageAlt = imageLink.title || 'History Image';
