@@ -41,7 +41,8 @@
     "components": [
       "feature",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "boardofdirectors"
     ]
   },
   {
@@ -169,6 +170,12 @@
     "components": [
       "statisticsDescription",
       "featureItem"
+    ]
+  },
+  {
+    "id": "boardofdirectors",
+    "components": [
+      "director"
     ]
   }
 ]

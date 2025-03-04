@@ -1233,5 +1233,61 @@
         }
       }
     ]
+  },
+  {
+    "id": "director",
+    "fields": [
+      {
+        "component": "tab",
+        "label": "Personal Details",
+        "name": "personalDetailsTab"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "required": true,
+          "customErrorMsg": "Image is required"
+        }
+      },
+      {
+        "component": "text",
+        "name": "name",
+        "label": "Name",
+        "validation": {
+          "maxLength": 60,
+          "required": true,
+          "customErrorMsg": "Name is required and cannot exceed 60 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "designation",
+        "label": "Designation",
+        "validation": {
+          "maxLength": 50,
+          "required": true,
+          "customErrorMsg": "Designation is required and cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "tab",
+        "label": "Description",
+        "name": "descriptionTab"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 2500,
+          "customErrorMsg": "Description cannot exceed 2500 characters"
+        }
+      }
+    ]
   }
 ]
