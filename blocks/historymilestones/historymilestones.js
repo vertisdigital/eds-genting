@@ -11,19 +11,25 @@ function getImageHTMl(image) {
     const imageHtml = ImageComponent({
       src: imageUrl,
       alt: imageAlt,
-      className: 'project-card-image',
+      className: 'history-milestone-image',
       breakpoints: {
         mobile: {
           width: 768,
           src: `${imageUrl}`,
+          imgHeight: 206,
+          imgWidth: 361,
         },
         tablet: {
           width: 993,
           src: `${imageUrl}`,
+          imgHeight: 206,
+          imgWidth: 361,
         },
         desktop: {
           width: 1920,
           src: `${imageUrl}`,
+          imgHeight: 206,
+          imgWidth: 361,
         },
       },
       lazy: true,
