@@ -830,7 +830,7 @@
       },
       {
         "component": "tab",
-        "label": "Phone Details",
+        "label": "Phone",
         "name": "phoneDetailsTab"
       },
       {
@@ -858,7 +858,7 @@
       },
       {
         "component": "tab",
-        "label": "Email Details",
+        "label": "Email",
         "name": "emailDetailsTab"
       },
       {
@@ -943,7 +943,7 @@
       },
       {
         "component": "tab",
-        "label": "Address Details",
+        "label": "Address",
         "name": "addressDetailsTab"
       },
       {
