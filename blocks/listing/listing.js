@@ -63,7 +63,7 @@ export default function decorate(block) {
             src: imageUrl,
             alt: imageAlt,
             className: 'listing-image',
-            asImageName: 'hero.webp',
+            asImageName: 'listing.webp',
             breakpoints: {
               mobile: {
                 width: 768,
@@ -72,7 +72,7 @@ export default function decorate(block) {
                 imgHeight: 250,
               },
               tablet: {
-                width: 1024,
+                width: 993,
                 src: `${imageUrl}`,
                 imgWidth: 400,
                 imgHeight: 250,

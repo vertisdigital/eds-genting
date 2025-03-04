@@ -33,7 +33,7 @@ export default function decorate(block) {
           src: `${imageUrl}`,
         },
         tablet: {
-          width: 1024,
+          width: 993,
           imgWidth: 1200,
           imgHeight: 750,
           src: `${imageUrl}`,
@@ -350,7 +350,7 @@ export default function decorate(block) {
               imgHeight: 100,
             },
             tablet: {
-              width: 1024,
+              width: 993,
               src: `${imgUrl}`,
               imgWidth: 160,
               imgHeight: 130,

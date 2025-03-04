@@ -76,7 +76,7 @@ export default function decorate(block) {
               src: imageUrl,
               alt: '',
               className: 'proejctlisting-image',
-              asImageName: 'hero.webp',
+              asImageName: 'projectlisting.webp',
               breakpoints: {
                 mobile: {
                   width: 768,
@@ -85,7 +85,7 @@ export default function decorate(block) {
                   imgHeight: 250,
                 },
                 tablet: {
-                  width: 1024,
+                  width: 993,
                   src: `${imageUrl}`,
                   imgWidth: 400,
                   imgHeight: 250,

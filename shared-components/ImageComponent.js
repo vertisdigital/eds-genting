@@ -16,7 +16,7 @@ export default function ImageComponent({
   asImageName = '',
   breakpoints = {
     mobile: { width: 768, src: '', imgWidth: 1600, imgHeight: 1600 },
-    tablet: { width: 1024, src: '', imgWidth: 1600, imgHeight: 1600 },
+    tablet: { width: 993, src: '', imgWidth: 1600, imgHeight: 1600 },
     desktop: { width: 1920, src: '', imgWidth: 1600, imgHeight: 1600 },
   },
   lazy = true,
