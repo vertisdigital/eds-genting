@@ -814,9 +814,8 @@
         "validation": {
           "maxLength": 15,
           "customErrorMsg": "Location cannot exceed 15 characters"
-        }
-        ,
-        "condition": { "===": [{"var" : "projectcards.classes"}, ""] }
+        },
+        "condition": {"===": [{"var": "parentBlock.classes"},""]}
       },
       {
         "component": "richtext",
@@ -827,7 +826,7 @@
           "maxLength": 500,
           "customErrorMsg": "Description cannot exceed 500 characters"
         },
-        "condition": { "===": [{"var" : "projectcards.classes"}, "certifications"] }
+        "condition": {"===": [{"var": "parentBlock.classes"},"certifications"]}
       }
     ]
   },
