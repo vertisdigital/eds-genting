@@ -248,6 +248,10 @@
   position: relative;
 }
 
+.listing-row.grey-background {
+  background: none;
+}
+
 .listing-row.grey-background::before{
   content: "";
   background: var(--whisper-gray);
