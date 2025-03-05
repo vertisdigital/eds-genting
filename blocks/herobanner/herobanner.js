@@ -415,7 +415,9 @@ export default function decorate(block) {
 
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
 
-  if (carouselItemsAll.length > 0) {
+  // Check if we're not in author instance before setting up auto-scroll
+  const isAuthorInstance = document.getElementById('OverlayBlockingElement');
+  if (carouselItemsAll.length > 0 && !isAuthorInstance) {
     setInterval(() => {
       moveCarousel(true, false);
     }, scrollInterval);
