@@ -1257,6 +1257,8 @@
         "component": "text",
         "name": "name",
         "label": "Name",
+        "valueType": "string",
+        "value": "",
         "validation": {
           "maxLength": 60,
           "required": true,
