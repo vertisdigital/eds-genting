@@ -755,23 +755,6 @@
     "id": "projectcard",
     "fields": [
       {
-        "component": "select",
-        "name": "classes",
-        "value": "",
-        "label": "Style Classes",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "card-Certifications",
-            "value": "card-certifications"
-          }
-        ]
-      },
-      {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
