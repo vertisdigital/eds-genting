@@ -815,6 +815,19 @@
           "maxLength": 15,
           "customErrorMsg": "Location cannot exceed 15 characters"
         }
+        ,
+        "condition": { "===": [{"var" : "classes"}, ""] }
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        },
+        "condition": { "===": [{"var" : "classes"}, "certifications"] }
       }
     ]
   },
