@@ -815,7 +815,7 @@
           "maxLength": 15,
           "customErrorMsg": "Location cannot exceed 15 characters"
         },
-        "condition": {"===": [{"var": "parentBlock.classes"},""]}
+        "condition": {"===": [{"var": "parent.classes"},""]}
       },
       {
         "component": "richtext",
@@ -826,7 +826,7 @@
           "maxLength": 500,
           "customErrorMsg": "Description cannot exceed 500 characters"
         },
-        "condition": {"===": [{"var": "parentBlock.classes"},"certifications"]}
+        "condition": {"===": [{"var": "parent.classes"},"certifications"]}
       }
     ]
   },
