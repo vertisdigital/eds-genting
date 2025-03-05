@@ -756,7 +756,7 @@
     "fields": [
       {
         "component": "select",
-        "name": "classes",
+        "name": "classes123",
         "value": "",
         "label": "Style Classes",
         "valueType": "string",
