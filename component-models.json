@@ -816,7 +816,7 @@
           "customErrorMsg": "Location cannot exceed 15 characters"
         }
         ,
-        "condition": { "===": [{"var" : "classes"}, ""] }
+        "condition": { "===": [{"var" : "projectcards.classes"}, ""] }
       },
       {
         "component": "richtext",
@@ -827,7 +827,7 @@
           "maxLength": 500,
           "customErrorMsg": "Description cannot exceed 500 characters"
         },
-        "condition": { "===": [{"var" : "classes"}, "certifications"] }
+        "condition": { "===": [{"var" : "projectcards.classes"}, "certifications"] }
       }
     ]
   },
