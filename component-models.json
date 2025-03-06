@@ -868,7 +868,7 @@
         "fields": [
           {
             "component": "text",
-            "name": "emailLabel",
+            "name": "emailLabel1",
             "label": "Email Label",
             "validation": {
               "maxLength": 50,
@@ -877,19 +877,19 @@
           },
           {
             "component": "custom-asset-namespace:custom-asset",
-            "name": "emailIcon",
+            "name": "emailIcon1",
             "label": "Email Icon",
             "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
             "component": "text",
-            "name": "emailIconAlt",
+            "name": "emailIconAlt1",
             "label": "Email Icon Alt Text"
           },
           {
             "component": "text",
-            "name": "emailAddress",
+            "name": "emailAddress1",
             "label": "Email Address",
             "validation": {
               "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
