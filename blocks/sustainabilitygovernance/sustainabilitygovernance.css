@@ -1,3 +1,6 @@
+.governance-section {
+    margin-bottom: 56px;
+}
 .governance-title {
     color: var(--text-color);
     font-size: 28px;
@@ -24,7 +27,7 @@
     content: "";
     width: 1px;
     height: 56px;
-    background: url('../../icons/divider-dashed-line.svg') repeat-y;
+    background: url("../../icons/divider-dashed-line.svg") repeat-y;
     position: absolute;
     top: 100%;
     left: 50%;
@@ -33,12 +36,13 @@
     content: "";
     width: 8px;
     height: 8px;
-    background: url('../../icons/divider-ellipse.svg') no-repeat;
+    background: url("../../icons/divider-ellipse.svg") no-repeat;
     position: absolute;
     top: calc(100% + 24px);
     left: calc(50% - 4px);
 }
-.governance-card:last-child::before,.governance-card:last-child::after {
+.governance-card:last-child::before,
+.governance-card:last-child::after {
     display: none;
 }
 .governance-img {
@@ -74,6 +78,9 @@
     padding-top: 16px;
 }
 @media (width >= 768px) {
+    .governance-section {
+        margin-bottom: 80px;
+    }
     .governance-title {
         font-size: 32px;
         line-height: 42px;
@@ -115,6 +122,9 @@
 }
 
 @media (width >= 993px) {
+    .governance-section {
+        margin-bottom: 120px;
+    }
     .governance-title {
         font-size: 40px;
         line-height: 50px;
