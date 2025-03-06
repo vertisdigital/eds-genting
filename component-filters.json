@@ -4,8 +4,7 @@
     "components": [
       "section",
       "statisticsSection", 
-      "tabs",
-      "esgenvironmentsection"
+      "tabs"
     ]
   },
   {
@@ -34,7 +33,10 @@
       "textsection",
       "textmediablock",
       "projectslist",
-      "tabsectiontitle"
+      "tabsectiontitle",
+      "awardsgallery",
+      "sustainabilitygovernance",
+      "corporatepolicies"
     ]
   },
   {
@@ -42,7 +44,10 @@
     "components": [
       "feature",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "awardsgallery",
+      "historymilestones",
+      "loadmore"
     ]
   },
   {
@@ -173,13 +178,27 @@
     ]
   },
   {
-    "id": "esgenvironmentsection",
+    "id": "awardsgallery",
     "components": [
-      "textsection",
-      "projectcards",
-      "horizontalline",
-      "linkField",
-      "media"
+      "awardstile"
+    ]
+  },
+  {
+    "id": "historymilestones",
+    "components": [
+      "milestoneitem"
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "components": [
+      "governancetile"
+    ]
+  },
+  {
+    "id": "corporatepolicies",
+    "components": [
+      "policytile"
     ]
   }
 ]
