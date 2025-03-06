@@ -1258,8 +1258,8 @@
       },
       {
         "component": "text",
-        "name": "ctaText",
-        "label": "CTA Text",
+        "name": "ctaLabel",
+        "label": "CTA Label",
         "validation": {
           "maxLength": 15,
           "customErrorMsg": "CTA text cannot exceed 15 characters"
