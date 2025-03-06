@@ -252,6 +252,20 @@
   margin-bottom: 12px;
   height: 122px;
   text-align: center;
+  background: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.certifications .project-card [data-aue-prop="image"] img,
+.certifications .project-card [data-aue-prop="image"] picture{
+  height: auto;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  max-width: 106px;
+  max-height: 106px;
 }
 
 .certifications .project-card-title {
