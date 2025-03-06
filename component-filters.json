@@ -34,7 +34,8 @@
       "textmediablock",
       "projectslist",
       "tabsectiontitle",
-      "awardsgallery"
+      "awardsgallery",
+      "sustainabilitygovernance"
     ]
   },
   {
@@ -185,6 +186,12 @@
     "id": "historymilestones",
     "components": [
       "milestoneitem"
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "components": [
+      "governancetile"
     ]
   }
 ]
