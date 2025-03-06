@@ -35,6 +35,7 @@
       "projectslist",
       "tabsectiontitle",
       "awardsgallery",
+      "sustainabilitygovernance",
       "corporatepolicies"
     ]
   },
@@ -186,6 +187,12 @@
     "id": "historymilestones",
     "components": [
       "milestoneitem"
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "components": [
+      "governancetile"
     ]
   },
   {

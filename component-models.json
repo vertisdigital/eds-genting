@@ -1101,7 +1101,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://textmediasection--genting--wppopen.aem.live/tools/assets-selector/config.json"
+        "configUrl": "https://sustainability-governance-structure--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
         "component": "text",
@@ -1381,6 +1381,77 @@
         "name": "loadMoreItems",
         "label": "Load More Items",
         "valueType": "number"
+      }
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Section Title",
+        "validation": {
+          "maxLength": 35,
+          "required": true,
+          "customErrorMsg": "Section title is required and cannot exceed 35 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "governancetile",
+    "fields": [
+      {
+        "component": "select",
+        "name": "icon",
+        "label": "Icon",
+        "options": [
+          {
+            "name": "Select",
+            "value": ""
+          },
+          {
+            "name": "Board of Directors",
+            "value": "board-of-directors"
+          },
+          {
+            "name": "CEO",
+            "value": "ceo"
+          },
+          {
+            "name": "Sustainability Steering Committee",
+            "value": "sustainability-steering-committee"
+          },
+          {
+            "name": "Sustainability Working Groups",
+            "value": "sustainability-working-groups"
+          },
+          {
+            "name": "Sustainability Department",
+            "value": "sustainability-department"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "required": true,
+          "customErrorMsg": "Title is required and cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "label": "Description",
+        "validation": {
+          "maxLength": 2000,
+          "required": true,
+          "customErrorMsg": "Description is required and cannot exceed 2000 characters"
+        }
       }
     ]
   },
