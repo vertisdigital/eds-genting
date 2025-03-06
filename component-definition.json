@@ -611,6 +611,21 @@
               }
             }
           }
+        },
+        {
+          "title": "ESGEnvironmentSection",
+          "id": "esgenvironmentsection",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "ESGEnvironmentSection",
+                  "filter": "esgenvironmentsection"
+                }
+              }
+            }
+          }
         }
       ]
     }

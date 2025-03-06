@@ -4,7 +4,8 @@
     "components": [
       "section",
       "statisticsSection", 
-      "tabs"
+      "tabs",
+      "esgenvironmentsection"
     ]
   },
   {
@@ -169,6 +170,16 @@
     "components": [
       "statisticsDescription",
       "featureItem"
+    ]
+  },
+  {
+    "id": "esgenvironmentsection",
+    "components": [
+      "textsection",
+      "projectcards",
+      "horizontalline",
+      "linkField",
+      "media"
     ]
   }
 ]
