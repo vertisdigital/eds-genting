@@ -24,16 +24,16 @@ export default function decorate(block) {
       asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
-          width: 768,
+          width: 767,
           imgWidth: 500,
           src: `${imageUrl}`,
-          cropRatio:'45p,20p,35p,80p'
+          cropRatio:'45p,15p,35p,80p'
         },
         tablet: {
-          width: 993,
+          width: 991,
           imgWidth: 800,
           src: `${imageUrl}`,
-          cropRatio:''
+          cropRatio:'30p,15p,60p,70p'
         },
         desktop: {
           width: 1920,
@@ -345,12 +345,12 @@ export default function decorate(block) {
           asImageName: 'hero.webp',
           breakpoints: {
             mobile: {
-              width: 768,
+              width: 767,
               src: `${imgUrl}`,
               imgWidth: 100,
             },
             tablet: {
-              width: 993,
+              width: 991,
               src: `${imgUrl}`,
               imgWidth: 160,
             },
