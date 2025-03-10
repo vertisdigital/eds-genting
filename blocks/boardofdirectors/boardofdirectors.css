@@ -27,9 +27,6 @@
 .boardofdirectors .director-card .toggle-off, .boardofdirectors .director-card.active .toggle-on {
     display: none;
 }
-.boardofdirectors .director-card.active .toggle-off {
-    display: block;
-}
 .boardofdirectors .director-card .toggle-on, 
 .boardofdirectors .director-card .toggle-off {
     background: none;
@@ -38,6 +35,11 @@
     color: var(--primary-gold);
     line-height: 16px;
 }
+
+.boardofdirectors .director-card.active .toggle-off {
+    display: block;
+}
+
 
 .boardofdirectors .description-wrapper {
     display: flex;
