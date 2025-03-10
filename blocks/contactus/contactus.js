@@ -6,9 +6,7 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
-  const wrapper = block.closest('.enquiry-wrapper') || block;
-  // const enquiryFirstChild = block.children;
-  const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
+  const wrapper = block;
 
   // get the block children
   const enquiryChildren = block.children;
@@ -17,13 +15,10 @@ export default function decorate(block) {
   // get second child of the block
   const enquirySecondChild = enquiryChildren[1].children;
 
-  if (enquiryResource) {
-    moveInstrumentation(enquiryResource, wrapper);
-  }
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
-  container.className = 'container-xl container-md container-sm';
+  container.className = 'container';
 
   const row = document.createElement('div');
   row.className = 'row contactus-top';
@@ -34,21 +29,18 @@ export default function decorate(block) {
 
   // Create heading container with proper attributes
   const headingContainer = document.createElement('div');
-  const headingText = enquiryFirstChild[0].querySelector('p')?.textContent.trim();
+  const headingText = enquiryFirstChild[0].querySelector('p');
   const headingElement = document.createElement('div');
 
   if (headingText) {
     headingElement.innerHTML = Heading({
-      text: headingText,
+      text: headingText?.textContent.trim(),
       level: 2,
       className: 'enquiry-heading',
     });
     // Add authoring attributes to heading
     const heading = headingElement.firstElementChild || '';
-    heading.setAttribute('data-aue-prop', 'heading');
-    heading.setAttribute('data-aue-label', 'Heading');
-    heading.setAttribute('data-aue-type', 'text');
-
+    moveInstrumentation(headingText, heading);
     headingContainer.append(heading);
     leftCol.append(headingContainer);
   }
@@ -62,10 +54,7 @@ export default function decorate(block) {
   if (description) {
     const descriptionWrapper = document.createElement('div');
     descriptionWrapper.className = 'enquiry-description';
-    descriptionWrapper.setAttribute('data-aue-prop', 'description');
-    descriptionWrapper.setAttribute('data-aue-label', 'Description');
-    descriptionWrapper.setAttribute('data-aue-filter', 'text');
-    descriptionWrapper.setAttribute('data-aue-type', 'richtext');
+    moveInstrumentation(description, descriptionWrapper);
     descriptionWrapper.innerHTML = description.innerHTML;
     rightCol.append(descriptionWrapper);
   }
@@ -95,7 +84,6 @@ export default function decorate(block) {
     iconWrapper.setAttribute('aria-hidden', 'true');
 
     if (imageLink) {
-      // const imageUrl = imageLink.getAttribute('href');
       const picture = ImageComponent({
         src: imageLink,
         alt: '',
@@ -116,9 +104,7 @@ export default function decorate(block) {
         },
         lazy: true,
       });
-      // Remove original link
-      // imageLink.remove();
-
+  
       if (picture) {
         const imageElement = stringToHtml(picture);
         iconWrapper.append(imageElement);
@@ -152,29 +138,35 @@ export default function decorate(block) {
   };
 
   // Add contact items with proper attributes
-  const phone = enquiryFirstChild[3].querySelector('p').textContent.trim();
-  const email1 = enquiryFirstChild[6].querySelector('p').textContent.trim();
-  const email2 = enquiryFirstChild[10].querySelector('p').textContent.trim();
-  const email3 = enquiryFirstChild[14].querySelector('p').textContent.trim();
-  const address = enquiryFirstChild[17].querySelector('p').textContent.trim();
+  const indices = { phone: 3, email1: 6, email2: 10, email3: 14, address: 17 };
+
+  const contactInfo = Object.fromEntries(
+  Object.entries(indices).map(([key, index]) => [
+  key,
+  enquiryFirstChild[index]?.querySelector('p')?.textContent.trim() || ''
+  ])
+  );
+  
+  const { phone, email1, email2, email3, address } = contactInfo;
 
   const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".svg"], a[href*="delivery-"]');
 
-  if (phone) {
-    contactItems.append(createContactItem(phone, 'tel', 'phoneNumber', 'PhoneNumber', imageLink[0].getAttribute('href')));
-  }
-  if (email1) {
-    contactItems.append(createContactItem(email1, 'mailto', 'emailAddress', 'EmailAddress', imageLink[1].getAttribute('href'), enquiryFirstChild[4].textContent));
-  }
-  if (email2) {
-    contactItems.append(createContactItem(email2, 'mailto', 'emailAddress', 'EmailAddress', imageLink[2].getAttribute('href'), enquiryFirstChild[8].textContent));
-  }
-  if (email3) {
-    contactItems.append(createContactItem(email3, 'mailto', 'emailAddress', 'EmailAddress', imageLink[3].getAttribute('href'), enquiryFirstChild[12].textContent));
-  }
-  if (address) {
-    contactItems.append(createContactItem(address, null, 'address', 'Address', imageLink[4].getAttribute('href')));
-  }
+  const contactData = [
+    { value: phone, type: 'tel', key: 'phoneNumber', label: 'PhoneNumber', imageIndex: 0 },
+    { value: email1, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 1, textContentIndex: 4 },
+    { value: email2, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 2, textContentIndex: 8 },
+    { value: email3, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 3, textContentIndex: 12 },
+    { value: address, type: null, key: 'address', label: 'Address', imageIndex: 4 }
+    ];
+    
+    contactData.forEach(({ value, type, key, label, imageIndex, textContentIndex }) => {
+    if (value) {
+    contactItems.append(
+    createContactItem(value, type, key, label, imageLink[imageIndex].getAttribute('href'), textContentIndex !== undefined ? enquiryFirstChild[textContentIndex].textContent : undefined)
+    );
+    }
+    });
+
 
   rightCol.append(contactItems);
 
@@ -197,8 +189,7 @@ export default function decorate(block) {
   row2.append(leftCol2);
 
   rightCol2.append(enquirySecondChild[1].cloneNode(true));
-
-  const viewJobCTAName = enquirySecondChild[4].cloneNode(true).textContent.trim().replace(/-/g, "");
+  const viewJobCTAName = enquirySecondChild[4]?.cloneNode(true)?.textContent?.trim().replace(/-/g, "").toLowerCase() || "";
  const northEastArrow = SvgIcon({
   name: viewJobCTAName,
   className: 'contactus-bottom-cta',
