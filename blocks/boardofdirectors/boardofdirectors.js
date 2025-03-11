@@ -85,14 +85,17 @@ export default function decorate(block) {
         mobile: {
           width: 768,
           src: `${imgURL}`,
+          imgWidth: 360
         },
         tablet: {
           width: 1024,
           src: `${imgURL}`,
+          imgWidth: 360
         },
         desktop: {
           width: 1920,
           src: `${imgURL}`,
+          imgWidth: 360
         },
       },
       lazy: true,
