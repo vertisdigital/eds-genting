@@ -1204,3 +1204,17 @@ content: '🡢';
     max-width: none;
   }
 }
+
+@media (width>=1440px) {
+  .header-inner-wrapper .header-nav .primary-nav .nav-item {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (width>=1920px) {
+  .header-inner-wrapper .header-nav .primary-nav .nav-item {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
