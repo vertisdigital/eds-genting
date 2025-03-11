@@ -12,68 +12,79 @@ function setElementHeight(element, height) {
 function updateIframeHeight(iframeWrapper, endpoint) {
   const isMobile = window.innerWidth < 767;
   const isTablet = window.innerWidth >= 600 && window.innerWidth <= 1024;
-  const deviceType = isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop';
+
+  let deviceType = 'desktop';
+  if (isMobile) {
+    deviceType = 'mobile';
+  }
+  if (isTablet) {
+    deviceType = 'tablet';
+  }
+
   const endpointHeightConfig = {
-    'home': {
+    home: {
       mobile: '1850px',
-      desktop: '1220px'
+      desktop: '1220px',
     },
     'annual-reports': {
       mobile: '15600px',
       tablet: '4640px',
-      desktop: '5690px'
+      desktop: '5690px',
     },
     'sustainability-reports': {
       mobile: '6680px',
       tablet: {
         landscape: '2620px',
-        portrait: '2260px'
+        portrait: '2260px',
       },
-      desktop: '2620px'
+      desktop: '2620px',
     },
-    'newsroom': {
+    newsroom: {
       mobile: '1940px',
       tablet: {
         landscape: '1500px',
-        portrait: '1600px'
+        portrait: '1600px',
       },
-      desktop: '1450px'
+      desktop: '1450px',
     },
     'agm-egm': {
       mobile: '950px',
-      desktop: '790px'
+      desktop: '790px',
     },
     'analysts-coverage': {
       mobile: '1300px',
       tablet: '1110px',
-      desktop: '1060px'
+      desktop: '1060px',
     },
-    'email_alerts': {
+    email_alerts: {
       mobile: '770px',
       tablet: '660px',
-      desktop: '600px'
+      desktop: '600px',
     },
-    'default': {
+    default: {
       mobile: '1850px',
-      desktop: '1220px'
-    }
+      desktop: '1220px',
+    },
   };
-  
+
   let height = endpointHeightConfig[endpoint];
   if (typeof height === 'object') {
     if (deviceType === 'tablet') {
-      height= isLandscape()?height[deviceType].landscape : height[deviceType].portrait || height[deviceType];
-    }else{
-      height= height[deviceType] || height.desktop;
+      if (isLandscape()) {
+        height = height[deviceType].landscape || height[deviceType];
+      } else {
+        height = height[deviceType].portrait || height[deviceType];
+      }
+    } else {
+      height = height[deviceType] || height.desktop;
     }
   }
 
   if (height) {
     setElementHeight(iframeWrapper, height);
-  }else{
+  } else {
     setElementHeight(iframeWrapper, endpointHeightConfig.default);
   }
-
 }
 
 export default function decorate(block) {
@@ -101,7 +112,7 @@ export default function decorate(block) {
 
   const iframeWrapper = document.querySelector('.iframe-wrapper');
 
-  const endpoint = new window.URL(url).pathname.replace('/','').replace('.rev','');
+  const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '');
 
   updateIframeHeight(iframeWrapper, endpoint);
   window.addEventListener('resize', () => {
