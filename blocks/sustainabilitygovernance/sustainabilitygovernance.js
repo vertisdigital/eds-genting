@@ -1,9 +1,6 @@
 import { moveInstrumentation } from "../../scripts/scripts.js";
 import { getIcon } from "../../shared-components/icons/index.js";
 
-const icons = {
-    
-}
 export default function decorate(block) {
     const [title, ...cards] = [...block.children];
 
