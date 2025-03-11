@@ -13,3 +13,5 @@ jira
 tabs-issue
 
 blocks/author-*
+
+tools/assets-selector/config.json
