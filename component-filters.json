@@ -29,11 +29,16 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
       "textsection",
       "textmediablock",
       "projectslist",
-      "iframe"
+      "iframe",
+      "tabsectiontitle",
+      "awardsgallery",
+      "sustainabilitygovernance",
+      "corporatepolicies"
     ]
   },
   {
@@ -41,7 +46,10 @@
     "components": [
       "feature",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "awardsgallery",
+      "historymilestones",
+      "loadmore"
     ]
   },
   {
@@ -71,6 +79,7 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
       "textsection",
       "textmediablock",
@@ -169,6 +178,37 @@
     "components": [
       "statisticsDescription",
       "featureItem"
+    ]
+  },
+  {
+    "id": "awardsgallery",
+    "components": [
+      "awardstile"
+    ]
+  },
+  {
+    "id": "historymilestones",
+    "components": [
+      "milestoneitem"
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "components": [
+      "governancetile"
+    ]
+  },
+  {
+    "id": "corporatepolicies",
+    "components": [
+      "policytile"
+    ]
+  },
+  {
+    "id": "contactus",
+    "components": [
+      "enquiry",
+      "enquirycta"
     ]
   }
 ]

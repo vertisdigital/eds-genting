@@ -15,6 +15,7 @@ import {
 } from './aem.js';
 import processTabs from './autoblocks.js';
 
+
 /**
  * Moves all the attributes from a given elmenet to another given element.
  * @param {Element} from the element to copy attributes from
@@ -68,7 +69,6 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   console.log('Building auto blocks');
   try {
-    // Process tabs
     processTabs(main);
   } catch (error) {
     console.error('Auto Blocking failed', error);

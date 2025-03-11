@@ -343,14 +343,6 @@
     padding: 10px;
   }
 
-  .hero-content{
-    padding-bottom: 118px;
-  }
-
-  .statistics-container .hero-content {
-    padding-bottom: 0;
-  }
-
   .hero-title {
     font-size: 32px;
     margin-bottom: 8px;
@@ -448,5 +440,9 @@
 
   .left-carousel-arrow, .right-carousel-arrow {
     margin-top: -2px;
+  }
+
+  .hero-carousal-variation .hero-content {
+    padding-bottom: 118px;
   }
 }
