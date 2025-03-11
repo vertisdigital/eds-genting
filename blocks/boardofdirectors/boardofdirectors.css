@@ -94,16 +94,16 @@
     box-sizing: border-box;
 }
 
-.boardofdirectors .segment-wrapper .wrapper div {
+.boardofdirectors .segment-wrapper .wrapper>div {
     padding-left: 18px;
     padding-right: 18px;
 }
 
-.boardofdirectors .segment-wrapper .wrapper div:first-child {
+.boardofdirectors .segment-wrapper .wrapper>div:first-child {
     padding-left: 0;
 }
 
-.boardofdirectors .segment-wrapper .wrapper div:last-child {
+.boardofdirectors .segment-wrapper .wrapper>div:last-child {
     padding-right: 0;
 }
 
