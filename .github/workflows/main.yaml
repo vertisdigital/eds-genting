@@ -38,6 +38,13 @@ jobs:
       run: |
         git config --global user.name "josephogilvy"
         git config --global user.email "joseph.ambrose@ogilvy.com"
-        git add component-models.json
-        git commit -m "Update configUrl for ${{ github.ref_name }} branch"
-        git push
+        
+        # Check if there are changes to commit
+        if [[ -n "$(git status --porcelain component-models.json)" ]]; then
+          echo "Changes detected in component-models.json, committing..."
+          git add component-models.json
+          git commit -m "Update configUrl for ${{ github.ref_name }} branch"
+          git push
+        else
+          echo "No changes to component-models.json, skipping commit"
+        fi
