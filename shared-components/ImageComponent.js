@@ -52,5 +52,3 @@ export default function ImageComponent({
     </picture>
   `;
 }
-
-srcset="${breakpoints.desktop.src}/as/${asImageName || 'img.webp'}${breakpoints.desktop.smartCrop ? `?smartcrop=${breakpoints.desktop.smartCrop}` : ''}"
