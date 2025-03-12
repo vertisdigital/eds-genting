@@ -3,5 +3,6 @@
       "delivery-p144202-e1512622.adobeaemcloud.com"
     ],
     "aemTierType": ["delivery"],
-    "type": ["folder", "file", "images", "documents", "video"]
+    "type": ["folder", "file", "images", "documents", "video"],
+    "imsOrg": "CBF31D5C671793AD0A495E5C@AdobeOrg"
   }
