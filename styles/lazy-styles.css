@@ -187,6 +187,9 @@
     .tabs-container .projectslist {
         margin-top: 56px;
     }
+    .tabs-header{
+        margin-bottom: 83px;
+    }
 }
 
 @media(width<=992px) {
@@ -297,6 +300,10 @@
 
     .tabs-container .projectslist {
         margin-top: 36px;
+    }
+    
+    .tabs-header{
+        margin-bottom: 36px;
     }
 
     .tabs-container .textmediablock-wrapper {
