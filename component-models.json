@@ -612,6 +612,23 @@
     "id": "listing",
     "fields": [
       {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Grey Background",
+            "value": "grey-background"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "title",
         "label": "Section Name",
@@ -1295,7 +1312,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json"
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
         "component": "text",
