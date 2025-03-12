@@ -1289,6 +1289,28 @@
     ]
   },
   {
+    "id": "textmediablock",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Text Media Block Title Only",
+            "value": "textmediablock-title-only"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "media",
     "fields": [
       {
