@@ -26,14 +26,12 @@ export default function decorate(block) {
   // Find the title and replace it with a heading
   const titleElement = blockchildren[0].children[0];
   if (titleElement && titleElement.textContent.trim() !== '') {
-    const header = document.createElement('header');
-    moveInstrumentation(titleElement, header);
-
     const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
-    header.append(parsedHtml);
-    aboutUsLeftContent.append(header);
+    moveInstrumentation(titleElement, parsedHtml);
+
+    aboutUsLeftContent.append(parsedHtml);
     titleElement.remove();
   }
 
