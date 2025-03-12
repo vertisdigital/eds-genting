@@ -197,6 +197,9 @@
         margin-bottom: 16px;
         padding-top: 16px;
     }
+    .tabs-container .about-us-stats .about-us-right-content:first-child>div:last-child{
+        padding-top: 0;
+    }
 
     .tabs-container .about-us-stats .about-us-right-content:last-child {
         margin-bottom: 0;
@@ -249,6 +252,10 @@
     .tabs-container .about-us-stats .about-us-right-content {
         padding-top: 18px;
         margin-bottom: 40px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content:first-child>div:last-child{
+        padding-top: 0;
     }
 
     .tabs-container .about-us-stats .about-us-right-content:last-child{
