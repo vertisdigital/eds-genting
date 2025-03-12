@@ -178,22 +178,30 @@ export default function decorate(block) {
     color: 'currentColor',
   });
 
- const targetElement = enquirySecondChild[2];
+const targetElement = enquirySecondChild[2];
 const nextTarget = enquirySecondChild[3];
 
 if (targetElement) {
   const anchorElement = targetElement.querySelector('a');
-  if (anchorElement) {
-    const svgElement = typeof northEastArrow === 'string' ? stringToHtml(northEastArrow) : northEastArrow;
-    anchorElement.appendChild(svgElement);
 
-    if (nextTarget) {
-      anchorElement.target = nextTarget.cloneNode(true)?.textContent.trim();
+  if (anchorElement) {
+    const nextTargetText = nextTarget?.cloneNode(true)?.textContent.trim();
+
+    if (nextTargetText) {
+      anchorElement.target = nextTargetText;
+    } else if (northEastArrow) {
+      // Append SVG only if `northEastArrow` is valid
+      const svgElement = typeof northEastArrow === 'string' ? stringToHtml(northEastArrow) : northEastArrow;
+      if (svgElement) {
+        anchorElement.appendChild(svgElement);
+      }
     }
   }
-  
+
+  // Clone and append `targetElement` to `rightCol2`
   rightCol2.append(targetElement.cloneNode(true));
 }
+
 
 
   row2.append(rightCol2);
