@@ -8,7 +8,6 @@
 .historymilestones-container {
     display: flex;
     flex-direction: column;
-    row-gap: 18px;
 }
 .historymilestones-year > div:first-child {
     color: var(--primary-gold);
