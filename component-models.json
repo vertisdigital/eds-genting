@@ -1305,6 +1305,10 @@
           {
             "name": "Text Media Block Title Only",
             "value": "textmediablock-title-only"
+          },
+          {
+            "name": "Text Media Block Heading Variation",
+            "value": "text-media-block-heading-variation"
           }
         ]
       }
@@ -1405,6 +1409,10 @@
           {
             "name": "Statistics Description",
             "value": "statistics-description"
+          },
+          {
+            "name": "Statistics Financial Variation",
+            "value": "statistics-financial-variation"
           }
         ]
       },
