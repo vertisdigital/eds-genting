@@ -217,12 +217,11 @@ export default function decorate(block) {
 
       if (nextTargetText) {
         anchorElement.target = nextTargetText;
-      } else if (northEastArrow) {
-      // Append SVG only if `northEastArrow` is valid
-        const svgElement = typeof northEastArrow === 'string' ? stringToHtml(northEastArrow) : northEastArrow;
-        if (svgElement) {
-          anchorElement.appendChild(svgElement);
-        }
+      } 
+    // Append SVG only if `northEastArrow` is valid
+      const svgElement = typeof northEastArrow === 'string' ? stringToHtml(northEastArrow) : northEastArrow;
+      if (svgElement) {
+        anchorElement.appendChild(svgElement);
       }
     }
 
