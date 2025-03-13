@@ -1370,7 +1370,7 @@
         }
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "longdescription",
         "label": "Long Description",
         "valueType": "string",
