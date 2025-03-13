@@ -10,12 +10,15 @@
     padding-top: 0;
 }
 .corporate-policies-list>div:last-child{
+    padding-bottom: 80px;
+
+}
+.corporate-policies-border-bottom .corporate-policies-list>div:last-child{
     padding-bottom: 0;
+    border-bottom: none;
+
 }
 
-.corporate-policies-border-bottom .corporate-policies-list>div:last-child {
-    border-bottom: none;
-}
 
 .corporate-policies-list-item .left-col {
     font-size: 40px;
