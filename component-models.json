@@ -1413,7 +1413,7 @@
       {
         "component": "multiselect",
         "name": "style",
-        "label": "Style",
+        "label": "Variation",
         "options": [
           {
             "name": "Statistics Feature",
@@ -1422,6 +1422,19 @@
           {
             "name": "Statistics Description",
             "value": "statistics-description"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
           },
           {
             "name": "Statistics Financial Variation",
@@ -1727,7 +1740,7 @@
         }
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "description",
         "label": "Policy Description",
         "validation": {
