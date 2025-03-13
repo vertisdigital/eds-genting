@@ -75,6 +75,10 @@ Usage Example:
   --font-size-xxl: 3.75rem;
   --font-size-xxxl: 5rem;
 
+  /* New additions */
+  --font-size-xxl-s: 3rem;
+  --font-size-xxl-m: 4rem;
+
   /* nav height */
   --nav-height: 50px;
 
