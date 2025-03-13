@@ -1349,20 +1349,6 @@
     ]
   },
   {
-    "id": "projectslist",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Title cannot exceed 50 characters"
-        }
-      }
-    ]
-  },
-  {
     "id": "projectslistitem",
     "fields": [
       {
@@ -1384,7 +1370,7 @@
         }
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "longdescription",
         "label": "Long Description",
         "valueType": "string",
@@ -1408,6 +1394,40 @@
         "label": "Image",
         "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "linkTitle",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "linkType",
+        "label": "Type",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "primary",
+            "value": "primary"
+          },
+          {
+            "name": "secondary",
+            "value": "secondary"
+          }
+        ]
       }
     ]
   },
