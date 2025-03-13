@@ -24,7 +24,7 @@
 }
 
 .statistics-description-wrapper {
-    font-size: var(--body-font-size-m);
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
@@ -39,7 +39,7 @@
 
 .statistics-container button {
     display: block;
-    font-size: var(--body-font-size-m);
+    font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 24px;
     text-decoration-line: underline;
@@ -53,14 +53,14 @@
 }
 
 .statistics .statistics-description-wrapper h3 {
-    font-size: var(--heading-font-size-l);
+    font-size: var(--font-size-xl);
     font-weight: 500;
     line-height: 50px;
     color: var(--text-color);
 }
 
 .statistics .statistic-item {
-    font-size: var(--heading-font-size-xxl);
+    font-size: var(--font-size-xxxl);
     font-weight: 400;
     line-height: 80px;
     color: var(--primary-gold);
@@ -71,7 +71,7 @@
 }
 
 .statistics .text-container {
-    font-size: var(--body-font-size-m);
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
@@ -109,7 +109,7 @@
 .statistics .statistics-title {
     color: var(--text-color);
     margin-bottom: 64px;
-    font-size: var(--heading-font-size-l);
+    font-size: var(--font-size-xl);
     font-style: normal;
     font-weight: 500;
     line-height: 50px; /* 121.429% */
@@ -140,7 +140,7 @@
 
     .statistics-title{
         margin-bottom: 24px;
-        font-size: 32px;
+        font-size: var(--font-size-l);
         line-height: 42px; /* 121.429% */
     }
 
@@ -169,7 +169,7 @@
     }
     
     .statistics .statistics-description-wrapper h3, .statistics .statistics-title {
-        font-size: 32px;
+        font-size: var(--font-size-l);
     }
 
     .statistics .statistic-item {
@@ -196,7 +196,7 @@
     }
 
     .statistics .statistics-description-wrapper h3 {
-        font-size: 28px;
+        font-size: var(--font-size-m);
     }
 
     .statistics .statistics-row {
@@ -232,7 +232,7 @@
         margin-bottom: 24px;
 
         /* Headings/H2 */
-        font-size: 28px;
+        font-size: var(--font-size-m);
         line-height: 34px; /* 121.429% */
     }
 
