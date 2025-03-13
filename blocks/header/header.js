@@ -227,12 +227,12 @@ function createHeaderStructure(block) {
   });
 
   // Create search icon
-  // const searchWrapper = document.createElement('div');
+  const searchWrapper = document.createElement('div');
   // const searchIcon = SvgIcon({ name: 'search', className: 'icon-search', size: '14' });
   // searchWrapper.appendChild(stringToHtml(searchIcon));
 
   // Assemble the structure
-  nav.append(logoWrapper, primaryNav);
+  nav.append(logoWrapper, primaryNav, searchWrapper);
   column.appendChild(nav);
   columns.appendChild(column);
   columnsWrapper.appendChild(columns);
