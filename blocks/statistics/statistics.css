@@ -129,7 +129,7 @@
     font-size: var(--font-size-xl);
     font-style: normal;
     font-weight: 500;
-    line-height: 50px; /* 121.429% */
+    line-height: 50px; 
     letter-spacing: -0.5px;
 }
 
@@ -170,7 +170,7 @@
     .statistics-title{
         margin-bottom: 24px;
         font-size: var(--font-size-l);
-        line-height: 42px; /* 121.429% */
+        line-height: 42px; 
     }
 
     .statistics.block.statistics-variation .statistics-title {
@@ -202,7 +202,7 @@
     }
 
     .statistics .statistic-item {
-        font-size: 64px;
+        font-size: var(--font-size-xxl-m);
         line-height: 64px;
     }
 
@@ -259,7 +259,7 @@
     }
 
     .statistics .statistic-item {
-        font-size: 48px;
+        font-size: var(--font-size-xxl-s);
         line-height: 48px;
     }
 
@@ -287,7 +287,7 @@
     }
 
     .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
-        font-size: 22px;
+        font-size: var(--font-size-s);
         line-height:28px;
     }
 
