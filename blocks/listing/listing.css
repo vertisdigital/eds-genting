@@ -298,7 +298,7 @@
 }
 
 @media (width >= 768px) {
-  .listing-wrapper {
+  .listing-wrapper:not(.without-images) {
     padding: 40px 0 20px;
   }
 
