@@ -625,6 +625,10 @@
           {
             "name": "Grey Background",
             "value": "grey-background"
+          },
+          {
+            "name": "Without Images",
+            "value": "without-images"
           }
         ]
       },
