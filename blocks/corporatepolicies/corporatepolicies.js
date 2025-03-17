@@ -41,7 +41,7 @@ export default function decorate(block) {
             // Create icon only if lastChildText exists
             if (lastChildText) {
               ctaIcon = SvgIcon({
-                name: lastChildText.replace("-", "").toLowerCase(),
+                name: lastChildText.replace(/-/g, "").toLowerCase(),
                 className: "corporate-policies-cta",
                 size: "16px",
               });
