@@ -34,6 +34,10 @@
     max-width: 14px;
   }
 
+  .arrow-link-wrapper span svg{
+    color: var(--primary-gold);
+  }
+
   [data-aue-model="linkField"] a .icon-wrapper svg, [data-gen-model="linkField"] a .icon-wrapper svg {
     width: 14px;
     height: 14px;
@@ -114,9 +118,7 @@
 
   }
 
-  .arrow-link-wrapper span svg{
-    color: var(--primary-gold);
-  }
+
 
   /* .links-container {
     display: flex;
