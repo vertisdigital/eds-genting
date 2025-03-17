@@ -1787,6 +1787,33 @@
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
+      },
+      {
+        "component": "select",
+        "name": "ctaSvgIcon",
+        "label": "CTA SVG Icon",
+        "options": [
+          {
+            "name": "Select",
+            "value": ""
+          },
+          {
+            "name": "Arrow",
+            "value": "arrow"
+          },
+          {
+            "name": "Right Arrow",
+            "value": "right-arrow"
+          },
+          {
+            "name": "Download Arrow",
+            "value": "download-arrow"
+          },
+          {
+            "name": "North East Arrow",
+            "value": "north-east-arrow"
+          }
+        ]
       }
     ]
   },
