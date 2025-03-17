@@ -41,7 +41,7 @@ export default function decorate(block) {
             // Create icon only if lastChildText exists
             if (lastChildText) {
               ctaIcon = SvgIcon({
-                name: lastChildText.replace("-", "").toLowerCase(),
+                name: lastChildText.replace(/-/g, "").toLowerCase(),
                 className: "corporate-policies-cta",
                 size: "16px",
               });
@@ -66,16 +66,18 @@ export default function decorate(block) {
             remainingChildren = children.slice(1).map((c) => c.outerHTML).join("");
           }
 
-          return `
-            <div class="row corporate-policies-list-item">
+          // Preserve `child` wrapper by replacing its inner content
+          return child.outerHTML.replace(
+            child.innerHTML,
+            `
               <div class="col-xl-6 col-lg-6 col-md-3 col-sm-4 col-xs-4 left-col">
                 ${firstChildHtml}
               </div>
               <div class="col-xl-6 col-lg-6 col-md-3 col-sm-4 col-xs-4 right-col">
                 ${remainingChildren}
               </div>
-            </div>
-          `;
+            `
+          );
         })
         .join("")}
     </div>
