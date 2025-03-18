@@ -1,45 +1,39 @@
 {
-  "groups": [
+  "groups": [    
     {
-      "title": "Containers",
-      "id": "containers",
+      "title": "Sections",
+      "id": "sections",
       "components": [
         {
-          "title": "Sections",
-          "id": "sections",
-          "components": [
-            {
-              "title": "Section",
-              "id": "section",
-              "plugins": {
-                "xwalk": {
-                  "page": {
-                    "resourceType": "core/franklin/components/section/v1/section",
-                    "template": {
-                      "model": "section"
-                    }
-                  }
-                }
-              }
-            },
-            {
-              "title": "Tabs",
-              "id": "tabs",
-              "plugins": {
-                "xwalk": {
-                  "page": {
-                    "resourceType": "core/franklin/components/section/v1/section",
-                    "template": {
-                      "name": "Tabs",
-                      "model": "tabs",
-                      "filter": "tabs"
-                    }
-                  }
+          "title": "Section",
+          "id": "section",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "model": "section"
                 }
               }
             }
-          ]
-        }
+          }
+        },       
+        {
+          "title": "Tabs",
+          "id": "tabs",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "Tabs",
+                  "model": "tabs",
+                  "filter": "tabs"
+                }
+              }
+            }
+          }
+        }  
       ]
     },
     {
@@ -163,7 +157,7 @@
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
                   "name": "CorePrinciples",
-                  "filter": "coreprinciples"
+                  "filter": "coreprinciples" 
                 }
               }
             }
@@ -196,7 +190,7 @@
                   "name": "Director",
                   "model": "director"
                 }
-              }
+              } 
             }
           }
         },
@@ -469,7 +463,7 @@
         },
         {
           "title": "LoadMore",
-          "id": "loadmore",
+          "id": "loadmore", 
           "plugins": {
             "xwalk": {
               "page": {
@@ -499,7 +493,7 @@
         },
         {
           "title": "MilestoneItem",
-          "id": "milestoneitem",
+          "id": "milestoneitem", 
           "plugins": {
             "xwalk": {
               "page": {
