@@ -80,6 +80,9 @@
 }
 
 @media (width >= 768px) {
+    .tab-panel.historymilestones-container {
+        padding-top: 13px;
+    }
     .historymilestones-wrapper:not(:last-child) {
         margin-bottom: 48px;
         padding-bottom: 48px;
@@ -131,6 +134,9 @@
     }
 }
 @media (width > 993px) {
+    .tab-panel.historymilestones-container {
+        padding-top: 32px;
+    }
     .historymilestones-wrapper:not(:last-child) {
         margin-bottom: 68px;
         padding-bottom: 68px;
