@@ -7,7 +7,7 @@
         "valueType": "string",
         "name": "image",
         "label": "image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -182,7 +182,7 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -231,7 +231,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -321,7 +321,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -416,7 +416,7 @@
         "valueType": "string",
         "name": "feature-icon",
         "label": "Icon",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -591,7 +591,7 @@
         "valueType": "string",
         "name": "linkImage",
         "label": "Link Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -659,7 +659,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Background Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "validation": {
@@ -725,7 +725,7 @@
     "id": "projectcards",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style Classes",
@@ -738,6 +738,10 @@
           {
             "name": "Certifications",
             "value": "certifications"
+          },
+          {
+            "name": "Grey Background",
+            "value": "grey-background"
           }
         ]
       },
@@ -779,7 +783,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -875,7 +879,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "Phone Icon",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -918,7 +922,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon1",
             "label": "Email Icon",
-            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -958,7 +962,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon2",
             "label": "Email Icon",
-            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -998,7 +1002,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon3",
             "label": "Email Icon",
-            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1028,7 +1032,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "Address Icon",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1147,7 +1151,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1161,7 +1165,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -1221,13 +1225,35 @@
     ]
   },
   {
+    "id": "coreprinciples",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Core Principles No Border",
+            "value": "coreprinciples-no-border"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "coreprinciple",
     "fields": [
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1342,7 +1368,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json"
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
         "component": "text",
@@ -1396,13 +1422,16 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link"
+        "label": "Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
       },
       {
         "component": "text",
@@ -1416,20 +1445,28 @@
       },
       {
         "component": "select",
-        "name": "linkType",
-        "label": "Type",
+        "name": "linkSvgIcon",
+        "label": "Link SVG Icon",
         "options": [
           {
-            "name": "default",
+            "name": "Select",
             "value": ""
           },
           {
-            "name": "primary",
-            "value": "primary"
+            "name": "Arrow",
+            "value": "arrow"
           },
           {
-            "name": "secondary",
-            "value": "secondary"
+            "name": "Right Arrow",
+            "value": "right-arrow"
+          },
+          {
+            "name": "Download Arrow",
+            "value": "download-arrow"
+          },
+          {
+            "name": "North East Arrow",
+            "value": "north-east-arrow"
           }
         ]
       }
@@ -1564,7 +1601,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "awardimage",
         "label": "Award Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -1637,7 +1674,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1863,7 +1900,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://projects-listing--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "required": true,
