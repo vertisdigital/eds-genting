@@ -122,6 +122,10 @@
   .projectcards.grey-background{
     background-color: var(--whisper-gray);
   }
+  
+  .projectcards ul {
+    padding-left: 12px;
+  }
 
   @media (width<=992px){
     .projectcards{
