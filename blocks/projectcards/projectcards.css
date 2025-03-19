@@ -3,9 +3,7 @@
   }
 
   .projectcards{
-    padding-top: 80px;
-    padding-bottom: 40px;
-    /* background-color: var(--whisper-gray); */
+    padding: 35px 0;
   }
 
   .projectcards .projectcards-header {
@@ -45,7 +43,6 @@
   }
 
   .projectcards .projectcards-grid {
-    margin-bottom: 42px;
     margin-left: -18px;
     margin-right: -18px;
   }
