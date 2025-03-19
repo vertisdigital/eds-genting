@@ -5,8 +5,10 @@
     padding: 68px 0;
     border-bottom: 2px solid var(--body-text-color);
 }
-.corporate-policies-list p a u{
+.corporate-policies-list p a{
     color: var(--primary-gold);
+    text-decoration:  underline;
+    cursor: pointer;
 }
 .corporate-policies-list-item>div:first-child{
     padding-right: 18px;
