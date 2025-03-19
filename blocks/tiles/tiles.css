@@ -147,7 +147,7 @@ a:any-link.factsheet-button {
 }
 @media (width >= 768px) {
   .tiles-wrapper {
-    padding: 28px 0;
+    margin: 28px 0;
   }
 
   .row.tiles-container {
@@ -196,12 +196,8 @@ a:any-link.factsheet-button {
   }
 }
 @media (width >= 1024px) {
-  .tiles-wrapper {
-    padding: 34px 0;
-  }
-
-  .tile-all-image-variation {
-    padding: 34px 0;
+  .tiles-wrapper, .tile-all-image-variation {
+    margin: 34px 0;
   }
 
   .row.tiles-container {
