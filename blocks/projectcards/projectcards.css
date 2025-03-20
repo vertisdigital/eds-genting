@@ -4,7 +4,6 @@
 
   .projectcards{
     margin: 45px 0;
-    padding: 45px 0;
   }
 
   .projectcards .projectcards-header {
@@ -122,6 +121,7 @@
 
   .projectcards.grey-background{
     background-color: var(--whisper-gray);
+    padding: 45px 0;
   }
   
   .projectcards ul {
@@ -129,7 +129,7 @@
   }
 
   @media (width<=992px){
-    .projectcards{
+    .projectcards.grey-background {
       padding: 40px 0 44px;
     }
 
@@ -180,6 +180,9 @@
 
   @media (width <= 768px) {
       .projectcards{
+        margin: 24px 0;
+      }
+      .projectcards.grey-background {
         padding: 32px 0 12px;
       }
 
