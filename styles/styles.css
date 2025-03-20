@@ -223,6 +223,22 @@ blockquote {
   margin-bottom: 0.25em;
 }
 
+ul{
+  padding-left: 18px;
+}
+ul a.button:any-link, ul a:any-link {
+  background: none;
+  margin: 0;
+  padding: 0;
+  color: var(--primary-gold);
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline;
+}
+
+ul>li>ul{
+  padding-left: 32px;
+}
 code,
 pre {
   font-size: var(--font-size-xxxs);
@@ -841,3 +857,4 @@ main::before {
 .grey-background{
   background-color: var(--light-grey);
 }
+
