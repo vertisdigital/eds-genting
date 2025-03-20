@@ -3,8 +3,7 @@
 .feature-wrapper .about-us-stats{
   display: flex;
   margin: auto;
-  margin-bottom: 18px;
-  margin: 36px 0 9px;
+  margin: 36px 0 18px;
 }
 
 .feature-wrapper .about-us-stats:not(:last-child) {
