@@ -254,6 +254,12 @@
   margin-bottom: 32px;
 }
 
+.listing-wrapper .listing.grey-background {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+
 .listing.grey-background {
   background: none;
 }
@@ -308,6 +314,10 @@
     margin-top: 40px;
     margin-bottom: 20px;
   }
+  .listing-wrapper .listing.grey-background {
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
 
   .listing-wrapper .listing [data-aue-prop="title"], .listing-wrapper .listing [data-gen-prop="title"] {
     font-size: var(--font-size-l);
@@ -337,6 +347,10 @@
   .listing-wrapper .container:not(.without-images) {
     margin-top: 45px;
     margin-bottom: 45px; 
+  }
+  .listing-wrapper .listing.grey-background {
+    padding-top: 45px;
+    padding-bottom: 45px;
   }
 
   .listing-wrapper .listing [data-aue-prop="title"], .listing-wrapper .listing [data-gen-prop="title"] {
