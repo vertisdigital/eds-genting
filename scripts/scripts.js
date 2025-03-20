@@ -67,7 +67,6 @@ async function loadFonts() {
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
-  console.log('Building auto blocks');
   try {
     processTabs(main);
   } catch (error) {
