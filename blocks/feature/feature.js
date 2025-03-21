@@ -103,14 +103,15 @@ export default function decorate(block) {
     featureItems.forEach((feature) => {
       const featureChildren = feature.children;
       // checking and validating the feature item structure, as we need to get 4 children
-      if (featureChildren.length !== 4) return;
+      
       // Create feature item container
       const featureContainer = document.createElement('div');
       featureContainer.classList.add('about-us-right-content');
       moveInstrumentation(feature, featureContainer);
       // Handle image feature
-      const imageElement = featureChildren[0].querySelector('[data-aue-prop="feature-icon"], img, a');
-      if (imageElement) {
+      const isImageExists = featureChildren[0].querySelector('a') ? true : false;
+      if (isImageExists) {
+        const imageElement = featureChildren[0].querySelector('a');
         const imageContainer = document.createElement('div');
         const imageLink = imageElement.getAttribute('src') ?? imageElement.getAttribute('href');
         const imgAltText = feature.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
@@ -138,7 +139,7 @@ export default function decorate(block) {
       }
 
       // Handle text feature
-      const textElement = featureChildren[2].querySelector('[data-aue-prop="feature-title"]') ?? featureChildren[2];
+      const textElement = featureChildren[1];
       if (textElement && textElement.textContent.trim() !== '') {
         const textContainer = document.createElement('div');
         const statisticDiv = document.createElement('div');
@@ -165,7 +166,7 @@ export default function decorate(block) {
       }
 
       // Handle feature heading
-      const featureHeadingElement = featureChildren[3];
+      const featureHeadingElement = featureChildren[2];
       if (featureHeadingElement) {
         const headingContainer = document.createElement('div');
         const featureHeadingP = document.createElement('p');
