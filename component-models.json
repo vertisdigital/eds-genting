@@ -434,8 +434,9 @@
       },
       {
         "component": "text",
-        "name": "feature-icon-alt",
-        "label": "Alt Text"
+        "name": "feature-iconTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "richtext",
@@ -905,8 +906,9 @@
       },
       {
         "component": "text",
-        "name": "phoneIconAlt",
-        "label": "Phone Icon Alt Text"
+        "name": "phoneIconTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -948,8 +950,9 @@
           },
           {
             "component": "text",
-            "name": "emailIconAlt1",
-            "label": "Email Icon Alt Text"
+            "name": "emailIcon1Title",
+            "label": "Alt Text",
+            "valueType": "string"
           },
           {
             "component": "text",
@@ -988,8 +991,9 @@
           },
           {
             "component": "text",
-            "name": "emailIconAlt2",
-            "label": "Email Icon Alt Text"
+            "name": "emailIcon2Title",
+            "label": "Alt Text",
+            "valueType": "string"
           },
           {
             "component": "text",
@@ -1028,8 +1032,9 @@
           },
           {
             "component": "text",
-            "name": "emailIconAlt3",
-            "label": "Email Icon Alt Text"
+            "name": "emailIcon3Title",
+            "label": "Alt Text",
+            "valueType": "string"
           },
           {
             "component": "text",
@@ -1058,8 +1063,9 @@
       },
       {
         "component": "text",
-        "name": "addressIconAlt",
-        "label": "Address Icon Alt Text"
+        "name": "addressIconTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -1669,7 +1675,7 @@
       {
         "component": "text",
         "name": "awardheading",
-        "label": "Award Title", 
+        "label": "Award Title",
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -1700,7 +1706,7 @@
         }
       },
       {
-        "component": "text", 
+        "component": "text",
         "name": "description",
         "label": "Description",
         "validation": {
