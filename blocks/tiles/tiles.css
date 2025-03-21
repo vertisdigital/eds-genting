@@ -1,0 +1,220 @@
+
+.row.tiles-container > div {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 0;
+}
+.tiles.block > div {
+  background-color: var(--background-color);
+  color: var(--text-color) !important;
+  margin-bottom: 0;
+}
+.row.tiles-container > .image-tile > div {
+  background-color: var(--text-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  width: 100%;
+  min-height: 314px;
+  position: relative;
+}
+.tiles.block > .image-tile {
+  color: var(--background-color);
+  object-fit: cover
+}
+.tiles.block > div > * {
+  position: relative;
+  z-index: 2;
+}
+.factsheet-button {
+  align-items: center;
+  color: var(--primary-gold) !important;
+  font-weight: 700;
+  font-size: var(--font-size-xs);
+  align-self: flex-end;
+  margin: 24px 0 0;
+  transition: transform 0.2s ease-out;
+  text-decoration: underline;
+  display: flex;
+  gap: 16px;
+}
+a:any-link.factsheet-button {
+  text-decoration: underline;
+}
+.factsheet-button .icon-wrapper {
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.row.tiles-container .no-image-tile>div>div:first-child p {
+    font-size: var(--font-size-xl);
+    line-height: 50px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+.row.tiles-container .no-image-tile>div>div:nth-child(2) p {
+    font-size: var(--font-size-xs);
+    line-height: 24px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    color: var(--body-text-color)
+  }
+.row.tiles-container .image-tile>div>div:first-child p {
+  font-size: var(--font-size-s);
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--background-color);
+  margin-bottom: 12px
+}
+.row.tiles-container .image-tile>div>div:nth-child(2) p {
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--light-grey);
+  margin-bottom: 36px;
+}
+.learn-button{
+  position: absolute;
+  bottom: 24px;
+  right: 44px;
+  text-decoration: underline !important;
+  font-weight: 600;
+  color: var(--background-color) !important;
+}
+.tiles-wrapper {
+  margin: 24px 0;
+}
+.row.tiles-container {
+  row-gap: 28px;
+}
+.tiles-container .learn-button {
+  bottom: 20px;
+  right: 20px;
+  font-size: var(--font-size-xs);
+}
+
+@media screen and (width < 768px) {
+
+  .factsheet-button {
+    margin: 16px 0 0;
+    font-size: var(--font-size-xxs);
+  }
+
+ 
+  
+  .row.tiles-container .no-image-tile>div>div:first-child p {
+    font-size: var(--font-size-m);
+    line-height: 34px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+ 
+  .row.tiles-container .image-tile>div>div:first-child p {
+    font-size: var(--font-size-xs);
+    line-height: 20px;
+    font-weight: 700;
+  }
+
+ 
+  .row.tiles-container .no-image-tile>div>div:nth-child(2) p {
+    font-size: var(--font-size-xxs);
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+ 
+
+   .row.tiles-container .image-tile>div>div:nth-child(2) p{
+    font-size: var(--font-size-xxs);
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 28px;
+  }
+
+  .learn-button {
+    bottom: 16px;
+    right: 24px;
+  }
+
+  .tiles-container .learn-button {
+    font-size: var(--font-size-xs);
+    right: 20px;
+  }
+}
+@media (width >= 768px) {
+  .tiles-wrapper {
+    margin: 28px 0;
+  }
+
+  .row.tiles-container {
+    row-gap: 36px;
+    margin-left: -18px;
+    margin-right: -18px;
+  }
+
+  .row.tiles-container > div {
+    padding: 0 18px;
+  }
+}
+@media screen and (width < 992px) and (width >= 768px) {
+  .row.tiles-container {
+    padding: 0 !important;
+  }
+
+  .row.tiles-container .image-tile>div>div:first-child p{
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+
+  .row.tiles-container .no-image-tile>div>div:first-child p {
+    font-size: var(--font-size-l);
+  }
+
+   .row.tiles-container .image-tile>div>div:nth-child(2) p{
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 34px;
+  }
+
+  .learn-button {
+    bottom: 16px;
+    right: 40px;
+  }
+
+  .factsheet-button {
+    margin: 18px 0 0;
+  }
+
+  .tiles-container .learn-button {
+    right: 40px;
+  }
+}
+@media (width >= 1024px) {
+  .tiles-wrapper {
+    margin: 45px 0;
+  }
+
+  .tile-all-image-variation {
+    margin: 45px 0;
+  }
+
+  .row.tiles-container {
+    row-gap: 48px;
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+
+  .row.tiles-container > div {
+    padding: 0 24px;
+  }
+
+  .row.tiles-container > .image-tile > div {
+    min-height: 472px;
+  }
+}
