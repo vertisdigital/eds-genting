@@ -103,8 +103,6 @@
 .carousel-wrapper {
   display: flex;
   transition: transform 0.3s ease;
-
-  /* padding: 0 0 10px 20px; */
   height: 190px;
   width: 608px;
 }
@@ -120,7 +118,6 @@
 }
 
 .ellipse {
-  /* padding-top: 10px; */
    padding-top: 12px; 
 
 }
@@ -291,8 +288,6 @@
 
   .carousel-wrapper {
     flex-wrap: nowrap;
-
-    /* padding: 0 0 10px; */
   }
 
   .arrow-link svg {

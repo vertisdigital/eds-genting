@@ -253,7 +253,6 @@ export default function decorate(block) {
     enquiryChildren[1].append(row2);
     container.append(enquiryChildren[1]);
   }
-  // container.append(row2);
 
   wrapper.innerHTML = '';
   wrapper.append(container);

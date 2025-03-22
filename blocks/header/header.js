@@ -193,7 +193,6 @@ function createHeaderStructure(block) {
 
     // Extract overview link from the fourth section (index 3)
 
-    // const overviewSection = sections[3];
     const overviewLink = sections[3]?.querySelector('a');
     const overviewLinkHref = (title !== 'CONTACT'
       ? overviewLink?.getAttribute('href')
@@ -229,8 +228,6 @@ function createHeaderStructure(block) {
 
   // Create search icon
   const searchWrapper = document.createElement('div');
-  // const searchIcon = SvgIcon({ name: 'search', className: 'icon-search', size: '14' });
-  // searchWrapper.appendChild(stringToHtml(searchIcon));
 
   // Assemble the structure
   nav.append(logoWrapper, primaryNav, searchWrapper);

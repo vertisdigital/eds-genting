@@ -11,20 +11,15 @@ export default async function decorate(block) {
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   const fragment = await loadFragment(footerPath);
-  // const fragment = block;
   if (fragment) {
     const section = document.createElement('section');
-    // const existingMain = document.getElementsByTagName('main')[0];
 
     // Create and build all the footer content
     const footer = document.createElement('div');
-    // footer.classList.add('footer');
-    // const container = fragment.firstElementChild;
 
     const container = fragment.firstElementChild;
 
     footer.setAttribute('role', 'contentinfo');
-    // footer.className = container.className;
 
     // Create main container with responsive classes
     const mainContainer = document.createElement('div');
