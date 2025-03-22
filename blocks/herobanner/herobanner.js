@@ -326,10 +326,8 @@ export default function decorate(block) {
     // Add the image to the carousel
     const isImageExists = itemDivs[2].querySelector('p');
     if (isImageExists) {
-      // const pTag = firstDiv.querySelector('p');
       const aTag = isImageExists.querySelector('a');
       if (aTag) {
-        // const imgUrl = aTag.getAttribute('href');
         const imgUrl = aTag?.getAttribute('href');
         const imgAlt = aTag?.getAttribute('title');
         const imgHtml = ImageComponent({
