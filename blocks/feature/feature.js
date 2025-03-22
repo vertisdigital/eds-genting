@@ -9,10 +9,8 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  * @param {Element} block The herobanner block element
  */
 export default function decorate(block) {
-  // const featureResource = block.querySelector('[data-aue-label="Feature"]');
 
   const container = document.createElement('div');
-  // moveInstrumentation(featureResource, container);
 
   container.classList.add('container');
 
@@ -170,9 +168,6 @@ export default function decorate(block) {
         const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.innerHTML;
         if (typeof textContent === 'object') {
           textContent.forEach((text) => {
-            // const span = document.createElement('div');
-            // span.innerHTML = text.innerHTML;
-            // moveInstrumentation(text, span);
             statisticDiv.appendChild(text);
           });
         } else {

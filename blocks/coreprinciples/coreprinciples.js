@@ -86,7 +86,6 @@ export default function decorate(block) {
 
     // Convert title to h3 with preserved authoring attributes
     const allDivElements = item.querySelectorAll('div');
-    // const title = item.querySelector('[data-aue-prop="title"], [data-gen-prop="feature-title"]');
     const title = allDivElements[2];
     if (title !== null) {
       const h3 = document.createElement('h3');
