@@ -1,6 +1,51 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import Heading from '../../shared-components/Heading.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import SvgIcon from '../../../shared-components/SvgIcon.js';
+import stringToHTML from '../../../shared-components/Utility.js';
+
+let currentIndex = 0;
+
+const nextDisableCta=SvgIcon({
+  name: "disableRightArrow",
+  className: "carousel-next-cta",
+  size: "16px",
+});
+const prevDisableCta=SvgIcon({
+  name: "disableLeftArrow",
+  className: "carousel-next-cta",
+  size: "16px",
+});
+const prevCta=SvgIcon({
+  name: "LeftArrow",
+  className: "carousel-next-cta",
+  size: "16px",
+});
+const nextCta=SvgIcon({
+  name: "RightArrow",
+  className: "carousel-next-cta",
+  size: "16px",
+});
+
+function moveSlide(direction) {
+
+  const projectCard=document.querySelectorAll('.project-card')
+  if(projectCard.length<=4)
+    return;
+  const totalItems = document.querySelectorAll('.carousel-item').length;
+  const carouselContainer = document.querySelector('#carousel-container');
+  
+  currentIndex += direction;
+  if(currentIndex>=0 && currentIndex<totalItems){
+    if (currentIndex < 0) {
+      currentIndex = totalItems - 1;
+    } else if (currentIndex >= totalItems) {
+      currentIndex = 0;
+    }
+  const offset = -currentIndex * (100 / 4); 
+  carouselContainer.style.transform = `translateX(${offset}%)`;
+  }  
+}
 
 export default function decorate(block) {
   // Create main container
@@ -69,6 +114,7 @@ export default function decorate(block) {
   // Create cards grid container
   const cardsGridContainer = document.createElement('div');
   cardsGridContainer.className = 'projectcards-grid row';
+  cardsGridContainer.setAttribute("id","carousel-container");
 
   // Handle project cards
   const projectCards = Array.from(block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]'));
@@ -80,8 +126,8 @@ export default function decorate(block) {
     lastElement = block.querySelector('[data-aue-model="linkField"]');
   } else {
     // In publish instance, check and pop last element if it has button-container
-    lastElement = projectCards.length > 0 && 
-      projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container') ? 
+    lastElement = projectCards.length > 0 &&
+      projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container') ?
       projectCards.pop() : null;
   }
 
@@ -99,8 +145,8 @@ export default function decorate(block) {
       imageContainer.setAttribute('data-aue-type', 'image');
 
       const imageUrl = imageLink.getAttribute('href');
-      const imageAlt =card.querySelectorAll('a[href]')[1]?.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
-      
+      const imageAlt = card.querySelectorAll('a[href]')[1]?.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
+
       const imageHtml = ImageComponent({
         src: imageUrl,
         alt: imageAlt,
@@ -174,9 +220,43 @@ export default function decorate(block) {
     cardElement.appendChild(cardContent);
     cardsGridContainer.appendChild(cardElement);
   });
+  
+  const carouselContaier = document.createElement('div');
+  carouselContaier.setAttribute('class', 'carousel');
 
-  projectCardsContainer.appendChild(cardsGridContainer);
+  carouselContaier.appendChild(cardsGridContainer)
 
+  const prevButton = document.createElement('button')
+  prevButton.setAttribute('class', 'carousel-prev')
+
+  const nextButton = document.createElement('button')
+  nextButton.setAttribute('class', 'carousel-next')
+  
+  
+  prevButton.append(stringToHTML(prevDisableCta))
+
+  const projectCard=document.querySelectorAll('.project-card')
+  if(projectCard.length<=4){
+    nextButton.append(stringToHTML(nextDisableCta))
+  }else{
+    nextButton.append(stringToHTML(nextCta))
+  }
+
+  const buttonGroup=document.createElement('div')
+  buttonGroup.setAttribute('class','buttonGroup')
+  
+  buttonGroup.appendChild(prevButton)
+  buttonGroup.appendChild(nextButton)
+  carouselContaier.appendChild(buttonGroup)
+
+  projectCardsContainer.appendChild(carouselContaier);
+
+  prevButton.addEventListener('click',()=>{
+    moveSlide(-1);
+  })
+  nextButton.addEventListener('click',()=>{
+    moveSlide(1);
+  })
   // Handle View All link using the stored last element
   if (lastElement) {
     const linkContainer = document.createElement('div');
@@ -187,7 +267,7 @@ export default function decorate(block) {
       const linkDiv = document.createElement('div');
       linkElement.className = 'view-all-link';
       linkElement.target = lastElement.children[2]?.textContent || '_self';
-      linkDiv.appendChild(linkElement); 
+      linkDiv.appendChild(linkElement);
       linkContainer.appendChild(linkDiv);
     }
 
