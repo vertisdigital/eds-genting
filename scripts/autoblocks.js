@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { errorLogger } from "./logger.js";
 
 /**
  * Creates the basic tab structure
@@ -233,7 +234,7 @@ function processTabs(main) {
     // Remove original sections
     structure.tabElements.forEach((section) => section.remove());
   } catch (error) {
-    console.error('[Tab System] Error processing tabs:', error);
+    errorLogger.error(`[Tab System] Error processing tabs:, ${error}`);
   }
 }
 

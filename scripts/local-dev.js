@@ -1,4 +1,5 @@
 import { loadMockContent } from './mock-data.js';
+import { errorLogger } from './logger.js';
 
 class LocalDevelopment {
   constructor() {
@@ -7,7 +8,6 @@ class LocalDevelopment {
   }
 
   async init() {
-    console.log('testing');
     await this.loadMockContent();
     await this.initializeBlocks();
     this.setupHotReload();
@@ -18,7 +18,6 @@ class LocalDevelopment {
     const blockName = urlParams.get('block') || 'columns';
 
     const mockHtml = await loadMockContent(blockName);
-    console.log(mockHtml);
     this.mockContainer.innerHTML = mockHtml;
 
     this.mockContainer.setAttribute('data-aue-type', 'container');
@@ -39,6 +38,7 @@ class LocalDevelopment {
             module.default(block);
           }
         } catch (error) {
+          errorLogger.error(`Error loading block ${blockName}:, ${error}`);
           console.error(`Error loading block ${blockName}:`, error);
         }
       }),
