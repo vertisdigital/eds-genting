@@ -5,46 +5,71 @@ import SvgIcon from '../../../shared-components/SvgIcon.js';
 import stringToHTML from '../../../shared-components/Utility.js';
 
 let currentIndex = 0;
-
-const nextDisableCta=SvgIcon({
+const nextDisableCta = SvgIcon({
   name: "disableRightArrow",
   className: "carousel-next-cta",
   size: "16px",
 });
-const prevDisableCta=SvgIcon({
+const prevDisableCta = SvgIcon({
   name: "disableLeftArrow",
   className: "carousel-next-cta",
   size: "16px",
 });
-const prevCta=SvgIcon({
+const prevCta = SvgIcon({
   name: "LeftArrow",
   className: "carousel-next-cta",
   size: "16px",
 });
-const nextCta=SvgIcon({
+const nextCta = SvgIcon({
   name: "RightArrow",
   className: "carousel-next-cta",
   size: "16px",
 });
 
+function handleDisableButton(){
+  const prevButton = document.querySelector('.carousel-prev')
+  const nextButton = document.querySelector('.carousel-next')
+  const totalItems = document.querySelectorAll('.carousel-item').length;
+
+  prevButton.innerHTML = ""
+  
+  if (currentIndex > 0) {
+    prevButton.append(stringToHTML(prevCta))
+  } else {
+    prevButton.append(stringToHTML(prevDisableCta))
+  }
+
+  nextButton.innerHTML = ""
+  
+  if (currentIndex < totalItems-1) {
+    nextButton.append(stringToHTML(nextCta))
+  }else{
+    nextButton.append(stringToHTML(nextDisableCta))
+  }
+}
+
 function moveSlide(direction) {
 
-  const projectCard=document.querySelectorAll('.project-card')
-  if(projectCard.length<=4)
-    return;
   const totalItems = document.querySelectorAll('.carousel-item').length;
+  const projectCard = document.querySelectorAll('.project-card')
+  if (projectCard.length <= 4)
+    return;
   const carouselContainer = document.querySelector('#carousel-container');
+
   
   currentIndex += direction;
-  if(currentIndex>=0 && currentIndex<totalItems){
+  document.dispatchEvent(new CustomEvent('currentIndexChanged', { detail: currentIndex }));
+  handleDisableButton()
+    
+  if (currentIndex >= 0 && currentIndex < totalItems) {
     if (currentIndex < 0) {
-      currentIndex = totalItems - 1;
+      currentIndex = totalItems;
     } else if (currentIndex >= totalItems) {
       currentIndex = 0;
     }
-  const offset = -currentIndex * (100 / 4); 
-  carouselContainer.style.transform = `translateX(${offset}%)`;
-  }  
+    const offset = -currentIndex * (100 / 2);
+    carouselContainer.style.transform = `translateX(${offset}%)`;
+  }
 }
 
 export default function decorate(block) {
@@ -235,13 +260,6 @@ export default function decorate(block) {
   
   prevButton.append(stringToHTML(prevDisableCta))
 
-  const projectCard=document.querySelectorAll('.project-card')
-  if(projectCard.length<=4){
-    nextButton.append(stringToHTML(nextDisableCta))
-  }else{
-    nextButton.append(stringToHTML(nextCta))
-  }
-
   const buttonGroup=document.createElement('div')
   buttonGroup.setAttribute('class','buttonGroup')
   
@@ -252,10 +270,13 @@ export default function decorate(block) {
   projectCardsContainer.appendChild(carouselContaier);
 
   prevButton.addEventListener('click',()=>{
-    moveSlide(-1);
+    if(currentIndex-1>=0)
+      moveSlide(-1);
   })
   nextButton.addEventListener('click',()=>{
-    moveSlide(1);
+    const totalItems = document.querySelectorAll('.carousel-item').length;
+    if(currentIndex+1 !== totalItems)
+      moveSlide(1);
   })
   // Handle View All link using the stored last element
   if (lastElement) {
@@ -293,4 +314,16 @@ export default function decorate(block) {
       }
     });
   });
+
+  const projectCard=document.querySelectorAll('.project-card')
+  if(projectCard.length<=4){
+    nextButton.append(stringToHTML(nextDisableCta))
+  }else{
+    nextButton.append(stringToHTML(nextCta))
+  }
+
+  document.addEventListener('currentIndexChanged', function(e) {
+    handleDisableButton()
+  });
+  
 }

@@ -196,7 +196,7 @@ padding-top: 42px;
   
   .projectcards .project-card {
     padding: 0 12px!important;
-    width: 368px;
+    width: 349px;
   }
 
   .projectcards .project-card [data-aue-prop="image"]{
@@ -257,7 +257,6 @@ padding-top: 42px;
     
     .projectcards .project-card {
       padding: 0 9px!important;
-      width: 200px;
     }
     
     .projectcards .project-card [data-aue-prop="image"]{
@@ -292,6 +291,10 @@ padding-top: 42px;
   .buttonGroup{
     gap: 28px;
     padding-top: 26px;
+  }
+  .projectcards .project-card {
+    padding: 0 9px!important;
+    width: 200px;
   }
 }
 
