@@ -67,7 +67,7 @@ function moveSlide(direction) {
     } else if (currentIndex >= totalItems) {
       currentIndex = 0;
     }
-    const offset = -currentIndex * (100 / 2);
+    const offset = -currentIndex * 100;
     carouselContainer.style.transform = `translateX(${offset}%)`;
   }
 }
@@ -156,95 +156,113 @@ export default function decorate(block) {
       projectCards.pop() : null;
   }
 
-  projectCards.forEach((card) => {
-    const cardElement = document.createElement('div');
-    cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
-    moveInstrumentation(card, cardElement);
+  let cardPair = document.createElement('div');
+cardPair.classList.add('card-pair'); // This will be the main container for 4 cards
 
-    // Handle card image
-    const imageLink = card.querySelector('a[href]');
-    if (imageLink) {
-      const imageContainer = document.createElement('div');
-      imageContainer.setAttribute('data-aue-prop', 'image');
-      imageContainer.setAttribute('data-aue-label', 'Image');
-      imageContainer.setAttribute('data-aue-type', 'image');
+projectCards.forEach((card, index) => {
+  const cardElement = document.createElement('div');
+  cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
+  moveInstrumentation(card, cardElement);
 
-      const imageUrl = imageLink.getAttribute('href');
-      const imageAlt = card.querySelectorAll('a[href]')[1]?.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
+  // Handle card image
+  const imageLink = card.querySelector('a[href]');
+  if (imageLink) {
+    const imageContainer = document.createElement('div');
+    imageContainer.setAttribute('data-aue-prop', 'image');
+    imageContainer.setAttribute('data-aue-label', 'Image');
+    imageContainer.setAttribute('data-aue-type', 'image');
 
-      const imageHtml = ImageComponent({
-        src: imageUrl,
-        alt: imageAlt,
-        className: 'project-card-image',
-        asImageName: 'projectcards.webp',
-        breakpoints: {
-          mobile: {
-            width: 768,
-            src: `${imageUrl}`,
-            imgWidth: 170,
-            imgHeight: 170,
-          },
-          tablet: {
-            width: 993,
-            src: `${imageUrl}`,
-            imgWidth: 370,
-            imgHeight: 370,
-          },
-          desktop: {
-            width: 1920,
-            src: `${imageUrl}`,
-            imgWidth: 260,
-            imgHeight: 260,
-          },
+    const imageUrl = imageLink.getAttribute('href');
+    const imageAlt =
+      card.querySelectorAll('a[href]')[1]?.getAttribute('title') ||
+      card.querySelector('[data-aue-prop="title"]')?.textContent ||
+      'Project Image';
+
+    const imageHtml = ImageComponent({
+      src: imageUrl,
+      alt: imageAlt,
+      className: 'project-card-image',
+      asImageName: 'projectcards.webp',
+      breakpoints: {
+        mobile: {
+          width: 768,
+          src: `${imageUrl}`,
+          imgWidth: 170,
+          imgHeight: 170,
         },
-        lazy: true,
-      });
+        tablet: {
+          width: 993,
+          src: `${imageUrl}`,
+          imgWidth: 370,
+          imgHeight: 370,
+        },
+        desktop: {
+          width: 1920,
+          src: `${imageUrl}`,
+          imgWidth: 260,
+          imgHeight: 260,
+        },
+      },
+      lazy: true,
+    });
 
-      imageContainer.insertAdjacentHTML('beforeend', imageHtml);
-      cardElement.appendChild(imageContainer);
-      imageLink.remove();
-    }
+    imageContainer.insertAdjacentHTML('beforeend', imageHtml);
+    cardElement.appendChild(imageContainer);
+    imageLink.remove();
+  }
 
-    // Handle card content
-    const cardContent = document.createElement('div');
-    cardContent.className = 'project-card-content';
+  // Handle card content
+  const cardContent = document.createElement('div');
+  cardContent.className = 'project-card-content';
 
-    // Handle card title
-    const cardTitle = card.querySelector(
-      '[data-aue-prop="projectText"], .button-container .button',
-    );
-    if (cardTitle) {
-      const titleDiv = document.createElement('div');
-      titleDiv.className = 'project-card-title';
-      cardTitle.className = '';
-      // setting the link target
-      const linkTarget = card.querySelector(
-        '[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]',
-      )?.textContent || '_self';
-      cardTitle.setAttribute('target', linkTarget);
+  // Handle card title
+  const cardTitle = card.querySelector(
+    '[data-aue-prop="projectText"], .button-container .button'
+  );
+  if (cardTitle) {
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'project-card-title';
+    cardTitle.className = '';
+    // setting the link target
+    const linkTarget =
+      card.querySelector('[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]')
+        ?.textContent || '_self';
+    cardTitle.setAttribute('target', linkTarget);
 
-      titleDiv.appendChild(cardTitle);
-      cardContent.appendChild(titleDiv);
-    }
+    titleDiv.appendChild(cardTitle);
+    cardContent.appendChild(titleDiv);
+  }
 
-    // Handle card location
-    const locationElement = card.querySelector(
-      '[data-aue-prop="location"], div:last-child',
-    );
-    if (locationElement) {
-      const locationDiv = document.createElement('div');
-      locationDiv.setAttribute('data-aue-prop', 'location');
-      locationDiv.setAttribute('data-aue-label', 'Location');
-      locationDiv.setAttribute('data-aue-type', 'text');
-      locationDiv.className = 'project-card-location';
-      locationDiv.innerHTML = locationElement.innerHTML;
-      cardContent.appendChild(locationDiv);
-      locationElement.remove();
-    }
+  // Handle card location
+  const locationElement = card.querySelector(
+    '[data-aue-prop="location"], div:last-child'
+  );
+  if (locationElement) {
+    const locationDiv = document.createElement('div');
+    locationDiv.setAttribute('data-aue-prop', 'location');
+    locationDiv.setAttribute('data-aue-label', 'Location');
+    locationDiv.setAttribute('data-aue-type', 'text');
+    locationDiv.className = 'project-card-location';
+    locationDiv.innerHTML = locationElement.innerHTML;
+    cardContent.appendChild(locationDiv);
+    locationElement.remove();
+  }
 
-    cardElement.appendChild(cardContent);
-    cardsGridContainer.appendChild(cardElement);
-  });
+  cardElement.appendChild(cardContent);
+
+  // Append the cardElement to the card-pair div
+  cardPair.appendChild(cardElement);
+
+  // After every 4 cards, append the card-pair div to the parent container
+  if ((index + 1) % 4 === 0 || index === projectCards.length - 1) {
+    // Append the current card-pair (group of 4 cards) to the cardsGridContainer
+    cardsGridContainer.appendChild(cardPair);
+    // Create a new card-pair container for the next group of 4 cards
+    cardPair = document.createElement('div');
+    cardPair.classList.add('card-pair');
+  }
+});
+
   
   const carouselContaier = document.createElement('div');
   carouselContaier.setAttribute('class', 'carousel');
@@ -275,7 +293,7 @@ export default function decorate(block) {
   })
   nextButton.addEventListener('click',()=>{
     const totalItems = document.querySelectorAll('.carousel-item').length;
-    if(currentIndex+1 !== totalItems)
+    if(currentIndex !== totalItems-1)
       moveSlide(1);
   })
   // Handle View All link using the stored last element
