@@ -252,7 +252,10 @@
         font-size: var(--font-size-xxs);
         line-height: 20px;
     }  
-
+    .footer .footer-links a {
+        margin-bottom: 12px;
+        display: block;
+    }
     .footer .left-section .button-container a{
         font-size: var(--font-size-xxs);
         line-height: 20px;
@@ -290,10 +293,6 @@
     .footer .collapsible-links .footer-links {
         display: none;
     }
-     .footer .footer-links a {
-        margin-bottom: 12px;
-        display: block;
-    }
     .footer .footer-links:last-child a {
         margin-bottom: 0;
     }
@@ -303,6 +302,9 @@
     .footer .collapsible-links.active .links-heading {
         margin-bottom: 12px;
     }
+    .footer .collapsible-links.active .links-heading:after {
+        transform: rotate(180deg);
+     }
     .footer .footer-child-element.container .collapsible-links {
         padding-top: 16px;
         padding-bottom: 16px;
