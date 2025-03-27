@@ -216,6 +216,11 @@
 }
 
 @media(width<768px){
+    .footer .footer-child-element .row>div {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    
     .footer .footer-child-element .row>div:first-child{
         margin-bottom:12px
     }
@@ -297,10 +302,6 @@
     .footer .collapsible-links .footer-links {
         display: none;
     }
-     .footer .footer-links a {
-        margin-bottom: 12px;
-        display: block;
-    }
     .footer .footer-links:last-child a {
         margin-bottom: 0;
     }
@@ -317,10 +318,6 @@
         padding-top: 16px;
         padding-bottom: 16px;
         border-top: 1px solid var(--background-color);
-    }
-    .footer .footer-child-element .row>div {
-        padding-right: 0;
-        padding-left: 0;
     }
 }
 
