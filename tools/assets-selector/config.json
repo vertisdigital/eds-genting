@@ -4,5 +4,56 @@
     ],    
     "rails": false,
     "aemTierType": "delivery",
+    "filterSchema": [
+        {
+          "fields": [
+            {
+              "defaultValue": ["image/*"],
+              "element": "checkbox",
+              "name": "type",
+              "options": [
+                {
+                  "label": "Image",
+                  "readOnly": true,
+                  "value": "image/*"
+                }
+              ]
+            },
+            {
+              "defaultValue": ["video/*"],
+              "element": "checkbox",
+              "name": "type",
+              "options": [
+                {
+                  "label": "Video",
+                  "readOnly": true,
+                  "value": "video/*"
+                }
+              ]
+            }
+          ],
+          "groupKey": "FileTypeGroup",
+          "header": "File Type"
+        },
+        {
+          "fields": [
+            {
+              "columns": 3,
+              "defaultValue": ["arena"],
+              "element": "taggroup",
+              "name": "property=xcm:keywords.id=",
+              "options": [
+                {
+                  "label": "Demo",
+                  "value": "demo"
+                }
+              ]
+            }
+          ],
+          "groupKey": "AssetTagsGroup",
+          "header": "Assets Tags"
+        }
+      ],
+
     "type": ["folder", "images", "documents", "video"]
   }
