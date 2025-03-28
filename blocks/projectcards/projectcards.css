@@ -260,7 +260,7 @@ padding-top: 42px;
       }
       
       .projectcards .project-card {
-        padding: 0 9px!important;
+        padding: 12px 9px!important;
       }
       
       .projectcards .project-card [data-aue-prop="image"]{
@@ -297,7 +297,7 @@ padding-top: 42px;
 		padding-top: 26px;
 	  }
 	.projectcards .project-card {
-		padding: 0 9px!important;
+		padding: 9px!important;
 	}
   }
 
