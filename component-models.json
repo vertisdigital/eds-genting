@@ -1186,27 +1186,6 @@
         "name": "imageTitle",
         "label": "Alt Text",
         "valueType": "string"
-      },      
-      {
-        "component": "aem-content",
-        "name": "cta",
-        "label": "CTA",
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            false
-          ]
-        },
-        "validation": {
-          "rootPath": "/content/genting-singapore/index"
-        }
-      },
-      {
-        "component": "text",
-        "name": "ctaCaption",
-        "label": "CTA Caption"
       },
       {
         "component": "boolean",
@@ -1237,6 +1216,27 @@
         "name": "filepathTitle",
         "label": "Alt Text",
         "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "cta",
+        "label": "CTA",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
+      },
+      {
+        "component": "text",
+        "name": "ctaCaption",
+        "label": "CTA Caption"
       }
     ]
   },
@@ -1873,42 +1873,6 @@
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
-      },
-      {
-        "component": "boolean",
-        "label": "File Download?",
-        "name": "reveal",
-        "valueType": "boolean"
-      },
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "label": "File Path",
-        "name": "filepath",
-        "valueType": "string",
-        "configUrl": "https://corporate-policies-download--genting--wppopen.aem.live/tools/assets-selector/config.json",
-        "multi": false,
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            true
-          ]
-        }
-      },
-      {
-        "component": "text",
-        "name": "filepathTitle",
-        "label": "Alt Text",
-        "valueType": "string",
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            true
-          ]
-        }
       },      
       {
         "component": "aem-content",
@@ -1952,6 +1916,42 @@
             "value": "north-east-arrow"
           }
         ]
+      },
+      {
+        "component": "boolean",
+        "label": "File Download?",
+        "name": "reveal",
+        "valueType": "boolean"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "label": "File Path",
+        "name": "filepath",
+        "valueType": "string",
+        "configUrl": "https://corporate-policies-download--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "text",
+        "name": "filepathTitle",
+        "label": "Alt Text",
+        "valueType": "string",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
       }
     ]
   },
