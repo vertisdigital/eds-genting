@@ -1,53 +1,88 @@
 {
-    "repoNames": [
-      "delivery-p144202-e1488374.adobeaemcloud.com"
-    ],    
-    "rails": false,
-    "aemTierType": "delivery",
-    "filterSchema": [
+  "repoNames": [
+    "delivery-p144202-e1488374.adobeaemcloud.com"
+  ],
+  "rails": false,
+  "aemTierType": "delivery",
+  "filterSchema": [
+    {
+      "fields": [
         {
-          "fields": [
-            {
-              "defaultValue": ["image/*", "video/*","application/*"],
-              "element": "checkbox",
-              "name": "type",
-              "options": [
-                {
-                  "label": "Image",
-                  "readOnly": true,
-                  "value": "image/*"
-                },
-                {
-                  "label": "Video",
-                  "value": "video/*"
-                },
-                {
-                  "label": "Application",
-                  "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                }
-              ]
-            }
+          "defaultValue": [
+            "image/*",
+            "video/*",
+            "application/*"
           ],
-          "groupKey": "FileTypeGroup",
-          "header": "File Type"
-        },
-        {
-          "fields": [
+          "element": "checkbox",
+          "name": "type",
+          "options": [
             {
-              "columns": 3,
-              "defaultValue": ["arena"],
-              "element": "taggroup",
-              "name": "property=xcm:keywords.id=",
-              "options": [
-                {
-                  "label": "Demo",
-                  "value": "demo"
-                }
-              ]
+              "label": "Image",
+              "readOnly": true,
+              "value": "image/*"
+            },
+            {
+              "label": "Video",
+              "value": "video/*"
+            },
+            {
+              "label": "Application",
+              "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             }
-          ],
-          "groupKey": "AssetTagsGroup",
-          "header": "Assets Tags"
+          ]
         }
-      ]
-  }
+      ],
+      "groupKey": "FileTypeGroup",
+      "header": "File Type"
+    },
+    {
+      "fields": [
+        {
+          "element": "checkbox",
+          "name": "type",
+          "options": [
+            {
+              "label": "JPG",
+              "value": "image/jpeg"
+            },
+            {
+              "label": "PNG",
+              "value": "image/png"
+            },
+            {
+              "label": "TIFF",
+              "value": "image/tiff"
+            },
+            {
+              "label": "GIF",
+              "value": "image/gif"
+            }
+          ],
+          "columns": 3
+        }
+      ],
+      "header": "Mime Types",
+      "groupKey": "MimeTypeGroup"
+    },
+    {
+      "fields": [
+        {
+          "columns": 3,
+          "defaultValue": [
+            "arena"
+          ],
+          "element": "taggroup",
+          "name": "property=xcm:keywords.id=",
+          "options": [
+            {
+              "label": "Demo",
+              "value": "demo"
+            }
+          ]
+        }
+      ],
+      "groupKey": "AssetTagsGroup",
+      "header": "Assets Tags"
+    }
+  ]
+}
