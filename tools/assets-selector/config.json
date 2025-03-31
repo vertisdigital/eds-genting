@@ -30,28 +30,39 @@
               "value": "documents/*"
             }
           ]
-        },
-        { 
-            "fields": 
-                [ 
-                    { 
-                        "element": "checkbox",
-                        "name": "type",
-                        "options": [ 
-                            { 
-                                "label": "JPG",
-                                "value": "image/jpeg" 
-                            }
-                        ],
-                        "columns": 3
-                    }
-                ],
-            "header": "Mime Types",
-            "groupKey": "MimeTypeGroup"
         }
       ],
       "groupKey": "FileTypeGroup",
       "header": "File Type"
+    },
+    {
+      "fields": [
+        {
+          "element": "checkbox",
+          "name": "type",
+          "options": [
+            {
+              "label": "JPG",
+              "value": "image/jpeg"
+            },
+            {
+              "label": "PNG",
+              "value": "image/png"
+            },
+            {
+              "label": "TIFF",
+              "value": "image/tiff"
+            },
+            {
+              "label": "GIF",
+              "value": "image/gif"
+            }
+          ],
+          "columns": 3
+        }
+      ],
+      "header": "Mime Types",
+      "groupKey": "MimeTypeGroup"
     },
     {
       "fields": [
