@@ -38,63 +38,16 @@
       "header": "File Type"
     },
     {
-      "fields": [
-        {
-          "element": "checkbox",
-          "name": "type",
-          "options": [
-            {
-              "label": "JPG",
-              "value": "image/jpeg"
-            },
-            {
-              "label": "PNG",
-              "value": "image/png"
-            },
-            {
-              "label": "TIFF",
-              "value": "image/tiff"
-            },
-            {
-              "label": "GIF",
-              "value": "image/gif"
-            },
-            {
-              "label": "PDF",
-              "value": "application/pdf"
-            },
-            {
-              "label": "Word",
-              "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            },
-            {
-              "label": "Excel",
-              "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            }
-          ],
-          "columns": 6
-        }
-      ],
-      "header": "Mime Types",
-      "groupKey": "MimeTypeGroup"
-    },
-    {
-      "fields": [
-        {
-          "columns": 3,
-          "defaultValue": [
-            "arena"
-          ],
-          "element": "taggroup",
-          "name": "property=xcm:keywords.id=",
-          "options": [
-            {
-              "label": "Demo",
-              "value": "demo"
-            }
-          ]
-        }
-      ],
+      "fields": [{
+        "columns": 3,
+        "defaultValue": ["wknd:products/snorkling"],
+        "element": "taggroup",
+        "name": "property=metadata.application.xcm:keywords.id",
+        "options": [{
+          "label": "Snorkling",
+          "value": "wknd:products/snorkling"
+        }]
+      }],
       "groupKey": "AssetTagsGroup",
       "header": "Assets Tags"
     }
