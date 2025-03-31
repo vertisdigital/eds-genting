@@ -8,13 +8,11 @@
         {
           "fields": [
             {
-              "defaultValue": ["image/*", "video/*","application/*"],
               "element": "checkbox",
               "name": "type",
               "options": [
                 {
                   "label": "Image",
-                  "readOnly": true,
                   "value": "image/*"
                 },
                 {
@@ -22,7 +20,7 @@
                   "value": "video/*"
                 },
                 {
-                  "label": "Application",
+                  "label": "Excel",
                   "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 }
               ]
@@ -49,5 +47,7 @@
           "groupKey": "AssetTagsGroup",
           "header": "Assets Tags"
         }
-      ]
-  }
+      ],
+    "showCheckboxes": true,
+    "multiSelect": true
+}
