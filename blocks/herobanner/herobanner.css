@@ -370,7 +370,9 @@
     position: relative;
     margin-bottom: 24px;
   }
-
+  .hero-image {
+    height: 100%;
+  }
   .hero-arrow-icon {
     padding: 10px;
   }
