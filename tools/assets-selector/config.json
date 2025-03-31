@@ -25,8 +25,12 @@
               "value": "video/*"
             },
             {
-                "label": "Documents",
+                "label": "Sheets",
                 "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            },
+            {
+              "label": "Documents",
+              "value": "application/pdf"
             },
             {
               "label": "Archives",
