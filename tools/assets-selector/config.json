@@ -64,8 +64,32 @@
               "value": "image/vnd.microsoft.icon"
             },
             {
-              "label": "Videos",
-              "value": "video/*"
+              "label": "MP4",
+              "value": "video/mp4"
+            },
+            {
+              "label": "WEBM",
+              "value": "video/webm"
+            },
+            {
+              "label": "OGG",
+              "value": "video/ogg"
+            },
+            {
+              "label": "AVI",
+              "value": "video/avi"
+            },
+            {
+              "label": "MOV",
+              "value": "video/mov"
+            },
+            {
+              "label": "WMV",
+              "value": "video/wmv"
+            },
+            {
+              "label": "FLV",
+              "value": "video/flv"
             },
             {
                 "label": "Sheets",
