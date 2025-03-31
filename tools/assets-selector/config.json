@@ -11,8 +11,7 @@
           "columns": 2,
           "defaultValue": [
             "image/*",
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            "application/pdf"
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
           ],
           "element": "checkbox",
           "name": "type",
@@ -26,8 +25,8 @@
               "value": "video/*"
             },
             {
-              "label": "Documents",
-              "value": "application/pdf"
+                "label": "Documents",
+                "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             },
             {
               "label": "Archives",
