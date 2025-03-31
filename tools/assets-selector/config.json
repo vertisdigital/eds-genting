@@ -71,7 +71,7 @@
               "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             }     
           ],
-          "columns": 3
+          "columns": 6
         }
       ],
       "header": "Mime Types",
