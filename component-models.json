@@ -1870,6 +1870,15 @@
         "valueType": "boolean"
       },
       {
+        "component": "text",
+        "name": "ctaLabel",
+        "label": "CTA Label",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "CTA text cannot exceed 30 characters"
+        }
+      },
+      {
         "component": "custom-asset-namespace:custom-asset",
         "label": "File Path",
         "name": "filepath",
@@ -1898,16 +1907,7 @@
             true
           ]
         }
-      },
-      {
-        "component": "text",
-        "name": "ctaLabel",
-        "label": "CTA Label",
-        "validation": {
-          "maxLength": 30,
-          "customErrorMsg": "CTA text cannot exceed 30 characters"
-        }
-      },
+      },      
       {
         "component": "aem-content",
         "name": "ctaLink",
