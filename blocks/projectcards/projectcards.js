@@ -28,10 +28,10 @@ const nextCta = SvgIcon({
   size: "16px",
 });
 
-function handleDisableButton(){
-  const prevButton = document.querySelector('.carousel-prev')
-  const nextButton = document.querySelector('.carousel-next')
-  const totalItems = document.querySelectorAll('.carousel-item').length;
+function handleDisableButton(block){
+  const prevButton = block.querySelector('.carousel-prev')
+  const nextButton = block.querySelector('.carousel-next')
+  const totalItems = block.querySelectorAll('.carousel-item').length;
 
   prevButton.innerHTML = ""
   
@@ -50,7 +50,7 @@ function handleDisableButton(){
   }
 }
 
-function moveSlide(direction) {
+function moveSlide(direction , block) {
 
   const totalItems = document.querySelectorAll('.carousel-item').length;
   const projectCard = document.querySelectorAll('.project-card')
@@ -61,7 +61,7 @@ function moveSlide(direction) {
   
   currentIndex += direction;
   document.dispatchEvent(new CustomEvent('currentIndexChanged', { detail: currentIndex }));
-  handleDisableButton()
+  handleDisableButton(block)
     
   if (currentIndex >= 0 && currentIndex < totalItems) {
     if (currentIndex < 0) {
@@ -287,12 +287,12 @@ const carouselContaier = document.createElement('div');
 
   prevButton.addEventListener('click',()=>{
     if(currentIndex-1>=0)
-      moveSlide(-1);
+      moveSlide(-1 , block);
   })
   nextButton.addEventListener('click',()=>{
     const totalItems = document.querySelectorAll('.carousel-item').length;
     if(currentIndex !== totalItems-1)
-      moveSlide(1);
+      moveSlide(1 ,block);
   })
 
   // Handle View All link using the stored last element
@@ -331,8 +331,8 @@ const carouselContaier = document.createElement('div');
       }
     });
   });
-  
-  const projectCard= block.querySelectorAll('.project-card')
+
+  const projectCard= block.querySelectorAll('.project-card')  
   if(projectCard.length<=CAROUSEL_SIZE){
     nextButton.append(stringToHTML(nextDisableCta))
   }else{
@@ -340,7 +340,7 @@ const carouselContaier = document.createElement('div');
   }
 
   document.addEventListener('currentIndexChanged', function(e) {
-    handleDisableButton()
+    handleDisableButton(block)
   });
   
 }
