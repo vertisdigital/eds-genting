@@ -8,28 +8,29 @@
     {
       "fields": [
         {
+          "columns": 2,
           "defaultValue": [
-            "image/*",
-            "video/*",
-            "file/*"
+            "image/*"
           ],
           "element": "checkbox",
           "name": "type",
           "options": [
             {
-              "label": "Image",
-              "readOnly": true,
+              "label": "Images",
               "value": "image/*"
             },
             {
-              "label": "Video",
+              "label": "Videos",
               "value": "video/*"
             },
             {
-              "label": "File",
-              "value": "file/*"
+              "label": "Documents",
+              "value": "application/pdf"
+            },
+            {
+              "label": "Archives",
+              "value": "application/zip"
             }
-                   
           ]
         }
       ],
@@ -69,7 +70,7 @@
             {
               "label": "Excel",
               "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            }     
+            }
           ],
           "columns": 6
         }
