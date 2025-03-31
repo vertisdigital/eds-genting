@@ -1903,14 +1903,6 @@
         "component": "text",
         "name": "ctaLabel",
         "label": "CTA Label",
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            false
-          ]
-        },
         "validation": {
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
