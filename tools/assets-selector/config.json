@@ -14,12 +14,10 @@
               "options": [
                 {
                   "label": "Image",
-                  "readOnly": true,
                   "value": "image/*"
                 },
                 {
                   "label": "video",
-                  "readOnly": true,
                   "value": "video/*"
                 }
               ]
