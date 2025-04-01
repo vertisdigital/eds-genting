@@ -61,7 +61,7 @@ export default function decorate(block) {
 
               // Set remaining children excluding first one and handle special case
               if (children[5]) {
-                const checkDownloadLink = children[5].textContent?.trim();
+                // const checkDownloadLink = children[5].textContent?.trim();
                 if (checkDownloadLink === 'true') {
                   // Remove elements 3 and 5
                   remainingChildren = [
