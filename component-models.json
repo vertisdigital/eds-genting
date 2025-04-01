@@ -1752,8 +1752,8 @@
         "name": "title",
         "label": "Title",
         "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
+          "maxLength": 100,
+          "customErrorMsg": "Description cannot exceed 100 characters"
         }
       }
     ]
@@ -1775,7 +1775,12 @@
         "component": "number",
         "name": "loadMoreItems",
         "label": "Load More Items",
-        "valueType": "number"
+        "valueType": "number",
+        "validation": {
+          "numberMin": 1,
+          "numberMax": 100,
+          "customErrorMsg": "Load More Items must be a number between 1 and 100"
+        }
       }
     ]
   },
@@ -1951,6 +1956,53 @@
         "name": "filepathTitle",
         "label": "Alt Text",
         "valueType": "string",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "name": "ctaLinkTarget",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ],
+
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "name": "filepathTarget",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ],
         "condition": {
           "===": [
             {
