@@ -1674,12 +1674,7 @@
       {
         "component": "text",
         "name": "awardyear",
-        "label": "Award Year",
-        "validation": {
-          "maxLength": 4,
-          "regExp": "^\\d{4}$",
-          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
-        }
+        "label": "Award Year" 
       },
       {
         "component": "text",
