@@ -347,7 +347,7 @@
 }
 
 /* Ensure responsive layout */
-@media (width <= 767px) {
+@media (width <= 767px) { 
   .hero-banner-container {
     aspect-ratio: 13 / 18;
   }
