@@ -32,6 +32,6 @@
 
 @media (width >= 1100px) {
   .iframe-wrapper {
-      max-width: 1140px;
+      max-width: 80%;
   }
 }
