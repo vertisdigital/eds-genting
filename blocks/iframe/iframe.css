@@ -1,6 +1,5 @@
 .iframe-wrapper {
   position: relative;
-  width: 100%;
   overflow: hidden;
   height: 1220px;
 }
@@ -31,7 +30,7 @@
 }
 
 @media (width >= 1100px) {
-  .iframe-wrapper {
-      max-width: 80%;
+  .iframe-container:not(.tab-wrapper .iframe-container) .iframe-wrapper {
+    max-width: 80%; 
   }
 }
