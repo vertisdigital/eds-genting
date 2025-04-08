@@ -215,6 +215,6 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container > .image-tile > div {
-    min-height: 472px;
+    aspect-ratio: 776 / 472;
   }
 }

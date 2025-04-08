@@ -4,7 +4,7 @@ p {
 
 .projectslistitem {
     padding-top: 36px;
-    padding-bottom: 45px;
+    padding-bottom: 36px;
     border-top: 1px solid var(--text-color);
     display: flex;
 }
@@ -69,7 +69,7 @@ p {
 @media (width <= 992px)  {
     .projectslistitem {
         padding-top: 24px;
-        padding-bottom: 40px;
+        padding-bottom: 24px;
     }
     .project-cta a.button:any-link{
         margin-top:24px
@@ -79,7 +79,7 @@ p {
 @media (width <= 767px) {
     .projectslistitem {
         padding-top: 18px;
-        padding-bottom: 32px;
+        padding-bottom: 18px;
         border-top: 1px solid var(--text-color);
         display: flex;
     }
