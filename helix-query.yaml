@@ -39,17 +39,20 @@ indices:
         value: path
  
       # 1. Cards
-      cardsAllContent:
+      cardsBlock:
         select: .cards
         value: textContent(el)
-      cardsAllTitles:
-        select: .cards > div > div > div:nth-child(1)
+      cardItems:
+        select: .cards > div
         value: textContent(el)
-      cardsAllDescriptions:
-        select: .cards > div > div > div:nth-child(2)
+      cardItemHeadings:
+        select: .cards > div > div:nth-child(1) > div
         value: textContent(el)
-      cardsAllImages:
-        select: .cards > div > div > div:nth-child(1) > a
+      cardItemDescriptions:
+        select: .cards > div > div:nth-child(2) > div
+        value: textContent(el)
+      cardItemImages:
+        select: .cards > div > div:nth-child(3) > div > a
         value: attribute(el, "href")
  
       # 2. Columns
@@ -100,17 +103,17 @@ indices:
         value: textContent(el)
  
       # 6. Feature
-      featureAllContent:
+      featureBlock:
         select: .feature
         value: textContent(el)
-      featureAllTitles:
+      featureTitle:
         select: .feature > div > div:nth-child(1)
         value: textContent(el)
-      featureAllDescriptions:
+      featureDescription:
         select: .feature > div > div:nth-child(2)
         value: textContent(el)
-      featureAllImages:
-        select: .feature > div > div:nth-child(4) > div > a
+      featureImage:
+        select: .feature > div > div:nth-child(3) > div > a
         value: attribute(el, "href")
  
       # 7. Footer
@@ -146,17 +149,17 @@ indices:
         value: attribute(el, "href")
  
       # 11. Hero Banner
-      heroBannerAllContent:
+      heroBannerBlock:
         select: .herobanner
         value: textContent(el)
-      heroBannerAllTitles:
+      heroBannerHeading:
+        select: .herobanner > div:nth-child(1) > div
+        value: textContent(el)
+      heroBannerDescription:
         select: .herobanner > div:nth-child(2) > div
         value: textContent(el)
-      heroBannerAllDescriptions:
-        select: .herobanner > div:nth-child(3) > div
-        value: textContent(el)
-      heroBannerAllImages:
-        select: .herobanner > div:nth-child(1) > div > a
+      heroBannerImage:
+        select: .herobanner > div:nth-child(3) > div > a
         value: attribute(el, "href")
  
       # 12. Listing
@@ -185,16 +188,16 @@ indices:
         value: attribute(el, "href")
  
       # 14. Text Media Block
-      textMediaBlockAllContent:
+      textMediaBlock:
         select: .textmediablock
         value: textContent(el)
-      textMediaBlockAllHeadings:
+      textMediaHeading:
         select: .textmediablock > div:nth-child(1) > div
         value: textContent(el)
-      textMediaBlockAllDescriptions:
+      textMediaDescription:
         select: .textmediablock > div:nth-child(2) > div
         value: textContent(el)
-      textMediaBlockAllImages:
+      textMediaImage:
         select: .textmediablock > div:nth-child(3) > div > a
         value: attribute(el, "href")
  
@@ -207,62 +210,83 @@ indices:
         value: textContent(el)
  
       # 16. Tiles
-      tilesAllContent:
+      tilesBlock:
         select: .tiles
         value: textContent(el)
-      tilesHeadings:
+      tilesHeading:
         select: .tiles > div > div:nth-child(1)
         value: textContent(el)
-      tilesDescriptions:
+      tilesDescription:
         select: .tiles > div > div:nth-child(2)
         value: textContent(el)
-      tilesImages:
+      tilesImage:
         select: .tiles > div > div:nth-child(3) > a
         value: attribute(el, "href")
-      tilesCtas:
-        select: .tiles > div > div:nth-child(7)
+      tilesCta:
+        select: .tiles > div > div:nth-child(4)
+        value: textContent(el)
+      tilesMainHeading:
+        select: .tiles > div:first-child > div:first-child, .tiles h2
+        value: textContent(el)
+      tilesMainDescription:
+        select: .tiles > div:first-child > div:nth-child(2), .tiles > p
         value: textContent(el)
 
       # 17. Awards Gallery
-      awardsgalleryAllContent:
+      awardsGalleryBlock:
         select: .awardsgallery
         value: textContent(el)
-      awardsgalleryAllTitles:
+      awardsGalleryItems:
+        select: .awardsgallery > div
+        value: textContent(el)
+      awardsGalleryYears:
         select: .awardsgallery > div > div:nth-child(1)
         value: textContent(el)
-      awardsgalleryAllYears:
-        select: .awardsgallery > div > div:nth-child(1) > div
+      awardsGalleryTitles:
+        select: .awardsgallery > div > div:nth-child(2)
         value: textContent(el)
-      awardsgalleryAllDescriptions:
-        select: .awardsgallery > div > div:nth-child(3) > div
+      awardsGalleryDescriptions:
+        select: .awardsgallery > div > div:nth-child(3)
         value: textContent(el)
         
       # 18. Board of Directors
-      boardofdirectorsAllContent:
+      boardOfDirectorsBlock:
         select: .boardofdirectors
         value: textContent(el)
-      boardofdirectorsAllNames:
+      directorItems:
+        select: .boardofdirectors > div
+        value: textContent(el)
+      directorNames:
         select: .boardofdirectors > div > div:nth-child(1)
         value: textContent(el)
-      boardofdirectorsAllTitles:
-        select: .boardofdirectors > div > div:nth-child(4) > div
+      directorImages:
+        select: .boardofdirectors > div > div:nth-child(2) > div > a
+        value: attribute(el, "href")
+      directorTitles:
+        select: .boardofdirectors > div > div:nth-child(3)
         value: textContent(el)
-      boardofdirectorsAllBios:
-        select: .boardofdirectors > div > div:nth-child(7) > div
+      directorBios:
+        select: .boardofdirectors > div > div:nth-child(4)
         value: textContent(el)
         
       # 19. Contact Us
-      contactUsAllContent:
-        select: .contactus
+      contactBlock:
+        select: .contact
         value: textContent(el)
-      contactUsAllHeadings:
-        select: .contactus > div:nth-child(1) > div
+      contactHeading:
+        select: .contact > div > div:nth-child(1)
         value: textContent(el)
-      contactUsAllDescriptions:
-        select: .contactus > div:nth-child(1) > div:nth-child(2)
+      contactDescription:
+        select: .contact > div > div:nth-child(2)
         value: textContent(el)
-      contactUsAllEmails:
-        select: .contactus > div:nth-child(1) > div:nth-child(7)
+      contactPhone:
+        select: .contact > div > div:nth-child(3)
+        value: textContent(el)
+      contactEmail:
+        select: .contact > div > div:nth-child(4)
+        value: textContent(el)
+      contactAddress:
+        select: .contact > div > div:nth-child(5)
         value: textContent(el)
         
       # 20. Corporate Policies
@@ -313,16 +337,19 @@ indices:
         value: attribute(el, "href")
         
       # 24. Statistics
+      statisticsBlock:
+        select: .statistics
+        value: textContent(el)
       statisticsTitle:
-        select: .statistics > div:nth-child(2) > div
+        select: .statistics > div:nth-child(1) > div
         value: textContent(el)
       statisticsValue:
-        select: .statistics > div:nth-child(4) > div:nth-child(2)
+        select: .statistics > div:nth-child(2) > div
         value: textContent(el)
       statisticsLabel:
-        select: .statistics > div:nth-child(4) > div:nth-child(3)
+        select: .statistics > div:nth-child(3) > div
         value: textContent(el)
-        
+
       # 25. Projects List
       projectsListAllContent:
         select: .projectslist
@@ -362,11 +389,14 @@ indices:
         value: textContent(el)
 
       # 29. Tabs
-      tabsAllContent:
+      tabsBlock:
         select: .tabs
         value: textContent(el)
-      tabsAllTitles:
+      tabTitles:
         select: .tabs > div > div:nth-child(1)
+        value: textContent(el)
+      tabContents:
+        select: .tabs > div > div:nth-child(2)
         value: textContent(el)
 
       # 30. Accordion
@@ -509,14 +539,23 @@ indices:
         value: textContent(el)
 
       # 47. History Milestones
-      historyMilestonesAllContent:
+      historyMilestonesBlock:
         select: .historymilestones
         value: textContent(el)
-      historyMilestonesAllYears:
+      milestoneItems:
+        select: .historymilestones > div
+        value: textContent(el)
+      milestoneYears:
         select: .historymilestones > div > div:nth-child(1)
         value: textContent(el)
-      historyMilestonesAllDescriptions:
+      milestoneDescriptions:
         select: .historymilestones > div > div:nth-child(2)
+        value: textContent(el)
+      milestoneImages:
+        select: .historymilestones > div > div:nth-child(3) > div > a
+        value: attribute(el, "href")
+      historyMilestonesTabTitles:
+        select: .historymilestones .tabs > div > div:nth-child(1)
         value: textContent(el)
 
       # 48. Load More
