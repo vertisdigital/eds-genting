@@ -81,9 +81,6 @@ p {
         padding-top: 18px;
         padding-bottom: 18px;
         border-top: 1px solid var(--text-color);
-        display: flex;
-    }
-    .projectslistitem {
         display: block;
     }
     .projectslistitem .left-col, .projectslistitem .right-col {
