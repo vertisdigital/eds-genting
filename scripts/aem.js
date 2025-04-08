@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
+import { errorLogger as logger } from "./logger.js";
 /* eslint-env browser */
 function sampleRUM(checkpoint, data) {
   // eslint-disable-next-line max-len
@@ -48,6 +48,7 @@ function sampleRUM(checkpoint, data) {
               .replace(/ at /, '@')
               .trim();
           } catch (err) {
+            logger.error(err);
             /* error structure was not as expected */
           }
           return errData;
@@ -118,6 +119,7 @@ function sampleRUM(checkpoint, data) {
     }
     document.dispatchEvent(new CustomEvent('rum', { detail: { checkpoint, data } }));
   } catch (error) {
+    logger.error(error);
     // something went awry
   }
 }
@@ -142,8 +144,7 @@ function setup() {
         [window.hlx.codeBasePath] = scriptURL.href.split('/scripts/scripts.js');
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+      logger.error(error);
     }
   }
 }
@@ -363,6 +364,7 @@ function wrapTextNodes(block) {
     'H4',
     'H5',
     'H6',
+    'DIV',
   ];
 
   const wrap = (el) => {
@@ -372,7 +374,7 @@ function wrapTextNodes(block) {
       // move the instrumentation from the cell to the new paragraph, also keep the class
       // in case the content is a buttton and the cell the button-container
       .filter(({ nodeName }) => nodeName === 'class'
-        || nodeName.startsWith('data-aue')
+        || nodeName.startsWith('data-gen')
         || nodeName.startsWith('data-richtext'))
       .forEach(({ nodeName, nodeValue }) => {
         wrapper.setAttribute(nodeName, nodeValue);
@@ -464,25 +466,218 @@ function decorateIcons(element, prefix = '') {
     decorateIcon(span, prefix);
   });
 }
+/**
+ * Creates or gets a paragraph element with content
+ * @param {Element} container Container element to find/create paragraph in
+ * @param {Object} options Optional configuration
+ * @returns {Element} The paragraph element
+ */
+function getOrCreateParagraph(container, options = {}) {
+  const {
+    useInnerHTML = false,
+    preserveHTML = false,
+  } = options;
+
+  let p = container.querySelector('p');
+  if (!p) {
+    p = document.createElement('p');
+
+    // Handle content transfer based on options
+    if (useInnerHTML) {
+      p.innerHTML = container.innerHTML;
+    } else {
+      p.textContent = container.textContent;
+    }
+
+    // Clear container content appropriately
+    if (preserveHTML) {
+      container.innerHTML = '';
+    } else {
+      container.textContent = '';
+    }
+
+    container.appendChild(p);
+  }
+  return p;
+}
+
+function decorateAEMStructure(element) {
+  // Check for feature item structure
+  const hasPicture = element.querySelector('div > picture') || element.children[0]?.tagName === 'DIV';
+  const divElements = [...element.children].filter((el) => el.tagName === 'DIV');
+  const isProjectList = element.classList[0].indexOf('projectslist') === 0;
+  const isListing = element.classList[0].indexOf('listing') === 0;
+  const isSpecialComponent = ['projectcards', 'coreprinciples', 'herobanner']
+    .some(component => element.classList[0]?.indexOf(component) === 0);
+  
+  const hasFeatureStructure = divElements.length >= 3 && isSpecialComponent && hasPicture;
+
+  // Check for link field structure
+  const hasLinkButton = element.querySelector('div > a.button');
+  const hasRequiredDivs = divElements.length >= 3;
+  const hasLinkStructure = hasRequiredDivs && hasLinkButton;
+
+  // Check for tile structure
+  const hasListStructure = divElements.length >= 5;
+
+  // Add AEM attributes based on structure type
+  if (hasListStructure && isListing && !isProjectList) {
+    // Add listitem attributes to container
+    element.setAttribute('data-gen-model', 'listitem');
+
+    // Handle image link div (first div)
+    const imageDiv = divElements[0];
+    if (imageDiv && imageDiv.querySelector('a')) {
+      const link = imageDiv.querySelector('a');
+      if (link && !link.parentElement.matches('p')) {
+        const newP = document.createElement('p');
+        newP.appendChild(link);
+        imageDiv.innerHTML = '';
+        imageDiv.appendChild(newP);
+      }
+    }
+
+    // Handle title div (second div)
+    const titleDiv = divElements[1];
+    if (titleDiv) {
+      const p = getOrCreateParagraph(titleDiv);
+      p.setAttribute('data-gen-prop', 'title');
+      p.setAttribute('data-gen-type', 'text');
+    }
+
+    // Handle description div (third div)
+    const descriptionDiv = divElements[2];
+    if (descriptionDiv) {
+      const p = getOrCreateParagraph(descriptionDiv, { useInnerHTML: true });
+      p.setAttribute('data-gen-prop', 'description');
+      p.setAttribute('data-gen-label', 'Description');
+      p.setAttribute('data-gen-type', 'text');
+    }
+
+    // Handle CTA button div (fourth div)
+    const ctaButtonDiv = divElements[3];
+    if (ctaButtonDiv) {
+      // Keep existing button-container and button structure
+      const buttonContainer = ctaButtonDiv.querySelector('.button-container');
+      if (!buttonContainer) {
+        const p = ctaButtonDiv.querySelector('p') || document.createElement('p');
+        p.classList.add('button-container');
+        const link = ctaButtonDiv.querySelector('a');
+        if (link && !p.contains(link)) {
+          p.appendChild(link);
+          ctaButtonDiv.innerHTML = '';
+          ctaButtonDiv.appendChild(p);
+        }
+      }
+    }
+
+    // Handle target div (fifth div)
+    const targetDiv = divElements[4];
+    if (targetDiv) {
+      const p = getOrCreateParagraph(targetDiv);
+      p.setAttribute('data-gen-prop', 'ctaTarget');
+      p.setAttribute('data-gen-label', 'Target');
+      p.setAttribute('data-gen-type', 'text');
+    }
+  } else if (hasFeatureStructure && !isProjectList) {
+    // Add feature item attributes to container
+    element.setAttribute('data-gen-model', 'featureItem');
+
+    // Add attributes to picture container (first div)
+    const [iconDiv] = divElements;
+    if (iconDiv && iconDiv.querySelector('picture')) {
+      iconDiv.setAttribute('data-gen-prop', 'feature-icon');
+      iconDiv.setAttribute('data-gen-label', 'Icon');
+      iconDiv.setAttribute('data-gen-type', 'media');
+    }
+
+    // Add attributes to text container (third div)
+    const [,, titleDiv] = divElements;
+
+    // Handle title div (third div)
+    if (titleDiv) {
+      titleDiv.setAttribute('data-gen-prop', 'feature-title');
+      titleDiv.setAttribute('data-gen-label', 'Text');
+      titleDiv.setAttribute('data-gen-type', 'richtext');
+    }
+  } else if (hasLinkStructure) {
+    // Add link field attributes to container
+    element.setAttribute('data-gen-model', 'linkField');
+  } else {
+    // Handle single div text content
+    const textDiv = divElements[0];
+    if (textDiv) {
+      // Check for rich text content - either long text or HTML formatting tags
+      const hasRichTextTags = /<(ul|ol|li|strong|em|u|i|b)[\s>]/.test(textDiv.innerHTML);
+      const hasLongText = hasRichTextTags || textDiv.textContent.trim().length > 100;
+
+      if (hasLongText) {
+        textDiv.setAttribute('data-gen-prop', 'description');
+      } else {
+        const { innerHTML } = textDiv;
+        const p = document.createElement('p');
+        p.setAttribute('data-gen-prop', 'title');
+        p.innerHTML = innerHTML;
+
+        textDiv.textContent = '';
+        textDiv.appendChild(p);
+      }
+    }
+  }
+}
 
 /**
  * Decorates all sections in a container element.
  * @param {Element} main The container element
  */
-function decorateSections(main) {
-  main.querySelectorAll(':scope > div:not([data-section-status])').forEach((section) => {
+function decorateSections(main, isExecute = true) {
+  main.querySelectorAll(':scope > div:not([data-section-status])').forEach((section, sectionIndex) => {
     const wrappers = [];
     let defaultContent = false;
-    [...section.children].forEach((e) => {
-      if ((e.tagName === 'DIV' && e.className) || !defaultContent) {
+
+    // Track components with same name
+    const componentNameCounts = {};
+
+    [...section.children].forEach((child, childIndex) => {
+      const childClass = child.className;
+
+      // Track component name occurrences
+      if (!componentNameCounts[childClass]) {
+        componentNameCounts[childClass] = 1;
+      } else {
+        componentNameCounts[childClass] += 1;
+      }
+
+      // Use the first occurrence index for identical components
+      const componentIndex = componentNameCounts[childClass];
+
+      child.className = `${childClass} ${childClass}-row`;
+
+      // Add index classes to nested elements
+      [...child.children].forEach((nestedElement, nestedIndex) => {
+        nestedElement.className = `${childClass}-nested-${componentIndex}-${nestedIndex + 1}`;
+
+        // Decorate AEM structure if present
+        if (window.location.href.indexOf('author') === -1 && isExecute) {
+          decorateAEMStructure(nestedElement, sectionIndex, childIndex);
+        }
+      });
+
+      // Create and process wrappers
+      if ((child.tagName === 'DIV' && child.className) || !defaultContent) {
         const wrapper = document.createElement('div');
         wrappers.push(wrapper);
-        defaultContent = e.tagName !== 'DIV' || !e.className;
+        defaultContent = child.tagName !== 'DIV' || !child.className;
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
       }
-      wrappers[wrappers.length - 1].append(e);
+      wrappers[wrappers.length - 1].append(child);
     });
-    wrappers.forEach((wrapper) => section.append(wrapper));
+
+    // Add wrappers to section
+    wrappers.forEach((wrapper) => {
+      section.append(wrapper);
+    });
+
     section.classList.add('section');
     section.dataset.sectionStatus = 'initialized';
     section.style.display = 'none';
@@ -596,16 +791,14 @@ async function loadBlock(block) {
               await mod.default(block);
             }
           } catch (error) {
-            // eslint-disable-next-line no-console
-            console.log(`failed to load module for ${blockName}`, error);
+            logger.error(`failed to load module for ${blockName}, ${error}`);
           }
           resolve();
         })();
       });
       await Promise.all([cssLoaded, decorationComplete]);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(`failed to load block ${blockName}`, error);
+      logger.error(`failed to load block for ${blockName}, ${error}`);
     }
     block.dataset.blockStatus = 'loaded';
   }
@@ -744,4 +937,5 @@ export {
   toClassName,
   waitForFirstImage,
   wrapTextNodes,
+  decorateAEMStructure,
 };

@@ -2,15 +2,17 @@ import Heading from '../../shared-components/Heading.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 /**
-* Loads and decorates the Hero Banner
-* @param {Element} block The herobanner block element
-*/
+ * Loads and decorates the Hero Banner
+ * @param {Element} block The herobanner block element
+ */
 export default function decorate(block) {
+
   const container = document.createElement('div');
 
-  container.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
+  container.classList.add('container');
 
   const aboutUsStats = document.createElement('div');
   aboutUsStats.classList.add('row', 'about-us-stats');
@@ -18,124 +20,120 @@ export default function decorate(block) {
   // About-Us left container
   const aboutUsLeftContent = document.createElement('div');
   aboutUsLeftContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-left');
-
+  const blockchildren = block.children;
   // Find the title and replace it with a heading
-  const titleElement = block.querySelector('[data-aue-prop="title"]');
-  if (titleElement) {
+  const titleElement = blockchildren[0].children[0];
+  if (titleElement && titleElement.textContent.trim() !== '') {
     const titleText = titleElement.textContent;
-    const header = document.createElement('header');
-    header.setAttribute('data-aue-prop', 'title');
-    header.setAttribute('data-aue-type', 'text');
-    header.setAttribute('data-aue-label', 'Title');
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
-    header.append(parsedHtml);
-    aboutUsLeftContent.append(header);
+    moveInstrumentation(titleElement, parsedHtml);
+    aboutUsLeftContent.append(parsedHtml);
     titleElement.remove();
   }
 
   // Find the heading and replace it with a heading
-  const headingElement = block.querySelector('[data-aue-prop="heading"]');
-  if (headingElement) {
+  const headingElement = blockchildren[1].children[0];
+  if (headingElement && headingElement.textContent.trim() !== '') {
     const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
     const parsedHtml = stringToHTML(headingHtml);
-
-    parsedHtml.setAttribute('data-aue-prop', 'heading');
-    parsedHtml.setAttribute('data-aue-label', 'Heading');
-    parsedHtml.setAttribute('data-aue-type', 'text');
+    moveInstrumentation(headingElement, parsedHtml);
     aboutUsLeftContent.append(parsedHtml);
     headingElement.remove();
   }
 
   // Find the sub-heading and replace it with a sub-heading
 
-  const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
-  if (subHeading) {
-    const subHeadingText = subHeading.querySelector('p').textContent;
-    const subHeadingElement = document.createElement('p');
-    subHeadingElement.className = 'about-us-left-sub-heading';
-    subHeadingElement.textContent = subHeadingText;
-    Array.from(subHeading.attributes).forEach((attr) => {
-      subHeadingElement.setAttribute(attr.name, attr.value);
-    });
-
-    aboutUsLeftContent.appendChild(subHeadingElement);
-    subHeading.remove();
+  const subHeading = blockchildren[2].children[0];
+  if (subHeading && subHeading.textContent.trim() !== '') {
+    subHeading.classList.add('about-us-left-sub-heading');
+    aboutUsLeftContent.appendChild(subHeading);
   }
 
-  // Find the LinkField and replace it with arrow icon
-  const linkField = block.querySelector('[data-aue-model="linkField"]');
+  // Find all LinkFields and replace with arrow icons
+  const linkField = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]');
   if (linkField) {
-    // Preserve original container
     const linkContainer = document.createElement('div');
-    Array.from(linkField.attributes).forEach((attr) => {
-      linkContainer.setAttribute(attr.name, attr.value);
-    });
+    linkContainer.className = 'links-container';
+    moveInstrumentation(linkField, linkContainer);
 
-    // Create link text div
-    const linkTextDiv = document.createElement('div');
-    const linkTextP = document.createElement('p');
-    linkTextP.className = 'button-container';
+    const linkDivs = Array.from(linkField.children);
+    // Ensure we have the expected structure (3 elements)
+    if (linkDivs.length === 3) {
+      // Get elements by index with proper type checking
+      const [linkTextDiv, iconDiv, targetDiv] = linkDivs;
+      
+      const linkData = {
+        text: linkTextDiv?.textContent?.trim(),
+        url: linkTextDiv?.querySelector('a')?.getAttribute('href'),
+        icon: iconDiv?.textContent?.trim()?.replace('-', ''),
+        target: targetDiv?.textContent?.trim(),
+        title: linkTextDiv?.querySelector('a')?.getAttribute('title')
+      };
 
-    // Handle link text
-    const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
-    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
-    const originalTargetName = originalTarget.textContent;
-    originalLink.setAttribute('target', originalTargetName);
-    originalLink.innerHTML = '';
-    originalTarget.innerHTML = '';
-    if (originalLink) {
-      const linkElement = document.createElement('a');
+      if (linkData.text || linkData.url) {
+        const link = document.createElement('a');
+        link.href = linkData.url || '#';
+        
+        // Handle special case for default AEM content
+        if (linkData.text.startsWith('/') || linkData.text.startsWith('#')) {
+          link.textContent = '';
+        } else {
+          link.textContent = linkData.text;
+        }
 
-      // Copy all attributes from original link
-      Array.from(originalLink.attributes).forEach((attr) => {
-        linkElement.setAttribute(attr.name, attr.value);
-      });
+        if (linkData.title) {
+          link.setAttribute('title', linkData.title);
+        }
 
-      // Set additional attributes
-      linkElement.className = 'button';
+        // Add icon if specified
+        if (linkData.icon) {
+          const arrowSVG = SvgIcon({ 
+            name: linkData.icon, 
+            className: 'about-us-left-link', 
+            size: '24px' 
+          });
+          link.append(stringToHTML(arrowSVG));
+        }
 
-      const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
-
-      const arrowIconName = arrowIcon.textContent.replace('-', '');
-      arrowIcon.innerHTML = '';
-      if (!arrowIcon) {
-        linkElement.textContent = originalLink.textContent;
-      } else {
-        const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
-        linkElement.append(stringToHTML(arrowSVG));
-
-        // Assemble link structure
-        linkTextP.appendChild(linkElement);
-        linkTextDiv.appendChild(linkTextP);
-        linkContainer.appendChild(linkTextDiv);
+        moveInstrumentation(linkTextDiv.querySelector('a'), link);
+        linkContainer.appendChild(link);
       }
-
-      // Add to container
+      
+      // Remove original elements after copying
+      linkTextDiv.remove();
+      iconDiv.remove();
+      targetDiv.remove();
+      
       aboutUsLeftContent.appendChild(linkContainer);
     }
+    // Remove the original linkField container after processing
+    linkField.remove();
+  }
 
-    // About-Us right container
-    const aboutUsRightContent = document.createElement('div');
-    aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
+  // About-Us right container
+  const aboutUsRightContent = document.createElement('div');
+  aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
-    // Collect all imageAndDescription elements first
-    const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
-    aboutUsDescription.forEach((description) => {
-    // Create feature item container
+  // Collect all imageAndDescription elements first
+  const featureItems = [].slice.call(block.children, 4);
+  if (featureItems) {
+    featureItems.forEach((feature) => {
+      const featureChildren = feature.children;
+      // checking and validating the feature item structure, as we need to get 4 children
+      
+      // Create feature item container
       const featureContainer = document.createElement('div');
-      Array.from(description.attributes).forEach((attr) => {
-        featureContainer.setAttribute(attr.name, attr.value);
-        featureContainer.classList.add('about-us-right-content');
-      });
-
+      featureContainer.classList.add('about-us-right-content');
+      moveInstrumentation(feature, featureContainer);
       // Handle image feature
-      const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
-      if (imageElement) {
+      const isImageExists = featureChildren[0].querySelector('a') ? true : false;
+      if (isImageExists) {
+        const imageElement = featureChildren[0].querySelector('a');
         const imageContainer = document.createElement('div');
-        const imageLink = imageElement.getAttribute('src');
-        const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
+        const imageLink = imageElement.getAttribute('src') ?? imageElement.getAttribute('href');
+        const imgAltText = feature.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
 
         if (imageLink) {
           const imageHtml = ImageComponent({
@@ -151,9 +149,8 @@ export default function decorate(block) {
           });
 
           const parsedImage = stringToHTML(imageHtml);
-          Array.from(imageElement.attributes).forEach((attr) => {
-            parsedImage.querySelector('img').setAttribute(attr.name, attr.value);
-          });
+          moveInstrumentation(imageElement, parsedImage.querySelector('img'));
+
           imageContainer.appendChild(parsedImage);
           featureContainer.appendChild(imageContainer);
           featureContainer.classList.add('image-container');
@@ -161,21 +158,23 @@ export default function decorate(block) {
       }
 
       // Handle text feature
-      const textElement = description.querySelector('[data-aue-prop="feature-title"]');
-      if (textElement) {
+      const textElement = featureChildren[1];
+      if (textElement && textElement.textContent.trim() !== '') {
         const textContainer = document.createElement('div');
         const statisticDiv = document.createElement('div');
         statisticDiv.className = 'statistic';
+        moveInstrumentation(textElement, statisticDiv);
 
-        const textContent = textElement.querySelectorAll('p');
-        textContent.forEach((text) => {
-          const span = document.createElement('span');
-          span.textContent = text.textContent;
-          Array.from(text.attributes).forEach((attr) => {
-            span.setAttribute(attr.name, attr.value);
+        const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.innerHTML;
+        if (typeof textContent === 'object') {
+          textContent.forEach((text) => {
+            statisticDiv.appendChild(text);
           });
+        } else {
+          const span = document.createElement('p');
+          span.innerHTML = textContent;
           statisticDiv.appendChild(span);
-        });
+        }
 
         textContainer.appendChild(statisticDiv);
         featureContainer.appendChild(textContainer);
@@ -183,25 +182,87 @@ export default function decorate(block) {
       }
 
       // Handle feature heading
-      const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
+      const featureHeadingElement = featureChildren[2];
       if (featureHeadingElement) {
         const headingContainer = document.createElement('div');
         const featureHeadingP = document.createElement('p');
-        featureHeadingP.textContent = featureHeadingElement.textContent;
+        featureHeadingP.innerHTML = featureHeadingElement.innerHTML;
         Array.from(featureHeadingElement.attributes).forEach((attr) => {
           featureHeadingP.setAttribute(attr.name, attr.value);
         });
         headingContainer.appendChild(featureHeadingP);
         featureContainer.appendChild(headingContainer);
       }
-
       aboutUsRightContent.appendChild(featureContainer);
     });
-
-    block.innerHTML = '';
-    aboutUsStats.appendChild(aboutUsLeftContent);
-    aboutUsStats.appendChild(aboutUsRightContent);
-    container.append(aboutUsStats);
-    block.appendChild(container);
   }
+  // check if data-aue-model="indices" exists
+  const indices = blockchildren[blockchildren.length - 1];
+  if (indices && indices.children.length === 3) {
+    // get less indices, more indices and indexnumber content elements
+    const lessIndices = indices.children[1];
+    const moreIndices = indices.children[0];
+    const indexElement = indices.children[2];
+    const indexNumber = parseInt(
+      indexElement?.textContent,
+      10,
+    );
+    indexElement.style.display = 'none';
+    // show the link to show more indices
+    const showMoreIndicesLink = document.createElement('button');
+    moveInstrumentation(moreIndices, showMoreIndicesLink);
+    // show the link to show less indices
+    const showLessIndicesLink = document.createElement('button');
+    moveInstrumentation(lessIndices, showLessIndicesLink);
+
+    // getting all the feature items in aboutUsDescription
+    const convDescription = aboutUsRightContent.children;
+    // removing the first child of all the feature items for the indices variant
+    for (let i = 0; i < convDescription.length; i += 1) {
+      if (convDescription[i].children[0].textContent?.trim() === '' && !convDescription[i].children[0].querySelector('picture, img')) { convDescription[i].children[0]?.remove(); }
+    }
+    // featureitems are  more than indexNumber indices then hide
+    // the remaing and show link to show more indices link with remaining indices count in text
+    if (!Number.isNaN(indexNumber) && indexNumber > 0 && indexNumber < convDescription.length) {
+      // hide the remaining indices
+      for (let i = indexNumber; i < convDescription.length; i += 1) {
+        convDescription[i].style.display = 'none';
+      }
+
+      showMoreIndicesLink.textContent = `${moreIndices?.textContent ?? 'Show More'
+      } (${convDescription.length - indexNumber})`;
+      showMoreIndicesLink.classList.add('show-more-indices');
+      showMoreIndicesLink.addEventListener('click', () => {
+        for (let i = indexNumber; i < convDescription.length - 1; i += 1) {
+          convDescription[i].style.display = 'flex';
+        }
+        showMoreIndicesLink.style.display = 'none';
+        showLessIndicesLink.style.display = 'block';
+      });
+
+      showLessIndicesLink.textContent = lessIndices?.textContent ?? 'Show Less';
+      showLessIndicesLink.classList.add('show-less-indices');
+      showLessIndicesLink.style.display = 'none';
+      showLessIndicesLink.addEventListener('click', () => {
+        for (let i = indexNumber; i < convDescription.length - 1; i += 1) {
+          convDescription[i].style.display = 'none';
+        }
+        showMoreIndicesLink.style.display = 'block';
+        showLessIndicesLink.style.display = 'none';
+      });
+      indices.innerHTML = '';
+      indices.appendChild(showMoreIndicesLink);
+      indices.appendChild(showLessIndicesLink);
+    } else {
+      indices.style.display = 'none';
+    }
+
+    indices.appendChild(indexElement);
+    aboutUsRightContent.appendChild(indices);
+  }
+  block.innerHTML = '';
+  aboutUsStats.appendChild(aboutUsLeftContent);
+  aboutUsStats.appendChild(aboutUsRightContent);
+  container.append(aboutUsStats);
+  block.appendChild(container);
 }

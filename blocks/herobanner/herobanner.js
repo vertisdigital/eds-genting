@@ -2,6 +2,8 @@ import ImageComponent from '../../shared-components/ImageComponent.js';
 import Heading from '../../shared-components/Heading.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
@@ -9,37 +11,36 @@ export default function decorate(block) {
   if (!heroContainer) {
     heroContainer = document.createElement('div');
     heroContainer.className = 'hero-banner-container';
-    heroContainer.setAttribute('data-aue-resource', 'herobanner');
-    heroContainer.setAttribute('data-aue-type', 'block');
   }
 
-  const imageLink = block.querySelector('a[href]');
+  const imageLink = block.querySelector('.herobanner-nested-1-1 a[href]');
   if (imageLink) {
     const imageUrl = imageLink.getAttribute('href');
     const imageAlt = imageLink.getAttribute('title') || 'Hero Image';
-
     const imageHtml = ImageComponent({
       src: imageUrl,
       alt: imageAlt,
       className: 'hero-image',
+      asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
-          width: 768,
           src: `${imageUrl}`,
+          smartCrop : 'Small'
         },
         tablet: {
-          width: 1024,
           src: `${imageUrl}`,
+          smartCrop : 'Medium'
         },
         desktop: {
-          width: 1920,
           src: `${imageUrl}`,
+          smartCrop : 'Desktop'
         },
       },
       lazy: false,
     });
 
     const imageContainer = document.createElement('div');
+    // Copy data attributes from parent element if they exist
     imageContainer.setAttribute('data-aue-model', 'bannerimage');
     imageContainer.setAttribute('data-aue-label', 'Banner Image');
     imageContainer.insertAdjacentHTML('beforeend', imageHtml);
@@ -47,85 +48,78 @@ export default function decorate(block) {
     imageLink.remove();
   }
 
-  const headingElement = block.querySelector('[data-aue-prop="bannerheading"]');
+  const heroContent = document.createElement('div');
+  heroContent.classList.add('hero-content', 'columns-container', 'container');
+
+  const headingElement = block.querySelector('[data-aue-prop="bannerheading"], .herobanner-nested-1-2 p');
   if (headingElement) {
     const headingText = headingElement.textContent;
     const headingContainer = document.createElement('div');
-    headingContainer.setAttribute('data-aue-model', 'bannerheading');
-    headingContainer.setAttribute('data-aue-label', 'Banner Heading');
-    headingContainer.setAttribute(
-      'data-aue-prop',
-      headingElement.getAttribute('data-aue-prop'),
-    );
-    headingContainer.setAttribute('data-aue-type', 'text');
+    // Copy data attributes from source element
+    moveInstrumentation(headingContainer, headingElement);
     const headingHtml = Heading({
       level: 5,
       text: headingText,
       className: 'hero-heading',
     });
     headingContainer.insertAdjacentHTML('beforeend', headingHtml);
-    heroContainer.appendChild(headingContainer);
+    heroContent.append(headingContainer);
     headingElement.remove();
   }
 
-  const titleElement = block.querySelector('[data-aue-prop="bannertitle"]');
+  const titleElement = block.querySelector('[data-aue-prop="bannertitle"], .herobanner-nested-1-3 p');
   if (titleElement) {
     const titleText = titleElement.textContent;
     const titleContainer = document.createElement('div');
-    titleContainer.setAttribute('data-aue-model', 'bannertitle');
-    titleContainer.setAttribute('data-aue-label', 'Banner Title');
-    titleContainer.setAttribute(
-      'data-aue-prop',
-      titleElement.getAttribute('data-aue-prop'),
-    );
-    titleContainer.setAttribute('data-aue-type', 'text');
+    // Copy data attributes from source element
+    moveInstrumentation(titleElement, titleContainer);
     const headingHtml = Heading({
       level: 2,
       text: titleText,
       className: 'hero-title',
     });
     titleContainer.insertAdjacentHTML('beforeend', headingHtml);
-    heroContainer.appendChild(titleContainer);
+    heroContent.append(titleContainer);
     titleElement.remove();
   }
 
   const descElement = block.querySelector(
-    '[data-aue-prop="bannerdescription"]',
+    '[data-aue-prop="bannerdescription"], .herobanner-nested-1-4 p',
   );
   if (descElement) {
     const descriptionDiv = document.createElement('div');
     descriptionDiv.className = 'hero-description';
-    descriptionDiv.setAttribute('data-aue-model', 'bannerdescription');
-    descriptionDiv.setAttribute('data-aue-label', 'Banner Description');
-    descriptionDiv.setAttribute(
-      'data-aue-prop',
-      descElement.getAttribute('data-aue-prop'),
-    );
-    descriptionDiv.setAttribute('data-aue-type', 'text');
+    // Copy data attributes from source element
+    moveInstrumentation(descElement, descriptionDiv);
     descriptionDiv.textContent = descElement.textContent;
-    heroContainer.appendChild(descriptionDiv);
+    heroContent.appendChild(descriptionDiv);
     descElement.remove();
   }
 
-  const arrowIconLink = block.querySelector('[data-aue-prop="ctabuttonText"]');
-  if (arrowIconLink) {
+  const arrowIconLink = block.children[4];
+  if (arrowIconLink && arrowIconLink.querySelector('a') != null) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
       className: 'hero-arrow-icon',
-      size: '32',
-      color: 'white',
+      size: '24',
+      color: '#B29152',
     });
-    heroContainer.insertAdjacentHTML('beforeend', arrowIconHtml);
+    const parsedHtml = stringToHTML(arrowIconHtml);
+    arrowIconLink.querySelector('a').textContent = '';
+    arrowIconLink.querySelector('a')?.append(parsedHtml);
+    heroContent.appendChild(arrowIconLink);
+  }
+  heroContainer.appendChild(heroContent);
+  const carouselItems = block.querySelectorAll(
+    '[data-aue-model="bannercarousel"],[data-gen-model="featureItem"]',
+  );
+
+  if (carouselItems?.length) {
+    heroContainer.classList.add('hero-carousal-variation');
   }
 
-  const carouselItems = block.querySelectorAll(
-    '[data-aue-model="bannercarousel"]',
-  );
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
-  carouselContainer.setAttribute('data-aue-model', 'bannercarousel');
-  carouselContainer.setAttribute('data-aue-label', 'Banner Carousel');
-
   const carouselWrapper = document.createElement('div');
   carouselWrapper.className = 'carousel-wrapper';
   carouselWrapper.setAttribute('data-aue-type', 'container');
@@ -145,12 +139,12 @@ export default function decorate(block) {
   });
   const leftArrowDisabled = SvgIcon({
     name: 'leftarrowdisabled',
-    className: 'arrow-link',
+    className: 'arrow-link disabled',
     size: '12',
   });
   const rightArrowDisabled = SvgIcon({
     name: 'rightarrowdisabled',
-    className: 'arrow-link',
+    className: 'arrow-link disabled',
     size: '12',
   });
   const ellipse = SvgIcon({
@@ -160,7 +154,7 @@ export default function decorate(block) {
   });
 
   const scrollIntervalDiv = block.querySelector(
-    '[data-aue-prop="scrollInterval"]',
+    '[data-aue-prop="scrollInterval"], .herobanner-nested-1-6 p',
   );
 
   let scrollInterval = 3000;
@@ -203,6 +197,8 @@ export default function decorate(block) {
       if (currentIndex === carouselItems.length - 1) {
         rightIcon.innerHTML = '';
         rightIcon.appendChild(stringToHTML(rightArrowDisabled));
+        leftIcon.innerHTML = '';
+        leftIcon.appendChild(stringToHTML(leftArrow));
       } else if (currentIndex === 0) {
         leftIcon.innerHTML = '';
         leftIcon.appendChild(stringToHTML(leftArrowDisabled));
@@ -226,87 +222,62 @@ export default function decorate(block) {
   carouselItems.forEach((item) => {
     const carouselItem = document.createElement('div');
     carouselItem.classList.add('carousel-item');
-    carouselItem.setAttribute('data-aue-model', 'bannercarousel');
-    carouselItem.setAttribute(
-      'data-aue-resource',
-      item.getAttribute('data-aue-resource'),
-    );
-    carouselItem.setAttribute('data-aue-label', 'Banner Carousel');
-    carouselItem.setAttribute('data-aue-type', 'component');
+    // Copy data attributes from source carousel item
+    moveInstrumentation(item, carouselItem);
 
     const carouselItemContent = document.createElement('div');
     carouselItemContent.classList.add('carousel-content');
-    carouselItemContent.setAttribute('data-aue-type', 'content');
-    const newsLatterImage = document.createElement('div');
-    newsLatterImage.classList.add('carousel-image');
+    moveInstrumentation(item, carouselContainer);
+    const newsLetterImage = document.createElement('div');
+    newsLetterImage.classList.add('carousel-image');
     const newsLinkDiv = document.createElement('div');
     newsLinkDiv.classList.add('news-link-container');
     const newsLinkArrowDiv = document.createElement('div');
     newsLinkArrowDiv.classList.add('news-link-arrow-container');
 
     carouselItem.appendChild(carouselItemContent);
-    carouselItem.appendChild(newsLatterImage);
+    carouselItem.appendChild(newsLetterImage);
 
     // Extract and append the title
-    const carouselTitleElement = item.querySelector('[data-aue-prop="title"]');
+    const itemDivs = item.querySelectorAll('div');
+
+    const carouselTitleElement = itemDivs[0].querySelector('p');
     if (carouselTitleElement) {
       const titleText = carouselTitleElement.textContent;
       const titleHtml = `<p class="news-title">${titleText}</p>`;
       const titleContainer = document.createElement('div');
-      titleContainer.setAttribute('data-aue-label', 'Title');
-      titleContainer.setAttribute(
-        'data-aue-prop',
-        carouselTitleElement.getAttribute('data-aue-prop'),
-      );
-      titleContainer.setAttribute('data-aue-type', 'text');
+      moveInstrumentation(itemDivs[0], titleContainer);
       titleContainer.insertAdjacentHTML('beforeend', titleHtml);
       carouselItemContent.appendChild(titleContainer);
       carouselTitleElement.remove();
     }
 
     // Extract and append the description
-    const descriptionElement = item.querySelector(
-      '[data-aue-prop="description"]',
-    );
+    const descriptionElement = itemDivs[1].querySelector('p');
     if (descriptionElement) {
       const descriptionText = descriptionElement.textContent;
       const descriptionHtml = `<p class="news-description">${descriptionText}</p>`;
       const descContainer = document.createElement('div');
-      descContainer.setAttribute('data-aue-label', 'Description');
-      descContainer.setAttribute(
-        'data-aue-prop',
-        descriptionElement.getAttribute('data-aue-prop'),
-      );
-      descContainer.setAttribute('data-aue-type', 'text');
+      moveInstrumentation(itemDivs[1], descContainer);
       descContainer.insertAdjacentHTML('beforeend', descriptionHtml);
       carouselItemContent.appendChild(descContainer);
       descriptionElement.remove();
     }
 
     // Extract and append the "Read More" label
-    const readMoreLabelElement = item.querySelector(
-      '[data-aue-prop="readmorelabel"]',
-    );
+    const readMoreLabelElement = itemDivs[3].querySelector('p');
+
     if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
-      const buttonContainer = readMoreLabelElement.parentElement.nextElementSibling.querySelector('.button-container a');
-      const href = buttonContainer ? buttonContainer.getAttribute('href') : '';
-      const currentUrl = window.location.href;
-      const newUrl = currentUrl.replace(window.location.pathname, href);
-      const readMoreLabelHtml = `<a class="news-link" href="${newUrl}" target="_blank">${readMoreLabelText}</a>`;
+      const buttonContainer = itemDivs[4]?.querySelector('a');
+      const href = buttonContainer?.getAttribute('href') ?? '/';
+      const readMoreLabelHtml = `<a class="news-link" href="${href}">${readMoreLabelText}</a>`;
       const readMoreContainer = document.createElement('div');
-      readMoreContainer.setAttribute('data-aue-model', 'readmorelabel');
-      readMoreContainer.setAttribute('data-aue-label', 'Read More Label');
-      readMoreContainer.setAttribute(
-        'data-aue-prop',
-        readMoreLabelElement.getAttribute('data-aue-prop'),
-      );
-      readMoreContainer.setAttribute('data-aue-type', 'text');
+      moveInstrumentation(itemDivs[3], readMoreContainer);
       readMoreContainer.insertAdjacentHTML('beforeend', readMoreLabelHtml);
       newsLinkDiv.appendChild(readMoreContainer);
       readMoreLabelElement.remove();
     }
-
     // Extract the two SVG icons and append them using ImageComponent
     const firstIconLink = block.querySelector(
       'a[href="material-symbols_chevron-left%20(1).svg"]',
@@ -322,9 +293,9 @@ export default function decorate(block) {
         alt: 'Chevron Left (1) Icon',
         className: 'first-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: { width: 768, src: firstIconLink.getAttribute('href') },
-          tablet: { width: 1024, src: firstIconLink.getAttribute('href') },
-          desktop: { width: 1920, src: firstIconLink.getAttribute('href') },
+          mobile: {src: firstIconLink.getAttribute('href') },
+          tablet: {src: firstIconLink.getAttribute('href') },
+          desktop: {src: firstIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -335,9 +306,9 @@ export default function decorate(block) {
         alt: 'Chevron Left Icon',
         className: 'second-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: { width: 768, src: secondIconLink.getAttribute('href') },
-          tablet: { width: 1024, src: secondIconLink.getAttribute('href') },
-          desktop: { width: 1920, src: secondIconLink.getAttribute('href') },
+          mobile: {  src: secondIconLink.getAttribute('href') },
+          tablet: { src: secondIconLink.getAttribute('href') },
+          desktop: {src: secondIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -353,43 +324,38 @@ export default function decorate(block) {
     carouselItemContent.appendChild(newsLinkDiv);
 
     // Add the image to the carousel
-    const firstDiv = item.querySelector('div');
-    if (firstDiv) {
-      const pTag = firstDiv.querySelector('p');
-      if (pTag) {
-        const aTag = pTag.querySelector('a');
-        if (aTag) {
-          // const imgUrl = aTag.getAttribute('href');
-          const imgUrl = 'https://cdn.builder.io/api/v1/image/assets/TEMP/3818aa4f34615b927264d6d8cab07f1e20d364cf0b7277c747dd56359fc99bce?placeholderIfAbsent=true&apiKey=16b1633103d8450ead7bc93647340540';
-          const imgAlt = aTag.getAttribute('title') || 'Thumbnail';
-
-          const imgHtml = ImageComponent({
-            src: imgUrl,
-            alt: imgAlt,
-            className: 'news-thumbnail',
-            breakpoints: {
-              mobile: {
-                width: 768,
-                src: `${imgUrl}`,
-              },
-              tablet: {
-                width: 1024,
-                src: `${imgUrl}`,
-              },
-              desktop: {
-                width: 1920,
-                src: `${imgUrl}`,
-              },
+    const isImageExists = itemDivs[2].querySelector('p');
+    if (isImageExists) {
+      const aTag = isImageExists.querySelector('a');
+      if (aTag) {
+        const imgUrl = aTag?.getAttribute('href');
+        const imgAlt = aTag?.getAttribute('title');
+        const imgHtml = ImageComponent({
+          src: imgUrl,
+          alt: imgAlt,
+          className: 'news-thumbnail',
+          asImageName: 'hero.webp',
+          breakpoints: {
+            mobile: {
+              src: `${imgUrl}`,
+              imgWidth: 100,
             },
-            lazy: false,
-          });
+            tablet: {
+              src: `${imgUrl}`,
+              imgWidth: 160,
+            },
+            desktop: {
+              src: `${imgUrl}`,
+              imgWidth: 160,
+            },
+          },
+          lazy: false,
+        });
 
-          newsLatterImage.insertAdjacentHTML('beforeend', imgHtml);
-          newsLatterImage.setAttribute('data-aue-type', 'image');
-          newsLatterImage.setAttribute('data-aue-prop', 'image');
-          newsLatterImage.setAttribute('data-aue-label', 'News Image');
-          aTag.remove();
-        }
+    
+        newsLetterImage.insertAdjacentHTML('beforeend', imgHtml);
+        moveInstrumentation(itemDivs[2], newsLetterImage);
+        aTag.remove();
       }
     }
     carouselWrapper.appendChild(carouselItem);
@@ -428,12 +394,16 @@ export default function decorate(block) {
   carouselContainer.appendChild(carouselWrapper);
   if (carouselItems.length) {
     heroContainer.appendChild(carouselContainer);
-    heroContainer.appendChild(navigations);
+    if (carouselItems.length > 1) {
+      heroContainer.appendChild(navigations);
+    }
   }
 
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
 
-  if (carouselItemsAll.length > 0) {
+  // Check if we're not in author instance before setting up auto-scroll
+  const isAuthorInstance = document.getElementById('OverlayBlockingElement');
+  if (carouselItemsAll.length > 0 && !isAuthorInstance) {
     setInterval(() => {
       moveCarousel(true, false);
     }, scrollInterval);

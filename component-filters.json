@@ -2,21 +2,15 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "statisticsSection", 
+      "tabs"
     ]
   },
   {
     "id": "section",
     "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
       "herobanner",
-      "cards",
-      "columns",
-      "fragment",
       "coreprinciples",
       "feature",
       "linkField",
@@ -27,9 +21,30 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
-      "textsection",
-      "textmediablock"
+      "textmediablock",
+      "projectslist",
+      "iframe",
+      "tabsectiontitle",
+      "awardsgallery",
+      "sustainabilitygovernance",
+      "corporatepolicies",
+      "statistics"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "feature",
+      "textmediablock",
+      "projectslist",
+      "awardsgallery",
+      "historymilestones",
+      "loadmore",
+      "boardofdirectors",
+      "iframe",
+      "corporatepolicies"
     ]
   },
   {
@@ -47,10 +62,6 @@
   {
     "id": "column",
     "components": [
-      "text",
-      "image",
-      "button",
-      "title",
       "coreprinciples",
       "imageLink",
       "socialLinks",
@@ -59,16 +70,21 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
       "textsection",
-      "textmediablock"
+      "textmediablock",
+      "linkField",
+      "projectslist"
     ]
   },
   {
     "id": "feature",
     "components": [
       "featureItem",
-      "linkField"
+      "linkField",
+      "indices",
+      "loadmore"
     ]
   },
   {
@@ -132,6 +148,65 @@
     "components": [
       "media",
       "textsection"
+    ]
+  },
+  {
+    "id": "projectslist",
+    "components": [
+      "projectslistitem"
+    ]
+  },
+  {
+    "id": "statisticsSection",
+    "components": [
+      "statistics",
+      "statisticsDescription",
+      "feature",
+      "herobanner"
+    ]
+  },
+  {
+    "id": "statistics",
+    "components": [
+      "statisticsDescription",
+      "featureItem"
+    ]
+  },
+  {
+    "id": "awardsgallery",
+    "components": [
+      "awardstile"
+    ]
+  },
+  {
+    "id": "historymilestones",
+    "components": [
+      "milestoneitem"
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "components": [
+      "governancetile"
+    ]
+  },
+  {
+    "id": "corporatepolicies",
+    "components": [
+      "policytile"
+    ]
+  },
+  {
+    "id": "contactus",
+    "components": [
+      "enquiry",
+      "enquirycta"
+    ]
+  }, 
+  {
+    "id": "boardofdirectors",
+    "components": [
+      "director"
     ]
   }
 ]

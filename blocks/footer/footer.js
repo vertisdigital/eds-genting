@@ -1,5 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
-import { loadFragmentCustom } from '../fragment/fragment.js';
+import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
 
 /**
@@ -10,34 +10,20 @@ export default async function decorate(block) {
   // load footer as fragment
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  const fragment = await loadFragmentCustom(footerPath);
-  // const fragment = block;
+  const fragment = await loadFragment(footerPath);
   if (fragment) {
     const section = document.createElement('section');
-    // const existingMain = document.getElementsByTagName('main')[0];
 
     // Create and build all the footer content
     const footer = document.createElement('div');
-    // footer.classList.add('footer');
-    // const container = fragment.firstElementChild;
-    const findColumnWrapper = (blockElement, index) => {
-      // Check first and last children for columns-wrapper
-      if (blockElement.children[index].classList.contains('columns')) {
-        return blockElement.children[index];
-      } if (blockElement.children[index].classList.contains('columns')) {
-        return blockElement.children[index];
-      }
-      return null;
-    };
 
-    const container = findColumnWrapper(fragment.firstElementChild, 0);
+    const container = fragment.firstElementChild;
 
     footer.setAttribute('role', 'contentinfo');
-    // footer.className = container.className;
 
     // Create main container with responsive classes
     const mainContainer = document.createElement('div');
-    mainContainer.className = 'footer-child-element container-xl container-md container-sm';
+    mainContainer.className = 'footer-child-element container';
 
     // Create container for all columns
     const columnsContainer = document.createElement('div');
@@ -51,87 +37,85 @@ export default async function decorate(block) {
     const logoWrapper = document.createElement('div');
     logoWrapper.className = 'footer-logo';
 
+    const logoLink = document.createElement('a');
+    logoLink.href = '/';
     const logo = document.createElement('img');
-    const logoImg = container.querySelector('.image-link img');
+    const socialImgContainer = container.querySelector('.imagelink')?.querySelectorAll('p');
+    const logoImg = socialImgContainer[0]?.querySelector('a');
     if (logoImg) {
-      logo.src = logoImg.src;
-      logo.alt = logoImg.alt || 'Genting Singapore';
+      logo.src = logoImg.href;
+      logo.alt = logoImg.title || 'Genting Singapore';
     }
-    logoWrapper.appendChild(logo);
+    logoLink.appendChild(logo);
+    logoWrapper.appendChild(logoLink);
 
     // Add description
     const description = document.createElement('p');
     description.className = 'footer-description';
-    description.textContent = container.querySelector('[data-richtext-prop="description"]')?.textContent;
+    description.textContent = socialImgContainer[1]?.textContent;
 
-    // Add social icons
+    // Create main wrapper
     const socialWrapper = document.createElement('div');
     socialWrapper.className = 'social-icons';
 
-    // Create social links container with data attributes
+    // Create social links container
     const socialLinksContainer = document.createElement('div');
     socialLinksContainer.className = 'social-links';
-    // Get all social link fields from DOM
-    const socialLinkFields = container
-      .querySelector('.social-links')
-      .querySelectorAll('[data-aue-model="linkField"]');
 
-    socialLinkFields.forEach((field) => {
+    // Get the social links from the DOM - targeting the sociallinks block
+    const socialLinksBlock = container.querySelector('.sociallinks.block');
+    const socialLinkDivs = Array.from(socialLinksBlock.children);
+
+    socialLinkDivs.forEach((socialLinkDiv) => {
       // Create link field container
       const linkFieldDiv = document.createElement('div');
       linkFieldDiv.setAttribute('data-linkfield-model', 'linkField');
 
-      // Create link element
-      const link = document.createElement('a');
-      const linkData = field.querySelector('a');
-      link.href = linkData.href;
-      link.title = linkData.title;
+      // Get link data
+      const linkElement = socialLinkDiv.querySelector('a');
+      const titleParagraphs = socialLinkDiv.querySelectorAll('p:not(.button-container)');
+      const titleText = titleParagraphs[0]?.textContent.trim();
+      const targetText = titleParagraphs[1]?.textContent.trim();
 
-      // Get icon name from DOM
-      const iconName = field.querySelector('[data-aue-prop="linkSvgIcon"]').textContent;
+      if (linkElement && titleText) {
+        // Create anchor wrapper
+        const anchor = document.createElement('a');
+        anchor.href = linkElement.href;
+        anchor.title = linkElement.title || titleText;
 
-      // Create anchor wrapper first
-      const anchor = document.createElement('a');
-      anchor.href = link.href;
-      anchor.title = link.title;
+        // Create icon container
+        const iconContainer = document.createElement('span');
+        iconContainer.className = 'social-icon-wrapper';
 
-      // Create icon container
-      const iconContainer = document.createElement('span');
-      iconContainer.className = 'social-icon-wrapper';
+        // Create SVG icon based on the title text (assuming we have an SVGIcon function)
+        const svgElement = SVGIcon({
+          name: titleText, // Using the title text (twitter, linkedin, youtube) as icon name
+          size: 18,
+          className: 'social-icon',
+        });
 
-      // Create SVG icon and append to container
-      const svgElement = SVGIcon({
-        name: iconName,
-        size: 18,
-        className: 'social-icon',
-      });
-
-      // Convert SVG string to DOM element if needed
-      if (typeof svgElement === 'string') {
-        iconContainer.innerHTML = svgElement;
-      } else if (svgElement instanceof Node) {
-        iconContainer.appendChild(svgElement);
-      }
-
-      // Set target from DOM if it exists
-      const targetElement = field.querySelector('[data-aue-prop="linkTarget"]');
-      if (targetElement) {
-        const target = targetElement.textContent;
-        anchor.target = target;
-
-        // If target is _blank, add rel for security
-        if (target === '_blank') {
-          anchor.rel = 'noopener noreferrer';
+        // Convert SVG string to DOM element if needed
+        if (typeof svgElement === 'string') {
+          iconContainer.innerHTML = svgElement;
+        } else if (svgElement instanceof Node) {
+          iconContainer.appendChild(svgElement);
         }
+
+        // Set target from DOM if it exists
+        if (targetText) {
+          anchor.target = targetText;
+
+          // If target is _blank, add rel for security
+          if (targetText === '_blank') {
+            anchor.rel = 'noopener noreferrer';
+          }
+        }
+
+        // Append icon container to anchor
+        anchor.appendChild(iconContainer);
+        linkFieldDiv.appendChild(anchor);
+        socialLinksContainer.appendChild(linkFieldDiv);
       }
-
-      // Append icon container to anchor
-
-      anchor.appendChild(iconContainer);
-      link.appendChild(anchor);
-
-      linkFieldDiv.appendChild(link);
-      socialLinksContainer.appendChild(linkFieldDiv);
     });
 
     socialWrapper.appendChild(socialLinksContainer);
@@ -142,8 +126,10 @@ export default async function decorate(block) {
     // Add logo column to columns container
     columnsContainer.appendChild(logoColumn);
 
-    // Get all navigation sections from the fragment
-    const navigationLinks = Array.from(container.querySelectorAll('.links'));
+    const navFragment = fragment.children[1];
+
+    // Get all navigation sections from the container
+    const navigationLinks = Array.from(navFragment.querySelectorAll('.links.block'));
 
     // Create columns dynamically based on navigation sections
     const navColumns = navigationLinks.map(() => {
@@ -157,111 +143,72 @@ export default async function decorate(block) {
       if (navColumns[index]) {
         const nav = document.createElement('nav');
 
-        // Get section title
-        const title = linkSection.querySelector('[data-aue-prop="title"]');
-
-        if (title) {
+        // Get section title - first div contains the title
+        const titleContainer = linkSection.children[1];
+        const titleElement = titleContainer?.querySelector('p');
+        const titleTarget = linkSection.children[2]?.textContent?.trim() || '_self';
+        if (titleElement) {
           // Create heading element for title
-          const heading = document.createElement('h2');
-          heading.textContent = title.textContent;
+          const heading = titleElement.querySelector('a');
           heading.className = 'footer-nav-title';
-
+          heading.target = titleTarget;
           nav.appendChild(heading);
-          nav.setAttribute('aria-label', title.textContent);
+          nav.setAttribute('aria-label', titleElement.textContent);
         }
 
-        // Move all links while preserving their attributes
-        const links = linkSection.querySelectorAll('[data-aue-model="linkField"]');
-        links.forEach((link) => {
-          const linkContainer = document.createElement('div');
-          linkContainer.className = link.className;
-          linkContainer.setAttribute('data-link-model', 'links');
+        // Get all link items - every div with a button-container
+        const linkItems = Array.from(linkSection.children).filter(div =>
+          div.querySelector('.button-container')
+        );
 
-          // Get the button container and link
-          const buttonContainer = link.querySelector('a');
-          const anchor = buttonContainer;
+        if (linkItems.length > 0) {
+          linkItems.forEach((linkItem) => {
+            const linkContainer = document.createElement('div');
+            linkContainer.setAttribute('data-link-model', 'links');
 
-          if (anchor) {
-            // Create new link with title as text
-            const newLink = document.createElement('a');
-            newLink.href = anchor.href;
-            newLink.className = 'button-link';
-            newLink.textContent = anchor.textContent;
-            // Create new button container
-            const newButtonContainer = document.createElement('div');
-            newButtonContainer.className = 'button-container';
-            // newButtonContainer.setAttribute('data-aue-prop', 'linkText');
-            newButtonContainer.appendChild(newLink);
+            // Get the button container and link
+            const buttonContainer = linkItem.querySelector('.button-container');
+            const anchor = buttonContainer?.querySelector('a');
+            // Get target from the third <div><p> element if it exists
+            const targetElement = linkItem.children[2]?.querySelector('p');
+            const target = targetElement ? targetElement.textContent.trim() : '_self';
 
-            linkContainer.appendChild(newButtonContainer);
-          }
+            if (anchor) {
+              // Create new link with title as text
+              const newLink = document.createElement('a');
+              newLink.href = anchor.href;
+              newLink.target = target;
+              newLink.className = 'button-link';
+              newLink.textContent = anchor.textContent;
+              // Create new button container
+              const newButtonContainer = document.createElement('div');
+              newButtonContainer.className = 'button-container';
+              newButtonContainer.appendChild(newLink);
 
-          nav.appendChild(linkContainer);
-        });
+              linkContainer.appendChild(newButtonContainer);
+            }
+            if (linkContainer.children.length > 0) {
+              nav.appendChild(linkContainer);
+            }
+          });
+        }
 
         navColumns[index].appendChild(nav);
       }
     });
 
     // Add navigation columns to columns container
+    // Assuming columnsContainer is defined elsewhere
     navColumns.forEach((col) => {
       columnsContainer.appendChild(col);
     });
 
-    // Function to handle layout based on screen size
-    const handleLayout = () => {
-      const isDesktop = window.innerWidth >= 992;
-
-      if (isDesktop && !mainContainer.querySelector('.right-section')) {
-        // Create right and left sections for desktop
-        const topContainer = document.createElement('div');
-        topContainer.className = 'top-container';
-
-        const rightSection = document.createElement('div');
-        rightSection.className = 'right-section';
-        const rightRow = document.createElement('div');
-        rightRow.className = 'row';
-
-        const leftSection = document.createElement('div');
-        leftSection.className = 'left-section';
-        const leftRow = document.createElement('div');
-        leftRow.className = 'row';
-
-        // Move logo column to right section's row
-        rightRow.appendChild(logoColumn);
-        rightSection.appendChild(rightRow);
-
-        // Move nav columns to left section's row
-        navColumns.forEach((col) => {
-          leftRow.appendChild(col);
-        });
-        leftSection.appendChild(leftRow);
-
-        // Add sections to main container
-        topContainer.appendChild(rightSection);
-        topContainer.appendChild(leftSection);
-        mainContainer.appendChild(topContainer);
-      } else if (!isDesktop) {
-        columnsContainer.appendChild(logoColumn);
-        navColumns.forEach((col) => {
-          columnsContainer.appendChild(col);
-        });
-        mainContainer.insertBefore(columnsContainer, mainContainer.firstChild);
-      }
-    };
-
-    // Initial layout setup
-    handleLayout();
-
-    // Update layout on resize
-    window.addEventListener('resize', handleLayout);
-
-    // Create bottom section for copyright and links
+    // Create bottom section for copyright and links first
     const bottomSection = document.createElement('div');
     bottomSection.className = 'mt-4';
 
     // Get bottom section content
-    const bottomContent = findColumnWrapper(fragment.firstElementChild, 1);
+    const bottomContent = fragment.lastElementChild;
 
     if (bottomContent) {
       // Create columns container - renamed to avoid shadowing
@@ -279,8 +226,8 @@ export default async function decorate(block) {
       const textContainer = document.createElement('div');
       textContainer.className = 'col-xl-6 col-md-3 col-sm-4';
 
-      // Add text content
-      const textContent = bottomContent.querySelector('[data-richtext-prop="text"]');
+      // Add text content - looking for the copyright text in the default-content-wrapper
+      const textContent = bottomContent.querySelector('.default-content-wrapper');
       if (textContent) {
         const textDiv = document.createElement('div');
         textDiv.className = 'copywrite';
@@ -292,34 +239,47 @@ export default async function decorate(block) {
       // Create links container
       const linksContainer = document.createElement('div');
       linksContainer.className = 'col-xl-6 col-md-3 col-sm-4 copywrite-right';
-
       linksContainer.setAttribute('data-link-model', 'links');
 
-      // Process link fields
-      const linkFields = bottomContent.querySelectorAll('[data-aue-model="linkField"]');
-      linkFields.forEach((originalLinkField) => {
-        // Create link field container
-        const linkFieldContainer = document.createElement('div');
-        linkFieldContainer.setAttribute('data-linkfield-model', 'linkField');
-        linkFieldContainer.className = 'copywrite-links';
+      // Process link fields - get all divs containing button-container
+      const linksBlock = bottomContent.querySelector('.links.block');
+      if (linksBlock) {
+        const linkItems = Array.from(linksBlock.children).filter(div =>
+          div.querySelector('.button-container')
+        );
 
-        // Create link text container
-        const linkTextContainer = document.createElement('div');
-        linkTextContainer.className = 'button-container';
+        linkItems.forEach((linkItem) => {
+          // Create link field container
+          const linkFieldContainer = document.createElement('div');
+          linkFieldContainer.setAttribute('data-linkfield-model', 'linkField');
+          linkFieldContainer.className = 'copywrite-links';
 
-        // Create link
-        const originalLink = originalLinkField.querySelector('a');
-        if (originalLink) {
-          const link = document.createElement('a');
-          link.href = originalLink.href;
-          link.className = 'button-link';
-          link.textContent = originalLink.textContent;
-          linkTextContainer.appendChild(link);
-        }
+          // Create link text container
+          const linkTextContainer = document.createElement('div');
+          linkTextContainer.className = 'button-container';
 
-        linkFieldContainer.appendChild(linkTextContainer);
-        linksContainer.appendChild(linkFieldContainer);
-      });
+          // Create link
+          const originalLink = linkItem.querySelector('a');
+          if (originalLink) {
+            const link = document.createElement('a');
+            link.href = originalLink.href;
+            link.className = 'button-link';
+            link.textContent = originalLink.textContent;
+
+            // Get target from the third div if it exists
+            const targetElement = linkItem.children[2]?.querySelector('p');
+            if (targetElement && targetElement.textContent.trim() === '_blank') {
+              link.target = '_blank';
+              link.rel = 'noopener noreferrer';
+            }
+
+            linkTextContainer.appendChild(link);
+          }
+
+          linkFieldContainer.appendChild(linkTextContainer);
+          linksContainer.appendChild(linkFieldContainer);
+        });
+      }
 
       // Assemble the structure
       row.appendChild(textContainer);
@@ -328,6 +288,83 @@ export default async function decorate(block) {
       bottomColumnsContainer.appendChild(columnContainer);
       bottomSection.appendChild(bottomColumnsContainer);
     }
+
+    // After the handleLayout function declaration, let's add storage for cloned sections
+    let clonedRightSection = null;
+    let clonedLeftSection = null;
+
+    // Update the handleLayout function
+    const handleLayout = () => {
+      const isDesktop = window.innerWidth >= 992;
+      const existingRightSection = mainContainer.querySelector('.right-section');
+
+      if (isDesktop) {
+        if (!existingRightSection) {
+          // If we have cloned sections, reuse them
+          if (clonedRightSection && clonedLeftSection) {
+            const topContainer = document.createElement('div');
+            topContainer.className = 'top-container';
+            topContainer.appendChild(clonedRightSection.cloneNode(true));
+            topContainer.appendChild(clonedLeftSection.cloneNode(true));
+            mainContainer.innerHTML = '';
+            mainContainer.appendChild(topContainer);
+          } else {
+            // Create right and left sections for desktop
+            const topContainer = document.createElement('div');
+            topContainer.className = 'top-container';
+
+            const rightSection = document.createElement('div');
+            rightSection.className = 'right-section';
+            const rightRow = document.createElement('div');
+            rightRow.className = 'row';
+
+            const leftSection = document.createElement('div');
+            leftSection.className = 'left-section';
+            const leftRow = document.createElement('div');
+            leftRow.className = 'row';
+
+            // Move logo column to right section's row
+            rightRow.appendChild(logoColumn);
+            rightSection.appendChild(rightRow);
+
+            // Move nav columns to left section's row
+            navColumns.forEach((col) => {
+              leftRow.appendChild(col);
+            });
+            leftSection.appendChild(leftRow);
+
+            // Store cloned versions for future use
+            clonedRightSection = rightSection.cloneNode(true);
+            clonedLeftSection = leftSection.cloneNode(true);
+
+            // Add sections to main container
+            topContainer.appendChild(rightSection);
+            topContainer.appendChild(leftSection);
+            mainContainer.innerHTML = '';
+            mainContainer.appendChild(topContainer);
+          }
+        }
+      } else {
+        // Mobile layout
+        mainContainer.innerHTML = '';
+        columnsContainer.appendChild(logoColumn);
+        navColumns.forEach((col) => {
+          columnsContainer.appendChild(col);
+        });
+        mainContainer.appendChild(columnsContainer);
+      }
+
+      // Re-append bottom section after layout changes
+      if (bottomSection) {
+        mainContainer.appendChild(bottomSection);
+      }
+    };
+
+    // Initial layout setup
+    handleLayout();
+
+    // Update layout on resize
+    window.addEventListener('resize', handleLayout);
 
     // Assemble the footer
     mainContainer.append(bottomSection);
@@ -350,18 +387,3 @@ export default async function decorate(block) {
     block.append(section);
   }
 }
-
-/*
-| Condition  | Action                                                    |
-|------------|-----------------------------------------------------------|
-| **For Prod** | Uncomment **line-13** and comment **line-14**            |
-|            | Use `"sourceSection"` instead of `"fragment"`             |
-|            | Comment out `footer.classList.add('footer');` in **line-55** |
-|            | Replace `"fragment"` with `"fragment.firstElementChild"`  |
-|            | in **line-67** and **line-394**                            |
-| **For Local** | Uncomment **line-14** and comment **line-13**           |
-|            | Use `"fragment"` instead of `"sourceSection"`             |
-|            | Add `footer.classList.add('footer');` in **line-55**       |
-|            | Replace `"fragment.firstElementChild"` with `"fragment"`  |
-|            | in **line-67** and **line-394**                            |
-*/

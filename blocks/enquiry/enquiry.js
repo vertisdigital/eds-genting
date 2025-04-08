@@ -1,40 +1,42 @@
 import Heading from '../../shared-components/Heading.js';
-import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-
+import ImageComponent from '../../shared-components/ImageComponent.js';
+import stringToHtml from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
-
   // Restructure the HTML for better semantics and accessibility
-  const wrapper = block.closest('.enquiry-wrapper');
+  const wrapper = block.closest('.enquiry-wrapper') || block;
+  const allDivElements = block.children;
   const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
-  
-  moveInstrumentation(enquiryResource, wrapper);
+
+  if (enquiryResource) {
+    moveInstrumentation(enquiryResource, wrapper);
+  }
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
-  container.className = 'container-xl container-md container-sm';
+  container.className = 'container';
 
   const row = document.createElement('div');
   row.className = 'row';
 
   // Create left column (heading) - 40% on desktop and tablet
   const leftCol = document.createElement('div');
-  leftCol.className = 'col-xl-6 col-md-3 container-sm-4';
+  leftCol.className = 'col-xl-6 col-md-3 col-sm-4';
 
   // Create heading container with proper attributes
   const headingContainer = document.createElement('div');
-  const headingText = wrapper.querySelector('[data-aue-prop="heading"]')?.textContent.trim();
+  const headingText = allDivElements[0].querySelector('p')?.textContent.trim();
   const headingElement = document.createElement('div');
-  
+
   if (headingText) {
     headingElement.innerHTML = Heading({
       text: headingText,
       level: 2,
       className: 'enquiry-heading',
     });
-  // Add authoring attributes to heading
-  const heading = headingElement.firstElementChild || '';
+    // Add authoring attributes to heading
+    const heading = headingElement.firstElementChild || '';
     heading.setAttribute('data-aue-prop', 'heading');
     heading.setAttribute('data-aue-label', 'Heading');
     heading.setAttribute('data-aue-type', 'text');
@@ -45,10 +47,10 @@ export default function decorate(block) {
 
   // Create right column (description and contacts) - 60% on desktop and tablet
   const rightCol = document.createElement('div');
-  rightCol.className = 'col-xl-6 col-md-3 container-sm-4';
+  rightCol.className = 'col-xl-6 col-md-3 col-sm-4';
 
   // Add description with authoring attributes
-  const description = wrapper.querySelector('[data-aue-prop="description"]');
+  const description = allDivElements[1].querySelector('p');
   if (description) {
     const descriptionWrapper = document.createElement('div');
     descriptionWrapper.className = 'enquiry-description';
@@ -66,7 +68,7 @@ export default function decorate(block) {
   contactItems.setAttribute('role', 'list');
 
   // Helper function to create accessible contact items with authoring support
-  const createContactItem = (text, linkType, prop, label) => {
+  const createContactItem = (text, linkType, prop, label, imageLink) => {
     const item = document.createElement('div');
     item.className = 'contact-item';
     item.setAttribute('role', 'listitem');
@@ -76,14 +78,31 @@ export default function decorate(block) {
     iconWrapper.className = 'contact-icon';
     iconWrapper.setAttribute('aria-hidden', 'true');
 
-    const imageLink = wrapper.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]');
     if (imageLink) {
-      // Create optimized picture element
-      const picture = createOptimizedPicture(imageLink.href, '', false);
-      // Remove original link
-      imageLink.remove();
+      const picture = ImageComponent({
+        src: imageLink,
+        alt: '',
+        className: 'enquiry-image',
+        breakpoints: {
+          mobile: {
+            width: 768,
+            src: `${imageLink}`,
+          },
+          tablet: {
+            width: 1024,
+            src: `${imageLink}`,
+          },
+          desktop: {
+            width: 1920,
+            src: `${imageLink}`,
+          },
+        },
+        lazy: true,
+      });
+
       if (picture) {
-        iconWrapper.appendChild(picture);
+        const imageElement = stringToHtml(picture);
+        iconWrapper.appendChild(imageElement);
       }
     }
 
@@ -113,18 +132,20 @@ export default function decorate(block) {
   };
 
   // Add contact items with proper attributes
-  const phone = wrapper.querySelector('[data-aue-prop="phoneNumber"]')?.textContent.trim();
-  const email = wrapper.querySelector('[data-aue-prop="emailAddress"]')?.textContent.trim();
-  const address = wrapper.querySelector('[data-aue-prop="address"]')?.textContent.trim();
+  const phone = allDivElements[3].querySelector('p').textContent.trim();
+  const email = allDivElements[5].querySelector('p').textContent.trim();
+  const address = allDivElements[7].querySelector('p').textContent.trim();
+
+  const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".svg"], a[href*="delivery-"]');
 
   if (phone) {
-    contactItems.appendChild(createContactItem(phone, 'tel', 'phoneNumber', 'PhoneNumber'));
+    contactItems.appendChild(createContactItem(phone, 'tel', 'phoneNumber', 'PhoneNumber', imageLink[0].getAttribute('href')));
   }
   if (email) {
-    contactItems.appendChild(createContactItem(email, 'mailto', 'emailAddress', 'EmailAddress'));
+    contactItems.appendChild(createContactItem(email, 'mailto', 'emailAddress', 'EmailAddress', imageLink[1].getAttribute('href')));
   }
   if (address) {
-    contactItems.appendChild(createContactItem(address, null, 'address', 'Address'));
+    contactItems.appendChild(createContactItem(address, null, 'address', 'Address', imageLink[2].getAttribute('href')));
   }
 
   rightCol.appendChild(contactItems);

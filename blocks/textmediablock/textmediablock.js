@@ -1,36 +1,81 @@
-function initTextMediaBlock() {
-  const blocks = document.querySelectorAll('.textmediablock');
-  
-  blocks.forEach(block => {
+import ImageComponent from '../../shared-components/ImageComponent.js';
+import stringToHtml from '../../shared-components/Utility.js';
 
-    block.className = 'container-xl container-md container-sm';
 
-    // Handle image elements
-    const mediaBlock = block.querySelector('[data-aue-model="media"]');
-    if (mediaBlock) {
-      const linkElement = mediaBlock.querySelector('a');
-      if (linkElement) {
-        const imageUrl = linkElement.href;
-        const img = document.createElement('img');
-        img.src = imageUrl;
-        
-        // Set alt text from heading
-        const heading = block.querySelector('[data-aue-prop="heading"]');
-        img.alt = heading ? heading.textContent : 'Feature image';
-        
-        // Add loading optimization
-        img.setAttribute('loading', 'lazy');
-        
-        // Replace link with image
-        linkElement.parentElement.replaceChild(img, linkElement);
+function handleImageElement(mediaBlock) {
+  const linkElement = mediaBlock.querySelector('a');
+  if(linkElement){
+    mediaBlock.classList.add('mediablock');
+      const imageUrl = linkElement.getAttribute('href');
+      const picture = ImageComponent({
+        src: imageUrl,
+        alt: mediaBlock.querySelectorAll('a')[1]?.getAttribute('title')||'',
+        className: 'mediablock-image',
+        asImageName: 'hero.webp',
+        breakpoints: {
+          mobile: {
+            width: 768,
+            src: `${imageUrl}`,
+            imgWidth: 768,
+            imgHeight: 200,
+          },
+          tablet: {
+            width: 1024,
+            src: `${imageUrl}`,
+            imgWidth: 1024,
+            imgHeight: 400,
+          },
+          desktop: {
+            width: 1920,
+            src: `${imageUrl}`,
+            imgWidth: 1600,
+            imgHeight: 630,
+          },
+        },
+        lazy: true,
+      });
+
+      if (picture) {
+        const imageElement = stringToHtml(picture);
+        linkElement.parentElement.replaceChild(imageElement, linkElement);
       }
+  }
+}
+export default function decorate(block) {
+  block.className = 'container textmediablock-container';
+
+  // Determine block variation by checking first child
+  const firstChild = block.children[0];
+  const hasImageFirst = firstChild.querySelector('a') !== null;
+
+  if (hasImageFirst) {
+    // Variation 1: Image first, then text
+    handleImageElement(firstChild);
+
+    // Add classes to text section
+    const textSection = block.children[1];
+    if (textSection) {
+      textSection.classList.add('textblock');
+      textSection.children[0]?.classList.add('heading');
+      textSection.children[1]?.classList.add('text-section');
+    }
+  } else {
+    // Variation 2: Text first, then image
+    const textSection = firstChild;
+    const imageSection = block.children[1];
+
+    textSection.classList.add('textblock');
+    textSection.children[0]?.classList.add('heading');
+    textSection.children[1]?.classList.add('text-section');
+
+    if (imageSection) {
+      handleImageElement(imageSection);
+    }
+  }
+
+  block.querySelectorAll('.text-section').forEach((textSection) => {
+    if (!textSection.textContent.trim()) {
+      textSection.style.display = 'none';
     }
   });
 }
-
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initTextMediaBlock);
-} else {
-  initTextMediaBlock();
-} 

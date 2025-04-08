@@ -35,37 +35,9 @@ export async function loadFragment(path) {
       resetAttributeBase('img', 'src');
       resetAttributeBase('source', 'srcset');
 
-      decorateMain(main);
+      decorateMain(main, false);
       await loadSections(main);
       return main;
-    }
-  }
-  return null;
-}
-
-export async function loadFragmentCustom(path) {
-  // let newPath = window.location.href;
-
-  if (path && path.startsWith('/')) {
-    // const resp = await fetch(`${newPath}`);
-
-    // eslint-disable-next-line no-param-reassign
-    path = path.replace(/(\.plain)?\.html/, '');
-
-    // Get query parameters from current URL
-    const queryParams = window.location.search; // Includes "?" if parameters exist
-    const resp = await fetch(`${path}.html${queryParams}`);
-
-    if (resp.ok) {
-      const main = document.createElement('main');
-      main.innerHTML = await resp.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(main.innerHTML, 'text/html');
-
-      // Select the desired element
-      const element = doc.getElementsByTagName('main')[0].cloneNode(true);
-
-      return element;
     }
   }
   return null;

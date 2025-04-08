@@ -1,16 +1,22 @@
+/* eslint-disable no-console */
+
 import {
   loadHeader,
   loadFooter,
   decorateButtons,
+  decorateBlocks,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
   decorateTemplateAndTheme,
   waitForFirstImage,
   loadSection,
   loadSections,
   loadCSS,
 } from './aem.js';
+import processTabs from './autoblocks.js';
+import { redirectRouter } from '../shared-components/Utility.js';
+import { errorLogger as logger} from './logger.js';
+
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -62,12 +68,11 @@ async function loadFonts() {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks() {
+function buildAutoBlocks(main) {
   try {
-    // TODO: add auto block, if needed
+    processTabs(main);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Auto Blocking failed', error);
+    logger.error(`Auto Blocking failed, ${error}`);
   }
 }
 
@@ -76,13 +81,14 @@ function buildAutoBlocks() {
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
-  // hopefully forward compatible button decoration
+export function decorateMain(main, isExecute) {
+  redirectRouter()
+  
   decorateButtons(main);
   decorateIcons(main);
-  buildAutoBlocks(main);
-  decorateSections(main);
+  decorateSections(main, isExecute);
   decorateBlocks(main);
+  buildAutoBlocks(main);
 }
 
 /**
@@ -105,7 +111,7 @@ async function loadEager(doc) {
       loadFonts();
     }
   } catch (e) {
-    // do nothing
+    logger.error(e);
   }
 }
 

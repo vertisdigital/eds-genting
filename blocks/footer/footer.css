@@ -1,4 +1,4 @@
-.footer h1,h2,h3,h4,h5,h6,p,a,button,div,img,picture,ul,li{
+.footer h1,h2,h3,h4,h5,h6,p,a,button,div,img,picture{
     margin: 0;
     padding: 0;
 }
@@ -29,22 +29,29 @@
 
 .footer .right-section {
     width: 25%;
-
-    /* float: left; */
     padding-right: 18px;
 }
 
 .footer .footer-logo{
     margin-bottom: 20px;
+    max-width: 168px;
+    max-height: 50px;
+}
+
+.footer .footer-logo img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 /* Body/P1 */
 .footer .footer-description{
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--soft-ivory);
     margin-bottom: 30px;
+    overflow-wrap: anywhere;
 }
 
 .footer .social-icons .social-links{
@@ -70,6 +77,7 @@
     justify-content: center;
     line-height: 1;
 }
+
 .footer .social-icons .social-links a .social-icon-wrapper .icon-wrapper{
     padding: 0!important;
     line-height: 0;
@@ -93,50 +101,57 @@
 }
 
 .footer .left-section .footer-nav-title{
-    font-size:16px;
+    font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 24px;
     color: var(--background-color);
     margin-bottom: 10px;
+    display: block;
 }
 
 .footer .left-section .button-container a{
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 6px;
 }
+
 .footer .footer-bottom-links .button-container a{
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 6px;
 }
 
 .footer .mt-4 .copywrite{
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--soft-ivory);
 }
 
+.footer .mt-4 .copywrite a{
+    color: var(--soft-ivory);
+    text-decoration: underline;
+}
+
 .footer .copywrite-right{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 10px;
     row-gap: 15px;
-    padding: 0 18px!important;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
+    padding: 0 0 0 18px !important;
 }
 
 
 .footer .copywrite-right .copywrite-links {
-    width: calc(33.33% - 10px);
     box-sizing: border-box; 
   }
+
   .footer .copywrite-right .copywrite-links .button-container a{
     white-space: nowrap;
   }
-
 
 
 @media(width<=992px){
@@ -173,9 +188,10 @@
     }
 
     .footer .footer-nav-title{
-        font-size:16px;
+        font-size: var(--font-size-xs);
         font-weight: 700;
         line-height: 24px;
+        color: var(--background-color);
     }
 
     .footer .button-bottom-links .row{
@@ -186,10 +202,12 @@
     .footer .mt-4 .footer-bottom-links .row>div:nth-child(2){
         padding: 0;
     }
-    .footer .copywrite-right .copywrite-links {
-        width: calc(50% - 10px);
-        justify-content: space-between;
+
+    .footer .copywrite-right{
+        grid-template-columns: repeat(2, auto);
+        row-gap: 10px;
     }
+
     .footer .mt-4 .footer-bottom-links .row [data-link-model="links"]{
         padding: 0;
     }
@@ -199,7 +217,7 @@
 
 @media(width<768px){
     .footer .footer-child-element .row>div:first-child{
-        margin-bottom:30px
+        margin-bottom:12px
     }
 
     .footer {
@@ -225,13 +243,18 @@
     }
 
     .footer .footer-nav-title{
-        font-size:16px;
+        font-size: var(--font-size-xs);
         font-weight: 700;
         line-height: 24px;
+        color: var(--background-color);
     }
+    .footer .footer-description, .footer nav a, .footer .mt-4 .copywrite, .footer .footer-bottom-links .button-container a {
+        font-size: var(--font-size-xxs);
+        line-height: 20px;
+    }  
 
     .footer .left-section .button-container a{
-        font-size: 14px;
+        font-size: var(--font-size-xxs);
         line-height: 20px;
         margin-bottom: 10px;
     }
@@ -239,10 +262,6 @@
     .footer .mt-4 .footer-bottom-links .row>div {
         text-align: start;
     }
-
-    /* .footer .mt-4 .footer-bottom-links .row [data-link-model="links"]{
-        padding: 0 18px!important;
-    } */
   
     .footer .mt-4 .footer-bottom-links .row [data-linkfield-model="linkField"]{
         padding: 0;
@@ -253,9 +272,12 @@
         text-align: start;
 
     }
+}
 
-   
-   
+@media(width>1440px){
+    .footer .mt-4 .copywrite{
+       line-height: 32px;
+    }
 }
 
 .footer [data-aue-prop="linkTarget"] {

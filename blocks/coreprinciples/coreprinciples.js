@@ -1,30 +1,44 @@
+import ImageComponent from '../../shared-components/ImageComponent.js';
+import stringToHtml from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
   // Get the inner block that has the coreprinciples class
-  const coreBlock = block
+  const coreBlock = block;
   if (!coreBlock) return;
 
   // Add container classes for responsive layout
   const wrapper = document.createElement('div');
   wrapper.classList.add('coreprinciples');
+  
+  const removeBorderBottom={
+    "esg":true
+  }
+  let pathname=window.location.pathname.split('/')
+  pathname=pathname[pathname.length-1]
+  
+  if(removeBorderBottom[pathname]){
+    wrapper.setAttribute('id','remove-border-bottom')
+  }
+  
   const container = document.createElement('div');
   wrapper.appendChild(container);
-  container.className = 'container-xl container-lg container-md container-sm';
+  container.className = 'container';
 
   const row = document.createElement('div');
   row.className = 'row';
 
   // Convert each item to use proper semantic structure
-  const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"]')];
+  const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')];
 
   items.forEach((item) => {
     // Add responsive column classes as per requirements
     const col = document.createElement('div');
-    col.className = 'col-lg-4 col-md-3 col-sm-4 principles-item';
+    col.className = 'col-xl-4 col-md-3 col-sm-4 principles-item';
 
-    // Get the icon URL
+    // Get the icon URL and alt text from anchor
     const iconLink = item.querySelector('a');
     const iconUrl = iconLink?.href || '';
+    const altText = iconLink?.title || '';  // Get alt text from anchor title
 
     // Create icon wrapper with authoring attributes
     const iconWrapper = document.createElement('div');
@@ -40,36 +54,52 @@ export default function decorate(block) {
       });
     }
 
-    // Create and add image using ImageComponent
     if (iconUrl) {
-      const img = document.createElement('img');
-      img.src = iconUrl;
-      img.alt = '';
-      img.loading = 'lazy';
-      img.width = 64;
-      img.height = 64;
+      const picture = ImageComponent({
+        src: iconUrl,
+        alt: altText,  // Use the alt text from anchor title
+        className: 'enquiry-image',
+        breakpoints: {
+          mobile: {
+            width: 768,
+            src: `${iconUrl}`,
+          },
+          tablet: {
+            width: 1024,
+            src: `${iconUrl}`,
+          },
+          desktop: {
+            width: 1920,
+            src: `${iconUrl}`,
+          },
+        },
+        lazy: true,
+      });
 
-      const picture = document.createElement('picture');
-      picture.appendChild(img);
-      iconWrapper.appendChild(picture);
+      if (picture) {
+        const imageElement = stringToHtml(picture);
+        iconWrapper.append(imageElement);
+      }
     }
 
     // Convert title to h3 with preserved authoring attributes
-    const title = item.querySelector('[data-aue-prop="title"]');
-    if(title !== null) {
+    const allDivElements = item.querySelectorAll('div');
+    const title = allDivElements[1];
+    if (title !== null) {
       const h3 = document.createElement('h3');
       h3.textContent = title.textContent;
-  
+      h3.className = 'coreprinciples-card-title';
+
       // Preserve title data-aue attributes
       const titleAttributes = [...title.attributes].filter((attr) => attr.name.startsWith('data-aue-'));
       titleAttributes.forEach((attr) => {
         h3.setAttribute(attr.name, attr.value);
       });
-      title.replaceWith(h3);  
+      title.replaceWith(h3);
     }
-    
+
     // Preserve description data-aue attributes
-    const description = item.querySelector('[data-richtext-prop="description"]');
+    const description = allDivElements[2];
     if (description) {
       const descAttributes = [...description.attributes].filter((attr) => attr.name.startsWith('data-aue-') || attr.name.startsWith('data-richtext-'));
       descAttributes.forEach((attr) => {

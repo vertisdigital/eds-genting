@@ -7,7 +7,7 @@ export default function decorate(block) {
   let projectCardsContainer = block.querySelector('.projectcards-container');
   if (!projectCardsContainer) {
     projectCardsContainer = document.createElement('div');
-    projectCardsContainer.className = 'projectcards-container container-xl';
+    projectCardsContainer.className = 'projectcards-container container';
     moveInstrumentation(block, projectCardsContainer);
   }
 
@@ -16,18 +16,21 @@ export default function decorate(block) {
   headerContainer.className = 'projectcards-header';
 
   // Handle title
-  const titleElement = block.querySelector('[data-aue-prop="title"]');
-  if (titleElement) {
+  const titleElements = block.querySelectorAll(
+    '[data-aue-prop="title"], [data-gen-prop="title"]',
+  );
+  const titleField = titleElements[0];
+  if (titleField) {
     const titleDiv = document.createElement('div');
-    moveInstrumentation(titleElement, titleDiv);
+    moveInstrumentation(titleField, titleDiv);
     titleDiv.className = 'projectcards-title';
-    titleDiv.textContent = titleElement.textContent;
+    titleDiv.textContent = titleField.textContent;
     headerContainer.appendChild(titleDiv);
-    titleElement.remove();
+    titleField.remove();
   }
 
   // Handle main heading
-  const headingElement = block.querySelector('[data-aue-prop="heading"]');
+  const headingElement = block.querySelector('[data-aue-prop="heading"]') || titleElements[1];
   if (headingElement) {
     const headingHtml = Heading({
       text: headingElement.textContent,
@@ -49,7 +52,9 @@ export default function decorate(block) {
   }
 
   // Handle description
-  const descElement = block.querySelector('[data-aue-prop="description"]');
+  const descElement = block.querySelector(
+    '[data-aue-prop="description"], [data-gen-prop="description"]',
+  );
   if (descElement) {
     const descriptionDiv = document.createElement('div');
     moveInstrumentation(descElement, descriptionDiv);
@@ -66,10 +71,23 @@ export default function decorate(block) {
   cardsGridContainer.className = 'projectcards-grid row';
 
   // Handle project cards
-  const projectCards = block.querySelectorAll('[data-aue-model="projectcard"]');
+  const projectCards = Array.from(block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]'));
+  
+  // Handle last element differently for author vs publish instance
+  let lastElement = null;
+  if (window.location.hostname.includes('author')) {
+    // In author instance, find linkField without removing from projectCards
+    lastElement = block.querySelector('[data-aue-model="linkField"]');
+  } else {
+    // In publish instance, check and pop last element if it has button-container
+    lastElement = projectCards.length > 0 && 
+      projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container') ? 
+      projectCards.pop() : null;
+  }
+
   projectCards.forEach((card) => {
     const cardElement = document.createElement('div');
-    cardElement.className = 'project-card col-xl-3 col-lg-3 col-md-3 col-sm-2';
+    cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
     moveInstrumentation(card, cardElement);
 
     // Handle card image
@@ -81,24 +99,31 @@ export default function decorate(block) {
       imageContainer.setAttribute('data-aue-type', 'image');
 
       const imageUrl = imageLink.getAttribute('href');
-      const imageAlt = card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
-
+      const imageAlt =card.querySelectorAll('a[href]')[1]?.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
+      
       const imageHtml = ImageComponent({
         src: imageUrl,
         alt: imageAlt,
         className: 'project-card-image',
+        asImageName: 'projectcards.webp',
         breakpoints: {
           mobile: {
             width: 768,
             src: `${imageUrl}`,
+            imgWidth: 170,
+            imgHeight: 170,
           },
           tablet: {
-            width: 1024,
+            width: 993,
             src: `${imageUrl}`,
+            imgWidth: 370,
+            imgHeight: 370,
           },
           desktop: {
             width: 1920,
             src: `${imageUrl}`,
+            imgWidth: 260,
+            imgHeight: 260,
           },
         },
         lazy: true,
@@ -114,25 +139,34 @@ export default function decorate(block) {
     cardContent.className = 'project-card-content';
 
     // Handle card title
-    const cardTitle = card.querySelector('[data-aue-prop="title"]');
+    const cardTitle = card.querySelector(
+      '[data-aue-prop="projectText"], .button-container .button',
+    );
     if (cardTitle) {
       const titleDiv = document.createElement('div');
-      moveInstrumentation(cardTitle, titleDiv);
       titleDiv.className = 'project-card-title';
-      titleDiv.textContent = cardTitle.textContent;
+      cardTitle.className = '';
+      // setting the link target
+      const linkTarget = card.querySelector(
+        '[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]',
+      )?.textContent || '_self';
+      cardTitle.setAttribute('target', linkTarget);
+
+      titleDiv.appendChild(cardTitle);
       cardContent.appendChild(titleDiv);
-      cardTitle.remove();
     }
 
     // Handle card location
-    const locationElement = card.querySelector('[data-aue-prop="location"]');
+    const locationElement = card.querySelector(
+      '[data-aue-prop="location"], div:last-child',
+    );
     if (locationElement) {
       const locationDiv = document.createElement('div');
       locationDiv.setAttribute('data-aue-prop', 'location');
       locationDiv.setAttribute('data-aue-label', 'Location');
       locationDiv.setAttribute('data-aue-type', 'text');
       locationDiv.className = 'project-card-location';
-      locationDiv.textContent = locationElement.textContent;
+      locationDiv.innerHTML = locationElement.innerHTML;
       cardContent.appendChild(locationDiv);
       locationElement.remove();
     }
@@ -143,34 +177,22 @@ export default function decorate(block) {
 
   projectCardsContainer.appendChild(cardsGridContainer);
 
-  // Handle View All link
-  if (projectCards.length > 0) {
-    const linkFieldElement = block.querySelector('[data-aue-model="linkField"]');
-    if (linkFieldElement) {
-      const linkContainer = document.createElement('div');
-      moveInstrumentation(linkFieldElement, linkContainer);
-      linkContainer.className = 'projectcards-view-all';
-      const linkElement = linkFieldElement.querySelector('a');
-      if (linkElement) {
-        const linkDiv = document.createElement('div');
-        const viewAllLink = document.createElement('a');
-        viewAllLink.href = linkElement.getAttribute('href');
-        viewAllLink.textContent = linkElement.textContent;
-        viewAllLink.className = 'view-all-link';
-        moveInstrumentation(linkElement, viewAllLink);
-
-        const targetDiv = document.createElement('div');
-        moveInstrumentation(linkFieldElement.querySelector('[data-aue-prop="linkTarget"]'), targetDiv);
-        viewAllLink.target = linkFieldElement.querySelector('[data-aue-prop="linkTarget"]')?.textContent || '_self';
-
-        linkDiv.appendChild(viewAllLink);
-        linkContainer.appendChild(linkDiv);
-        linkContainer.appendChild(targetDiv);
-      }
-
-      projectCardsContainer.appendChild(linkContainer);
-      linkFieldElement.remove();
+  // Handle View All link using the stored last element
+  if (lastElement) {
+    const linkContainer = document.createElement('div');
+    moveInstrumentation(lastElement, linkContainer);
+    linkContainer.className = 'projectcards-view-all';
+    const linkElement = lastElement.querySelector('a');
+    if (linkElement) {
+      const linkDiv = document.createElement('div');
+      linkElement.className = 'view-all-link';
+      linkElement.target = lastElement.children[2]?.textContent || '_self';
+      linkDiv.appendChild(linkElement); 
+      linkContainer.appendChild(linkDiv);
     }
+
+    projectCardsContainer.appendChild(linkContainer);
+    lastElement.remove();
   }
 
   // Clear original block content and append new structure
