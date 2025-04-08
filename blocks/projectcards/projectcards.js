@@ -32,7 +32,7 @@ const nextCta = SvgIcon({
 function handleDisableButton(block,currentCarousel){
   const prevButton = document.querySelectorAll('.carousel-prev')[currentCarousel]
   const nextButton = document.querySelectorAll('.carousel-next')[currentCarousel]
-  const totalItems = document.querySelectorAll('.project-carousel'+currentCarousel).length;
+  const totalItems = block.querySelectorAll('.card-pair').length;
 
 	prevButton.innerHTML = ""
 
@@ -51,14 +51,11 @@ function handleDisableButton(block,currentCarousel){
 }
 
 function moveSlide(direction , block,currentCarousel) {
-  let totalItems =0
-  document.querySelectorAll('.project-carousel'+currentCarousel).forEach(element=>{
-    totalItems+=element.querySelectorAll('.project-card').length
-  });
+  let totalItems =block.querySelectorAll('.project-card').length;
   if (totalItems <= CAROUSEL_SIZE) {
     return;
   }
-  const carouselContainer = document.querySelectorAll('.carousel-container')[currentCarousel];
+  const carouselContainer = block.querySelector('.carousel-container');
   
   currentIndex[currentCarousel] += direction;
   document.dispatchEvent(new CustomEvent('currentIndexChanged', { detail: {currentIndex,currentCarousel} }));
@@ -266,7 +263,7 @@ export default function decorate(block) {
 
   projectCardsContainer.appendChild(cardsGridContainer);
 
-const carouselContaier = document.createElement('div');
+  const carouselContaier = document.createElement('div');
   carouselContaier.setAttribute('class', 'carousel');
 
   carouselContaier.appendChild(cardsGridContainer)
@@ -361,7 +358,7 @@ const carouselContaier = document.createElement('div');
     // Check if the event listener has already been added (using a custom data attribute or a class)
     if (!element.hasAttribute('data-listener-added')) {
       element.addEventListener('click', () => {
-        const totalItems = document.querySelectorAll('.project-carousel'+index).length;
+        const totalItems = block.querySelectorAll('.project-carousel'+index).length;
         if(currentIndex[index] !== totalItems-1)
           moveSlide(1 ,block,index);
       });
