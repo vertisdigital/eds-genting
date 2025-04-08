@@ -156,8 +156,7 @@ export default function decorate(block) {
       projectCards.pop() : null;
   }
   let cardPair = document.createElement('div');
-  const className=`card-pair project-carousel${countCarousel}`
-	cardPair.setAttribute("class",className);
+  cardPair.classList.add("card-pair");
   
   projectCards.forEach((card,index) => {
     const cardElement = document.createElement('div');
@@ -256,8 +255,7 @@ export default function decorate(block) {
 		cardsGridContainer.appendChild(cardPair);
 		// Create a new card-pair container for the next group of 4 cards
 		cardPair = document.createElement('div');
-    const className=`card-pair project-carousel${countCarousel}`
-		cardPair.setAttribute("class",className);
+		cardPair.classList.add("card-pair");
 	  }
   });
 
@@ -358,7 +356,7 @@ export default function decorate(block) {
     // Check if the event listener has already been added (using a custom data attribute or a class)
     if (!element.hasAttribute('data-listener-added')) {
       element.addEventListener('click', () => {
-        const totalItems = block.querySelectorAll('.project-carousel'+index).length;
+        const totalItems = block.querySelectorAll('.card-pair').length;
         if(currentIndex[index] !== totalItems-1)
           moveSlide(1 ,block,index);
       });
