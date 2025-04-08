@@ -4,8 +4,9 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import SvgIcon from '../../../shared-components/SvgIcon.js';
 import stringToHTML from '../../../shared-components/Utility.js';
 
-let currentIndex = 0;
+let currentIndex = [];
 const CAROUSEL_SIZE=4;
+let countCarousel=0;
 
 const nextDisableCta = SvgIcon({
   name: "disableRightArrow",
@@ -28,52 +29,52 @@ const nextCta = SvgIcon({
   size: "16px",
 });
 
-function handleDisableButton(block){
-  const prevButton = block.querySelector('.carousel-prev')
-  const nextButton = block.querySelector('.carousel-next')
-  const totalItems = block.querySelectorAll('.carousel-item').length;
+function handleDisableButton(block,currentCarousel){
+  const prevButton = document.querySelectorAll('.carousel-prev')[currentCarousel]
+  const nextButton = document.querySelectorAll('.carousel-next')[currentCarousel]
+  const totalItems = document.querySelectorAll('.project-carousel'+currentCarousel).length;
 
-  prevButton.innerHTML = ""
-  
-  if (currentIndex > 0) {
-    prevButton.append(stringToHTML(prevCta))
-  } else {
-    prevButton.append(stringToHTML(prevDisableCta))
-  }
+	prevButton.innerHTML = ""
 
-  nextButton.innerHTML = ""
-  
-  if (currentIndex < totalItems-1) {
-    nextButton.append(stringToHTML(nextCta))
-  }else{
-    nextButton.append(stringToHTML(nextDisableCta))
-  }
+	if (currentIndex[currentCarousel] > 0) {
+		prevButton.append(stringToHTML(prevCta))
+	} else {
+	    prevButton.append(stringToHTML(prevDisableCta))
+	}	  
+
+	nextButton.innerHTML = ""
+	  if (currentIndex[currentCarousel] < totalItems-1) {
+	    nextButton.append(stringToHTML(nextCta))
+	  }else{
+	    nextButton.append(stringToHTML(nextDisableCta))
+	  }  
 }
 
-function moveSlide(direction , block) {
-
-  const totalItems = document.querySelectorAll('.carousel-item').length;
-  const projectCard = document.querySelectorAll('.project-card')
-  if (projectCard.length <= CAROUSEL_SIZE) {
+function moveSlide(direction , block,currentCarousel) {
+  let totalItems =0
+  document.querySelectorAll('.project-carousel'+currentCarousel).forEach(element=>{
+    totalItems+=element.querySelectorAll('.project-card').length
+  });
+  if (totalItems <= CAROUSEL_SIZE) {
     return;
   }
-  const carouselContainer = document.querySelector('.carousel-container');
-
+  const carouselContainer = document.querySelectorAll('.carousel-container')[currentCarousel];
   
-  currentIndex += direction;
-  document.dispatchEvent(new CustomEvent('currentIndexChanged', { detail: currentIndex }));
-  handleDisableButton(block)
+  currentIndex[currentCarousel] += direction;
+  document.dispatchEvent(new CustomEvent('currentIndexChanged', { detail: {currentIndex,currentCarousel} }));
+  handleDisableButton(block,currentCarousel)
     
-  if (currentIndex >= 0 && currentIndex < totalItems) {
-    if (currentIndex < 0) {
-      currentIndex = totalItems;
-    } else if (currentIndex >= totalItems) {
-      currentIndex = 0;
+  if (currentIndex[currentCarousel] >= 0 && currentIndex[currentCarousel] <= totalItems) {
+    if (currentIndex[currentCarousel] < 0) {
+      currentIndex[currentCarousel] = totalItems;
+    } else if (currentIndex[currentCarousel] >= totalItems-1) {
+      currentIndex[currentCarousel] = 0;
     }
-    const offset = -currentIndex * 100;
+    const offset = -currentIndex[currentCarousel] * 100;
     carouselContainer.style.transform = `translateX(${offset}%)`;
   }
 }
+
 
 export default function decorate(block) {
   // Create main container
@@ -158,7 +159,8 @@ export default function decorate(block) {
       projectCards.pop() : null;
   }
   let cardPair = document.createElement('div');
-  cardPair.classList.add('card-pair');
+  const className=`card-pair project-carousel${countCarousel}`
+	cardPair.setAttribute("class",className);
   
   projectCards.forEach((card,index) => {
     const cardElement = document.createElement('div');
@@ -257,7 +259,8 @@ export default function decorate(block) {
 		cardsGridContainer.appendChild(cardPair);
 		// Create a new card-pair container for the next group of 4 cards
 		cardPair = document.createElement('div');
-		cardPair.classList.add('card-pair');
+    const className=`card-pair project-carousel${countCarousel}`
+		cardPair.setAttribute("class",className);
 	  }
   });
 
@@ -279,22 +282,12 @@ const carouselContaier = document.createElement('div');
 
   const buttonGroup=document.createElement('div')
   buttonGroup.setAttribute('class','button-group')
-  
+
   buttonGroup.appendChild(prevButton)
   buttonGroup.appendChild(nextButton)
   carouselContaier.appendChild(buttonGroup)
 
   projectCardsContainer.appendChild(carouselContaier);
-
-  prevButton.addEventListener('click',()=>{
-    if(currentIndex-1>=0)
-      moveSlide(-1 , block);
-  })
-  nextButton.addEventListener('click',()=>{
-    const totalItems = document.querySelectorAll('.carousel-item').length;
-    if(currentIndex !== totalItems-1)
-      moveSlide(1 ,block);
-  })
 
   // Handle View All link using the stored last element
   if (lastElement) {
@@ -341,7 +334,41 @@ const carouselContaier = document.createElement('div');
   }
 
   document.addEventListener('currentIndexChanged', function(e) {
-    handleDisableButton(block)
+    handleDisableButton(block,e.detail.currentCarousel)
   });
+
+ 
+ countCarousel++;	
+ for(let i=0;i<countCarousel;i++){
+   currentIndex[i]=0;	 
+  }
+
+
+  document.querySelectorAll('.carousel-prev').forEach((element,index)=>{
+    // Check if the event listener has already been added (using a custom data attribute or a class)
+    if (!element.hasAttribute('data-listener-added')) {
+      element.addEventListener('click',()=>{
+        if(currentIndex[index]-1>=0)
+          moveSlide(-1 , block,index);
+      })
   
+      // Mark that the listener has been added
+      element.setAttribute('data-listener-added', 'true');
+    }
+  })
+  
+  document.querySelectorAll('.carousel-next').forEach((element, index) => {
+    // Check if the event listener has already been added (using a custom data attribute or a class)
+    if (!element.hasAttribute('data-listener-added')) {
+      element.addEventListener('click', () => {
+        const totalItems = document.querySelectorAll('.project-carousel'+index).length;
+        if(currentIndex[index] !== totalItems-1)
+          moveSlide(1 ,block,index);
+      });
+  
+      // Mark that the listener has been added
+      element.setAttribute('data-listener-added', 'true');
+    }
+  });
+	
 }
