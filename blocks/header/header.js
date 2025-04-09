@@ -267,6 +267,10 @@ function initializeHeader(header) {
   // Select navigation elements
   const nav = header.querySelector('.header-nav');
   nav.insertBefore(hamburger, nav.firstChild);
+  
+  const headerSection=document.querySelector('.header')
+  const defaultLogo = header.querySelector('.default-logo');
+  const scrollLogo = header.querySelector('.scroll-logo');
 
   // Handle hamburger click
   hamburger.addEventListener('click', () => {
@@ -275,6 +279,18 @@ function initializeHeader(header) {
     const primaryNav = header.querySelector('.primary-nav');
     primaryNav.classList.toggle('active');
 
+    // header.classList.add('fixed-header');
+    if(window.scrollY===0){
+      if(hamburger.classList.contains('active')){
+        headerSection.classList.add('fixed-header') 
+        defaultLogo.style.display = 'none';
+        scrollLogo.style.display = 'block';
+      }else{
+        headerSection.classList.remove('fixed-header');
+        defaultLogo.style.display = 'block';
+        scrollLogo.style.display = 'none';
+      }
+    }
     // Use setTimeout to ensure class toggle happens before icon change
     setTimeout(() => {
       if (hamburger.classList.contains('active')) {
@@ -358,7 +374,7 @@ function initializeHeader(header) {
       // Handle click on nav item - Clone links here
       item.addEventListener('click', (e) => {
         e.preventDefault();
-
+        
         if (currentActive && currentActive !== item) {
           // Close currently active menu
           currentActive.classList.remove(activeClass);
@@ -378,9 +394,19 @@ function initializeHeader(header) {
           const clonedLinks = originalLinks.cloneNode(true);
           emptyLinks.innerHTML = ''; // Clear previous links
           emptyLinks.append(...clonedLinks.children); // Append cloned children
+
+          headerSection.classList.add('fixed-header') 
+          header.classList.add('fixed-header');
+          defaultLogo.style.display = 'none';
+          scrollLogo.style.display = 'block';
         } else {
           // Clear links when closing
           emptyLinks.innerHTML = '';
+          if(window.scrollY===0){
+            headerSection.classList.remove('fixed-header');
+            defaultLogo.style.display = 'block';
+            scrollLogo.style.display = 'none';
+          }
         }
 
         secondaryNav.classList.toggle(activeClass);
@@ -406,6 +432,12 @@ function initializeHeader(header) {
       closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         closeSecondary();
+        const scrollPosition = window.scrollY;
+        if(scrollPosition===0){
+          headerSection.classList.remove('fixed-header');
+          defaultLogo.style.display = 'block';
+          scrollLogo.style.display = 'none';
+        }
       });
     }
   });
@@ -468,14 +500,15 @@ function updateHeaderState(header) {
   const scrollPosition = window.scrollY;
   const defaultLogo = header.querySelector('.default-logo');
   const scrollLogo = header.querySelector('.scroll-logo');
-
+  const isMegaMenuOpen=document.querySelector('.secondary-nav.active')
+  
   if (defaultLogo && scrollLogo) {
     if (scrollPosition > 0 && !isHeaderFixed) {
       header.classList.add('fixed-header');
       defaultLogo.style.display = 'none';
       scrollLogo.style.display = 'block';
       isHeaderFixed = true;
-    } else if (scrollPosition === 0 && isHeaderFixed) {
+    } else if (scrollPosition === 0 && isHeaderFixed && !isMegaMenuOpen) {
       header.classList.remove('fixed-header');
       defaultLogo.style.display = 'block';
       scrollLogo.style.display = 'none';
