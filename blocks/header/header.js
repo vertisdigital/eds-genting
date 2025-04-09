@@ -267,10 +267,6 @@ function initializeHeader(header) {
   // Select navigation elements
   const nav = header.querySelector('.header-nav');
   nav.insertBefore(hamburger, nav.firstChild);
-  
-  const headerSection=document.querySelector('.header')
-  const defaultLogo = header.querySelector('.default-logo');
-  const scrollLogo = header.querySelector('.scroll-logo');
 
   // Handle hamburger click
   hamburger.addEventListener('click', () => {
@@ -279,12 +275,12 @@ function initializeHeader(header) {
     const primaryNav = header.querySelector('.primary-nav');
     primaryNav.classList.toggle('active');
 
-    updateHeaderState(header)
     // Use setTimeout to ensure class toggle happens before icon change
     setTimeout(() => {
       if (hamburger.classList.contains('active')) {
         hamburger.replaceChildren(closeIcon);
         document.body.classList.add('no-scroll');
+        updateHeaderState(header,true)
       } else {
         document.body.classList.remove('no-scroll');
         hamburger.replaceChildren(hamburgerIcon);
@@ -296,6 +292,7 @@ function initializeHeader(header) {
         if (activeSecondary) activeSecondary.classList.remove('active');
         overlay.classList.remove('active');
         currentActive = null;
+        updateHeaderState(header)
       }
     }, 0);
   });
@@ -478,33 +475,21 @@ function updateHeaderState(header,isClicked=false) {
   const defaultLogo = header.querySelector('.default-logo');
   const scrollLogo = header.querySelector('.scroll-logo');
   const isMegaMenuOpen=document.querySelector('.secondary-nav.active')
-  const hamburger=header.querySelector('.hamburger')
   const headerSection=document.querySelector('.header')
   
   if (defaultLogo && scrollLogo) {
-    if ((scrollPosition >= 0 && !isHeaderFixed) || isClicked  || isMegaMenuOpen) {
+    if ((scrollPosition > 0 && !isHeaderFixed) || isClicked) {
       headerSection.classList.add('fixed-header');
       defaultLogo.style.display = 'none';
       scrollLogo.style.display = 'block';
       isHeaderFixed = true;
     } else if (scrollPosition === 0 && isHeaderFixed) {
+      if(isMegaMenuOpen) return; 
       headerSection.classList.remove('fixed-header');
       defaultLogo.style.display = 'block';
       scrollLogo.style.display = 'none';
       isHeaderFixed = false;
     }
-    if(scrollPosition === 0 &&  window.innerWidth<1024){
-
-    if(hamburger.classList.contains('active')){
-      headerSection.classList.add('fixed-header') 
-      defaultLogo.style.display = 'none';
-      scrollLogo.style.display = 'block';
-    }else{
-      headerSection.classList.remove('fixed-header');
-      defaultLogo.style.display = 'block';
-      scrollLogo.style.display = 'none';
-    }
-  }
   }
 }
 
