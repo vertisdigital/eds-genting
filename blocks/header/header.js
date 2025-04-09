@@ -474,8 +474,8 @@ function updateHeaderState(header,isClicked=false,clickedFrom='') {
   const scrollPosition = window.scrollY;
   const defaultLogo = header.querySelector('.default-logo');
   const scrollLogo = header.querySelector('.scroll-logo');
-  const isMegaMenuOpen=document.querySelector('.secondary-nav.active')
-  const headerSection=document.querySelector('.header')
+  const isMegaMenuOpen = header.querySelector('.secondary-nav.active')
+  const headerSection = document.querySelector('.header')
   
   if (defaultLogo && scrollLogo) {
     if ((scrollPosition > 0 && !isHeaderFixed) || isClicked) {
@@ -484,7 +484,7 @@ function updateHeaderState(header,isClicked=false,clickedFrom='') {
       scrollLogo.style.display = 'block';
       isHeaderFixed = true;
     } else if (scrollPosition === 0 && isHeaderFixed) {
-      if(window.innerWidth>1024 && clickedFrom==='' && isMegaMenuOpen){
+      if(window.innerWidth > 992 && clickedFrom === '' && isMegaMenuOpen){
         return;
       } 
       headerSection.classList.remove('fixed-header');
