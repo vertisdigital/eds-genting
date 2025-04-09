@@ -296,7 +296,7 @@ function initializeHeader(header) {
       }
     }, 0);
   });
-  
+
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
     const overviewLink = linksDiv?.querySelector('.overview-link');
@@ -360,7 +360,7 @@ function initializeHeader(header) {
       // Handle click on nav item - Clone links here
       item.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         if (currentActive && currentActive !== item) {
           // Close currently active menu
           currentActive.classList.remove(activeClass);
@@ -386,7 +386,6 @@ function initializeHeader(header) {
           emptyLinks.innerHTML = '';
           updateHeaderState(header)
         }
-        
 
         secondaryNav.classList.toggle(activeClass);
         overlay.classList.toggle(activeClass);
