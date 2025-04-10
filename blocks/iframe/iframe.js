@@ -96,11 +96,6 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       tablet: "640px",
       desktop: '640px',
     },
-    "share-quote-and-chartl": {
-      mobile: '3500px',
-      tablet: '1900px',
-      desktop: '1850px',
-    },
     default: {
       mobile: '1850px',
       desktop: '1220px',
