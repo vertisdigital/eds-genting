@@ -30,7 +30,8 @@
       "awardsgallery",
       "sustainabilitygovernance",
       "corporatepolicies",
-      "statistics"
+      "statistics",
+      "mediagallery"
     ]
   },
   {
@@ -44,7 +45,8 @@
       "loadmore",
       "boardofdirectors",
       "iframe",
-      "corporatepolicies"
+      "corporatepolicies",
+      "mediagallery"
     ]
   },
   {
@@ -207,6 +209,12 @@
     "id": "boardofdirectors",
     "components": [
       "director"
+    ]
+  },
+  {
+    "id": "mediagallery",
+    "components": [
+      "media"
     ]
   }
 ]

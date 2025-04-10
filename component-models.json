@@ -2100,5 +2100,31 @@
         ]
       }
     ]
+  },
+  {
+    "id": "mediagallery",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [     
+          {
+            "name": "1+1+1",
+            "value": "1+1+1"
+          },     
+          {
+            "name": "2+1",
+            "value": "2+1"
+          },
+          {
+            "name": "1+2",
+            "value": "1+2"
+          }          
+        ]
+      }
+    ]
   }
 ]
