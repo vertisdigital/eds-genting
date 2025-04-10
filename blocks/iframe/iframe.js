@@ -26,11 +26,6 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       mobile: '1850px',
       desktop: '1220px',
     },
-    'annual-reports': {
-      mobile: '15600px',
-      tablet: '4640px',
-      desktop: '5690px',
-    },
     'sustainability-reports': {
       mobile: '6680px',
       tablet: {
@@ -54,7 +49,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     'analysts-coverage': {
       mobile: '1300px',
       tablet: '1110px',
-      desktop: '1060px',
+      desktop: '1080px',
     },
     'share-quote-and-chart': {
       mobile: '3500px',
@@ -77,17 +72,17 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       disableScroll: true
     },
     "Share Quote And Chart": {
-      desktop: '1810px',
+      desktop: '1860px',
       tablet: "3240px",
       mobile: "3540px"
     },
     "Annual Reports": {
-      mobile: '13890px',
-      tablet: '26020px',
-      desktop: '5690px',
+      mobile: '15380px',
+      tablet: '27020px',
+      desktop: '5034px',
     },
     "Sustainability Reports": {
-      mobile: '6680px',
+      mobile: '7180px',
       tablet: "11340px",
       desktop: '2620px',
     },
