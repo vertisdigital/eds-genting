@@ -523,8 +523,14 @@ indices:
         value: textContent(el)
 
       # 45. Search
+      searchTitle:
+        select: .search > form > h2
+        value: textContent(el)
       searchPlaceholder:
-        select: .search > div > div:nth-child(1)
+        select: .search input[type="search"]
+        value: attribute(el, "placeholder")
+      searchButtonText:
+        select: .search .search-button-text
         value: textContent(el)
 
       # 46. Sustainability Governance

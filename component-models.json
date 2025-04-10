@@ -2100,5 +2100,60 @@
         ]
       }
     ]
+  },
+  {
+    "id": "search",
+    "fields": [
+      {
+        "component": "select",
+        "name": "icon",
+        "label": "Icon",
+        "options": [
+          {
+            "name": "Search",
+            "value": "search"
+          },
+          {
+            "name": "Magnifying Glass",
+            "value": "magnifying-glass"
+          },
+          {
+            "name": "Lens",
+            "value": "lens"
+          },
+          {
+            "name": "Find",
+            "value": "find"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "placeholder",
+        "label": "Placeholder Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Placeholder text cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "ctaCaption",
+        "label": "CTA Button Caption",
+        "validation": {
+          "maxLength": 20,
+          "customErrorMsg": "CTA caption cannot exceed 20 characters"
+        }
+      }
+    ]
   }
 ]
