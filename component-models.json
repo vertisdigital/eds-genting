@@ -2147,6 +2147,15 @@
       },
       {
         "component": "text",
+        "name": "resultsFoundCaption",
+        "label": "Results Found Caption",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Results Found Caption cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
         "name": "ctaCaption",
         "label": "CTA Button Caption",
         "validation": {
