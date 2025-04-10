@@ -2155,32 +2155,9 @@
         }
       },
       {
-        "component": "text",
-        "name": "ctaCaption",
-        "label": "CTA Button Caption",
-        "validation": {
-          "maxLength": 20,
-          "customErrorMsg": "CTA caption cannot exceed 20 characters"
-        }
-      },
-      {
-        "component": "boolean",
-        "name": "redirectToResultsPage",
-        "label": "Redirect to Search Results Page",
-        "valueType": "boolean"
-      },
-      {
         "component": "aem-content",
         "name": "link",
         "label": "Link",
-        "condition": {
-          "===": [
-            {
-              "var": "redirectToResultsPage"
-            },
-            true
-          ]
-        },
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
@@ -2189,14 +2166,6 @@
         "component": "text",
         "name": "linkText",
         "label": "Text",
-        "condition": {
-          "===": [
-            {
-              "var": "redirectToResultsPage"
-            },
-            true
-          ]
-        },
         "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view",
         "validation": {
           "maxLength": 50,
@@ -2207,14 +2176,6 @@
         "component": "text",
         "name": "linkTitle",
         "label": "Title",
-        "condition": {
-          "===": [
-            {
-              "var": "redirectToResultsPage"
-            },
-            true
-          ]
-        },
         "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view",
         "validation": {
           "maxLength": 50,
@@ -2225,14 +2186,6 @@
         "component": "select",
         "name": "linkTarget",
         "label": "Target",
-        "condition": {
-          "===": [
-            {
-              "var": "redirectToResultsPage"
-            },
-            true
-          ]
-        },
         "options": [
           {
             "name": "Same Tab",
