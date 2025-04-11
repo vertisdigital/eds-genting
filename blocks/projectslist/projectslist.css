@@ -120,7 +120,7 @@ p {
     }
 }
 
-@media (width>=993px) {
+@media (width>=768px) {
     .projectslist-wrapper {
         margin: 45px 0;
     }
