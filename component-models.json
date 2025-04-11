@@ -2219,6 +2219,15 @@
       },
       {
         "component": "text",
+        "name": "consentPreferencesText",
+        "label": "Consent Preferences Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Text cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
         "name": "heading",
         "label": "Heading",
         "validation": {
