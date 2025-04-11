@@ -2100,5 +2100,109 @@
         ]
       }
     ]
+  },
+  {
+    "id": "cookiebanner",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "bannertext",
+        "label": "Banner Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "cookieSettingsLink",
+        "label": "Cookie Settings Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "cookieSettingsCaption",
+        "label": "Cookie Settings CTA Caption",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "cookieSettingsTitle",
+        "label": "Cookie Settings CTA Title",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Title cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "select",
+        "name": "cookieSettingsTarget",
+        "label": "Cookie Settings Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
+      },
+      {
+        "component": "aem-content",
+        "name": "disableAllLink",
+        "label": "Disable All Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "disableAllCaption",
+        "label": "Disable All CTA Caption",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "disableAllTitle",
+        "label": "Disable All CTA Title",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Title cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "allowAllLink",
+        "label": "Allow All Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "allowAllCaption",
+        "label": "Allow All CTA Caption",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "allowAllTitle",
+        "label": "Allow All CTA Title",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Title cannot exceed 50 characters"
+        }
+      }
+    ]
   }
 ]
