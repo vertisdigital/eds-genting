@@ -102,7 +102,7 @@ p {
         margin-top:20px
        }
     .project-title  {
-        font-size: var(--font-size-ms);
+        font-size: var(--font-size-sm);
     }
     .project-subtitle {
         font-size: var(--font-size-xs);
