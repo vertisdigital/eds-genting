@@ -2280,13 +2280,45 @@
         }
       },
       {
+        "component": "aem-content",
+        "name": "confirm",
+        "label": "Confirm Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
         "component": "text",
-        "name": "confirmButtonCaption",
+        "name": "confirmText",
         "label": "Confirm Button Caption",
         "validation": {
           "maxLength": 50,
           "customErrorMsg": "Caption cannot exceed 50 characters"
         }
+      },
+      {
+        "component": "text",
+        "name": "confirmTitle",
+        "label": "Confirm Button Title",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Title cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "select",
+        "name": "confirmTarget",
+        "label": "Confirm Button Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
       }
     ]
   },
