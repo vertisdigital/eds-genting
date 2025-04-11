@@ -75,7 +75,8 @@ p {
         padding-bottom: 28px;
     }
     .project-cta a.button:any-link{
-        margin-top:24px
+        margin-top:24px;
+        margin-bottom: 0;
        }
 }
 
