@@ -2120,7 +2120,7 @@
       },
       {
         "component": "text",
-        "name": "cookieSettingsCaption",
+        "name": "cookieSettingsText",
         "label": "Cookie Settings CTA Caption",
         "validation": {
           "maxLength": 50,
