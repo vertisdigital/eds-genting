@@ -2113,15 +2113,15 @@
         "options": [     
           {
             "name": "1+1+1",
-            "value": "1-1-1"
+            "value": "mg-one-one-one"
           },     
           {
             "name": "2+1",
-            "value": "2-1"
+            "value": "mg-two-one"
           },
           {
             "name": "1+2",
-            "value": "1-2"
+            "value": "mg-one-two"
           }          
         ]
       }
