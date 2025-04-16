@@ -5,4 +5,5 @@
     "rails": false,
     "aemTierType": "delivery",
     "type": ["folder", "file", "images", "documents", "video"]
+    
   }
