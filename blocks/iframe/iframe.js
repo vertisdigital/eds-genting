@@ -162,12 +162,12 @@ export default function decorate(block) {
 
   const iframeWrapper = document.querySelector('.iframe-wrapper');
   iframeWrapper.classList.add('container');
-  const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '').replace('.htm', '');
-  updateIframeHeight(iframeWrapper, endpoint);
+  const endpoint = new window.URL(url).pathname.replace('/', '').split('.');
+  updateIframeHeight(iframeWrapper, endpoint[0]);
   getTabsEvent();
 
   window.addEventListener('resize', () => {
-    updateIframeHeight(iframeWrapper, endpoint);
+    updateIframeHeight(iframeWrapper, endpoint[0]);
     getTabsEvent();
   });
 
