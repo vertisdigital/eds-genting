@@ -37,15 +37,19 @@ function handleDisableButton(block,currentCarousel){
 	prevButton.innerHTML = ""
 
 	if (currentIndex[currentCarousel] > 0) {
+    prevButton.style.cursor = "pointer"
 		prevButton.append(stringToHTML(prevCta))
 	} else {
+		  prevButton.style.cursor="default"
 	    prevButton.append(stringToHTML(prevDisableCta))
 	}	  
 
 	nextButton.innerHTML = ""
 	  if (currentIndex[currentCarousel] < totalItems-1) {
+      nextButton.style.cursor = "pointer"
 	    nextButton.append(stringToHTML(nextCta))
 	  }else{
+      nextButton.style.cursor = "default"
 	    nextButton.append(stringToHTML(nextDisableCta))
 	  }  
 }
@@ -69,7 +73,11 @@ function moveSlide(direction , block,currentCarousel) {
     }
     const offset = -currentIndex[currentCarousel] * 100;
     carouselContainer.style.transform = `translateX(${offset}%)`;
+    
   }
+
+  const cardHeight = block.querySelectorAll('.card-pair')[currentIndex[currentCarousel]].offsetHeight;
+  carouselContainer.style.height = carouselContainer.style.height===`${cardHeight}px`?"100%":`${cardHeight}px`
 }
 
 
@@ -274,6 +282,7 @@ export default function decorate(block) {
   
   
   prevButton.append(stringToHTML(prevDisableCta))
+  prevButton.style.cursor = "default"
 
   const buttonGroup=document.createElement('div')
   buttonGroup.setAttribute('class','button-group')
