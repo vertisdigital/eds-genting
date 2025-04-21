@@ -8,6 +8,13 @@
 
 @media(width>=768px) {
     .separator-line {
+        margin-top: 28px;
+        margin-bottom: 28px;
+    }
+}
+
+@media(width>=993px) {
+    .separator-line {
         margin-top: 45px;
         margin-bottom: 45px;
     }
