@@ -144,7 +144,7 @@ export default function decorate(block) {
     const closeIcon = stringToHTML(SvgIcon({ name: 'close', color: "#B29152", size: '16px' }));
     
     const closeBtn=document.createElement('button')
-    closeBtn.classList.add("media-gallery-modal--close-btn")
+    closeBtn.classList.add("media-gallery-modal-close-btn")
     closeBtn.append(closeIcon)
     modalBody.appendChild(closeBtn)
 
@@ -181,7 +181,7 @@ export default function decorate(block) {
             img.setAttribute('data-listener-added', 'true');
     })
 
-    document.querySelector('.media-gallery-modal--close-btn').addEventListener('click',()=>{
+    document.querySelector('.media-gallery-modal-close-btn').addEventListener('click',()=>{
         const modalElement = document.querySelector('.media-gallery-modal')
         modalElement.style.visibility = 'hidden'
         document.body.style.overflowY = 'scroll'
