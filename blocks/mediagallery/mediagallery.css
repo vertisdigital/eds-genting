@@ -40,6 +40,72 @@
     margin-bottom: 36px;
 }
 
+.media-gallery-modal{
+    position: absolute;
+    inset: 0;
+    background-color: #00000099;
+    z-index: 9199;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+
+.media-gallery-modal-body{
+    background-color: #fff;
+    padding: 32px;
+    width: 806px;
+    height: 626px;
+    position: relative;
+}
+
+.media-gallery-body-img{
+    width: 100%;
+    height:450px;
+}
+
+.media-gallery-modal-bottom-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 32px;
+    padding-top: 12px;
+    border-top: solid 1px #957842;
+}
+
+.media-gallery-modal-title{
+    font-weight: 600;
+    font-size: var(--font-size-s);
+    color: #000;
+}
+
+.media-gallery-modal-description{
+    color: #000;
+}
+
+.media-gallery-modal--close-btn{
+    background-color: #fff;
+    border-radius: 100%;
+    height: 34px;
+    width: 34px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -48px;
+    right: 0;
+}
+
+.media-gallery-modal--close-btn span{
+    margin-top: 4px;
+}
+
+.media-gallery-modal--close-btn:hover,
+.media-gallery-modal--close-btn:focus{
+    background-color: #fff;
+}
+
 @media (width <=992px) {
     .ml {
         margin-left: 23px;
@@ -55,6 +121,15 @@
 
     .last-row {
         gap: 24px;
+    }
+
+    .media-gallery-modal-body {
+        width: 751px;
+        height: 594px;
+    }
+    
+    .media-gallery-body-img {
+        height: 424px;
     }
 }
 
@@ -79,5 +154,24 @@
         margin-bottom: 24px;
     }
 
+    .media-gallery-modal-body {
+        padding: 16px;
+        width: 342px;
+        height: 337px;
+    }
+
+    .media-gallery-body-img{
+        height: 191px;
+    }
+
+    .media-gallery-modal-title{
+        font-size: var(--base-font-size);
+    }
+    .media-gallery-modal-description{
+        font-size: var(--font-size-xxxxs);
+    }
+    .media-gallery-modal-bottom-section{
+        align-items: flex-end;
+    }
 
 }

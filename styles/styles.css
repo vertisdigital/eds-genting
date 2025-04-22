@@ -65,6 +65,7 @@ Usage Example:
 
   /* base font size */
   --base-font-size: 16px;
+  --font-size-xxxxs: 0.625rem;
   --font-size-xxxs: 0.75rem;
   --font-size-xxs: 0.875rem;
   --font-size-xs: 1rem;
@@ -540,8 +541,8 @@ main .section.highlight {
   }
 
   .row>* {
-    padding-right: calc(var(--bs-gutter-x) * 0.5);
-    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    padding-right: calc(var(--bs-gutter-x) * 0.25);
+    padding-left: calc(var(--bs-gutter-x) * 0.25);
   }
 
   .row>*:first-child {
