@@ -62,6 +62,11 @@ export default function decorate(block) {
         img.style.display = "block"
         img.style.cursor="pointer"
         img.classList.add('media-gallery-images')
+        const imageDetails = link.parentElement.parentElement.parentElement.querySelectorAll('div')
+        
+        img.setAttribute('data-listener-title', imageDetails[1].innerText)
+        img.setAttribute('data-listener-date', imageDetails[2].innerText)
+
         const mediagallerySection = link.parentElement.parentElement.parentElement;
         mediagallerySection.innerHTML=""
         mediagallerySection.append(img)
@@ -132,8 +137,8 @@ export default function decorate(block) {
     bodySubSection.innerHTML = `
     <div class="media-gallery-modal-bottom-section">
         <div>
-            <p class="media-gallery-modal-title">A scenic aerial view of Resorts World Sentosa</p>
-            <p class="media-gallery-modal-description">3 Feb 2025</p>
+            <p class="media-gallery-modal-title"></p>
+            <p class="media-gallery-modal-description"></p>
         </div>
         <a href="#" class="media-gallery-modal-btn"></a>
     </div>
@@ -166,6 +171,9 @@ export default function decorate(block) {
                 const scrollTop =  document.documentElement.scrollTop;
                 const scrollLeft = document.documentElement.scrollLeft;
                 document.querySelector('.media-gallery-body-img').src=img.src
+                document.querySelector('.media-gallery-modal-btn').setAttribute('href', img.src)
+                document.querySelector('.media-gallery-modal-title').innerHTML = img.getAttribute("data-listener-title")
+                document.querySelector('.media-gallery-modal-description').innerHTML = img.getAttribute("data-listener-date")
                 const top = rect.top + scrollTop - (window.innerHeight / 2) + (rect.height / 2);
                 const left = rect.left + scrollLeft - (window.innerWidth / 2) + (rect.width / 2);
 
