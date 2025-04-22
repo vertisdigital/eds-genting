@@ -85,8 +85,10 @@ export default function decorate(block) {
                 element.classList.add("right-img")
                 element.classList.add("ml")
                 const img = element.querySelector('img')
-                img.style.height = imagesHeight.lg.desktop.height
-                img.style.width = imagesHeight.lg.desktop.width
+                if(img){
+                    img.style.height = imagesHeight.lg.desktop.height
+                    img.style.width = imagesHeight.lg.desktop.width    
+                }
             }
 
         })
@@ -103,11 +105,12 @@ export default function decorate(block) {
                 element.remove()
             }else{
                 const img = element.querySelector('img')
-                img.style.height = imagesHeight.lg.desktop.height
-                img.style.width = imagesHeight.lg.desktop.width
-                element.classList.add("mr")
-                element.classList.add("right-img")
-    
+                if (img) {
+                    img.style.height = imagesHeight.lg.desktop.height
+                    img.style.width = imagesHeight.lg.desktop.width
+                    element.classList.add("mr")
+                    element.classList.add("right-img")
+                }
             }
         })
     
