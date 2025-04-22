@@ -1,18 +1,18 @@
 const imagesHeight={
     lg:{
-        desktop: { height: "451px", width:"735px"},
-        tablet: { height: "301px", width:"490px"},
+        desktop: { height: "451px", width:"100%"},
+        tablet: { height: "301px", width:"100%"},
     },
     mobile:{
-        width:"342px",
+        width:"100%",
         height:"206px"
     },
     tablet:{
-        width:"233px",
+        width:"100%",
         height:"136px"
     },
     desktop:{
-        width:"349px",
+        width:"100%",
         height:"206px"
     }
 }
@@ -24,7 +24,7 @@ function updateImagesProperty(block){
             img.style.width = imagesHeight.mobile.width
             img.style.height = imagesHeight.mobile.height
         })
-    } else {
+    } else if(window.innerWidth < 993){
         const mediaGallery = block.querySelectorAll('img')
         mediaGallery.forEach(img=>{
             img.style.width = imagesHeight.tablet.width
@@ -62,53 +62,57 @@ export default function decorate(block) {
         mediagallerySection.append(img)
     }); 
 
-    const mediaGallery = block.querySelectorAll('[data-block-name="mediagallery"]')
-    const firstRow = mediaGallery[0]
-    firstRow.classList.add('one-two-row')
-    const secRow = mediaGallery[1]
-    secRow.classList.add('one-two-row')
-    const lastRow=mediaGallery[mediaGallery.length - 1]
-    lastRow.classList.add('last-row')
-
+    let firstRows, secRows, lastRows = null;
+    const checkElementExist= Array.from(block.classList)
     
+    firstRows=checkElementExist.includes('mg-two-one-row')
+    secRows=checkElementExist.includes('mg-one-two-row')
+    lastRows=checkElementExist.includes('mg-one-one-one-row')
 
-    const wrapperDiv1 = document.createElement('div');
-    wrapperDiv1.classList.add('wrapped-container');
+    if(lastRows){
+        block.classList.add('last-row')
+    }
 
-    Array.from(firstRow.children).forEach((element, index) => {
-        if (index < 2){
-            wrapperDiv1.appendChild(element.cloneNode(true));
-            element.remove()
-        }
-        else{
-            element.classList.add("right-img")
-            element.classList.add("ml")
-            const img = element.querySelector('img')
-            img.style.height = imagesHeight.lg.desktop.height
-            img.style.width = imagesHeight.lg.desktop.width
-        }
+    if(firstRows){
+        const wrapperDiv = document.createElement('div');
+        wrapperDiv.classList.add('wrapped-container');
+        Array.from(block.children).forEach((element, index) => {
+            if (index < 2) {
+                wrapperDiv.appendChild(element.cloneNode(true));
+                element.remove()
+            }
+            else {
+                element.classList.add("right-img")
+                element.classList.add("ml")
+                const img = element.querySelector('img')
+                img.style.height = imagesHeight.lg.desktop.height
+                img.style.width = imagesHeight.lg.desktop.width
+            }
 
-    })
-    firstRow.prepend(wrapperDiv1)
-    const wrapperDiv2 = document.createElement('div');
-    wrapperDiv2.classList.add('wrapped-container');
+        })
+        block.prepend(wrapperDiv)
+    }
 
-    Array.from(secRow.children).forEach((element, index) => {
-        if (index > 0) {
-            wrapperDiv2.appendChild(element.cloneNode(true));
-            element.remove()
-        }else{
-            const img = element.querySelector('img')
-            img.style.height = imagesHeight.lg.desktop.height
-            img.style.width = imagesHeight.lg.desktop.width
-            element.classList.add("mr")
-            element.classList.add("right-img")
-
-        }
-    })
-
-    secRow.append(wrapperDiv2)
-
+    if(secRows){
+        const wrapperDiv = document.createElement('div');
+        wrapperDiv.classList.add('wrapped-container');
+    
+        Array.from(block.children).forEach((element, index) => {
+            if (index > 0) {
+                wrapperDiv.appendChild(element.cloneNode(true));
+                element.remove()
+            }else{
+                const img = element.querySelector('img')
+                img.style.height = imagesHeight.lg.desktop.height
+                img.style.width = imagesHeight.lg.desktop.width
+                element.classList.add("mr")
+                element.classList.add("right-img")
+    
+            }
+        })
+    
+        block.append(wrapperDiv)
+    }
     handleLayoutOnResize(block)
     
 }
