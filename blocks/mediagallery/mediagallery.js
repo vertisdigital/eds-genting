@@ -182,8 +182,8 @@ export default function decorate(block) {
     })
 
     document.querySelector('.media-gallery-modal--close-btn').addEventListener('click',()=>{
-        const modal = document.querySelector('.media-gallery-modal')
-        modal.style.visibility = 'hidden'
+        const modalElement = document.querySelector('.media-gallery-modal')
+        modalElement.style.visibility = 'hidden'
         document.body.style.overflowY = 'scroll'
     })
 }
