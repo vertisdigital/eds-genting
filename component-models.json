@@ -1415,6 +1415,24 @@
         "name": "imageTitle",
         "label": "Alt Text",
         "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "date",
+        "label": "Date",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "Date cannot exceed 30 characters"
+        }
       }
     ]
   },
