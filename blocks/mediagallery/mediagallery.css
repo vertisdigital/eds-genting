@@ -1,6 +1,6 @@
 .last-row {
     display: flex;
-    gap: 37px;
+    gap: 36px;
 }
 
 .mediagallery {
@@ -112,7 +112,17 @@
     background: transparent;
 }
 
+.mg-two-one-row{
+    width: 100%;
+}
 
+.mg-one-two-row{
+    width: 100%;
+}
+
+.mg-one-one-one-row{
+    width: 100%;
+}
 
 @media (width <=992px) {
     .ml {
