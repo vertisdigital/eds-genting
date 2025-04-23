@@ -1551,6 +1551,10 @@
           {
             "name": "Margin Top Overlap",
             "value": "margin-top-overlap"
+          },
+          {
+            "name": "Statistics Description",
+            "value": "statistics-description"
           }
         ]
       },
