@@ -185,7 +185,7 @@ p.-row {
         padding: 0 18px;
     }
 
-    .footer .footer-child-element>div:first-child{
+    .footer .footer-child-element>div:nth-child(2){
         border-bottom: 1px solid var(--background-color);
     }
 
