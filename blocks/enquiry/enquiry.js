@@ -9,6 +9,14 @@ export default function decorate(block) {
   const allDivElements = block.children;
   const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
 
+
+
+
+
+
+
+  
+
   if (enquiryResource) {
     moveInstrumentation(enquiryResource, wrapper);
   }
