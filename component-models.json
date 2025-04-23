@@ -172,7 +172,13 @@
           "maxLength": 50,
           "customErrorMsg": "Tab Title cannot exceed 50 characters"
         }
-      }
+      },
+      {
+        "component": "boolean",
+        "label": "Active Tab",
+        "name": "active",
+        "valueType": "boolean"
+      } 
     ]
   },
   {
