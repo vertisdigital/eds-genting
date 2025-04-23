@@ -7,7 +7,7 @@ export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
   const wrapper = block.closest('.enquiry-wrapper') || block;
   const allDivElements = block.children;
-  //const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
+  const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
 
   if (enquiryResource) {
     moveInstrumentation(enquiryResource, wrapper);
