@@ -52,7 +52,7 @@ function handleLayoutOnResize(block){
 function handleDownload() {
     const downloadBtn = document.querySelector('.media-gallery-modal-btn')
     if (!downloadBtn.hasAttribute('data-listener-added')) {
-        downloadBtn.addEventListener('click', async (event) => {
+        downloadBtn.addEventListener('click', async () => {
             const imgLink = downloadBtn.getAttribute('data-listener-link')
             try {
                 const response = await fetch(imgLink);
