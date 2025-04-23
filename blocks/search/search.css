@@ -38,6 +38,10 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    display: none;
+  }
+  .header-search .search-heading-wrapper{
+    display: flex;
   }
   .search-heading-wrapper .search-heading{
     font-size: var(--font-size-md);
@@ -80,6 +84,7 @@
     display: none;
     background-color: var(--soft-ivory-blue)!important;
     width: 24px;
+    height: 24px;
     border-radius: 50%;
   }
   .search-input-wrapper .input-wrapper .icon-wrapper.close-icon.active{
@@ -104,6 +109,10 @@
     text-decoration: none;
     color: var(--background-color);
     text-align: center;
+    display: none;
+  }
+  .header-search .search-input-wrapper .search-btn{
+    display: block;
   }
   .search-input-wrapper .search-btn .button-container{
     line-height: 1;
@@ -117,8 +126,24 @@
     text-decoration: none;
   }
 
+  .search-nav{
+  background-color: var(--whisper-gray)
+  }
     .search-nav .close-btn {
         display: block;
+        background: none;
+    }
+
+    .search-result-count{
+      display: none;
+    }
+
+    .search-result-count.active{
+      display: block;
+    }
+
+    .header-search .search-result-count{
+      display: none;
     }
 
 
@@ -142,12 +167,14 @@
   .search-results-wrapper{
   margin-top: 100px;
   }
+  .header-search .search-results-wrapper{
+    display: none;
+  }
 
   .search-results-wrapper .search-results{
     background: var(--background-color);
     margin-top: 20px;
     padding: 12px;
-    height: 400px;
     display: none;
   }
   .search-results-wrapper .search-results-item{
@@ -201,7 +228,7 @@
     margin-bottom: 18px;
 
   }
-  .search-results-wrapper .search-tips ul{
+  .search-results-wrapper .search-tips .search-tips-list{
     display: flex;
     flex-wrap: wrap;
     row-gap: 12px;
@@ -210,11 +237,12 @@
     border-top: 1px solid var(--body-text-color);
   }
   .search-results-wrapper .search-tips ul li{
-    width: 47%;
+    /* width: 47%; */
     color: var(--body-text-color);
     font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 144%; 
+    margin-bottom: 24px;
   }
   .search-results-wrapper.active .search-tips{
     display: none;

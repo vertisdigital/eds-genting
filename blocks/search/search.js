@@ -1,8 +1,6 @@
 import Heading from '../../shared-components/Heading.js';
-import ImageComponent from '../../shared-components/ImageComponent.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
-import { moveInstrumentation } from '../../scripts/scripts.js';
 
 /**
  * Loads and decorates the Search Results block.
@@ -10,14 +8,19 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  */
 export default function decorate(block) {
 
-    const blockchildren = [...block.children];
+    var blockchildren = [...block.children];
+    if(blockchildren.length > 0) {
+    var searchInputDetails  = [...blockchildren[0].children]
+    var searchResultsDetails  = [...blockchildren[1].children]
+    }
 
+    if(searchInputDetails){
      // Fetching search Data and storing on load
     let searchData = {};
-    const fetchSearchData = async () => {
+    var fetchSearchData = async () => {
         try {
-        const response = await fetch('/query-index.json');
-        const data = await response.json();
+        var response = await fetch('/query-index.json');
+        var data = await response.json();
         searchData = data;
         console.log('searchData', searchData);
 
@@ -27,35 +30,31 @@ export default function decorate(block) {
     }
     fetchSearchData();
 
-    const searchWrapper = document.createElement('div');
+    var searchWrapper = document.createElement('div');
     searchWrapper.classList.add('search-nav');
 
     // Header search dropdown
-    const secondaryNavSearch = document.querySelector('.secondary-nav');
+    // var secondaryNavSearch = document.querySelector('.secondary-nav');
 
-    const searchInputContainer = document.createElement('div');
+    var searchInputContainer = document.createElement('div');
     searchInputContainer.classList.add('container');
 
-    const searchHeadingWrapper = document.createElement('div');
+    var searchHeadingWrapper = document.createElement('div');
     searchHeadingWrapper.className = 'search-heading-wrapper';
 
-    const searchTitle = blockchildren[0]?.textContent.trim();
+    var searchTitle = searchInputDetails[0]?.textContent.trim() || 'Search';
 
     // Generating heading
-    const searchHeading = stringToHTML(Heading({ level: 2, text: searchTitle, className: 'search-heading' }));
+    var searchHeading = stringToHTML(Heading({ level: 2, text: searchTitle, className: 'search-heading' }));
 
     // Header Search dropdown closing functionality
-    const dropDownCloseBtn = document.createElement('button');
+    var dropDownCloseBtn = document.createElement('button');
     dropDownCloseBtn.className = 'close-btn';
     dropDownCloseBtn.setAttribute('aria-label', 'Close menu');
-    const dropDownCloseBtnIcon = SvgIcon({ name: 'close', className: 'close-icon', size: 18 });
+    var dropDownCloseBtnIcon = SvgIcon({ name: 'close', className: 'close-icon', size: 18 });
     dropDownCloseBtn.innerHTML = dropDownCloseBtnIcon;
     dropDownCloseBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    // searchWrapper.classList.remove('active');
-    if(secondaryNavSearch) {
-        secondaryNavSearch.classList.remove('active');
-    }
     });
 
     // Append search heading and close button to heading wrapper
@@ -63,114 +62,140 @@ export default function decorate(block) {
 
 
     // Search input
-    const inputPlaceholder = blockchildren[1]?.textContent.trim() || 'Search...';
-    const searchInputWrapper = document.createElement('div');
+    var inputPlaceholder = searchInputDetails[2]?.textContent.trim() || 'Search...';
+    var searchInputWrapper = document.createElement('div');
     searchInputWrapper.className = 'search-input-wrapper';
 
-    const inputWrapper = document.createElement('div');
+    var inputWrapper = document.createElement('div');
     inputWrapper.className = 'input-wrapper';
-    const inputSearchIcon = stringToHTML(SvgIcon({ name: 'search', class: 'search-icon', size: '18px' }));
-    const searchInput = document.createElement('input');
+    var inputSearchIcon = stringToHTML(SvgIcon({ name: 'search', class: 'search-icon', size: '18px' }));
+    var searchInput = document.createElement('input');
     searchInput.type = 'text';
     searchInput.placeholder =  inputPlaceholder || 'Search...';
     searchInput.className = 'search-input';
-    // const clearBtnWrapper = document.createElement('div');
+    // var clearBtnWrapper = document.createElement('div');
     // clearBtnWrapper.className = 'clear-btn-wrapper';
-    const clearBtn = stringToHTML(SvgIcon({ name: 'close', className: 'close-icon', size: 18 }));
-    // const clearBtnText = document.createElement('span');
+    var clearBtn = stringToHTML(SvgIcon({ name: 'close', className: 'close-icon', size: 18 }));
+    // var clearBtnText = document.createElement('span');
     // clearBtnText.className = 'clear-btn-text';
     // clearBtnText.textContent = 'Clear';
     // clearBtn.appendChild(clearBtnText);
     // clearBtnWrapper.appendChild(clearBtn);
     inputWrapper.append(inputSearchIcon, searchInput, clearBtn);
 
+    // Clear button functionality
+    clearBtn.addEventListener('click', () => {
+        searchInput.value = ''; // Clear the input field
+        searchResults.innerHTML = ""; // Clear the results
+        searchResultCount.classList.remove('active'); // Hide result count
+        searchResultsWrapper.classList.remove('active'); // Hide results wrapper
+        clearBtn.classList.remove('active'); // Hide clear button
+    });
+
     // search Button
-    const searchBtn = document.createElement('div');
+    var searchBtn = document.createElement('div');
     searchBtn.className = 'search-btn';
-    searchBtn.innerHTML = blockchildren[2]?.innerHTML || 'Search';
+    searchBtn.innerHTML = searchInputDetails[1]?.innerHTML || 'Search';
   
     // append search input and button to the wrapper
     searchInputWrapper.append(inputWrapper, searchBtn);
 
     // Search result count
-    const searchResultCount = document.createElement('div');
+    var searchResultCount = document.createElement('div');
     searchResultCount.className = 'search-result-count';
     searchResultCount.textContent = '0 results found';
-    searchResultCount.style.display = 'none'; // Initially hidden
+    // searchResultCount.style.display = 'none';
 
     // append all search elements to the container
     searchInputContainer.append(searchHeadingWrapper, searchInputWrapper,searchResultCount);
+    searchWrapper.append(searchInputContainer);
+}
 
+    if(searchResultsDetails){
     // Results wrapper
-    const searchResultsWrapper = document.createElement('div');
+    var searchResultsWrapper = document.createElement('div');
     searchResultsWrapper.className = 'container search-results-wrapper';
 
-    const searchResults = document.createElement("div");
+    var searchResults = document.createElement("div");
     searchResults.className = "search-results";
 
-    const searchTips = document.createElement("div");
+    var searchTips = document.createElement("div");
     searchTips.className = "search-tips";
-    searchTips.innerHTML = `
-    <h2>Search tips:</h2>
-    <ul>
-        <li>Use quotes for exact phrases.</li>
-        <li>Try different keywords.</li>
-        <li>Check your spelling.</li>
-    </ul>
-    `;
+    var searchTipsHeadingText = searchResultsDetails[0]?.textContent.trim() || 'Search tips:';
+    var searchTipsHeading = stringToHTML(Heading({ level: 2, text: searchTipsHeadingText, className: 'search-tips-heading' }));
+    var searchTipsList = searchResultsDetails[1];
+    searchTipsList.className = "search-tips-list";
+    searchTips.append(searchTipsHeading,searchTipsList);
+
+    
     searchResults.innerHTML = ""; // Clear previous results
 
     searchResultsWrapper.append(searchTips,searchResults);
 
+    var debounce = (func, delay = 300) => {
+        let timer;
+        return (...args) => {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            func.apply(this, args);
+          }, delay);
+        };
+      };
+      
     // Show Suggestions
-    const showResults = (query) => {
+    // Highlight matching part in description
+    var highlightMatch = (text, keyword) => {
+        var regex = new RegExp(`(${keyword})`, 'gi');
+        return text.replace(regex, `<span class="highlight">$1</span>`);
+    };
+    var showResults = (query) => {
         if (query.length > 3) {
         clearBtn.classList.add('active');
         searchResults.innerHTML = "";
     
-        const results = searchData.data.filter(item =>
-            item.heroBannerAllDescriptions.toLowerCase().includes(query)
+        var results = searchData.data.filter(item =>
+            item.description.toLowerCase().includes(query)
         );
     
         if(results.length > 0) {
             searchResultsWrapper.classList.add('active');
-            searchResultCount.style.display = 'block';
+            searchResultCount.classList.add('active');
+            // searchResultCount.style.display = 'block';
             searchResultCount.innerHTML = searchResultCount.innerHTML = `${results.length} results found for <span>'${query}'</span>`;      ;
             searchResults.innerHTML = ""; // Clear previous results
             results.forEach(item => {
-            const div = document.createElement("div");
+            var div = document.createElement("div");
             div.className = "search-results-item";
             div.innerHTML = `
-                <a class="title" href="${item.path}">${item.title}</a>
+                <a class="title" href="${item.path}">${highlightMatch(item.title, query)}</a>
                 <div class="description">${highlightMatch(item.heroBannerAllDescriptions, query)}</div>
             `;
             searchResults.appendChild(div);
             });
         }
         else{
-            searchResultsWrapper.classList.remove('active');
-            searchResultCount.style.display = 'block';
-            searchResultCount.innerHTML = `No result found for <span>'${query}'</span>`;      ;
-                        
+            searchResultsWrapper.classList.remove('active');           
+            searchResultCount.classList.add('active');
+            searchResultCount.innerHTML = `No result found for <span>'${query}'</span>`;      ;                    
         }
         } else {
         searchResultsWrapper.classList.remove('active');
         clearBtn.classList.remove('active');
-        searchResultCount.style.display = 'none'; // Hide result count
+        searchResultCount.classList.remove('active') // Hide result count
         searchResults.innerHTML = ""; // Optional: clear suggestions if input too short
         }
     };
 
     // Handle input with debounce
-    const handleInput = debounce(() => {
-        const query = searchInput.value.trim().toLowerCase();
+    var handleInput = debounce(() => {
+        var query = searchInput.value.trim().toLowerCase();
         showResults(query);
     }, 300);
 
     // Search input functionality
     searchInput.addEventListener('input', handleInput);
-  
+}
     block.innerHTML = ""; // Clear the block content
-    block.appendChild(searchWrapper);
-    block.appendChild(searchResultsWrapper);
+    // searchWrapper.append(searchInputWrapper, searchResultsWrapper)
+    block.append(searchWrapper, searchResultsWrapper);
 }
