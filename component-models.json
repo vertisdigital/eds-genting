@@ -401,6 +401,10 @@
           {
             "name": "border-bottom",
             "value": "border-bottom"
+          },
+          {
+            "name": "statistic-number",
+            "value": "statistic-number"
           }
         ]
       },
