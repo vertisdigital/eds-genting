@@ -106,6 +106,14 @@
     background-color: #fff;
 }
 
+.media-gallery-modal-btn,
+.media-gallery-modal-btn:hover,
+.media-gallery-modal-btn:focus{
+    background: transparent;
+}
+
+
+
 @media (width <=992px) {
     .ml {
         margin-left: 23px;

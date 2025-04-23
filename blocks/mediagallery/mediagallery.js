@@ -49,6 +49,33 @@ function handleLayoutOnResize(block){
 
 }
 
+function handleDownload() {
+    const downloadBtn = document.querySelector('.media-gallery-modal-btn')
+    if (!downloadBtn.hasAttribute('data-listener-added')) {
+        downloadBtn.addEventListener('click', async (event) => {
+            const imgLink = downloadBtn.getAttribute('data-listener-link')
+            try {
+                const response = await fetch(imgLink);
+                const blob = await response.blob();
+                const mimeType = blob.type;
+
+                const extension = mimeType.split('/')[1] || 'jpg'; // fallback to jpg
+                const fileName = `downloaded-image.${extension}`;
+
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                a.click();
+                URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error('Image download failed:', error);
+            }
+        })
+    }
+    downloadBtn.setAttribute('data-listener-added', 'true');
+}
+
 export default function decorate(block) {
     const galleryLinks =block.querySelectorAll('a')
     galleryLinks.forEach(link => {
@@ -138,9 +165,9 @@ export default function decorate(block) {
     <div class="media-gallery-modal-bottom-section">
         <div>
             <p class="media-gallery-modal-title"></p>
-            <p class="media-gallery-modal-description"></p>
+            <p class="media-gallery-modal-description">3 Feb 2025</p>
         </div>
-        <a href="#" class="media-gallery-modal-btn"></a>
+        <button class="media-gallery-modal-btn"></button>
     </div>
     `
     const downloadIcon = stringToHTML(SvgIcon({ name: 'downloadarrow', size: '16px' }));
@@ -171,12 +198,13 @@ export default function decorate(block) {
                 const scrollTop =  document.documentElement.scrollTop;
                 const scrollLeft = document.documentElement.scrollLeft;
                 document.querySelector('.media-gallery-body-img').src=img.src
-                document.querySelector('.media-gallery-modal-btn').setAttribute('href', img.src)
+                document.querySelector('.media-gallery-modal-btn').setAttribute('data-listener-link', img.src)
+
                 document.querySelector('.media-gallery-modal-title').innerHTML = img.getAttribute("data-listener-title")
                 document.querySelector('.media-gallery-modal-description').innerHTML = img.getAttribute("data-listener-date")
                 const top = rect.top + scrollTop - (window.innerHeight / 2) + (rect.height / 2);
                 const left = rect.left + scrollLeft - (window.innerWidth / 2) + (rect.width / 2);
-
+                
                 window.scrollTo({
                     top: top,
                     left: left,
@@ -185,8 +213,8 @@ export default function decorate(block) {
                 document.body.style.overflowY='hidden'
             })
         }
-            // Mark that the listener has been added
-            img.setAttribute('data-listener-added', 'true');
+        // Mark that the listener has been added
+        img.setAttribute('data-listener-added', 'true');
     })
 
     document.querySelector('.media-gallery-modal-close-btn').addEventListener('click',()=>{
@@ -194,4 +222,6 @@ export default function decorate(block) {
         modalElement.style.visibility = 'hidden'
         document.body.style.overflowY = 'scroll'
     })
+
+    handleDownload()
 }
