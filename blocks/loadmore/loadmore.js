@@ -1,8 +1,6 @@
 export default function decorate(block) {
   const [loadmoreEle, itemCount] = block.children;
-  console.log('itemCount: ', itemCount);
   let maxItems = Number.parseInt(itemCount?.textContent.trim() || "8", 10);
-  console.log('maxItems: ', maxItems);
   const loadmoreText = loadmoreEle?.textContent.trim() || "Load More";
 
   if (Number.isNaN(maxItems)) {
@@ -65,4 +63,3 @@ export default function decorate(block) {
     block.style.display = "none";
   }
 }
-
