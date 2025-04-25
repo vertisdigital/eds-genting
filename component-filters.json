@@ -175,7 +175,8 @@
     "components": [
       "statisticsDescription",
       "featureItem",
-      "listing"
+      "listing",
+      "separator"
     ]
   },
   {

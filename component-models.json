@@ -2121,5 +2121,21 @@
         ]
       }
     ]
+  },
+  {
+    "id": "separator",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Variation",
+        "options": [
+          {
+            "name": "without-space",
+            "value": "without-space"
+          }
+        ]
+      }
+    ]
   }
 ]
