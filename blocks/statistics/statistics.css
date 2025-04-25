@@ -121,7 +121,7 @@
 
 
 .herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
-    padding-bottom: 80px;
+    padding-bottom: 60px;
 }
 
 .statistics-wrapper .statistics.block.statistics-variation::before{
@@ -237,7 +237,7 @@
     }
 
     .herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
-        padding-bottom: 65px;
+        padding-bottom: 32px;
     }
 }
 
@@ -308,7 +308,9 @@
     .statistics.block.statistics-variation .statistics-title {
         margin-bottom: 8px;
     }
-    
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
+        padding-bottom: 24px;
+    }   
 }
 @media (width>=1200px) {
     .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
