@@ -2,8 +2,7 @@
     margin-top: 24px;
     margin-bottom: 24px;
     width: 100%;
-    height: 1px;
-    background-color: var(--text-color);
+    border-bottom: 1px solid var(--text-color);
 }
 
 @media(width>=768px) {
