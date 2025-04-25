@@ -2131,6 +2131,10 @@
         "label": "Variation",
         "options": [
           {
+            "name": "Default",
+            "value": ""
+          },
+          {
             "name": "without-space",
             "value": "without-space"
           }
