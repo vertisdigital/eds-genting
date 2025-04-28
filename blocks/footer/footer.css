@@ -210,8 +210,7 @@ p.-row {
     }
 
     .footer .copywrite-right{
-        grid-template-columns: repeat(2, 1fr);
-        row-gap: 10px;
+        grid-template-columns: repeat(2, auto);
     }
 
     .footer .mt-4 .footer-bottom-links .row [data-link-model="links"]{
