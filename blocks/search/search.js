@@ -93,7 +93,7 @@ export default function decorate(block) {
   inputWrapper.append(inputSearchIcon, searchInput, clearBtn);
   searchInputWrapper.append(inputWrapper, searchBtn);
 
-  const searchResultCount = searchInputDetails[3]?.cloneNode(true) || document.createElement('div');
+  const searchResultCount =  document.createElement('div');
   searchResultCount.className = 'search-result-count';
 
   searchInputContainer.append(searchHeadingWrapper, searchInputWrapper, searchResultCount);
