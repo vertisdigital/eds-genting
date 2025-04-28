@@ -120,7 +120,7 @@
 .footer .footer-bottom-links .button-container a{
     font-size: var(--font-size-xs);
     font-weight: 400;
-    line-height: 30px;
+    line-height: 24px;
     margin-bottom: 6px;
 }
 
@@ -154,6 +154,9 @@
     white-space: nowrap;
   }
 
+p.-row {
+    line-height: 24px;
+}
 
 @media(width<=992px){
     .footer {
@@ -211,10 +214,6 @@
 
     .footer .mt-4 .footer-bottom-links .row [data-link-model="links"]{
         padding: 0;
-    }
- 
-    .footer .footer-bottom-links .button-container a {
-        line-height: 24px;
     }
 
 }
@@ -275,6 +274,10 @@
     .footer .mt-4 .footer-bottom-links .row [data-aue-prop="linkText"]{
         text-align: start;
 
+    }
+
+    p.-row {
+        line-height: 20px;
     }
 }
 
