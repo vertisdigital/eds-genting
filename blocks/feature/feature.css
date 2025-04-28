@@ -59,6 +59,12 @@
   line-height: 20px;
 }
 
+.feature-wrapper .about-us-right-content p a {
+  color: var(--primary-gold);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .about-us-left .links-container a span{
   width: 16px;
   height: 16px;
@@ -182,7 +188,7 @@ color: var(--body-text-color);
   position: relative;
 }
 
-.statistics-container.feature-container .feature-wrapper::before {
+.herobanner-container.statistics-container.feature-container .feature-wrapper:nth-child(2)::before {
   content: '';
   background: var(--background-color);
   position: absolute;
@@ -194,6 +200,27 @@ color: var(--body-text-color);
   margin: 0 auto;
   transform: translateX(-50%);
   z-index: -1;
+}
+
+.feature.border-bottom .about-us-stats .about-us-right-content {
+  border-top: 1px solid var(--text-color);
+  padding-top: 16px;
+}
+
+.feature.border-bottom .about-us-stats .about-us-right-content:first-child {
+  border-top: none;
+}
+
+.feature.border-bottom .about-us-stats .about-us-right-content p,
+.feature.statistic-number .about-us-stats .about-us-right-content  p {
+  font-weight: 400;
+  color: var(--body-text-color);
+}
+
+.feature.statistic-number .about-us-stats .about-us-right-content .statistic p {
+  font-size: var(--font-size-l);
+  line-height: 42px;
+  font-weight: 500;
 }
 
 /* Responsive design */
@@ -354,6 +381,10 @@ color: var(--body-text-color);
     padding-top: 20px;
     margin-bottom: 36px;
   }
+  .feature.statistic-number .about-us-stats .about-us-right-content .statistic p {
+    font-size: var(--font-size-xl);
+    line-height: 50px;
+  }
 }
 @media (width <= 1023px) {
   .statistics-container .feature-wrapper .about-us-left, .statistics-container .feature-wrapper .about-us-right {
@@ -362,7 +393,7 @@ color: var(--body-text-color);
   }
 }
 @media (width <= 1280px) {
-  .statistics-container.feature-container .feature-wrapper::before {
+  .herobanner-container.statistics-container.feature-container .feature-wrapper:nth-child(2)::before {
       left: 22px;
       right: 22px;
       width: auto;
@@ -372,14 +403,14 @@ color: var(--body-text-color);
 }
  
 @media (width <= 992px) {
-  .statistics-container.feature-container .feature-wrapper::before {
+  .herobanner-container.statistics-container.feature-container .feature-wrapper:nth-child(2)::before {
     top: -40px;
     height: calc(100% + 40px);
   }
 }
  
 @media (width < 768px) {
-  .statistics-container.feature-container .feature-wrapper::before {
+  .herobanner-container.statistics-container.feature-container .feature-wrapper:nth-child(2)::before {
     left: 10px;
     right: 10px;
     top: -28px;
