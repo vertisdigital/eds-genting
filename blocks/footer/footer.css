@@ -112,14 +112,15 @@
 .footer .left-section .button-container a{
     font-size: var(--font-size-xs);
     font-weight: 400;
-    line-height: 24px;
+    line-height: 20px;
     margin-bottom: 6px;
+    display: inline-block;
 }
 
 .footer .footer-bottom-links .button-container a{
     font-size: var(--font-size-xs);
     font-weight: 400;
-    line-height: 24px;
+    line-height: 30px;
     margin-bottom: 6px;
 }
 
@@ -212,6 +213,9 @@
         padding: 0;
     }
  
+    .footer .footer-bottom-links .button-container a {
+        line-height: 24px;
+    }
 
 }
 
