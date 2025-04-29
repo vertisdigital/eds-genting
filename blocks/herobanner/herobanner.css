@@ -415,8 +415,8 @@
 
 
   .carousel-image {
-    width: 92px;
-    height: 92px;
+    width: auto;
+    height: auto;
   }
 
   .carousel-wrapper {
@@ -429,7 +429,7 @@
   }
 
   .hero-banner-container .carousel-image img {
-    height: 92px;
+    height: auto;
     flex: 1 0 0;
     object-fit: cover;
   }
