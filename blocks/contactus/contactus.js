@@ -152,13 +152,11 @@ export default function decorate(block) {
     textElement.setAttribute('data-aue-type', 'text');
 
     if (linkType) {
-      const link = document.createElement('a');
-      link.className = 'contact-link';
-      link.href = `${linkType}:${text}`;
-      link.textContent = text;
-      link.setAttribute('aria-label', `${linkType === 'tel' ? 'Call us at' : 'Email us at'} ${text}`);
-      link.setAttribute('tabindex', '0');
-      textElement.append(link);
+      const button = document.createElement('button');
+      button.className = 'contact-link';
+      button.textContent = text;
+      button.setAttribute('aria-label', `${linkType === 'tel' ? 'Call us at' : 'Email us at'} ${text}`);
+      textElement.append(button);
     } else {
       textElement.textContent = text;
     }
@@ -254,6 +252,19 @@ export default function decorate(block) {
     container.append(enquiryChildren[1]);
   }
 
+  const buttons = container.querySelectorAll('.contact-link')
+  buttons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+       navigator.clipboard.writeText(btn.innerHTML)
+        .then(() => {
+          alert("Copied to clipboard!");
+        })
+        .catch(err => {
+          console.error("Failed to copy: ", err);
+        });
+    })
+  })
+  
   wrapper.innerHTML = '';
   wrapper.append(container);
 }

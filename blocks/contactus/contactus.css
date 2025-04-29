@@ -172,6 +172,9 @@
   line-height:0;
 }
 
+.contact-link,.contact-link:focus, .contact-link:hover{
+  background: transparent;
+}
 
 /* Tablet Layout  */
  @media (width >= 768px) and (width < 1024px) {
