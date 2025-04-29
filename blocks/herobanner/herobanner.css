@@ -165,8 +165,8 @@
 }
 
 .carousel-image {
-  width: 151px;
-  height: 118px;
+  width: auto;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -179,7 +179,7 @@
 
 
 .hero-banner-container .carousel-image img {
-  height: 118px;
+  height: auto;
 }
 
 .news-title {
