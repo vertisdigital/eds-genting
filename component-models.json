@@ -2138,14 +2138,6 @@
         "component": "aem-content",
         "name": "downloadctaLink",
         "label": "Download CTA Link",
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            false
-          ]
-        },
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
