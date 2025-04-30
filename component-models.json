@@ -2121,5 +2121,62 @@
         ]
       }
     ]
+  },
+  {
+    "id": "downloadlinkitem",
+    "fields": [   
+      {
+        "component": "text",
+        "name": "ctaLabel",
+        "label": "CTA Label",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "CTA text cannot exceed 30 characters"
+        }
+      },      
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "select",
+        "name": "ctaSvgIcon",
+        "label": "CTA SVG Icon",
+        "options": [
+          {
+            "name": "Select",
+            "value": ""
+          },
+          {
+            "name": "Arrow",
+            "value": "arrow"
+          },
+          {
+            "name": "Right Arrow",
+            "value": "right-arrow"
+          },
+          {
+            "name": "Download Arrow",
+            "value": "download-arrow"
+          },
+          {
+            "name": "North East Arrow",
+            "value": "north-east-arrow"
+          }
+        ]
+      }   
+    ]
   }
 ]
