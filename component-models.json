@@ -2127,8 +2127,8 @@
     "fields": [   
       {
         "component": "text",
-        "name": "ctaLabel",
-        "label": "CTA Label",
+        "name": "downloadctalabel",
+        "label": " Download CTA Label",
         "validation": {
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
@@ -2136,8 +2136,8 @@
       },      
       {
         "component": "aem-content",
-        "name": "ctaLink",
-        "label": "CTA Link",
+        "name": "downloadctaLink",
+        "label": "Download CTA Link",
         "condition": {
           "===": [
             {
@@ -2152,8 +2152,8 @@
       },
       {
         "component": "select",
-        "name": "ctaSvgIcon",
-        "label": "CTA SVG Icon",
+        "name": "downloadctaSvgIcon",
+        "label": "Download CTA SVG Icon",
         "options": [
           {
             "name": "Select",
