@@ -115,4 +115,5 @@ export default function decorate(block) {
   // Replace original content
   wrapper.innerHTML = '';
   wrapper.appendChild(container);
+  
 }
