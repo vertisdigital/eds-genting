@@ -256,18 +256,20 @@
   }
 
   /* Mobile */
-  @media (width <= 768px) {
+  @media (width<= 768px) {
     .search-wrapper svg{
-      width: 22px;
+      width:22px;
     }
     .search-input-wrapper{
       flex-direction: column;
       row-gap: 16px;
     }
     .search-input-wrapper .search-btn{
-      width: 100%;
+      width:100%;
     }
     .search-input-wrapper .input-wrapper .clear-btn-wrapper .clear-btn-text{
-      display: none;
+      display:none;
     }
   }
+
+
