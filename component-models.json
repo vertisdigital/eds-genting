@@ -1417,6 +1417,10 @@
           {
             "name": "Text Media Block Heading Variation",
             "value": "text-media-block-heading-variation"
+          },
+          {
+            "name": "Text Media Block Title Only Center Align",
+            "value": "textmediablock-title-only-center-align"
           }
         ]
       }
