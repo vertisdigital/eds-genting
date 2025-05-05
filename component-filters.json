@@ -157,8 +157,7 @@
     "id": "projectslist",
     "components": [
       "projectslistitem",
-      "downloadlinkitem",
-      "enquiry"
+      "downloadlinkitem"
     ]
   },
   {
