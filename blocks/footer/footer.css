@@ -145,9 +145,6 @@
     line-height: 29px;
 }
 
-.col-xl-6.col-md-3.col-sm-4.copywrite-right {}
-
-
 .footer .copywrite-right .copywrite-links {
     box-sizing: border-box;
   }
@@ -160,7 +157,7 @@ p.-row {
     line-height: 24px;
 }
 
-@media(width<=992px){
+@media(width<=1024px){
     .footer {
         padding-top: 40px;
         padding-bottom: 40px;
