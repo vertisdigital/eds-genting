@@ -44,7 +44,7 @@ export function downloadLink(item) {
   const LABEL = '.project-subtitle';
   const LINK = '.project-long-description';
   const ICON = '.project-short-description';
-  const downloadLinkElements = item.querySelectorAll('[data-aue-model="downloadlinkitem"]')
+  const downloadLinkElements = item.querySelectorAll('[data-download-link="downloadlinkitem"]')
 
   if (!downloadLinkElements.length) return
   

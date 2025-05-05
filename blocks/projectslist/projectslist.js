@@ -110,7 +110,7 @@ export default function decorate(block) {
       }
 
       if (leftCol.children[0].textContent.toLowerCase() === 'downloadlinkitem') {
-        leftCol.setAttribute("data-aue-model", "downloadlinkitem")
+        leftCol.setAttribute("data-download-link", "downloadlinkitem")
       }
 
       projectContainer.appendChild(leftCol);
