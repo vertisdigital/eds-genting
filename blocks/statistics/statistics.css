@@ -93,6 +93,10 @@
     margin-bottom: 45px;
 }
 
+.statistics-wrapper .statistics.block.margin-top-none {
+    margin-top: 0;
+}
+
 
 .statistics-wrapper .statistics.block.statistics-variation{
     margin-top: 0;
