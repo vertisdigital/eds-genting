@@ -516,7 +516,6 @@ function decorateAEMStructure(element) {
   const hasLinkButton = element.querySelector('div > a.button');
   const hasRequiredDivs = divElements.length >= 3;
   const hasLinkStructure = hasRequiredDivs && hasLinkButton;
-
   // Check for tile structure
   const hasListStructure = divElements.length >= 5;
 
@@ -602,8 +601,14 @@ function decorateAEMStructure(element) {
     }
   } else if (hasLinkStructure) {
     // Add link field attributes to container
-    element.setAttribute('data-gen-model', 'linkField');
-  } else {
+    if(element?.children[0]?.textContent?.toLowerCase()==="downloadlinkitem"){
+      element.setAttribute('data-gen-download','downloadlinkitem');
+    }else{
+     element.setAttribute('data-gen-model', 'linkField'); 
+    }
+    
+  }
+  else {
     // Handle single div text content
     const textDiv = divElements[0];
     if (textDiv) {

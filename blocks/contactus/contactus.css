@@ -132,7 +132,9 @@
    
 }
 
-.contact-link,.contact-link:focus, .contact-link:hover{
+.contact-link,
+.contact-link:focus,
+.contact-link:hover {
   background: transparent;
 }
 
