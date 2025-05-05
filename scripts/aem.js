@@ -516,7 +516,6 @@ function decorateAEMStructure(element) {
   const hasLinkButton = element.querySelector('div > a.button');
   const hasRequiredDivs = divElements.length >= 3;
   const hasLinkStructure = hasRequiredDivs && hasLinkButton;
-  const isDownloadLinkItem=element.querySelector('.button-container > a')?.parentElement?.parentElement?.children[0]?.textContent || ""
   // Check for tile structure
   const hasListStructure = divElements.length >= 5;
 
@@ -602,10 +601,12 @@ function decorateAEMStructure(element) {
     }
   } else if (hasLinkStructure) {
     // Add link field attributes to container
-    element.setAttribute('data-gen-model', 'linkField');
-    if(isDownloadLinkItem.toLowerCase()==="downloadlinkitem"){
+    if(element?.children[0]?.textContent?.toLowerCase()==="downloadlinkitem"){
       element.setAttribute('data-gen-download','downloadlinkitem');
+    }else{
+     element.setAttribute('data-gen-model', 'linkField'); 
     }
+    
   }
   else {
     // Handle single div text content
