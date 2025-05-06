@@ -29,12 +29,12 @@ export default function decorate(block) {
 
   // Convert each item to use proper semantic structure
   const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')];
+  const isFourCards = items.length === 4
 
   items.forEach((item) => {
     // Add responsive column classes as per requirements
     const col = document.createElement('div');
-    col.className = 'col-xl-4 col-md-3 col-sm-4 principles-item';
-
+    col.className = `${!isFourCards ? 'col-xl-4' : ''} col-md-3 col-sm-4 principles-item`;
     // Get the icon URL and alt text from anchor
     const iconLink = item.querySelector('a');
     const iconUrl = iconLink?.href || '';
@@ -124,4 +124,23 @@ export default function decorate(block) {
   // Clear original content and append the new structure
   coreBlock.innerHTML = '';
   coreBlock.appendChild(wrapper);
+
+  function handleLayout() {
+    if (isFourCards) {
+      const childElement=row.children
+      if (window.innerWidth < 1024) {
+        row.style.removeProperty('max-width')
+        childElement[0].style.removeProperty('padding-left')
+        childElement[childElement.length - 1].style.removeProperty('padding-right')
+      } else {
+        row.style.maxWidth = "736px"
+        childElement[0].style.paddingLeft = window.innerWidth===1024 ? "12px" : "18px"
+        childElement[childElement.length - 1].style.paddingRight = window.innerWidth === 1024 ? "12px" : "18px"
+      }
+    }
+  }
+  handleLayout()
+  window.addEventListener('resize',()=>{
+    handleLayout()
+  })
 }
