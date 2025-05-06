@@ -2198,6 +2198,26 @@
         }
       },
       {
+        "component": "number",
+        "name": "recordsPerPage",
+        "label": "Records Per Page",
+        "valueType": "number",
+        "validation": {
+          "numberMin": 1,
+          "numberMax": 100,
+          "customErrorMsg": "Records Per Page must be a number between 1 and 100"
+        }
+      },
+      {
+        "component": "text",
+        "name": "noResultsFoundText",
+        "label": "No Results Found Text",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "No Results Found Text cannot exceed 100 characters"
+        }
+      },
+      {
         "component": "aem-content",
         "name": "link",
         "label": "Link",
@@ -2239,7 +2259,7 @@
             "value": "_blank"
           }
         ]
-      }
+      }      
     ]
   },
   {
