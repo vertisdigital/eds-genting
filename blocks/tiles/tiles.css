@@ -54,6 +54,7 @@ a:any-link.factsheet-button {
     line-height: 50px;
     font-weight: 500;
     margin-bottom: 12px;
+    letter-spacing: -0.5px;
   }
 .row.tiles-container .no-image-tile>div>div:nth-child(2) p {
     font-size: var(--font-size-xs);
