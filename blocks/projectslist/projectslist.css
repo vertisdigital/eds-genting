@@ -5,7 +5,6 @@ p {
 .projectslistitem {
     padding-top: 36px;
     padding-bottom: 36px;
-    border-top: 1px solid var(--text-color);
     display: flex;
 }
 
