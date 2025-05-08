@@ -228,6 +228,9 @@ export default async function decorate(block) {
 
       // Add text content - looking for the copyright text in the default-content-wrapper
       const textContent = bottomContent.querySelector('.default-content-wrapper');
+      const pTag = textContent.querySelector('p')
+      pTag.classList.remove('-row')
+      pTag.classList.add('footer-row')
       if (textContent) {
         const textDiv = document.createElement('div');
         textDiv.className = 'copywrite';
