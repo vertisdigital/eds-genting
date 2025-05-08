@@ -148,7 +148,7 @@ a:any-link.factsheet-button {
 }
 @media (width >= 768px) {
   .tiles-wrapper {
-    margin: 28px 0;
+    margin: 32px 0;
   }
 
   .row.tiles-container {
@@ -174,6 +174,8 @@ a:any-link.factsheet-button {
 
   .row.tiles-container .no-image-tile>div>div:first-child p {
     font-size: var(--font-size-l);
+    letter-spacing: -0.5px;
+    line-height: 42px;
   }
 
    .row.tiles-container .image-tile>div>div:nth-child(2) p{

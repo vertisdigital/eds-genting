@@ -127,7 +127,7 @@
 
   @media (width<=992px){
     .projectcards{
-      margin: 28px 0;
+      margin: 32px 0;
     }
     .projectcards.grey-background {
       padding: 28px 0 28px;
