@@ -50,8 +50,7 @@
 .governance-img img,
 .governance-img svg {
     display: block;
-    width: 80px;
-    height: 80px;
+    aspect-ratio: 1/1;
 }
 .governance-content-title {
     color: var(--text-color);
@@ -103,11 +102,7 @@
         top: calc(100% + 37px);
         left: calc(50% - 5px);
     }
-    .governance-img,
-    .governance-img svg {
-        width: 125px;
-        height: 125px;
-    }
+    
     .governance-content {
         flex: 1;
     }

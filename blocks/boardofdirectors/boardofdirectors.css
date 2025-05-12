@@ -129,6 +129,7 @@
 @media (width >= 993px) {
     .boardofdirectors .director-card img {
         margin-bottom: 12px;
+        aspect-ratio: unset;
         height: auto;
     }
 
