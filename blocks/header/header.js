@@ -25,10 +25,7 @@ function updateHeaderState(header, isClicked = false, clickedFrom = '') {
       defaultLogo.style.display = 'none';
       scrollLogo.style.display = 'block';
       isHeaderFixed = true;
-    } else if (scrollPosition === 0 && isHeaderFixed) {
-      if (window.innerWidth > 992 && clickedFrom === '' && isMegaMenuOpen) {
-        return;
-      }
+    } else if (scrollPosition === 0 && isHeaderFixed && !isMegaMenuOpen) {
       headerSection.classList.remove('fixed-header');
       defaultLogo.style.display = 'block';
       scrollLogo.style.display = 'none';
@@ -274,6 +271,16 @@ function createHeaderStructure(block) {
     const secondaryNav = document.querySelector('.secondary-nav.active');
     const hamburger = document.querySelector('.hamburger.active');
     const hamburgerIcon = stringToHtml(SvgIcon({ name: 'hamburger', class: 'hamburger-icon', size: '30px' }));
+
+    const header=document.querySelector('.header')
+    
+    if (searchWrapper.classList.contains('active')) {
+      updateHeaderState(header)
+      
+    } else {
+      updateHeaderState(header,true)
+     }
+    
     if (primaryNavActive) {
       primaryNavActive.classList.remove('active');
     }
@@ -436,6 +443,7 @@ function initializeHeader(header) {
       item.addEventListener('click', (e) => {
         e.preventDefault();
         const search = document.querySelector('.search-wrapper');
+        document.querySelector('.header-search-row').classList.remove('active')
         const searchMenu = document.querySelector('.search-nav');
         search.classList.remove('active');
         searchMenu.classList.remove('active');

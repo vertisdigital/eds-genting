@@ -31,6 +31,24 @@ export default function decorate(block) {
     e.stopPropagation();
     document.querySelector('.secondary-nav')?.classList.remove('active');
     document.querySelector('.header .search-wrapper')?.classList.remove('active');
+
+    const scrollPosition = window.scrollY;
+    const defaultLogo = document.querySelector('.default-logo');
+    const scrollLogo = document.querySelector('.scroll-logo');
+    const headerSection = document.querySelector('.header')
+    if (defaultLogo && scrollLogo) {
+      if (scrollPosition > 0) {
+        headerSection.classList.add('fixed-header');
+        defaultLogo.style.display = 'none';
+        scrollLogo.style.display = 'block';
+        isHeaderFixed = true;
+      } else if (scrollPosition === 0) {
+        headerSection.classList.remove('fixed-header');
+        defaultLogo.style.display = 'block';
+        scrollLogo.style.display = 'none';
+        isHeaderFixed = false;
+      }
+    }
   });
 
   searchHeadingWrapper.append(searchHeading, dropDownCloseBtn);
@@ -179,6 +197,9 @@ export default function decorate(block) {
 
   // Function to update search
   const updateSearch = (query) => {
+    const url = new URL(window.location);
+    url.searchParams.set('query', query);
+    window.history.pushState({}, '', url);
     if (query.length > 3) {
       clearBtn.classList.add('active');
       renderResults(query);
