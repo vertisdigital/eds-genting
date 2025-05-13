@@ -254,6 +254,7 @@ color: var(--body-text-color);
   }
   .about-us-stats .about-us-right-content p {
     font-size: var(--font-size-xs);
+    line-height: 24px;
   }
   .about-us-stats .about-us-right-content .statistic{
     font-size: 64px;
@@ -306,7 +307,7 @@ color: var(--body-text-color);
   .about-us-left .about-us-left-title{
     font-size: var(--font-size-s);
     font-weight: 600;
-    line-height: 28px;
+    line-height: 24px;
     margin-bottom: 20px;
   }
 
