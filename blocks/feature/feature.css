@@ -123,13 +123,12 @@
 }
 
 .about-us-stats .about-us-right-content.text-container .statistic{
- 
  display: flex;
  flex-direction: column;
  align-items: flex-start;
  justify-content: center;
  line-height: 0.8;
- letter-spacing: -0.5px;
+ letter-spacing: 0;
 }
 
 .about-us-stats .about-us-right-content .statistic *:first-child{
@@ -137,6 +136,7 @@
   font-size:  48px;
   font-weight: 400;
   line-height: 48px;
+  letter-spacing: 0;
 }
 
 .about-us-stats .about-us-right-content .statistic *:nth-child(2){
@@ -144,6 +144,7 @@
   font-size: var(--font-size-xs);
   line-height: 24px;
   font-weight: 700;
+  letter-spacing: 0;
 }
 
 .about-us-stats .about-us-right-content p{
