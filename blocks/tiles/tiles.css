@@ -21,6 +21,9 @@
   min-height: 314px;
   position: relative;
 }
+.tile-all-image-variation.with-cta .tiles-container > .image-tile > div {
+    padding: 20px 20px 45px;
+}
 .tiles.block > .image-tile {
   color: var(--background-color);
   object-fit: cover
