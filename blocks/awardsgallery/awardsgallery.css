@@ -19,6 +19,7 @@
 .awardsgallery .awardsgallery-content * {
     text-align: center;
     margin-bottom: 6px;
+    line-height: 20px;
 }
 
 .awardsgallery .award-year {
@@ -38,7 +39,7 @@
     line-height: 20px;
 }
 .awardsgallery .award-description p {
-    margin-bottom: 0;   
+    margin-bottom: 0;
 }
 
 .awardsgallery .awardsgallery-grid {
