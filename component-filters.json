@@ -164,7 +164,8 @@
   {
     "id": "projectslist",
     "components": [
-      "projectslistitem"
+      "projectslistitem",
+      "downloadlinkitem"
     ]
   },
   {

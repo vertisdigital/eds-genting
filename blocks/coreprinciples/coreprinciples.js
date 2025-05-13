@@ -29,12 +29,14 @@ export default function decorate(block) {
 
   // Convert each item to use proper semantic structure
   const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')];
-
+  const isFourCards = items.length === 4
+  const isMoreThenSix = items.length >= 6
+  const isSingleCard = items.length === 1
+  
   items.forEach((item) => {
     // Add responsive column classes as per requirements
     const col = document.createElement('div');
-    col.className = 'col-xl-4 col-md-3 col-sm-4 principles-item';
-
+    col.className = isSingleCard ?'principles-item': `${!isFourCards ? 'col-xl-4' : ''} col-md-3 col-sm-4 principles-item`;
     // Get the icon URL and alt text from anchor
     const iconLink = item.querySelector('a');
     const iconUrl = iconLink?.href || '';
@@ -114,6 +116,21 @@ export default function decorate(block) {
     item.insertBefore(iconWrapper, item.firstChild);
 
     // Wrap item in column and add to row
+    if(isSingleCard){
+      item.classList.add('core-principle-single-card')
+      const [icon, ...restElement] = item.children
+      icon.classList.add('icon-single-wrapper')
+      const div = document.createElement('div')
+      item.innerHTML=""
+      item.append(icon)
+      restElement.forEach((elm,index)=>{
+        if(index===0){
+          elm.classList.add('core-principle-single-card-line')
+        }
+        div.append(elm)
+      })
+      item.append(div)
+    }
     col.appendChild(item.cloneNode(true));
     row.appendChild(col);
   });
@@ -124,4 +141,44 @@ export default function decorate(block) {
   // Clear original content and append the new structure
   coreBlock.innerHTML = '';
   coreBlock.appendChild(wrapper);
+
+  function handleLayout() {
+    const childElement=row.children
+    if (isFourCards) {
+      if (window.innerWidth < 1024) {
+        row.style.removeProperty('max-width')
+        childElement[0].style.removeProperty('padding-left')
+        childElement[childElement.length - 1].style.removeProperty('padding-right')
+      } else {
+        row.style.maxWidth = "736px"
+        childElement[0].style.paddingLeft = window.innerWidth===1024 ? "12px" : "18px"
+        childElement[childElement.length - 1].style.paddingRight = window.innerWidth === 1024 ? "12px" : "18px"
+      }
+    }
+    if(isMoreThenSix){
+      if (window.innerWidth < 1024) {
+        childElement[0].style.removeProperty('padding-left')
+        childElement[childElement.length - 1].style.removeProperty('padding-right')
+      } else {
+        childElement[0].style.paddingLeft = window.innerWidth===1024 ? "12px" : "18px"
+        childElement[childElement.length - 1].style.paddingRight = window.innerWidth === 1024 ? "12px" : "18px"
+      }      
+    }
+    if (isSingleCard){
+      if (window.innerWidth < 767){
+        row.querySelector('.core-principle-single-card').classList.remove('core-principle-single-card')
+        row.querySelector('.icon-single-wrapper').classList.remove('icon-single-wrapper')
+        row.querySelector('.core-principle-single-card-line').classList.remove('core-principle-single-card-line')
+      }else{
+        const singleCard = childElement[0].children[0]
+        singleCard.classList.add('core-principle-single-card')
+        singleCard.querySelector('.icon-wrapper').classList.add('icon-single-wrapper')
+        singleCard.children[1].children[0].classList.add('core-principle-single-card-line')
+      }
+    }
+  }
+  handleLayout()
+  window.addEventListener('resize',()=>{
+    handleLayout()
+  })
 }

@@ -56,7 +56,7 @@ export default function decorate(block) {
               <div class="col-xl-6 col-md-3 col-sm-4 exploremore-item ">
                   <div class="exploremore-caption" ${firstCtaAttributes}>${firstCtaCaption}</div>
                   <div class="exploremore-link-container">
-                      <a href="${firstCtaHref}" class="exploremore-link exploremore-first" ${firstCtaHrefAttributes}>
+                      <a href="${firstCtaHref}" class="exploremore-link exploremore-first" title=${firstCtaCaption || ''} ${firstCtaHrefAttributes}>
                         ${forwardArrow}
                       </a>
                   </div>
@@ -64,7 +64,7 @@ export default function decorate(block) {
               <div class="col-xl-6 col-md-3 col-sm-4 exploremore-item">
                   <div class="exploremore-caption" ${secondCtaAttributes}>${secondCtaCaption}</div>
                   <div class="exploremore-link-container">
-                      <a href="${secondCtaHref}" class="exploremore-link exploremore-second" ${secondCtaHrefAttributes}>
+                      <a href="${secondCtaHref}" class="exploremore-link exploremore-second" title=${secondCtaCaption || ''} ${secondCtaHrefAttributes}>
                         ${forwardArrow}
                       </a>
                   </div>

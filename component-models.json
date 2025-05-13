@@ -1400,7 +1400,7 @@
     "id": "textmediablock",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style Options",
@@ -1417,6 +1417,10 @@
           {
             "name": "Text Media Block Heading Variation",
             "value": "text-media-block-heading-variation"
+          },
+          {
+            "name": "Text Media Block Title Only Center Align",
+            "value": "textmediablock-title-only-center-align"
           }
         ]
       }
@@ -1534,6 +1538,21 @@
           {
             "name": "North East Arrow",
             "value": "north-east-arrow"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "ctaLinkTarget",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
           }
         ]
       }
@@ -1898,8 +1917,8 @@
         "name": "ctaLabel",
         "label": "CTA Label",
         "validation": {
-          "maxLength": 30,
-          "customErrorMsg": "CTA text cannot exceed 30 characters"
+          "maxLength": 15,
+          "customErrorMsg": "CTA text cannot exceed 15 characters"
         }
       },
       {
@@ -2124,7 +2143,7 @@
   },
   {
     "id": "downloadlinkitem",
-    "fields": [
+    "fields": [ 
       {
         "component": "text",
         "name": "downloadctaname",
@@ -2134,7 +2153,7 @@
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
-      },
+      },  
       {
         "component": "text",
         "name": "downloadctalabel",
@@ -2143,7 +2162,7 @@
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
-      },
+      },      
       {
         "component": "aem-content",
         "name": "downloadctaLink",

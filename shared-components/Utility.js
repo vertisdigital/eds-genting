@@ -1,3 +1,5 @@
+import SvgIcon from './SvgIcon.js';
+
 // convert string to HTML Element
 function stringToHTML(str) {
   if(!str)
@@ -35,3 +37,39 @@ export function redirectRouter(){
 export function isMobile() {
   return window.innerWidth < 768;
 };
+
+
+
+export function downloadLink(item) {
+  const LABEL = 1;
+  const LINK = 2;
+  const ICON = 3;
+  let downloadLinkElements = item.querySelectorAll('[data-gen-download="downloadlinkitem"]')
+  if(!downloadLinkElements.length){
+    downloadLinkElements=item.querySelectorAll('[data-aue-model="downloadlinkitem"]')
+  }
+
+  if (!downloadLinkElements.length) return
+  
+  downloadLinkElements.forEach(downloadLinkElement=>{
+    const childElement=downloadLinkElement?.children[0]?.children
+    const linkTag = document.createElement('a')
+    linkTag.setAttribute('target', '_blank')
+    linkTag.classList.add('download-link-item')
+    linkTag.href = childElement[LINK].querySelector('a').href
+    linkTag.innerHTML = `<span>${childElement[LABEL].textContent}</span>`
+  
+    const iconName = childElement[ICON].textContent.replace(/-/g, "").toLowerCase().trim()
+    const icon = SvgIcon({
+      name: iconName,
+      className: '',
+      size: '16px',
+    });
+  
+    linkTag.append(stringToHTML(icon));
+  
+    downloadLinkElement.innerHTML = ""
+    downloadLinkElement.style.padding="0px"
+    downloadLinkElement.append(linkTag)
+  })
+}
