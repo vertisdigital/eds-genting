@@ -316,6 +316,7 @@
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 10px;
+    letter-spacing: 0;
   }
 
   .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
