@@ -325,11 +325,7 @@
     }
     
 }
-@media (width>=993px) {
-    .statistics .statistics-row .feature-item {
-        width: 50%;
-    }
-}
+
 @media (width>=1200px) {
     .statistics-wrapper .statistics.block::before {
         max-width: none;

@@ -228,9 +228,9 @@
   }
 
   .contactus.contactus-variation .contactus-bottom>div:first-child{
-    font-size: 28px;
+    font-size: var(--font-size-md);
     font-weight: 400;
-    line-height: 40px;
+    line-height: 34px;
     color: var(--text-color);
   }
 
