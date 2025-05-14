@@ -2331,7 +2331,7 @@
       },
       {
         "component": "text",
-        "name": "noResultsFoundText",
+        "name": "noResultsFoundInfo",
         "label": "No Results Found Text",
         "validation": {
           "maxLength": 100,
