@@ -41,12 +41,10 @@ export default function decorate(block) {
         headerSection.classList.add('fixed-header');
         defaultLogo.style.display = 'none';
         scrollLogo.style.display = 'block';
-        isHeaderFixed = true;
       } else if (scrollPosition === 0) {
         headerSection.classList.remove('fixed-header');
         defaultLogo.style.display = 'block';
         scrollLogo.style.display = 'none';
-        isHeaderFixed = false;
       }
     }
   });
