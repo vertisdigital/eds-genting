@@ -1400,14 +1400,20 @@
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
-        "label": "Image",
-        "configUrl": "https://feature-footer-accordion--genting--wppopen.aem.live/tools/assets-selector/config.json"
+        "label": "Media",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
         "component": "text",
         "name": "imageTitle",
         "label": "Alt Text",
         "valueType": "string"
+      },
+      {
+        "component": "boolean",
+        "label": "Autoplay",
+        "name": "reveal",
+        "valueType": "boolean"
       }
     ]
   },
