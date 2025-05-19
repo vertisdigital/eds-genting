@@ -14,10 +14,10 @@
     font-size: var(--font-size-s);
     font-style: normal;
     font-weight: 600;
-    line-height: 24px;
+    line-height: 28px;
     color: var(--text-color);
-    margin-bottom: 20px;
-    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    letter-spacing: 0px;
   }
 
   .projectcards .projectcards-heading {
@@ -190,10 +190,9 @@
     }
 
     .projectcards .projectcards-title {
-      font-size: var(--font-size-xs);
+      font-size: var(--font-size-smd);
       font-weight: 700;
-      line-height: 18px;
-      margin-bottom: 16px;
+      line-height: 24px;
     }
 
     .projectcards .projectcards-heading {
@@ -305,6 +304,12 @@
       font-size: var(--font-size-xxs);
       font-weight: 400;
       line-height: 20px;
+    }
+
+    .projectcards .projectcards-title{
+      font-size: var(--font-size-xs);
+      line-height: 20px;
+      margin-bottom: 12px;
     }
   }
 
