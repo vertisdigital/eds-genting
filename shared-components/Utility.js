@@ -1,5 +1,3 @@
-import SvgIcon from './SvgIcon.js';
-
 // convert string to HTML Element
 function stringToHTML(str) {
   if(!str)
