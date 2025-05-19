@@ -1400,7 +1400,7 @@
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
-        "label": "Image",
+        "label": "Media",
         "configUrl": "https://feature-video-block--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
