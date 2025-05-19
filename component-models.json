@@ -1400,7 +1400,7 @@
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
-        "label": "Media",
+        "label": "Image",
         "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
