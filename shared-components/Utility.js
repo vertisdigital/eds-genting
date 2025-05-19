@@ -1,3 +1,5 @@
+import SvgIcon from './SvgIcon.js';
+
 // convert string to HTML Element
 function stringToHTML(str) {
   if(!str)
@@ -31,3 +33,7 @@ export function redirectRouter(){
      window.location.replace(redirectPathExist) 
   }
 }
+
+export function isMobile() {
+  return window.innerWidth < 768;
+};
