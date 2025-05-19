@@ -167,7 +167,7 @@
     height: max-content;
   }
 
-  @media (width<=992px) {
+  @media (width<=1024px) {
     .projectcards {
       margin: 32px 0;
     }
