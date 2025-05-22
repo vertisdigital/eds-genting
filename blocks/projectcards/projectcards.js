@@ -37,15 +37,19 @@ function moveSlide(direction, block, currentCarousel) {
   const carouselContainer = block.querySelector('.carousel-container');
 
   currentIndex[currentCarousel] += direction;
+  carouselContainer.style.transition = 'transform 0.4s ease-in-out';
+
 
   const maxIndex = Math.ceil(totalItems / CAROUSEL_SIZE) - 1;
     if (currentIndex[currentCarousel] < 0) {
+      carouselContainer.style.transition = 'none';
       currentIndex[currentCarousel] = maxIndex; // Wrap to last item
     } else if (currentIndex[currentCarousel] > maxIndex) {
+      carouselContainer.style.transition = 'none';
       currentIndex[currentCarousel] = 0; // Wrap to first item
     }
     const offset = -currentIndex[currentCarousel] * 100;
-    carouselContainer.style.transform = `translateX(${offset}%)`;
+      carouselContainer.style.transform = `translateX(${offset}%)`;
 
   const cardHeight = block.querySelectorAll('.card-pair')[currentIndex[currentCarousel]].offsetHeight;
   carouselContainer.style.height = carouselContainer.style.height === `${cardHeight}px` ? '100%' : `${cardHeight}px`;
