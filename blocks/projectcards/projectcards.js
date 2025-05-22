@@ -5,6 +5,7 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
 
 const currentIndex = [];
+const isAnimating = [];
 const CAROUSEL_SIZE = 4;
 let countCarousel = 0;
 
@@ -30,39 +31,50 @@ const nextCta = SvgIcon({
 });
 
 function moveSlide(direction, block, currentCarousel) {
-  const totalItems = block.querySelectorAll('.project-card').length;
-  if (totalItems <= CAROUSEL_SIZE) {
-    return;
-  }
+  if (isAnimating[currentCarousel]) return; // prevent if already animating
+  isAnimating[currentCarousel] = true;
+
   const carouselContainer = block.querySelector('.carousel-container');
+  const totalGroups = block.querySelectorAll('.card-pair').length;
 
   currentIndex[currentCarousel] += direction;
-  carouselContainer.style.transition = 'transform 0.4s ease-in-out';
+  carouselContainer.style.transition = 'transform 0.5s ease-in-out';
+  const offset = -currentIndex[currentCarousel] * 100;
+  carouselContainer.style.transform = `translateX(${offset}%)`;
 
+  const maxRealIndex = totalGroups - 2;
 
-  const maxIndex = Math.ceil(totalItems / CAROUSEL_SIZE) - 1;
-    if (currentIndex[currentCarousel] < 0) {
+  const handleTransition = () => {
+    carouselContainer.removeEventListener('transitionend', handleTransition);
+
+    if (currentIndex[currentCarousel] === 0) {
       carouselContainer.style.transition = 'none';
-      currentIndex[currentCarousel] = maxIndex; // Wrap to last item
-    } else if (currentIndex[currentCarousel] > maxIndex) {
+      currentIndex[currentCarousel] = maxRealIndex;
+      carouselContainer.style.transform = `translateX(-${currentIndex[currentCarousel] * 100}%)`;
+    } else if (currentIndex[currentCarousel] === totalGroups - 1) {
       carouselContainer.style.transition = 'none';
-      currentIndex[currentCarousel] = 0; // Wrap to first item
+      currentIndex[currentCarousel] = 1;
+      carouselContainer.style.transform = `translateX(-${currentIndex[currentCarousel] * 100}%)`;
     }
-    const offset = -currentIndex[currentCarousel] * 100;
-      carouselContainer.style.transform = `translateX(${offset}%)`;
 
-  const cardHeight = block.querySelectorAll('.card-pair')[currentIndex[currentCarousel]].offsetHeight;
-  carouselContainer.style.height = carouselContainer.style.height === `${cardHeight}px` ? '100%' : `${cardHeight}px`;
+    // Re-enable animation
+    setTimeout(() => {
+      isAnimating[currentCarousel] = false;
+    }, 20); // small timeout to ensure transform completes
+  };
+
+  carouselContainer.addEventListener('transitionend', handleTransition);
 }
 
+
 export default function decorate(block) {
-  // Create main container
   let projectCardsContainer = block.querySelector('.projectcards-container');
   if (!projectCardsContainer) {
     projectCardsContainer = document.createElement('div');
     projectCardsContainer.className = 'projectcards-container container';
     moveInstrumentation(block, projectCardsContainer);
   }
+
 
   // Create header section
   const headerContainer = document.createElement('div');
@@ -123,28 +135,20 @@ export default function decorate(block) {
   const cardsGridContainer = document.createElement('div');
   cardsGridContainer.className = 'projectcards-grid row carousel-container';
 
-  // Handle project cards
-  const projectCards = Array.from(block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]'));
+  const projectCards = Array.from(block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]'))
 
-  // Handle last element differently for author vs publish instance
   let lastElement = null;
   if (window.location.hostname.includes('author')) {
-    // In author instance, find linkField without removing from projectCards
     lastElement = block.querySelector('[data-aue-model="linkField"]');
   } else {
-    // In publish instance, check and pop last element if it has button-container
-    lastElement = projectCards.length > 0
-      && projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container')
-      ? projectCards.pop() : null;
+    lastElement = projectCards.length > 0 &&
+      projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container')
+      ? projectCards.pop()
+      : null;
   }
-  let cardPair = document.createElement('div');
-  cardPair.classList.add('card-pair');
-
-  const CAROUSEL_SIZE = 4; // Number of visible cards
-  const totalCards = projectCards.length;
 
   // Step 1: Create actual card elements and store them in an array
-  const cardElements = Array.from(projectCards).map((card,index) => {
+  const cardElements = Array.from(projectCards).map((card, index) => {
     const cardElement = document.createElement('div');
     cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
     moveInstrumentation(card, cardElement);
@@ -207,7 +211,7 @@ export default function decorate(block) {
       cardTitle.setAttribute('target', linkTarget);
       cardTitle.setAttribute('data', index);
       titleDiv.appendChild(cardTitle);
-      
+
       cardContent.appendChild(titleDiv);
     }
 
@@ -226,77 +230,66 @@ export default function decorate(block) {
     cardElement.appendChild(cardContent);
     return cardElement;
   });
-  console.log('cardElements: ', cardElements.length);
+  const totalCards = cardElements.length;
+  const cardGroups = [];
 
-
-  if (totalCards <= CAROUSEL_SIZE) {
-    const cardPair = document.createElement('div');
-    cardPair.className = 'card-pair';
-
-    for (let i = 0; i < totalCards; i++) {
-      const clonedCard = cardElements[i].cloneNode(true);
-      cardPair.appendChild(clonedCard);
-    }
-
-    cardsGridContainer.appendChild(cardPair);
-  } else {
+  if (totalCards > CAROUSEL_SIZE) {
     const seenCombos = new Set();
     let w = 0;
-
     while (true) {
       const startIndex = (w * CAROUSEL_SIZE) % totalCards;
-
       const indexes = [];
       for (let j = 0; j < CAROUSEL_SIZE; j++) {
         indexes.push((startIndex + j) % totalCards);
       }
-
       const key = indexes.join(',');
-      if (seenCombos.has(key)) {
-        break; // 🔁 Already seen this combo, stop
-      }
-
+      if (seenCombos.has(key)) break;
       seenCombos.add(key);
 
-      // Create card-pair and populate it
       const cardPair = document.createElement('div');
       cardPair.className = 'card-pair';
-
-      indexes.forEach((i) => {
-        const clonedCard = cardElements[i].cloneNode(true);
-        cardPair.appendChild(clonedCard);
-      });
-
-      cardsGridContainer.appendChild(cardPair);
+      indexes.forEach(i => cardPair.appendChild(cardElements[i].cloneNode(true)));
+      cardGroups.push(cardPair);
       w++;
     }
+  } else {
+    const cardPair = document.createElement('div');
+    cardPair.className = 'card-pair';
+    cardElements.forEach(card => cardPair.appendChild(card.cloneNode(true)));
+    cardGroups.push(cardPair);
+  }
+
+  // Clone first & last groups
+  if (cardGroups.length > 1) {
+    const firstClone = cardGroups[0].cloneNode(true);
+    const lastClone = cardGroups[cardGroups.length - 1].cloneNode(true);
+    cardsGridContainer.appendChild(lastClone); // Prepend at the end
+    cardGroups.forEach(group => cardsGridContainer.appendChild(group));
+    cardsGridContainer.appendChild(firstClone); // Append at the end
+  } else {
+    cardGroups.forEach(group => cardsGridContainer.appendChild(group));
   }
 
   projectCardsContainer.appendChild(cardsGridContainer);
 
   const carouselContaier = document.createElement('div');
   carouselContaier.setAttribute('class', 'carousel');
-
   carouselContaier.appendChild(cardsGridContainer);
 
   const prevButton = document.createElement('button');
   prevButton.setAttribute('class', 'carousel-prev');
+  prevButton.append(stringToHTML(prevCta));
 
   const nextButton = document.createElement('button');
   nextButton.setAttribute('class', 'carousel-next');
-
-  prevButton.append(stringToHTML(prevCta));
+  nextButton.append(stringToHTML(totalCards <= CAROUSEL_SIZE ? nextDisableCta : nextCta));
 
   const buttonGroup = document.createElement('div');
   buttonGroup.setAttribute('class', 'button-group');
-
-  buttonGroup.appendChild(prevButton);
-  buttonGroup.appendChild(nextButton);
+  buttonGroup.append(prevButton, nextButton);
   carouselContaier.appendChild(buttonGroup);
-
   projectCardsContainer.appendChild(carouselContaier);
 
-  // Handle View All link using the stored last element
   if (lastElement) {
     const linkContainer = document.createElement('div');
     moveInstrumentation(lastElement, linkContainer);
@@ -305,72 +298,50 @@ export default function decorate(block) {
     if (linkElement) {
       const linkDiv = document.createElement('div');
       linkElement.className = 'view-all-link';
-      linkElement.target = lastElement.children[2]?.textContent || '_self';
       linkDiv.appendChild(linkElement);
       linkContainer.appendChild(linkDiv);
     }
-
     projectCardsContainer.appendChild(linkContainer);
     lastElement.remove();
   }
 
-  // Clear original block content and append new structure
   block.textContent = '';
   block.appendChild(projectCardsContainer);
 
-  // Add keyboard navigation and accessibility attributes
   const cards = block.querySelectorAll('.project-card');
   cards.forEach((card, index) => {
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'article');
     card.setAttribute('aria-label', `Project ${index + 1}`);
-
     card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        // Trigger card action if needed
-        card.click();
-      }
+      if (e.key === 'Enter') card.click();
     });
   });
 
-  const projectCard = block.querySelectorAll('.project-card');
-  if (projectCard.length <= CAROUSEL_SIZE) {
-    nextButton.append(stringToHTML(nextDisableCta));
-  } else {
-    nextButton.append(stringToHTML(nextCta));
+  countCarousel += 1;
+  for (let i = 0; i < countCarousel; i++) {
+    currentIndex[i] = 1;
   }
 
-  countCarousel += 1;
-  for (let i = 0; i < countCarousel; i += 1) {
-    currentIndex[i] = 0;
-  }
+  cardsGridContainer.style.transition = 'none';
+  const cardpairs=block.querySelectorAll('.card-pair').length
+  cardsGridContainer.style.transform = cardpairs > 1 ? `translateX(-100%)` : `translateX(0%)`; // Start at the first real group
 
   document.querySelectorAll('.carousel-prev').forEach((element, index) => {
-    // Check if the event listener has already been added (using a custom data attribute or a class)
     if (!element.hasAttribute('data-listener-added')) {
-      element.addEventListener('click', () => {
-        moveSlide(-1, block, index);
-      });
-
-      // Mark that the listener has been added
+      element.addEventListener('click', () => moveSlide(-1, block, index));
       element.setAttribute('data-listener-added', 'true');
     }
   });
 
   document.querySelectorAll('.carousel-next').forEach((element, index) => {
-    // Check if the event listener has already been added (using a custom data attribute or a class)
     if (!element.hasAttribute('data-listener-added')) {
-      element.addEventListener('click', () => {
-        const totalItems = block.querySelectorAll('.card-pair').length;
-        moveSlide(1, block, index);
-      });
-
-      // Mark that the listener has been added
+      element.addEventListener('click', () => moveSlide(1, block, index));
       element.setAttribute('data-listener-added', 'true');
     }
   });
 
-  if (totalCards <= 4) {
+  if (totalCards <= CAROUSEL_SIZE) {
     block.querySelector('.button-group').style.display = 'none';
   }
 }
