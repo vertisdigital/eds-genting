@@ -232,8 +232,8 @@ export default function decorate(block) {
   });
   const totalCards = cardElements.length;
   const cardGroups = [];
-
-  if (totalCards > CAROUSEL_SIZE) {
+  const isAuthorInstance = document.referrer.includes('canvas');
+  if (!isAuthorInstance && (totalCards > CAROUSEL_SIZE)) {
     const seenCombos = new Set();
     let w = 0;
     while (true) {
