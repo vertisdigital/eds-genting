@@ -14,11 +14,6 @@ const nextDisableCta = SvgIcon({
   className: 'carousel-next-cta',
   size: '16px',
 });
-const prevDisableCta = SvgIcon({
-  name: 'disableLeftArrow',
-  className: 'carousel-next-cta',
-  size: '16px',
-});
 const prevCta = SvgIcon({
   name: 'LeftArrow',
   className: 'carousel-next-cta',
@@ -239,7 +234,7 @@ export default function decorate(block) {
     while (true) {
       const startIndex = (w * CAROUSEL_SIZE) % totalCards;
       const indexes = [];
-      for (let j = 0; j < CAROUSEL_SIZE; j++) {
+      for (let j = 0; j < CAROUSEL_SIZE; j += 1) {
         indexes.push((startIndex + j) % totalCards);
       }
       const key = indexes.join(',');
@@ -250,7 +245,7 @@ export default function decorate(block) {
       cardPair.className = 'card-pair';
       indexes.forEach(i => cardPair.appendChild(cardElements[i].cloneNode(true)));
       cardGroups.push(cardPair);
-      w++;
+      w += 1;
     }
   } else {
     const cardPair = document.createElement('div');
@@ -319,7 +314,7 @@ export default function decorate(block) {
   });
 
   countCarousel += 1;
-  for (let i = 0; i < countCarousel; i++) {
+  for (let i = 0; i < countCarousel; i += 1) {
     currentIndex[i] = 1;
   }
 
