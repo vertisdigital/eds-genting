@@ -143,7 +143,7 @@ export default function decorate(block) {
   }
 
   // Step 1: Create actual card elements and store them in an array
-  const cardElements = Array.from(projectCards).map((card) => {
+  const cardElements = Array.from(projectCards).map((card, index) => {
     const cardElement = document.createElement('div');
     cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
     moveInstrumentation(card, cardElement);
@@ -197,14 +197,14 @@ export default function decorate(block) {
     const cardContent = document.createElement('div');
     cardContent.className = 'project-card-content';
 
-    // Handle card title
-    const cardTitle = card.querySelector(
-      '[data-aue-prop="projecttext"], .button-container .button',
-    ) || card?.children[1];
+    const cardTitle = card.querySelector('[data-aue-prop="projectText"], .button-container .button');
     if (cardTitle) {
       const titleDiv = document.createElement('div');
       titleDiv.className = 'project-card-title';
       cardTitle.className = '';
+      const linkTarget = card.querySelector('[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]')?.textContent || '_self';
+      cardTitle.setAttribute('target', linkTarget);
+      cardTitle.setAttribute('data', index);
       titleDiv.appendChild(cardTitle);
 
       cardContent.appendChild(titleDiv);
