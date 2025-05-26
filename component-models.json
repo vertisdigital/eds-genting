@@ -810,41 +810,16 @@
         "valueType": "string"
       },
       {
-        "component": "aem-content",
-        "name": "project",
-        "label": "Link",
+        "component": "richtext",
+        "name": "projecttext",
+        "value": "",
+        "label": "Project Text",
+        "description": "Project Text must not exceed 500 characters",
+        "valueType": "string",
         "validation": {
-          "rootPath": "/content/genting-singapore"
+          "maxLength": 500,
+          "customErrorMsg": "Project Text must not exceed 500 characters"
         }
-      },
-      {
-        "component": "text",
-        "name": "projectText",
-        "label": "Text"
-      },
-      {
-        "component": "text",
-        "name": "projectTitle",
-        "label": "Title",
-        "validation": {
-          "maxLength": 25,
-          "customErrorMsg": "Title cannot exceed 25 characters"
-        }
-      },
-      {
-        "component": "select",
-        "name": "projectTarget",
-        "label": "Target",
-        "options": [
-          {
-            "name": "Same Tab",
-            "value": "_self"
-          },
-          {
-            "name": "New Tab",
-            "value": "_blank"
-          }
-        ]
       },
       {
         "component": "richtext",
