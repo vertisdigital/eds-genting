@@ -83,6 +83,7 @@ function buildAutoBlocks(main) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main, isExecute) {
   isAuthenticated();
+  redirectRouter();
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main, isExecute);
