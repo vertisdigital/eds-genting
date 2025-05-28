@@ -2,16 +2,6 @@
 .login {
   padding: 2rem 0;
   background-color: var(--background-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.login .login-column {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 500px;
 }
 
 .login .login-container {
@@ -158,23 +148,9 @@ body:has(.login) {
   overflow-x: hidden;
 }
 
-/* Ensure main content takes full height when login is active */
-main:has(.login) {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-}
-
-main:has(.login)::before {
-  display: none;
-}
-
 /* Responsive Design */
 @media (max-width: 575px) {
-  .login .container {
-    padding: 0 0.75rem;
-    width: 400px;
-  }
+
   
   .login .login-container {
     padding: 1.5rem;
@@ -189,24 +165,9 @@ main:has(.login)::before {
   }
 }
 
-@media (min-width: 576px) {
-  .login .container {
-    padding: 0 1rem;
-  }
-  
-  .login .login-column {
-    max-width: 450px;
-  }
-}
-
 @media (min-width: 768px) {
   .login {
     padding: 3rem 0;
-    width:500px;
-  }
-  
-  .login .container {
-    padding: 0 1.5rem;
   }
   
   .login .login-container {
@@ -233,19 +194,12 @@ main:has(.login)::before {
 @media (min-width: 992px) {
   .login {
     padding: 4rem 0;
-    width:2000px;
   }
   
   .login .login-container {
     padding: 3rem;
     max-width: 450px;
     margin: 0 auto;
-  }
-}
-
-@media (min-width: 1200px) {
-  .login .container {
-    max-width: 1140px;
   }
 }
 
