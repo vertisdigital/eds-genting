@@ -2,24 +2,17 @@
 .login {
   padding: 2rem 0;
   background-color: var(--background-color);
-  min-height: 100vh;
   display: flex;
   align-items: center;
-}
-
-.login .container {
-  width: 100%;
-}
-
-.login .row {
+  width:2000px;
   justify-content: center;
-  align-items: center;
-  min-height: 60vh;
 }
 
 .login .login-column {
   display: flex;
   justify-content: center;
+  width: 100%;
+  max-width: 500px;
 }
 
 .login .login-container {
@@ -178,7 +171,11 @@ main:has(.login)::before {
 }
 
 /* Responsive Design */
-@media (width >= 320px) {
+@media (max-width: 575px) {
+  .login .container {
+    padding: 0 0.75rem;
+  }
+  
   .login .login-container {
     padding: 1.5rem;
   }
@@ -186,11 +183,29 @@ main:has(.login)::before {
   .login .login-title {
     font-size: var(--font-size-l);
   }
+  
+  .login .login-column {
+    max-width: 100%;
+  }
 }
 
-@media (width >= 768px) {
+@media (min-width: 576px) {
+  .login .container {
+    padding: 0 1rem;
+  }
+  
+  .login .login-column {
+    max-width: 450px;
+  }
+}
+
+@media (min-width: 768px) {
   .login {
     padding: 3rem 0;
+  }
+  
+  .login .container {
+    padding: 0 1.5rem;
   }
   
   .login .login-container {
@@ -208,19 +223,30 @@ main:has(.login)::before {
   .login .login-button {
     padding: 1rem 2rem;
   }
+  
+  .login .login-column {
+    max-width: 500px;
+  }
 }
 
-@media (width >= 992px) {
+@media (min-width: 992px) {
   .login {
     padding: 4rem 0;
   }
   
   .login .login-container {
     padding: 3rem;
+    max-width: 450px;
+    margin: 0 auto;
   }
 }
 
-/* Accessibility Enhancements */
+@media (min-width: 1200px) {
+  .login .container {
+    max-width: 1140px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .login .form-input,
   .login .login-button {
@@ -232,10 +258,9 @@ main:has(.login)::before {
   }
 }
 
-/* High contrast mode support */
 @media (prefers-contrast: high) {
   .login .login-container {
-    border: 2px solid var(--text-color);
+    border: 2px solid var(--dark-color);
   }
   
   .login .form-input {
@@ -247,14 +272,13 @@ main:has(.login)::before {
   }
 }
 
-/* Focus visible for keyboard navigation */
 .login .form-input:focus-visible,
 .login .login-button:focus-visible {
   outline: 2px solid var(--primary-gold);
   outline-offset: 2px;
 }
 
-/* Loading state (optional enhancement) */
+/* Loading state */
 .login .login-button.loading {
   position: relative;
   color: transparent;
@@ -265,9 +289,9 @@ main:has(.login)::before {
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   width: 20px;
   height: 20px;
-  margin: -10px 0 0 -10px;
   border: 2px solid transparent;
   border-top: 2px solid var(--background-color);
   border-radius: 50%;
@@ -275,6 +299,6 @@ main:has(.login)::before {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 } 
