@@ -8,7 +8,6 @@
 }
 
 .login .container {
-  max-width: 100%;
   width: 100%;
 }
 
@@ -29,7 +28,6 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   width: 100%;
-  max-width: 400px;
   border: 1px solid var(--light-grey);
 }
 
@@ -197,7 +195,6 @@ main:has(.login)::before {
   
   .login .login-container {
     padding: 2.5rem;
-    max-width: 450px;
   }
   
   .login .login-title {
@@ -220,7 +217,6 @@ main:has(.login)::before {
   
   .login .login-container {
     padding: 3rem;
-    max-width: 500px;
   }
 }
 
