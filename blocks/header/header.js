@@ -510,15 +510,28 @@ function handleScroll(header) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-   // Extract language code from URL (e.g., /en/investors-overview → "en")
-  const pathParts = window.location.pathname.split('/');
-  const lang = pathParts[1] || 'en'; // Default to 'en' if not found
-
   const navMeta = getMetadata('nav');
-  //const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  const navPath = navMeta
-    ? new URL(navMeta, window.location).pathname
-    : `/${lang}/nav`; // Final nav path: /en/nav, /ja/nav, etc.
+  let navPath;
+
+  if (navMeta) {
+    navPath = new URL(navMeta, window.location).pathname;
+  } else {
+    // Extract first path segment
+    const pathParts = window.location.pathname.split('/');
+    const firstSegment = pathParts[1];
+
+    // List of supported language codes (you can customize this)
+    const languageCodes = [
+      'en', 'ja', 'zh', 'zh-tw', 'fr', 'de', 'es', 'it', 'pt', 'ru',
+      'ko', 'ar', 'nl', 'sv', 'no', 'da', 'fi', 'pl', 'tr', 'cs',
+      'he', 'hi', 'th', 'id', 'ms', 'vi', 'ro', 'hu'
+    ];
+
+    // Determine nav path
+    navPath = languageCodes.includes(firstSegment)
+      ? `/${firstSegment}/nav`
+      : `/nav`;
+  }
   const fragment = await loadFragment(navPath);
 
   if (fragment && true) {
