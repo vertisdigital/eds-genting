@@ -510,8 +510,15 @@ function handleScroll(header) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+   // Extract language code from URL (e.g., /en/investors-overview → "en")
+  const pathParts = window.location.pathname.split('/');
+  const lang = pathParts[1] || 'en'; // Default to 'en' if not found
+
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  //const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  const navPath = navMeta
+    ? new URL(navMeta, window.location).pathname
+    : `/${lang}/nav`; // Final nav path: /en/nav, /ja/nav, etc.
   const fragment = await loadFragment(navPath);
 
   if (fragment && true) {
