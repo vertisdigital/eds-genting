@@ -34,6 +34,7 @@ export default async function decorate(block) {
     // Extract first path segment
     const pathParts = window.location.pathname.split('/');
     const firstSegment = pathParts[1];
+    console.log(firstSegment);
 
     // List of supported language codes (same as nav)
     const languageCodes = [
