@@ -84,9 +84,6 @@
     color: var(--text-color);
     text-decoration: none;
   }
-  .projectcards .project-card-title a {
-    text-decoration: underline;
-  }
 
   .projectcards .project-card-location {
     font-size: var(--font-size-xs);
@@ -116,6 +113,10 @@
   .project-card-title a {
     color: var(--text-color);
     text-decoration: none;
+  }
+  
+  .projectcards .project-card-title a {
+    text-decoration: underline;
   }
 
   .projectcards.grey-background {
