@@ -154,8 +154,7 @@ ceo:`<svg width="124" height="124" viewBox="0 0 124 124" fill="none" xmlns="http
 <rect width="168" height="50" fill="white"/>
 </clipPath>
 </defs>
-</svg>
-`
+</svg>`,
 // Add other icons here as needed
 };
 
