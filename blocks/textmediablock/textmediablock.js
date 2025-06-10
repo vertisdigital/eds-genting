@@ -132,7 +132,9 @@ function handleMediaElement(mediaBlock) {
 
   if (mediaElement) {
     linkElement.parentElement?.replaceChild(mediaElement, linkElement);
-    mediaBlock.children[1].style.display="none"
+    if(mediaBlock?.children[1]) {
+      mediaBlock.children[1].style.display="none"
+    }
     if (isVideo) setupVideoFunctionality(autoPlay, mediaElement);
   }
 }
