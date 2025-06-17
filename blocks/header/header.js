@@ -522,9 +522,7 @@ export default async function decorate(block) {
 
     // List of supported language codes (you can customize this)
     const languageCodes = [
-      'en', 'ja', 'zh', 'zh-tw', 'fr', 'de', 'es', 'it', 'pt', 'ru',
-      'ko', 'ar', 'nl', 'sv', 'no', 'da', 'fi', 'pl', 'tr', 'cs',
-      'he', 'hi', 'th', 'id', 'ms', 'vi', 'ro', 'hu'
+      'en', 'ja', 'zh'
     ];
 
     // Determine nav path
