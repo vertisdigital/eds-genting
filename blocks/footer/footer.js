@@ -26,7 +26,28 @@ const handleAccordionToggle = (e, keyboardTrigger = false) => {
 export default async function decorate(block) {
   // load footer as fragment
   const footerMeta = getMetadata('footer');
-  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
+  //const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
+  let footerPath;
+  if (footerMeta) {
+    footerPath = new URL(footerMeta, window.location).pathname;
+  } else {
+    // Extract first path segment
+    const pathParts = window.location.pathname.split('/');
+    const firstSegment = pathParts[1];
+    console.log(firstSegment);
+
+    // List of supported language codes (same as nav)
+    const languageCodes = [
+      'en', 'ja', 'zh'
+    ];
+
+    // Determine footer path
+    footerPath = languageCodes.includes(firstSegment)
+      ? `/${firstSegment}/footer`
+      : `/footer`;
+  }
+
+  console.log(footerPath);
   const fragment = await loadFragment(footerPath);
   if (fragment) {
     const section = document.createElement('section');
