@@ -1,9 +1,11 @@
+import DOMPurify from 'dompurify';
 // convert string to HTML Element
 function stringToHTML(str) {
   if(!str)
     return '';
+  const sanitizedHtml = DOMPurify.sanitize(str);
   const parser = new DOMParser();
-  const doc = parser.parseFromString(str, 'text/html');
+  const doc = parser.parseFromString(sanitizedHtml, 'text/html');
   return doc.body.firstChild;
 }
 
