@@ -487,4 +487,7 @@
   .hero-banner-container {
     padding-top: 140px;
   }
+  .hero-title {
+    line-height: 58px;
+  }
 }
