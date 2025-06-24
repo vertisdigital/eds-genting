@@ -9,7 +9,7 @@ function sanitizeHTMLString(str) {
     'onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'onmouseenter',
     'srcdoc', 'formaction', 'xlink:href'
   ];
-// eslint-disable no-script-url
+// eslint-disable-next-line no-script-url
   const blockedProtocols = ['javascript:', 'vbscript:', 'data:'];
   const urlAttributes = ['href', 'src', 'xlink:href', 'formaction'];
 
