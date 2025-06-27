@@ -210,5 +210,11 @@
     "components": [
       "director"
     ]
+  },
+  {
+    "id": "exploremore",
+    "components": [
+      "linkField"
+    ]
   }
 ]
