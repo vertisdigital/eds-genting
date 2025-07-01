@@ -26,7 +26,7 @@ const handleAccordionToggle = (e, keyboardTrigger = false) => {
  */
 export default async function decorate(block) {
   // load footer as fragment
-  console.log('footer-30June');
+  console.log('footer-01July-2:33pmIST');
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   const fragment = await loadFragment(footerPath);
