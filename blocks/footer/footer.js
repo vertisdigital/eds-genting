@@ -29,13 +29,12 @@ export default async function decorate(block) {
   const footerMeta = getMetadata('footer');
   //const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   let footerPath;
-  let firstSegment;
   if (footerMeta) {
     footerPath = new URL(footerMeta, window.location).pathname;
   } else {
     // Extract first path segment
     const pathParts = window.location.pathname.split('/');
-    firstSegment = pathParts[1];
+    const firstSegment = pathParts[1];
     console.log(firstSegment);
 
     // List of supported language codes (same as nav)
@@ -81,12 +80,7 @@ export default async function decorate(block) {
     logoWrapper.className = 'footer-logo';
 
     const logoLink = document.createElement('a');
-    if (firstSegment) {
-      logoLink.href = `/${firstSegment}/footer`;
-    }else{
-      logoLink.href = `/`;
-    }
-    
+    logoLink.href = '/';
     const logo = document.createElement('img');
     const socialImgContainer = container.querySelector('.imagelink')?.querySelectorAll('p');
     const logoImg = socialImgContainer[0]?.querySelector('a');
