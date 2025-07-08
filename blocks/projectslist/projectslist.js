@@ -104,7 +104,7 @@ export default function decorate(block) {
             size: "16px",
           });
           const div = document.createElement('div')
-          if(projectCtaLabel){
+          if(projectCtaLabel && stringToHtml(ctaIcon)){
             linkTag.append(stringToHtml(ctaIcon)) 
           }
           leftCol.appendChild(div);
